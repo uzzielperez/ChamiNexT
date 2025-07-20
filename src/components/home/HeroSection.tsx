@@ -26,20 +26,41 @@ const HeroSection: React.FC = () => {
 
   return (
     <div className="relative bg-slate-900 overflow-hidden">
-      {/* Background patterns */}
+      {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-600 rounded-full opacity-30 blur-3xl"></div>
-        <div className="absolute top-60 -left-20 w-60 h-60 bg-blue-600 rounded-full opacity-20 blur-3xl"></div>
-        <div className="absolute bottom-40 right-20 w-40 h-40 bg-green-600 rounded-full opacity-20 blur-3xl"></div>
+        {/* Base gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"></div>
         
-        {/* Logo silhouette */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <img 
-            src="/chaminext-logo.png" 
-            alt="" 
-            className="w-96 h-auto opacity-5 select-none pointer-events-none filter grayscale"
-            style={{ transform: 'scale(2)' }}
-          />
+        {/* Floating particles */}
+        <div className="absolute inset-0">
+          {[...Array(50)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-purple-400 rounded-full opacity-20 animate-float"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 20}s`,
+                animationDuration: `${15 + Math.random() * 10}s`,
+              }}
+            ></div>
+          ))}
+        </div>
+        
+        {/* Larger ambient orbs */}
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-600 rounded-full opacity-10 blur-3xl animate-pulse"></div>
+        <div className="absolute top-60 -left-20 w-60 h-60 bg-blue-600 rounded-full opacity-10 blur-3xl animate-pulse" style={{ animationDelay: '3s' }}></div>
+        <div className="absolute bottom-40 right-20 w-40 h-40 bg-green-600 rounded-full opacity-10 blur-3xl animate-pulse" style={{ animationDelay: '6s' }}></div>
+        
+        {/* Grid pattern overlay */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: '50px 50px'
+          }}></div>
         </div>
       </div>
       

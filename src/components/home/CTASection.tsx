@@ -7,17 +7,24 @@ const CTASection: React.FC = () => {
     <section className="py-20 bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900 relative overflow-hidden">
       {/* Background patterns */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-20 -right-20 w-60 h-60 bg-purple-600 rounded-full opacity-30 blur-3xl"></div>
-        <div className="absolute bottom-40 -left-20 w-60 h-60 bg-blue-600 rounded-full opacity-20 blur-3xl"></div>
-        
-        {/* Logo silhouette */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <img 
-            src="/chaminext-logo.png" 
-            alt="" 
-            className="w-80 h-auto opacity-3 select-none pointer-events-none filter grayscale"
-          />
+        {/* Floating particles */}
+        <div className="absolute inset-0">
+          {[...Array(30)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-0.5 h-0.5 bg-white rounded-full opacity-10 animate-float"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 15}s`,
+                animationDuration: `${20 + Math.random() * 10}s`,
+              }}
+            ></div>
+          ))}
         </div>
+        
+        <div className="absolute -top-20 -right-20 w-60 h-60 bg-purple-600 rounded-full opacity-20 blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-40 -left-20 w-60 h-60 bg-blue-600 rounded-full opacity-15 blur-3xl animate-pulse" style={{ animationDelay: '4s' }}></div>
       </div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
