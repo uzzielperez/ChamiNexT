@@ -9,6 +9,15 @@ const CTASection: React.FC = () => {
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-20 -right-20 w-60 h-60 bg-purple-600 rounded-full opacity-30 blur-3xl"></div>
         <div className="absolute bottom-40 -left-20 w-60 h-60 bg-blue-600 rounded-full opacity-20 blur-3xl"></div>
+        
+        {/* Logo silhouette */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <img 
+            src="/chaminext-logo.png" 
+            alt="" 
+            className="w-80 h-auto opacity-3 select-none pointer-events-none filter grayscale"
+          />
+        </div>
       </div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">

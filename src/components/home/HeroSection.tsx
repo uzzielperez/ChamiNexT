@@ -31,6 +31,16 @@ const HeroSection: React.FC = () => {
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-600 rounded-full opacity-30 blur-3xl"></div>
         <div className="absolute top-60 -left-20 w-60 h-60 bg-blue-600 rounded-full opacity-20 blur-3xl"></div>
         <div className="absolute bottom-40 right-20 w-40 h-40 bg-green-600 rounded-full opacity-20 blur-3xl"></div>
+        
+        {/* Logo silhouette */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <img 
+            src="/chaminext-logo.png" 
+            alt="" 
+            className="w-96 h-auto opacity-5 select-none pointer-events-none filter grayscale"
+            style={{ transform: 'scale(2)' }}
+          />
+        </div>
       </div>
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
