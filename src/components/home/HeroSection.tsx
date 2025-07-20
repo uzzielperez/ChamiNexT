@@ -34,16 +34,16 @@ const HeroSection: React.FC = () => {
       </div>
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
-        <div className="text-center lg:text-left">
+        <div className="text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
             Where <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-purple-600" ref={typedRef}></span> meets <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">exceptional opportunity</span>
           </h1>
           
-          <p className="mt-6 text-xl text-gray-300 max-w-3xl mx-auto lg:mx-0">
+          <p className="mt-6 text-xl text-gray-300 max-w-3xl mx-auto">
             Connecting elite developers with forward-thinking companies. Showcase your skills, sell your products, and accelerate your career.
           </p>
           
-          <div className="mt-10 flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+          <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
             <Button size="lg">
               Get Started
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -54,29 +54,29 @@ const HeroSection: React.FC = () => {
           </div>
           
           {/* Stats */}
-          <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto lg:mx-0">
+          <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/10">
-              <div className="flex justify-center lg:justify-start items-center">
+              <div className="flex justify-center items-center">
                 <Code className="h-7 w-7 text-purple-500 mr-3" />
                 <span className="text-2xl font-bold text-white">25K+</span>
               </div>
-              <p className="mt-2 text-gray-400 text-center lg:text-left">Active Developers</p>
+              <p className="mt-2 text-gray-400 text-center">Active Developers</p>
             </div>
             
             <div className="bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/10">
-              <div className="flex justify-center lg:justify-start items-center">
+              <div className="flex justify-center items-center">
                 <Users className="h-7 w-7 text-blue-500 mr-3" />
                 <span className="text-2xl font-bold text-white">2K+</span>
               </div>
-              <p className="mt-2 text-gray-400 text-center lg:text-left">Hiring Companies</p>
+              <p className="mt-2 text-gray-400 text-center">Hiring Companies</p>
             </div>
             
             <div className="bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/10">
-              <div className="flex justify-center lg:justify-start items-center">
+              <div className="flex justify-center items-center">
                 <ShoppingBag className="h-7 w-7 text-green-500 mr-3" />
                 <span className="text-2xl font-bold text-white">10K+</span>
               </div>
-              <p className="mt-2 text-gray-400 text-center lg:text-left">Digital Products</p>
+              <p className="mt-2 text-gray-400 text-center">Digital Products</p>
             </div>
           </div>
         </div>
