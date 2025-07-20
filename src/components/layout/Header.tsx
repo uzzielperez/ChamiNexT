@@ -34,7 +34,7 @@ const Header: React.FC = () => {
           {/* Logo */}
           <div className="flex items-center">
             <Code className="h-8 w-8 text-purple-500" />
-            <span className="ml-2 text-xl font-bold text-white">DevNexus</span>
+            <span className="ml-2 text-xl font-bold text-white">ChamiNexT</span>
           </div>
           
           {/* Desktop Navigation */}

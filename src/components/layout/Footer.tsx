@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
           <div className="col-span-2 lg:col-span-1">
             <div className="flex items-center">
               <Code className="h-8 w-8 text-purple-500" />
-              <span className="ml-2 text-xl font-bold text-white">DevNexus</span>
+              <span className="ml-2 text-xl font-bold text-white">ChamiNexT</span>
             </div>
             <p className="mt-4 text-gray-400 text-sm">
               Connecting exceptional developers with forward-thinking companies and empowering coders to monetize their expertise.
@@ -81,7 +81,7 @@ const Footer: React.FC = () => {
         
         <div className="mt-12 pt-8 border-t border-white/10">
           <p className="text-gray-400 text-sm text-center">
-            © {new Date().getFullYear()} DevNexus. All rights reserved.
+            © {new Date().getFullYear()} ChamiNexT. All rights reserved.
           </p>
         </div>
       </div>

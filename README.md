@@ -1,4 +1,4 @@
-# DevNexus
+# ChamiNexT
 
 A modern platform connecting exceptional developers with forward-thinking companies.
 
@@ -6,12 +6,12 @@ A modern platform connecting exceptional developers with forward-thinking compan
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/devnexus.git
+   git clone https://github.com/yourusername/chaminext.git
    ```
 
 2. Install dependencies:
    ```bash
-   cd devnexus
+   cd chaminext
    npm install
    ```
 

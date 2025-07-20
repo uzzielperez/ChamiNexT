@@ -18,7 +18,7 @@ const CTASection: React.FC = () => {
               Ready to transform your career or build your dream team?
             </h2>
             <p className="mt-5 text-xl text-gray-300">
-              Join thousands of developers and companies already using DevNexus to connect, collaborate, and create.
+              Join thousands of developers and companies already using ChamiNexT to connect, collaborate, and create.
             </p>
             
             <div className="mt-8 space-y-6">
