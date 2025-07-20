@@ -6,7 +6,7 @@ import PartnersSection from '../components/home/PartnersSection';
 import FeaturesSection from '../components/home/FeaturesSection';
 import JobsSection from '../components/home/JobsSection';
 import ProductsSection from '../components/home/ProductsSection';
-import ChallengesSection from '../components/home/ChallengesSection';
+
 import CTASection from '../components/home/CTASection';
 
 const HomePage: React.FC = () => {
@@ -19,7 +19,6 @@ const HomePage: React.FC = () => {
         <FeaturesSection />
         <JobsSection />
         <ProductsSection />
-        <ChallengesSection />
         <CTASection />
       </main>
       <Footer />

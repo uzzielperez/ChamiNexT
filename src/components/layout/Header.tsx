@@ -41,7 +41,6 @@ const Header: React.FC = () => {
           <nav className="hidden md:flex items-center space-x-8">
             <a href="#" className="text-gray-300 hover:text-white transition-colors">For Developers</a>
             <a href="#" className="text-gray-300 hover:text-white transition-colors">For Employers</a>
-            <a href="#" className="text-gray-300 hover:text-white transition-colors">Challenges</a>
             <a href="#" className="text-gray-300 hover:text-white transition-colors">Marketplace</a>
             <a href="#" className="text-gray-300 hover:text-white transition-colors">Pricing</a>
           </nav>
@@ -89,7 +88,6 @@ const Header: React.FC = () => {
           <div className="px-4 py-3 space-y-3">
             <a href="#" className="block py-2 text-gray-300 hover:text-white transition-colors">For Developers</a>
             <a href="#" className="block py-2 text-gray-300 hover:text-white transition-colors">For Employers</a>
-            <a href="#" className="block py-2 text-gray-300 hover:text-white transition-colors">Challenges</a>
             <a href="#" className="block py-2 text-gray-300 hover:text-white transition-colors">Marketplace</a>
             <a href="#" className="block py-2 text-gray-300 hover:text-white transition-colors">Pricing</a>
             <div className="pt-3 flex flex-col space-y-3">

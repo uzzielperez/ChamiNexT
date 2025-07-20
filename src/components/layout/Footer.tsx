@@ -34,10 +34,9 @@ const Footer: React.FC = () => {
           {/* For Developers */}
           <div>
             <h3 className="text-sm font-semibold text-white uppercase tracking-wider">For Developers</h3>
-            <ul className="mt-4 space-y-3">
-              <li><a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Find Jobs</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Coding Challenges</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Sell Products</a></li>
+                          <ul className="mt-4 space-y-3">
+                <li><a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Find Jobs</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Sell Products</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Skills Assessment</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Learning Resources</a></li>
             </ul>

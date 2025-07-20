@@ -1,5 +1,5 @@
 import React from 'react';
-import { Code, Briefcase, ShoppingBag, Trophy } from 'lucide-react';
+import { Code, Briefcase, ShoppingBag } from 'lucide-react';
 import Card from '../common/Card';
 
 interface FeatureCardProps {
@@ -36,11 +36,6 @@ const FeaturesSection: React.FC = () => {
       icon: <ShoppingBag className="h-6 w-6 text-green-500" />,
       title: "Digital Marketplace",
       description: "Sell your code, templates, tools, and digital products to a global audience of developers and companies."
-    },
-    {
-      icon: <Trophy className="h-6 w-6 text-amber-500" />,
-      title: "Coding Challenges",
-      description: "Test your skills, compete with others, and earn badges that validate your expertise to potential employers."
     }
   ];
 
@@ -56,7 +51,7 @@ const FeaturesSection: React.FC = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <FeatureCard 
               key={index}

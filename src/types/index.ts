@@ -14,7 +14,7 @@ export interface Developer extends User {
   experience: number;
   projects: Project[];
   products: Product[];
-  challenges: Challenge[];
+
   github?: string;
   linkedin?: string;
   portfolio?: string;
@@ -66,12 +66,3 @@ export interface Project {
   developerId: string;
 }
 
-export interface Challenge {
-  id: string;
-  title: string;
-  difficulty: 'easy' | 'medium' | 'hard';
-  description: string;
-  category: string;
-  completedAt?: Date;
-  score?: number;
-}
