@@ -1,6 +1,6 @@
 # ChamiNexT
 
-A modern platform connecting exceptional developers with forward-thinking companies.
+Empowering the next generation of software engineers through mentorship, growth, and meaningful connections.
 
 ## 🚀 Quick Start
 

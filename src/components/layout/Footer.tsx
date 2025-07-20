@@ -19,9 +19,9 @@ const Footer: React.FC = () => {
                 />
                 */}
               </div>
-            <p className="mt-4 text-gray-400 text-sm">
-              Connecting exceptional developers with forward-thinking companies and empowering coders to monetize their expertise.
-            </p>
+                          <p className="mt-4 text-gray-400 text-sm">
+                Empowering the next generation of software engineers through mentorship, growth, and meaningful professional connections.
+              </p>
             <div className="mt-6 flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-white transition-colors">
                 <Twitter size={20} />
