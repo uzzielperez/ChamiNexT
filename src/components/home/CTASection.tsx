@@ -4,7 +4,7 @@ import { Briefcase, Code } from 'lucide-react';
 
 const CTASection: React.FC = () => {
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900 relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-br from-black via-gold-950/20 to-black-950 relative overflow-hidden">
       {/* Background patterns */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Floating particles */}
@@ -23,8 +23,8 @@ const CTASection: React.FC = () => {
           ))}
         </div>
         
-        <div className="absolute -top-20 -right-20 w-60 h-60 bg-purple-600 rounded-full opacity-20 blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-40 -left-20 w-60 h-60 bg-blue-600 rounded-full opacity-15 blur-3xl animate-pulse" style={{ animationDelay: '4s' }}></div>
+        <div className="absolute -top-20 -right-20 w-60 h-60 bg-gold-600 rounded-full opacity-20 blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-40 -left-20 w-60 h-60 bg-gold-700 rounded-full opacity-15 blur-3xl animate-pulse" style={{ animationDelay: '4s' }}></div>
       </div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -40,7 +40,7 @@ const CTASection: React.FC = () => {
             <div className="mt-8 space-y-6">
               <div className="flex items-start">
                 <div className="flex-shrink-0">
-                  <div className="flex items-center justify-center h-10 w-10 rounded-md bg-purple-600 text-white">
+                  <div className="flex items-center justify-center h-10 w-10 rounded-md bg-gold-600 text-black">
                     <Code className="h-6 w-6" />
                   </div>
                 </div>
@@ -54,7 +54,7 @@ const CTASection: React.FC = () => {
               
               <div className="flex items-start">
                 <div className="flex-shrink-0">
-                  <div className="flex items-center justify-center h-10 w-10 rounded-md bg-blue-600 text-white">
+                  <div className="flex items-center justify-center h-10 w-10 rounded-md bg-gold-700 text-black">
                     <Briefcase className="h-6 w-6" />
                   </div>
                 </div>
@@ -88,7 +88,7 @@ const CTASection: React.FC = () => {
                   <label className="block text-sm font-medium text-gray-300 mb-1">Full Name</label>
                   <input
                     type="text"
-                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-600"
+                    className="w-full bg-white/5 border border-gold-600/30 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gold-600"
                     placeholder="John Doe"
                   />
                 </div>
@@ -97,14 +97,14 @@ const CTASection: React.FC = () => {
                   <label className="block text-sm font-medium text-gray-300 mb-1">Email Address</label>
                   <input
                     type="email"
-                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-600"
+                    className="w-full bg-white/5 border border-gold-600/30 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gold-600"
                     placeholder="john@example.com"
                   />
                 </div>
                 
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-1">I am a</label>
-                  <select className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-600">
+                  <select className="w-full bg-white/5 border border-gold-600/30 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gold-600">
                     <option value="developer">Developer</option>
                     <option value="employer">Employer</option>
                   </select>
@@ -114,10 +114,10 @@ const CTASection: React.FC = () => {
                   <input 
                     id="terms" 
                     type="checkbox" 
-                    className="h-4 w-4 text-purple-600 border-white/10 rounded focus:ring-purple-600" 
+                    className="h-4 w-4 text-gold-600 border-white/10 rounded focus:ring-gold-600" 
                   />
                   <label htmlFor="terms" className="ml-2 block text-sm text-gray-300">
-                    I agree to the <a href="#" className="text-purple-400 hover:text-purple-300">Terms of Service</a> and <a href="#" className="text-purple-400 hover:text-purple-300">Privacy Policy</a>
+                    I agree to the <a href="#" className="text-gold-400 hover:text-gold-300">Terms of Service</a> and <a href="#" className="text-gold-400 hover:text-gold-300">Privacy Policy</a>
                   </label>
                 </div>
                 
@@ -126,7 +126,7 @@ const CTASection: React.FC = () => {
                 </Button>
                 
                 <p className="text-center text-sm text-gray-400">
-                  Already have an account? <a href="#" className="text-purple-400 hover:text-purple-300">Sign in</a>
+                  Already have an account? <a href="#" className="text-gold-400 hover:text-gold-300">Sign in</a>
                 </p>
               </div>
             </div>

@@ -3,14 +3,14 @@ import { Code, Twitter, Github, Linkedin, Instagram } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-slate-900 border-t border-white/10 py-12">
+    <footer className="bg-black-950 border-t border-gold-600/20 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
           {/* Brand */}
           <div className="col-span-2 lg:col-span-1">
                           <div className="flex items-center">
-                <Code className="h-8 w-8 text-purple-500" />
-                <span className="ml-2 text-xl font-bold text-white">ChamiNexT</span>
+                <Code className="h-8 w-8 text-gold-500" />
+                <span className="ml-2 text-xl font-bold text-gold-400">ChamiNexT</span>
                 {/* Alternative logo image (kept as reserve):
                 <img 
                   src="/chaminext-logo.png" 
@@ -40,10 +40,10 @@ const Footer: React.FC = () => {
           
           {/* For Developers */}
           <div>
-            <h3 className="text-sm font-semibold text-white uppercase tracking-wider">For Developers</h3>
+            <h3 className="text-sm font-semibold text-white uppercase tracking-wider">JobSeekers</h3>
                           <ul className="mt-4 space-y-3">
-                <li><a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Find Jobs</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Sell Products</a></li>
+                <li><a href="/jobseekers" className="text-gray-400 hover:text-white text-sm transition-colors">Build Profile</a></li>
+                <li><a href="/jobseekers" className="text-gray-400 hover:text-white text-sm transition-colors">Generate CV</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Skills Assessment</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Learning Resources</a></li>
             </ul>
@@ -85,7 +85,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
         
-        <div className="mt-12 pt-8 border-t border-white/10">
+        <div className="mt-12 pt-8 border-t border-gold-600/20">
           <p className="text-gray-400 text-sm text-center">
             © {new Date().getFullYear()} ChamiNexT. All rights reserved.
           </p>

@@ -66,3 +66,25 @@ export interface Project {
   developerId: string;
 }
 
+export interface ProfileData {
+    fullName: string;
+    email: string;
+    workExperience: {
+        jobTitle: string;
+        company: string;
+        startDate: string;
+        endDate: string;
+        description: string;
+    }[];
+    education: {
+        institution: string;
+        degree: string;
+        fieldOfStudy: string;
+        startDate: string;
+        endDate: string;
+    }[];
+    skills: {
+        name: string;
+    }[];
+}
+

@@ -23,24 +23,24 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description }) =
 const FeaturesSection: React.FC = () => {
   const features = [
     {
-      icon: <Code className="h-6 w-6 text-purple-500" />,
+      icon: <Code className="h-6 w-6 text-gold-500" />,
       title: "For Developers",
       description: "Create a stunning profile, showcase your skills, and get discovered by top companies looking for your exact talents."
     },
     {
-      icon: <Briefcase className="h-6 w-6 text-blue-500" />,
+      icon: <Briefcase className="h-6 w-6 text-gold-600" />,
       title: "For Employers",
       description: "Find pre-vetted developers with verified skills. Post jobs and connect with the perfect candidates for your needs."
     },
     {
-      icon: <ShoppingBag className="h-6 w-6 text-green-500" />,
+      icon: <ShoppingBag className="h-6 w-6 text-gold-400" />,
       title: "Digital Marketplace",
       description: "Sell your code, templates, tools, and digital products to a global audience of developers and companies."
     }
   ];
 
   return (
-    <section className="py-20 bg-slate-900">
+    <section className="py-20 bg-black-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-white">

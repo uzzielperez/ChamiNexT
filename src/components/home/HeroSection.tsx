@@ -25,18 +25,18 @@ const HeroSection: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative bg-slate-900 overflow-hidden">
+    <div className="relative bg-black overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Base gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-black-900 to-black-950"></div>
         
         {/* Floating particles */}
         <div className="absolute inset-0">
           {[...Array(50)].map((_, i) => (
             <div
               key={i}
-              className="absolute w-1 h-1 bg-purple-400 rounded-full opacity-20 animate-float"
+              className="absolute w-1 h-1 bg-gold-400 rounded-full opacity-30 animate-float"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
@@ -48,9 +48,9 @@ const HeroSection: React.FC = () => {
         </div>
         
         {/* Larger ambient orbs */}
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-600 rounded-full opacity-10 blur-3xl animate-pulse"></div>
-        <div className="absolute top-60 -left-20 w-60 h-60 bg-blue-600 rounded-full opacity-10 blur-3xl animate-pulse" style={{ animationDelay: '3s' }}></div>
-        <div className="absolute bottom-40 right-20 w-40 h-40 bg-green-600 rounded-full opacity-10 blur-3xl animate-pulse" style={{ animationDelay: '6s' }}></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gold-600 rounded-full opacity-15 blur-3xl animate-pulse"></div>
+        <div className="absolute top-60 -left-20 w-60 h-60 bg-gold-700 rounded-full opacity-10 blur-3xl animate-pulse" style={{ animationDelay: '3s' }}></div>
+        <div className="absolute bottom-40 right-20 w-40 h-40 bg-gold-500 rounded-full opacity-12 blur-3xl animate-pulse" style={{ animationDelay: '6s' }}></div>
         
         {/* Grid pattern overlay */}
         <div className="absolute inset-0 opacity-5">

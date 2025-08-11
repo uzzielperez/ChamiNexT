@@ -12,7 +12,7 @@ const Card: React.FC<CardProps> = ({ children, className = '', hoverable = false
     : '';
     
   return (
-    <div className={`bg-white/5 backdrop-blur-lg rounded-xl border border-white/10 shadow-md overflow-hidden ${hoverClass} ${className}`}>
+    <div className={`bg-black-900/30 backdrop-blur-lg rounded-xl border border-gold-600/20 shadow-md overflow-hidden ${hoverClass} ${className}`}>
       {children}
     </div>
   );
@@ -31,10 +31,10 @@ export const CardHeader: React.FC<CardHeaderProps> = ({
   action, 
   className = '' 
 }) => (
-  <div className={`p-5 border-b border-white/10 ${className}`}>
+  <div className={`p-5 border-b border-gold-600/20 ${className}`}>
     <div className="flex justify-between items-center">
       <div>
-        <h3 className="text-xl font-semibold text-white">{title}</h3>
+        <h3 className="text-xl font-semibold text-gold-400">{title}</h3>
         {subtitle && <p className="text-gray-400 mt-1">{subtitle}</p>}
       </div>
       {action && <div>{action}</div>}
@@ -59,7 +59,7 @@ export interface CardFooterProps {
 }
 
 export const CardFooter: React.FC<CardFooterProps> = ({ children, className = '' }) => (
-  <div className={`p-5 border-t border-white/10 bg-white/5 ${className}`}>
+  <div className={`p-5 border-t border-gold-600/20 bg-black-800/30 ${className}`}>
     {children}
   </div>
 );

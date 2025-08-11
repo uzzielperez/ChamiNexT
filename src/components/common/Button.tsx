@@ -24,10 +24,10 @@ const Button: React.FC<ButtonProps> = ({
   const baseStyles = 'font-medium rounded-lg transition-all duration-200 flex items-center justify-center';
   
   const variantStyles = {
-    primary: 'bg-purple-600 hover:bg-purple-700 text-white shadow-sm',
-    secondary: 'bg-blue-900 hover:bg-blue-950 text-white shadow-sm',
-    outline: 'border-2 border-purple-600 text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900/10',
-    ghost: 'text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900/10',
+    primary: 'bg-gold-600 hover:bg-gold-700 text-black shadow-sm',
+    secondary: 'bg-black-800 hover:bg-black-900 text-gold-400 border border-gold-600/30 shadow-sm',
+    outline: 'border-2 border-gold-600 text-gold-600 hover:bg-gold-50 dark:hover:bg-gold-900/10',
+    ghost: 'text-gold-600 hover:bg-gold-50 dark:hover:bg-gold-900/10',
   };
   
   const sizeStyles = {

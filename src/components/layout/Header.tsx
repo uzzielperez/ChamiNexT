@@ -27,14 +27,14 @@ const Header: React.FC = () => {
 
   return (
     <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-slate-900/95 backdrop-blur-lg shadow-md' : 'bg-transparent'
+      isScrolled ? 'bg-black-950/95 backdrop-blur-lg shadow-md border-b border-gold-600/20' : 'bg-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <div className="flex items-center">
-            <Code className="h-8 w-8 text-purple-500" />
-            <span className="ml-2 text-xl font-bold text-white">ChamiNexT</span>
+            <Code className="h-8 w-8 text-gold-500" />
+            <span className="ml-2 text-xl font-bold text-gold-400">ChamiNexT</span>
             {/* Alternative logo image (kept as reserve):
             <img 
               src="/chaminext-logo.png" 
@@ -46,22 +46,22 @@ const Header: React.FC = () => {
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-gray-300 hover:text-white transition-colors">For Developers</a>
-            <a href="#" className="text-gray-300 hover:text-white transition-colors">For Employers</a>
-            <a href="#" className="text-gray-300 hover:text-white transition-colors">Marketplace</a>
-            <a href="#" className="text-gray-300 hover:text-white transition-colors">Pricing</a>
+            <a href="/jobseekers" className="text-gold-300 hover:text-gold-400 transition-colors">JobSeekers</a>
+            <a href="#" className="text-gold-300 hover:text-gold-400 transition-colors">For Employers</a>
+            <a href="#" className="text-gold-300 hover:text-gold-400 transition-colors">Marketplace</a>
+            <a href="#" className="text-gold-300 hover:text-gold-400 transition-colors">Pricing</a>
           </nav>
           
           {/* Actions */}
           <div className="hidden md:flex items-center space-x-4">
             <button 
-              className="p-2 rounded-full hover:bg-white/10 transition-colors"
+              className="p-2 rounded-full hover:bg-gold-500/10 transition-colors"
               onClick={toggleDarkMode}
             >
-              {isDarkMode ? <Sun size={20} className="text-gray-300" /> : <Moon size={20} className="text-gray-300" />}
+              {isDarkMode ? <Sun size={20} className="text-gold-300" /> : <Moon size={20} className="text-gold-300" />}
             </button>
-            <button className="p-2 rounded-full hover:bg-white/10 transition-colors">
-              <Search size={20} className="text-gray-300" />
+            <button className="p-2 rounded-full hover:bg-gold-500/10 transition-colors">
+              <Search size={20} className="text-gold-300" />
             </button>
             <Button variant="outline" size="sm">Log in</Button>
             <Button size="sm">Sign up</Button>
@@ -93,7 +93,7 @@ const Header: React.FC = () => {
       {isMobileMenuOpen && (
         <div className="md:hidden bg-slate-900 border-t border-white/10">
           <div className="px-4 py-3 space-y-3">
-            <a href="#" className="block py-2 text-gray-300 hover:text-white transition-colors">For Developers</a>
+            <a href="/jobseekers" className="block py-2 text-gray-300 hover:text-white transition-colors">JobSeekers</a>
             <a href="#" className="block py-2 text-gray-300 hover:text-white transition-colors">For Employers</a>
             <a href="#" className="block py-2 text-gray-300 hover:text-white transition-colors">Marketplace</a>
             <a href="#" className="block py-2 text-gray-300 hover:text-white transition-colors">Pricing</a>
