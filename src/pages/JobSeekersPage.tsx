@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Questionnaire from '../components/jobseekers/Questionnaire';
 import { parseCV } from '../utils/cvParser';
+import Button from '../components/common/Button';
 
 
 const JobSeekersPage: React.FC = () => {
