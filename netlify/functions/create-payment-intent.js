@@ -2,10 +2,12 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 exports.handler = async (event) => {
   try {
-    const { amount } = JSON.parse(event.body);
+    const { amount, coupon } = JSON.parse(event.body);
+    
+    const finalAmount = coupon === 'FREE' ? 0 : amount;
 
     const paymentIntent = await stripe.paymentIntents.create({
-      amount,
+      amount: finalAmount,
       currency: 'usd',
     });
 

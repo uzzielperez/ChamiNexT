@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '../common/Button';
 import ProfilePreview from './ProfilePreview';
 
@@ -22,19 +22,53 @@ interface Skills {
   name: string;
 }
 
-const Questionnaire: React.FC = () => {
+interface QuestionnaireProps {
+  parsedText: string | null;
+}
+
+const Questionnaire: React.FC<QuestionnaireProps> = ({ parsedText }) => {
   const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    workExperience: [
-      { jobTitle: '', company: '', startDate: '', endDate: '', description: '' },
-    ] as WorkExperience[],
-    education: [
-      { institution: '', degree: '', fieldOfStudy: '', startDate: '', endDate: '' },
-    ] as Education[],
-    skills: [{ name: '' }] as Skills[],
+  const [formData, setFormData] = useState(() => {
+    const savedData = localStorage.getItem('questionnaireData');
+    if (savedData) {
+      return JSON.parse(savedData);
+    }
+    return {
+      fullName: '',
+      email: '',
+      workExperience: [{ jobTitle: '', company: '', startDate: '', endDate: '', description: '' }],
+      education: [{ institution: '', degree: '', fieldOfStudy: '', startDate: '', endDate: '' }],
+      skills: [{ name: '' }],
+    };
   });
+
+  useEffect(() => {
+    localStorage.setItem('questionnaireData', JSON.stringify(formData));
+  }, [formData]);
+
+  useEffect(() => {
+    if (parsedText) {
+      const lines = parsedText.split('\n');
+      
+      // Very basic parsing logic, this can be greatly improved
+      const emailRegex = /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/i;
+      const email = parsedText.match(emailRegex)?.[0] || '';
+      
+      // Assuming the name is the first line
+      const fullName = lines[0] || '';
+
+      // Simple skills extraction
+      const skillsSection = parsedText.match(/skills\s*([\s\S]*?)(experience|education)/i);
+      const skills = skillsSection ? skillsSection[1].split('\n').filter(s => s.trim() !== '').map(name => ({ name })) : [];
+
+      setFormData(prevData => ({
+        ...prevData,
+        fullName: fullName || prevData.fullName,
+        email: email || prevData.email,
+        skills: skills.length > 0 ? skills : prevData.skills,
+      }));
+    }
+  }, [parsedText]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
