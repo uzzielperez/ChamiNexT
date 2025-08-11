@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Questionnaire from '../components/jobseekers/Questionnaire';
-import { Document, Page } from 'react-pdf';
 import { parseCV } from '../utils/cvParser';
 
 
