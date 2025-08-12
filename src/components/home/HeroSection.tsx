@@ -71,7 +71,7 @@ const HeroSection: React.FC = () => {
           </h1>
           
           <p className="mt-6 text-xl text-gray-300 max-w-3xl mx-auto">
-            Empowering the next generation of software engineers through mentorship, growth, and the connections that drive innovation forward.
+            Shaping AI-Era Engineers, Solving Enterprise Challenges.
           </p>
           
           <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
