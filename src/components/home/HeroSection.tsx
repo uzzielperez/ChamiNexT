@@ -85,7 +85,7 @@ const HeroSection: React.FC = () => {
           </div>
           
           {/* Stats */}
-          <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          {/* <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/10">
               <div className="flex justify-center items-center">
                 <Code className="h-7 w-7 text-purple-500 mr-3" />
@@ -109,7 +109,7 @@ const HeroSection: React.FC = () => {
               </div>
               <p className="mt-2 text-gray-400 text-center">Digital Products</p>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
