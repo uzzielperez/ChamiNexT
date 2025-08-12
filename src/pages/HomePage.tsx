@@ -10,7 +10,7 @@ const HomePage: React.FC = () => {
       <Header />
       <main>
         <HeroSection />
-        <div className="py-16">
+        <div className="py-10 bg-black">
           <ChatBox />
         </div>
       </main>

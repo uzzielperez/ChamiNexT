@@ -67,7 +67,7 @@ const HeroSection: React.FC = () => {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
         <div className="text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-            Where <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-purple-600" ref={typedRef}></span> meets <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">exceptional opportunity</span>
+            Where <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-yellow-500" ref={typedRef}></span> meets <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-300 to-yellow-400">exceptional opportunity</span>
           </h1>
           
           <p className="mt-6 text-xl text-gray-300 max-w-3xl mx-auto">
