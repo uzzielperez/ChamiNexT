@@ -2,12 +2,7 @@ import React from 'react';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import HeroSection from '../components/home/HeroSection';
-import PartnersSection from '../components/home/PartnersSection';
-import FeaturesSection from '../components/home/FeaturesSection';
-import JobsSection from '../components/home/JobsSection';
-import ProductsSection from '../components/home/ProductsSection';
-
-import CTASection from '../components/home/CTASection';
+import ChatBox from '../components/common/ChatBox';
 
 const HomePage: React.FC = () => {
   return (
@@ -15,11 +10,9 @@ const HomePage: React.FC = () => {
       <Header />
       <main>
         <HeroSection />
-        <PartnersSection />
-        <FeaturesSection />
-        <JobsSection />
-        <ProductsSection />
-        <CTASection />
+        <div className="py-16">
+          <ChatBox />
+        </div>
       </main>
       <Footer />
     </div>
