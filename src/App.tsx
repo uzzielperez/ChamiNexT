@@ -7,6 +7,7 @@ import Footer from './components/layout/Footer';
 import PaymentPage from './pages/PaymentPage';
 import SuccessPage from './pages/SuccessPage';
 import EmployersPage from './pages/EmployersPage';
+import MarketplacePage from './pages/MarketplacePage';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/jobseekers" element={<JobSeekersPage />} />
             <Route path="/employers" element={<EmployersPage />} />
+            <Route path="/marketplace" element={<MarketplacePage />} />
             <Route path="/payment" element={<PaymentPage />} />
             <Route path="/success" element={<SuccessPage />} />
           </Routes>

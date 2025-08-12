@@ -32,7 +32,7 @@ const Header: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
-          <div className="flex items-center">
+          <a href="/" className="flex items-center">
             <Code className="h-8 w-8 text-gold-500" />
             <span className="ml-2 text-xl font-bold text-gold-400">ChamiNexT</span>
             {/* Alternative logo image (kept as reserve):
@@ -42,13 +42,13 @@ const Header: React.FC = () => {
               className="h-8 w-auto"
             />
             */}
-          </div>
+          </a>
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <a href="/jobseekers" className="text-gold-300 hover:text-gold-400 transition-colors">JobSeekers</a>
             <a href="/employers" className="text-gold-300 hover:text-gold-400 transition-colors">For Employers</a>
-            <a href="#" className="text-gold-300 hover:text-gold-400 transition-colors">Marketplace</a>
+            <a href="/marketplace" className="text-gold-300 hover:text-gold-400 transition-colors">Marketplace</a>
             <a href="#" className="text-gold-300 hover:text-gold-400 transition-colors">Pricing</a>
           </nav>
           
@@ -95,7 +95,7 @@ const Header: React.FC = () => {
           <div className="px-4 py-3 space-y-3">
             <a href="/jobseekers" className="block py-2 text-gray-300 hover:text-white transition-colors">JobSeekers</a>
             <a href="/employers" className="block py-2 text-gray-300 hover:text-white transition-colors">For Employers</a>
-            <a href="#" className="block py-2 text-gray-300 hover:text-white transition-colors">Marketplace</a>
+            <a href="/marketplace" className="block py-2 text-gray-300 hover:text-white transition-colors">Marketplace</a>
             <a href="#" className="block py-2 text-gray-300 hover:text-white transition-colors">Pricing</a>
             <div className="pt-3 flex flex-col space-y-3">
               <Button variant="outline" fullWidth>Log in</Button>
