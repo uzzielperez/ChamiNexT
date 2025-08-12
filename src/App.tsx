@@ -6,6 +6,7 @@ import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import PaymentPage from './pages/PaymentPage';
 import SuccessPage from './pages/SuccessPage';
+import EmployersPage from './pages/EmployersPage';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/jobseekers" element={<JobSeekersPage />} />
+            <Route path="/employers" element={<EmployersPage />} />
             <Route path="/payment" element={<PaymentPage />} />
             <Route path="/success" element={<SuccessPage />} />
           </Routes>

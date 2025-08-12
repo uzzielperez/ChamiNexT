@@ -47,7 +47,7 @@ const Header: React.FC = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <a href="/jobseekers" className="text-gold-300 hover:text-gold-400 transition-colors">JobSeekers</a>
-            <a href="#" className="text-gold-300 hover:text-gold-400 transition-colors">For Employers</a>
+            <a href="/employers" className="text-gold-300 hover:text-gold-400 transition-colors">For Employers</a>
             <a href="#" className="text-gold-300 hover:text-gold-400 transition-colors">Marketplace</a>
             <a href="#" className="text-gold-300 hover:text-gold-400 transition-colors">Pricing</a>
           </nav>
@@ -94,7 +94,7 @@ const Header: React.FC = () => {
         <div className="md:hidden bg-slate-900 border-t border-white/10">
           <div className="px-4 py-3 space-y-3">
             <a href="/jobseekers" className="block py-2 text-gray-300 hover:text-white transition-colors">JobSeekers</a>
-            <a href="#" className="block py-2 text-gray-300 hover:text-white transition-colors">For Employers</a>
+            <a href="/employers" className="block py-2 text-gray-300 hover:text-white transition-colors">For Employers</a>
             <a href="#" className="block py-2 text-gray-300 hover:text-white transition-colors">Marketplace</a>
             <a href="#" className="block py-2 text-gray-300 hover:text-white transition-colors">Pricing</a>
             <div className="pt-3 flex flex-col space-y-3">
