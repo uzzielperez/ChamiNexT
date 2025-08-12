@@ -3,24 +3,45 @@ import CandidateCard from '../components/employers/CandidateCard';
 
 const sampleCandidates = [
   {
-    name: 'Alice Johnson',
+    name: 'Lian Reyes',
     role: 'Frontend Developer',
     avatarUrl: 'https://randomuser.me/api/portraits/women/1.jpg',
-    skills: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS'],
+    skills: ['React', 'TypeScript', 'Vue.js', 'Tailwind CSS'],
     portfolioUrl: '#',
   },
   {
-    name: 'Bob Williams',
+    name: 'Mateo Santos',
     role: 'Backend Developer',
     avatarUrl: 'https://randomuser.me/api/portraits/men/2.jpg',
     skills: ['Node.js', 'Python', 'Go', 'PostgreSQL'],
     portfolioUrl: '#',
   },
   {
-    name: 'Charlie Brown',
+    name: 'Sofia Cruz',
     role: 'Full Stack Developer',
-    avatarUrl: 'https://randomuser.me/api/portraits/men/3.jpg',
+    avatarUrl: 'https://randomuser.me/api/portraits/women/3.jpg',
     skills: ['React', 'Node.js', 'GraphQL', 'AWS'],
+    portfolioUrl: '#',
+  },
+  {
+    name: 'Jose Garcia',
+    role: 'Mobile Developer',
+    avatarUrl: 'https://randomuser.me/api/portraits/men/4.jpg',
+    skills: ['React Native', 'Flutter', 'Swift', 'Kotlin'],
+    portfolioUrl: '#',
+  },
+  {
+    name: 'Isabella Reyes',
+    role: 'UI/UX Designer',
+    avatarUrl: 'https://randomuser.me/api/portraits/women/5.jpg',
+    skills: ['Figma', 'Sketch', 'Adobe XD', 'User Research'],
+    portfolioUrl: '#',
+  },
+  {
+    name: 'Juan dela Cruz',
+    role: 'DevOps Engineer',
+    avatarUrl: 'https://randomuser.me/api/portraits/men/6.jpg',
+    skills: ['Docker', 'Kubernetes', 'Terraform', 'CI/CD'],
     portfolioUrl: '#',
   },
 ];
