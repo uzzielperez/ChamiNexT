@@ -12,9 +12,9 @@ const PartnersSection: React.FC = () => {
   return (
     <div className="py-16 bg-slate-900/50 backdrop-blur-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <p className="text-center text-gray-400 text-sm mb-8">
+        {/* <p className="text-center text-gray-400 text-sm mb-8">
           Trusted by leading technology companies worldwide
-        </p>
+        </p> */}
         
         <div className="relative overflow-hidden">
           <div className="flex animate-scroll">
