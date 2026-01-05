@@ -80,7 +80,7 @@ Update the file after completing each sub-task, not just after completing an ent
   - [ ] 3.1 Create TypeScript interfaces for pricing in `src/types/pricing.ts`
   - [ ] 3.2 Build pricing calculator utility functions in `src/utils/pricingCalculator.ts`
   - [ ] 3.3 Add Polaris to the digital products catalog with appropriate pricing
-  - [ ] 3.4 Update product links: areuwell.org (https://areuwell.org) and Manifest.ink (https://manifest.ink)
+  - [x] 3.4 Update product links: areuwell.org (https://areuwell.org) and Manifest.ink (https://manifest.ink)
   - [ ] 3.5 Enhance ProductCard and CourseCard components with pricing display
   - [ ] 3.6 Create paywall modal component `src/components/marketplace/PaywallModal.tsx`
   - [ ] 3.7 Integrate payment processing with existing Stripe setup
