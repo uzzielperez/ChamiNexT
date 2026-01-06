@@ -27,15 +27,19 @@ const PremiumTabs: React.FC<PremiumTabsProps> = ({
             key={tab.id}
             onClick={() => onTabChange(tab.id)}
             className={`premium-tab ${activeTab === tab.id ? 'active' : ''}`}
+            type="button"
+            role="tab"
+            aria-selected={activeTab === tab.id}
+            aria-label={tab.label}
           >
             {tab.icon && (
-              <span className="premium-tab-icon">
+              <span className="premium-tab-icon" aria-hidden="true">
                 {tab.icon}
               </span>
             )}
             <span className="premium-tab-label">{tab.label}</span>
             {activeTab === tab.id && (
-              <div className="premium-tab-indicator" />
+              <div className="premium-tab-indicator" aria-hidden="true" />
             )}
           </button>
         ))}
