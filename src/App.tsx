@@ -16,7 +16,7 @@ import './styles/animations.css';
 function App() {
   return (
     <Router>
-      <div className="flex flex-col min-h-screen bg-gradient-to-br from-primary-950 via-primary-900 to-primary-950 text-white">
+      <div className="flex flex-col min-h-screen" style={{ backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
         <PremiumHeader />
         <main className="flex-grow pt-16">
           <Routes>
