@@ -45,15 +45,29 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({
           }}
         />
         
-        {/* Mountain Silhouettes */}
+        {/* Mountain Silhouettes with Glow */}
         <div 
           className="absolute bottom-0 w-full h-2/3"
           style={{
             background: `
-              radial-gradient(ellipse 800px 300px at 20% 100%, rgba(15, 23, 42, 0.9) 0%, transparent 50%),
-              radial-gradient(ellipse 600px 200px at 60% 100%, rgba(15, 23, 42, 0.8) 0%, transparent 50%),
-              radial-gradient(ellipse 400px 150px at 85% 100%, rgba(15, 23, 42, 0.7) 0%, transparent 50%)
-            `
+              radial-gradient(ellipse 820px 320px at 20% 100%, rgba(178, 217, 255, 0.15) 0%, rgba(15, 23, 42, 0.9) 20%, transparent 60%),
+              radial-gradient(ellipse 620px 220px at 60% 100%, rgba(178, 217, 255, 0.12) 0%, rgba(15, 23, 42, 0.8) 20%, transparent 60%),
+              radial-gradient(ellipse 420px 170px at 85% 100%, rgba(178, 217, 255, 0.1) 0%, rgba(15, 23, 42, 0.7) 20%, transparent 60%)
+            `,
+            filter: 'drop-shadow(0 -2px 8px rgba(178, 217, 255, 0.3))'
+          }}
+        />
+        
+        {/* Additional Glow Layer */}
+        <div 
+          className="absolute bottom-0 w-full h-2/3 animate-pulse-slow"
+          style={{
+            background: `
+              radial-gradient(ellipse 800px 40px at 20% 100%, rgba(178, 217, 255, 0.4) 0%, transparent 70%),
+              radial-gradient(ellipse 600px 30px at 60% 100%, rgba(178, 217, 255, 0.3) 0%, transparent 70%),
+              radial-gradient(ellipse 400px 25px at 85% 100%, rgba(178, 217, 255, 0.25) 0%, transparent 70%)
+            `,
+            mixBlendMode: 'soft-light'
           }}
         />
         

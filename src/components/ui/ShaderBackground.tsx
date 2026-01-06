@@ -67,6 +67,16 @@ const ShaderBackground: React.FC<ShaderBackgroundProps> = ({
       float m=mountain(uv);
       float mask=step(m,uv.y);
 
+      // Calculate distance to mountain silhouette for glow effect
+      float distToMountain = abs(uv.y - m);
+      float glowRadius = 0.08;
+      float glow = exp(-distToMountain * 15.0) * mask;
+      glow += exp(-distToMountain * 8.0) * 0.5 * mask;
+      
+      // Enhanced glow with subtle animation
+      float glowPulse = 0.8 + 0.2 * sin(time * 0.3);
+      glow *= glowPulse;
+
       vec2 dir=normalize(vec2(0.5,1.));
       float d=abs(dot(uv,vec2(-dir.y,dir.x)));
       d+=fbm(uv*2.+time*0.05)*0.12;
@@ -75,11 +85,19 @@ const ShaderBackground: React.FC<ShaderBackgroundProps> = ({
 
       vec3 ice=vec3(0.6,0.75,0.95);
       vec3 snow=vec3(0.95,0.97,1.);
+      vec3 glowColor=vec3(0.7,0.85,1.0); // Soft blue-white glow
       vec3 col=sky;
+      
+      // Add the mountain glow to the sky
+      col += glow * glowColor * 0.8;
+      
+      // Add light beams
       col+=beam*mix(ice,snow,beam)*1.3;
 
       if(uv.y<m){
         col*=0.25;
+        // Add subtle glow reflection in the dark mountain area
+        col += glow * glowColor * 0.15;
       }
 
       gl_FragColor=vec4(col,1);
