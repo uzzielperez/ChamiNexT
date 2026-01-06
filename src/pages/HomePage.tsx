@@ -1,12 +1,16 @@
 import React from 'react';
 import { ArrowRight, Code, Zap, Shield, TrendingUp, Users, Star } from 'lucide-react';
+import AnimatedBackground from '../components/ui/AnimatedBackground';
 
 const HomePage: React.FC = () => {
   return (
     <div className="min-h-screen">
       {/* HERO SECTION - Following Brief Specs */}
-      <section className="hero-section grid-pattern">
-        <div className="container text-center">
+      <section className="hero-section grid-pattern relative overflow-hidden">
+        {/* Animated Shader Background */}
+        <AnimatedBackground opacity={0.4} speed={1.2} />
+        
+        <div className="container text-center relative z-10">
           <h1 className="hero-headline">
             Exceptional Code That <span className="text-gradient">Drives Results</span>
           </h1>
@@ -58,8 +62,11 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* FEATURES SECTION - Following Brief Specs */}
-      <section className="section" style={{ backgroundColor: 'var(--bg-secondary)' }}>
-        <div className="container">
+      <section className="section relative overflow-hidden" style={{ backgroundColor: 'var(--bg-secondary)' }}>
+        {/* Subtle Shader Background */}
+        <AnimatedBackground opacity={0.15} speed={0.8} />
+        
+        <div className="container relative z-10">
           <div className="text-center mb-16">
             <h2 className="section-header">
               Why Choose <span className="text-gradient">ChamiNexT</span>?
