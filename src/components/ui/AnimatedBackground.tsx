@@ -29,55 +29,68 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({
       className={`absolute inset-0 pointer-events-none ${className}`}
       style={{ opacity }}
     >
-      {/* Animated gradient beams */}
+      {/* Alpine Sky Gradient */}
       <div className="absolute inset-0 overflow-hidden">
         <div 
-          className="absolute w-full h-full animate-gradient-x"
+          className="absolute w-full h-full"
+          style={{
+            background: `
+              linear-gradient(to bottom, 
+                rgba(20, 50, 87, 0.8) 0%, 
+                rgba(51, 82, 128, 0.6) 30%, 
+                rgba(32, 56, 89, 0.4) 70%, 
+                rgba(8, 20, 34, 0.9) 100%
+              )
+            `
+          }}
+        />
+        
+        {/* Mountain Silhouettes */}
+        <div 
+          className="absolute bottom-0 w-full h-2/3"
+          style={{
+            background: `
+              radial-gradient(ellipse 800px 300px at 20% 100%, rgba(15, 23, 42, 0.9) 0%, transparent 50%),
+              radial-gradient(ellipse 600px 200px at 60% 100%, rgba(15, 23, 42, 0.8) 0%, transparent 50%),
+              radial-gradient(ellipse 400px 150px at 85% 100%, rgba(15, 23, 42, 0.7) 0%, transparent 50%)
+            `
+          }}
+        />
+        
+        {/* Alpine Light Beams */}
+        <div 
+          className="absolute w-full h-full animate-gradient-flow"
           style={{
             background: `
               linear-gradient(45deg, 
                 transparent 30%, 
-                rgba(59, 130, 246, 0.1) 40%, 
-                rgba(59, 130, 246, 0.3) 50%, 
-                rgba(59, 130, 246, 0.1) 60%, 
+                rgba(153, 191, 243, 0.15) 40%, 
+                rgba(243, 247, 253, 0.25) 50%, 
+                rgba(153, 191, 243, 0.15) 60%, 
                 transparent 70%
               )
             `,
             backgroundSize: '200% 200%',
-            transform: 'rotate(15deg) scale(1.5)',
-            animation: 'gradient-flow 8s ease-in-out infinite'
-          }}
-        />
-        <div 
-          className="absolute w-full h-full animate-gradient-y"
-          style={{
-            background: `
-              linear-gradient(135deg, 
-                transparent 20%, 
-                rgba(139, 92, 246, 0.1) 30%, 
-                rgba(139, 92, 246, 0.2) 50%, 
-                rgba(139, 92, 246, 0.1) 70%, 
-                transparent 80%
-              )
-            `,
-            backgroundSize: '200% 200%',
-            transform: 'rotate(-15deg) scale(1.5)',
-            animation: 'gradient-flow-reverse 12s ease-in-out infinite'
+            transform: 'rotate(25deg) scale(1.8)',
+            mixBlendMode: 'soft-light'
           }}
         />
       </div>
       
-      {/* Floating particles */}
+      {/* Snow particles */}
       <div className="absolute inset-0">
-        {Array.from({ length: 20 }, (_, i) => (
+        {Array.from({ length: 30 }, (_, i) => (
           <div
             key={i}
-            className="absolute w-1 h-1 bg-blue-400 rounded-full opacity-20 animate-float"
+            className="absolute bg-white rounded-full opacity-30 animate-float-particle"
             style={{
+              width: `${2 + Math.random() * 3}px`,
+              height: `${2 + Math.random() * 3}px`,
               left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${3 + Math.random() * 4}s`
+              top: `${Math.random() * 60}%`, // Keep particles in upper portion like snow
+              animationDelay: `${Math.random() * 8}s`,
+              animationDuration: `${4 + Math.random() * 6}s`,
+              filter: 'blur(0.5px)'
             }}
           />
         ))}

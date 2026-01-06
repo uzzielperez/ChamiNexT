@@ -22,67 +22,67 @@ const ShaderBackground: React.FC<ShaderBackgroundProps> = ({
 
   // Vertex shader - simple pass-through
   const vertexShaderSource = `
-    attribute vec2 a_position;
-    void main() {
-      gl_Position = vec4(a_position, 0.0, 1.0);
+    attribute vec2 p;
+    void main(){
+      gl_Position=vec4(p,0,1);
     }
   `;
 
-  // Fragment shader - your exact shader code
+  // Fragment shader - Mont Blanc Alpine Light shader
   const fragmentShaderSource = `
-    precision mediump float;
-    
+    precision highp float;
     uniform float time;
     uniform vec2 resolution;
 
-    float hash(vec2 p) {
-      return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
+    float h(vec2 p){
+      return fract(sin(dot(p,vec2(127.1,311.7)))*43758.545);
     }
-
-    float noise(vec2 p) {
-      vec2 i = floor(p);
-      vec2 f = fract(p);
-      vec2 u = f * f * (3.0 - 2.0 * f);
-
-      return mix(
-        mix(hash(i), hash(i + vec2(1.0, 0.0)), u.x),
-        mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x),
-        u.y
-      );
+    
+    float n(vec2 p){
+      vec2 i=floor(p),f=fract(p),u=f*f*(3.-2.*f);
+      return mix(mix(h(i),h(i+vec2(1,0)),u.x),
+                 mix(h(i+vec2(0,1)),h(i+vec2(1,1)),u.x),u.y);
     }
-
-    float fbm(vec2 p) {
-      float v = 0.0;
-      float a = 0.5;
-      for (int i = 0; i < 5; i++) {
-        v += a * noise(p);
-        p *= 2.0;
-        a *= 0.5;
-      }
+    
+    float fbm(vec2 p){
+      float v=0.,a=.5;
+      for(int i=0;i<5;i++){v+=a*n(p);p*=2.;a*=.5;}
       return v;
     }
 
-    void main() {
-      vec2 uv = gl_FragCoord.xy / resolution.xy;
-      uv = uv * 2.0 - 1.0;
-      uv.x *= resolution.x / resolution.y;
+    float mountain(vec2 uv){
+      float b=0.32;
+      float p1=exp(-pow((uv.x+0.12)*2.6,2.))*0.42;
+      float r1=exp(-pow((uv.x-0.35)*3.8,2.))*0.22;
+      float r2=exp(-pow((uv.x+0.6)*4.2,2.))*0.16;
+      return b+p1+r1+r2+fbm(uv*6.)*0.05;
+    }
 
-      float t = time * 0.08;
+    void main(){
+      vec2 uv=gl_FragCoord.xy/resolution;
+      uv=uv*2.-1.; 
+      uv.x*=resolution.x/resolution.y;
 
-      vec2 dir = normalize(vec2(0.7, 1.0));
-      float dist = abs(dot(uv, vec2(-dir.y, dir.x)));
+      vec3 sky=mix(vec3(0.08,0.14,0.22),vec3(0.2,0.32,0.5),uv.y*.5+.5);
+      float m=mountain(uv);
+      float mask=step(m,uv.y);
 
-      float n = fbm(uv * 2.5 + t);
-      dist += n * 0.12;
+      vec2 dir=normalize(vec2(0.5,1.));
+      float d=abs(dot(uv,vec2(-dir.y,dir.x)));
+      d+=fbm(uv*2.+time*0.05)*0.12;
+      float beam=smoothstep(0.45,0.,d)*mask;
+      beam*=smoothstep(m,m+0.18,uv.y);
 
-      float beam = smoothstep(0.45, 0.0, dist);
+      vec3 ice=vec3(0.6,0.75,0.95);
+      vec3 snow=vec3(0.95,0.97,1.);
+      vec3 col=sky;
+      col+=beam*mix(ice,snow,beam)*1.3;
 
-      vec3 color = vec3(0.2, 0.6, 1.0);
-      vec3 highlight = vec3(0.8, 0.95, 1.0);
+      if(uv.y<m){
+        col*=0.25;
+      }
 
-      vec3 finalColor = mix(color, highlight, beam * 0.6) * beam;
-
-      gl_FragColor = vec4(finalColor, beam);
+      gl_FragColor=vec4(col,1);
     }
   `;
 
@@ -156,11 +156,13 @@ const ShaderBackground: React.FC<ShaderBackgroundProps> = ({
       -1, -1,
        1, -1,
       -1,  1,
+      -1,  1,
+       1, -1,
        1,  1,
     ]), gl.STATIC_DRAW);
 
     // Set up attributes
-    const positionLocation = gl.getAttribLocation(program, 'a_position');
+    const positionLocation = gl.getAttribLocation(program, 'p');
     gl.enableVertexAttribArray(positionLocation);
     gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
 
@@ -209,7 +211,7 @@ const ShaderBackground: React.FC<ShaderBackgroundProps> = ({
     }
 
     // Draw
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    gl.drawArrays(gl.TRIANGLES, 0, 6);
 
     // Continue animation
     animationRef.current = requestAnimationFrame(render);
