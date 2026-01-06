@@ -324,6 +324,107 @@ body {
   }
 }
 
+/* Premium Tabs */
+.premium-tabs {
+  margin-bottom: var(--space-xl);
+}
+
+.premium-tabs-container {
+  display: flex;
+  gap: var(--space-xs);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-large);
+  padding: var(--space-xs);
+  backdrop-filter: blur(16px);
+  position: relative;
+  overflow: hidden;
+}
+
+.premium-tabs-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+}
+
+.premium-tab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-lg);
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: var(--text-body);
+  font-weight: var(--font-medium);
+  border-radius: var(--radius-card);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  white-space: nowrap;
+  min-height: 48px;
+}
+
+.premium-tab:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-1px);
+}
+
+.premium-tab.active {
+  color: var(--text-primary);
+  background: var(--accent-primary);
+  box-shadow: 
+    0 4px 12px rgba(59, 130, 246, 0.3),
+    0 0 0 1px rgba(59, 130, 246, 0.2);
+}
+
+.premium-tab.active:hover {
+  background: var(--accent-primary);
+  transform: translateY(-1px);
+  box-shadow: 
+    0 6px 16px rgba(59, 130, 246, 0.4),
+    0 0 0 1px rgba(59, 130, 246, 0.3);
+}
+
+.premium-tab-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+.premium-tab-label {
+  font-weight: var(--font-semibold);
+  letter-spacing: 0.01em;
+}
+
+.premium-tab-indicator {
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+  border-radius: 1px;
+  animation: glow-pulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow-pulse {
+  0% {
+    box-shadow: 0 0 4px rgba(59, 130, 246, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 8px rgba(59, 130, 246, 0.8);
+  }
+}
+
 /* Print Styles */
 @media print {
   .no-print {
