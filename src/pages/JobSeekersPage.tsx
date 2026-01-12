@@ -213,12 +213,14 @@ const JobSeekersPage: React.FC = () => {
       <div className="relative z-10">
         {/* Navigation Tabs */}
         {currentView !== 'cv-iterator' && (
-          <div className="container mx-auto px-4 pt-8">
-            <PremiumTabs
-              tabs={tabs}
-              activeTab={currentView}
-              onTabChange={(tabId) => setCurrentView(tabId as ViewMode)}
-            />
+          <div className="w-full px-4 pt-8">
+            <div className="container mx-auto max-w-4xl">
+              <PremiumTabs
+                tabs={tabs}
+                activeTab={currentView}
+                onTabChange={(tabId) => setCurrentView(tabId as ViewMode)}
+              />
+            </div>
           </div>
         )}
         
