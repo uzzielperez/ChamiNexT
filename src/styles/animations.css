@@ -680,11 +680,15 @@
 }
 
 .scrolling-content {
-  display: flex;
+  display: inline-flex;
   gap: 1.5rem;
-  width: fit-content;
   animation: scroll-left 40s linear infinite;
   will-change: transform;
+  white-space: nowrap;
+}
+
+.scrolling-content > * {
+  flex-shrink: 0;
 }
 
 .scrolling-content:hover {
