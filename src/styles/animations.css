@@ -651,44 +651,56 @@
 
 /* Horizontal Scrolling Animation for Products */
 @keyframes scroll-left {
-  from {
+  0% {
     transform: translateX(0);
   }
-  to {
-    transform: translateX(-50%);
+  100% {
+    transform: translateX(calc(-100% / 2));
   }
 }
 
-.animate-scroll-left {
-  animation: scroll-left 60s linear infinite;
-  will-change: transform;
-}
-
-.animate-scroll-left:hover {
-  animation-play-state: paused;
-}
-
-/* Ensure the container can scroll */
 .scrolling-container {
   overflow: hidden;
   position: relative;
   width: 100%;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
 }
 
 .scrolling-content {
   display: flex;
   gap: 1.5rem;
-  width: max-content;
+  width: fit-content;
+  animation: scroll-left 40s linear infinite;
+  will-change: transform;
+}
+
+.scrolling-content:hover {
+  animation-play-state: paused;
 }
 
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
-  .animate-scroll-left {
+  .scrolling-content {
     animation: none;
   }
   
   .scrolling-container {
     overflow-x: auto;
+    mask-image: none;
+    -webkit-mask-image: none;
   }
 }
 

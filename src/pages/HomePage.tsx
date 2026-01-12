@@ -161,8 +161,8 @@ const HomePage: React.FC = () => {
             <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[var(--bg-primary)] to-transparent z-10 pointer-events-none"></div>
             
             {/* Scrolling Products - Infinite Loop */}
-            <div className="scrolling-container pb-6" style={{ overflow: 'hidden' }}>
-              <div className="scrolling-content animate-scroll-left" style={{ display: 'flex', gap: '1.5rem', width: 'max-content' }}>
+            <div className="scrolling-container pb-6">
+              <div className="scrolling-content">
                 {/* First set of products */}
                 {products.map((product, index) => (
                   <div 
