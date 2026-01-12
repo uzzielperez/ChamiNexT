@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ShoppingBag, ExternalLink, Star, Lock } from 'lucide-react';
 import Button from '../common/Button';
 import { Product } from '../../data/products';
@@ -8,6 +9,8 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const navigate = useNavigate();
+  
   const categoryColors = {
     'health-tech': 'text-green-400 bg-green-400/10 border-green-400/20',
     'wellness': 'text-purple-400 bg-purple-400/10 border-purple-400/20',
@@ -17,6 +20,23 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   };
 
   const categoryColor = categoryColors[product.category] || categoryColors['development'];
+
+  // Map product URLs to routes
+  const getProductRoute = (url: string): string | null => {
+    if (url.startsWith('http')) return null; // External link
+    if (url === '#crm') return '/products/crm';
+    if (url === '#polaris') return '/products/polaris';
+    return null;
+  };
+
+  const handleClick = () => {
+    const route = getProductRoute(product.url);
+    if (route) {
+      navigate(route);
+    } else if (product.url.startsWith('http')) {
+      window.open(product.url, '_blank');
+    }
+  };
 
   return (
     <div className="bg-gray-800 rounded-lg shadow-lg p-6 flex flex-col border border-gray-700 hover:border-gold-500/50 transition-colors">
@@ -73,19 +93,23 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         )}
         
         <Button
-          onClick={() => {
-            if (product.url.startsWith('http')) {
-              window.open(product.url, '_blank');
-            } else {
-              // Handle internal links or show coming soon
-              console.log('Navigate to:', product.url);
-            }
-          }}
+          onClick={handleClick}
           fullWidth
           className={product.isPremium ? 'bg-gold-600 hover:bg-gold-700' : ''}
         >
-          <ExternalLink className="w-4 h-4 mr-2" />
-          {product.url.startsWith('http') ? 'Visit Product' : 'Coming Soon'}
+          {product.url.startsWith('http') ? (
+            <>
+              <ExternalLink className="w-4 h-4 mr-2" />
+              Visit Product
+            </>
+          ) : getProductRoute(product.url) ? (
+            <>
+              <ShoppingBag className="w-4 h-4 mr-2" />
+              View Sample
+            </>
+          ) : (
+            'Coming Soon'
+          )}
         </Button>
       </div>
     </div>

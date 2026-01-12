@@ -12,6 +12,8 @@ import PaymentPage from './pages/PaymentPage';
 import SuccessPage from './pages/SuccessPage';
 import EmployersPage from './pages/EmployersPage';
 import MarketplacePage from './pages/MarketplacePage';
+import CRMSamplePage from './pages/CRMSamplePage';
+import PolarisSamplePage from './pages/PolarisSamplePage';
 
 // Import premium design system styles
 import './styles/design-system.css';
@@ -32,6 +34,8 @@ function App() {
             <Route path="/courses/fullstack-ai/:lessonId?" element={<FullstackAICoursePage />} />
             <Route path="/employers" element={<EmployersPage />} />
             <Route path="/marketplace" element={<MarketplacePage />} />
+            <Route path="/products/crm" element={<CRMSamplePage />} />
+            <Route path="/products/polaris" element={<PolarisSamplePage />} />
             <Route path="/payment" element={<PaymentPage />} />
             <Route path="/success" element={<SuccessPage />} />
           </Routes>
