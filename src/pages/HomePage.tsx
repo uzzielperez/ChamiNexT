@@ -1,8 +1,20 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Code, Zap, Shield, TrendingUp, Users, Star } from 'lucide-react';
 import AnimatedBackground from '../components/ui/AnimatedBackground';
 
 const HomePage: React.FC = () => {
+  const navigate = useNavigate();
+
+  const capabilityRoutes: { [key: string]: string } = {
+    'Full-Stack Development': '/portfolio',
+    'AI/ML Integration': '/ai-showcase',
+    'Cloud Architecture': '/infrastructure',
+    'Performance Optimization': '/performance',
+    'API Development': '/api-docs',
+    'DevOps & CI/CD': '/devops'
+  };
+
   return (
     <div className="min-h-screen">
       {/* HERO SECTION - Following Brief Specs */}
@@ -109,12 +121,22 @@ const HomePage: React.FC = () => {
                 description: "Automated deployment pipelines and infrastructure management"
               }
             ].map((feature, index) => (
-              <div key={index} className="feature-card group">
+              <div 
+                key={index} 
+                className="feature-card group cursor-pointer"
+                onClick={() => {
+                  const route = capabilityRoutes[feature.title];
+                  if (route) navigate(route);
+                }}
+              >
                 <div className="mb-6 flex justify-center">
                   {feature.icon}
                 </div>
                 <h3 className="text-xl font-bold mb-4">{feature.title}</h3>
-                <p className="text-secondary">{feature.description}</p>
+                <p className="text-secondary mb-4">{feature.description}</p>
+                <div className="text-accent-blue text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-2">
+                  Learn more <ArrowRight className="w-4 h-4" />
+                </div>
               </div>
             ))}
           </div>

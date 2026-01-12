@@ -14,6 +14,8 @@ import EmployersPage from './pages/EmployersPage';
 import MarketplacePage from './pages/MarketplacePage';
 import CRMSamplePage from './pages/CRMSamplePage';
 import PolarisSamplePage from './pages/PolarisSamplePage';
+import PortfolioPage from './pages/PortfolioPage';
+import AIShowcasePage from './pages/AIShowcasePage';
 
 // Import premium design system styles
 import './styles/design-system.css';
@@ -36,6 +38,12 @@ function App() {
             <Route path="/marketplace" element={<MarketplacePage />} />
             <Route path="/products/crm" element={<CRMSamplePage />} />
             <Route path="/products/polaris" element={<PolarisSamplePage />} />
+            <Route path="/portfolio" element={<PortfolioPage />} />
+            <Route path="/ai-showcase" element={<AIShowcasePage />} />
+            <Route path="/infrastructure" element={<div className="min-h-screen bg-primary-dark text-text-primary p-8"><h1 className="text-4xl font-bold">Cloud Architecture - Coming Soon</h1><p className="mt-4 text-text-secondary">This page will showcase our cloud infrastructure and architecture.</p></div>} />
+            <Route path="/performance" element={<div className="min-h-screen bg-primary-dark text-text-primary p-8"><h1 className="text-4xl font-bold">Performance Optimization - Coming Soon</h1><p className="mt-4 text-text-secondary">This page will showcase our performance optimization techniques and metrics.</p></div>} />
+            <Route path="/api-docs" element={<div className="min-h-screen bg-primary-dark text-text-primary p-8"><h1 className="text-4xl font-bold">API Documentation - Coming Soon</h1><p className="mt-4 text-text-secondary">This page will contain comprehensive API documentation.</p></div>} />
+            <Route path="/devops" element={<div className="min-h-screen bg-primary-dark text-text-primary p-8"><h1 className="text-4xl font-bold">DevOps & CI/CD - Coming Soon</h1><p className="mt-4 text-text-secondary">This page will showcase our DevOps practices and CI/CD pipeline.</p></div>} />
             <Route path="/payment" element={<PaymentPage />} />
             <Route path="/success" element={<SuccessPage />} />
           </Routes>
