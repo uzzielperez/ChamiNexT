@@ -1,0 +1,9 @@
+Building RAGs starter
+
+This sample document explains how the small demo works. It is intentionally short. The demo shows:
+
+- How a document is chunked and stored in a local vector store.
+- How a query is embedded deterministically and nearest neighbors are retrieved.
+- How retrieval results can be combined into a prompt for a model in a production setup.
+
+Replace this with your own content to experiment.

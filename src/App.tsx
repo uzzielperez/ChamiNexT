@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import JobSeekersPage from './pages/JobSeekersPage';
 import VibeCoursePage from './pages/VibeCoursePage';
+import BuildingRagsCoursePage from './pages/BuildingRagsCoursePage';
 import PremiumHeader from './components/layout/PremiumHeader';
 import Footer from './components/layout/Footer';
 import PaymentPage from './pages/PaymentPage';
@@ -24,6 +25,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/jobseekers" element={<JobSeekersPage />} />
             <Route path="/courses/vibe-coding/:lessonId?" element={<VibeCoursePage />} />
+            <Route path="/courses/building-rags/:lessonId?" element={<BuildingRagsCoursePage />} />
             <Route path="/employers" element={<EmployersPage />} />
             <Route path="/marketplace" element={<MarketplacePage />} />
             <Route path="/payment" element={<PaymentPage />} />

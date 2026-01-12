@@ -23,7 +23,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
   const getCourseRoute = (url: string): string | null => {
     if (url.startsWith('http')) return null; // External link
     if (url === '#vibe-coding-course') return '/courses/vibe-coding';
-    if (url === '#rags-course') return '/courses/rags';
+    if (url === '#rags-course') return '/courses/building-rags';
     if (url === '#ai-agents-course') return '/courses/ai-agents';
     if (url === '#fullstack-ai-course') return '/courses/fullstack-ai';
     return null;
