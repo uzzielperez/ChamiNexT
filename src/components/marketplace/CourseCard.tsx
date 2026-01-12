@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { BookOpen, ExternalLink, Clock, TrendingUp, Lock, Star } from 'lucide-react';
 import Button from '../common/Button';
 import { Course } from '../../data/products';
@@ -8,6 +9,8 @@ interface CourseCardProps {
 }
 
 const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
+  const navigate = useNavigate();
+  
   const levelColors = {
     'beginner': 'text-green-400 bg-green-400/10 border-green-400/20',
     'intermediate': 'text-yellow-400 bg-yellow-400/10 border-yellow-400/20',
@@ -15,6 +18,25 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
   };
 
   const levelColor = levelColors[course.level];
+
+  // Map course URLs to routes
+  const getCourseRoute = (url: string): string | null => {
+    if (url.startsWith('http')) return null; // External link
+    if (url === '#vibe-coding-course') return '/courses/vibe-coding';
+    if (url === '#rags-course') return '/courses/rags';
+    if (url === '#ai-agents-course') return '/courses/ai-agents';
+    if (url === '#fullstack-ai-course') return '/courses/fullstack-ai';
+    return null;
+  };
+
+  const handleEnroll = () => {
+    const route = getCourseRoute(course.url);
+    if (route) {
+      navigate(route);
+    } else if (course.url.startsWith('http')) {
+      window.open(course.url, '_blank');
+    }
+  };
 
   return (
     <div className="bg-gray-800 rounded-lg shadow-lg p-6 flex flex-col border border-gray-700 hover:border-gold-500/50 transition-colors">
@@ -80,19 +102,23 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
         )}
         
         <Button
-          onClick={() => {
-            if (course.url.startsWith('http')) {
-              window.open(course.url, '_blank');
-            } else {
-              // Handle internal links or show coming soon
-              console.log('Navigate to:', course.url);
-            }
-          }}
+          onClick={handleEnroll}
           fullWidth
           className={course.isPremium ? 'bg-gold-600 hover:bg-gold-700' : ''}
         >
-          <ExternalLink className="w-4 h-4 mr-2" />
-          {course.url.startsWith('http') ? 'Enroll Now' : 'Coming Soon'}
+          {course.url.startsWith('http') ? (
+            <>
+              <ExternalLink className="w-4 h-4 mr-2" />
+              Enroll Now
+            </>
+          ) : getCourseRoute(course.url) ? (
+            <>
+              <BookOpen className="w-4 h-4 mr-2" />
+              View Course
+            </>
+          ) : (
+            'Coming Soon'
+          )}
         </Button>
       </div>
     </div>
