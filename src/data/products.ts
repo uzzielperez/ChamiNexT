@@ -53,16 +53,16 @@ export const products: Product[] = [
   },
   {
     name: 'Polaris',
-    description: 'Advanced project management and development toolkit designed for modern software teams, featuring AI-assisted planning and workflow optimization.',
+    description: 'Revolutionary travel app that seamlessly integrates flight and hotel bookings in one unified platform, making trip planning effortless and efficient.',
     url: '#polaris',
     price: 149,
     category: 'development',
     features: [
-      'AI-assisted project planning',
-      'Team collaboration tools',
-      'Workflow automation',
-      'Performance analytics',
-      'Integration ecosystem'
+      'Unified flight and hotel booking',
+      'Real-time price comparison',
+      'Smart travel recommendations',
+      'Integrated itinerary management',
+      'Seamless booking experience'
     ],
     isPremium: true
   },
