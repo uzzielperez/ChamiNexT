@@ -85,7 +85,7 @@ export const products: Product[] = [
   },
   {
     name: 'Kapwa Response',
-    description: 'Socially-responsible disaster response and mapping platform for the Philippines, with integrated support for sustainable eco villages and community resilience.',
+    description: 'Socially-responsible disaster response and mapping platform for the Philippines, with integrated support for sustainable eco villages, conservation efforts, and community resilience.',
     url: '#kapwa-response',
     price: 0,
     category: 'development',
@@ -93,6 +93,7 @@ export const products: Product[] = [
       'Real-time disaster mapping',
       'Emergency response coordination',
       'Eco village support network',
+      'Conservation project donations',
       'Community resource sharing',
       'Sustainable development tracking',
       'Multi-language support (Tagalog, English)'

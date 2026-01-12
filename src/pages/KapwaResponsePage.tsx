@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuroraBackground from '../components/ui/AuroraBackground';
 import PremiumButton from '../components/ui/PremiumButton';
-import { ArrowLeft, MapPin, AlertTriangle, Heart, Leaf, Users, Shield, Navigation, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, MapPin, AlertTriangle, Heart, Leaf, Users, Shield, Navigation, CheckCircle2, DollarSign, TreePine, Waves, Mountain } from 'lucide-react';
 
 const KapwaResponsePage: React.FC = () => {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState<'disaster' | 'eco-villages' | 'community'>('disaster');
+  const [activeTab, setActiveTab] = useState<'disaster' | 'eco-villages' | 'community' | 'conservation'>('disaster');
+  const [selectedConservation, setSelectedConservation] = useState<string | null>(null);
 
   // Sample disaster data
   const activeDisasters = [
@@ -199,6 +200,17 @@ const KapwaResponsePage: React.FC = () => {
             >
               <Users className="w-4 h-4" />
               Community Resources
+            </button>
+            <button
+              onClick={() => setActiveTab('conservation')}
+              className={`px-6 py-3 rounded-lg font-medium transition-all flex items-center gap-2 ${
+                activeTab === 'conservation'
+                  ? 'bg-accent-blue text-white'
+                  : 'bg-gray-800/50 text-text-secondary hover:bg-gray-800 border border-gray-700'
+              }`}
+            >
+              <TreePine className="w-4 h-4" />
+              Conservation
             </button>
           </div>
         </div>
@@ -472,6 +484,229 @@ const KapwaResponsePage: React.FC = () => {
                       Support sustainable initiatives
                     </li>
                   </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'conservation' && (
+          <div>
+            <div className="card mb-6">
+              <h2 className="text-section-header font-bold text-text-primary mb-4">Conservation Efforts</h2>
+              <p className="text-text-secondary mb-6">Support environmental conservation projects across the Philippines. Your donations help protect biodiversity, restore ecosystems, and build climate resilience.</p>
+            </div>
+
+            {/* Conservation Projects */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+              {[
+                {
+                  id: 'coral-reef',
+                  name: 'Coral Reef Restoration',
+                  location: 'Palawan & Tubbataha',
+                  icon: <Waves className="w-6 h-6" />,
+                  description: 'Restore damaged coral reefs and protect marine biodiversity in the Philippines\' pristine waters.',
+                  raised: 45000,
+                  goal: 100000,
+                  donors: 234,
+                  impact: '15,000 sqm of coral restored',
+                  urgency: 'High'
+                },
+                {
+                  id: 'rainforest',
+                  name: 'Rainforest Protection',
+                  location: 'Mindanao & Palawan',
+                  icon: <TreePine className="w-6 h-6" />,
+                  description: 'Protect old-growth forests and reforest degraded areas to combat climate change.',
+                  raised: 78000,
+                  goal: 150000,
+                  donors: 456,
+                  impact: '500 hectares protected',
+                  urgency: 'High'
+                },
+                {
+                  id: 'mangrove',
+                  name: 'Mangrove Reforestation',
+                  location: 'Visayas Region',
+                  icon: <Leaf className="w-6 h-6" />,
+                  description: 'Plant mangroves to protect coastlines, support fisheries, and sequester carbon.',
+                  raised: 32000,
+                  goal: 75000,
+                  donors: 189,
+                  impact: '10,000 mangroves planted',
+                  urgency: 'Medium'
+                },
+                {
+                  id: 'wildlife',
+                  name: 'Wildlife Conservation',
+                  location: 'Multiple Regions',
+                  icon: <Heart className="w-6 h-6" />,
+                  description: 'Protect endangered species like the Philippine Eagle and Tamaraw.',
+                  raised: 125000,
+                  goal: 200000,
+                  donors: 678,
+                  impact: '50+ species protected',
+                  urgency: 'Critical'
+                },
+                {
+                  id: 'marine',
+                  name: 'Marine Protected Areas',
+                  location: 'Batanes & Cebu',
+                  icon: <Waves className="w-6 h-6" />,
+                  description: 'Establish and maintain marine sanctuaries for fish breeding and ecosystem health.',
+                  raised: 56000,
+                  goal: 120000,
+                  donors: 312,
+                  impact: '8 MPAs established',
+                  urgency: 'High'
+                },
+                {
+                  id: 'mountain',
+                  name: 'Mountain Ecosystem',
+                  location: 'Cordillera Region',
+                  icon: <Mountain className="w-6 h-6" />,
+                  description: 'Protect mountain watersheds and preserve indigenous forest knowledge.',
+                  raised: 41000,
+                  goal: 90000,
+                  donors: 245,
+                  impact: '300 hectares restored',
+                  urgency: 'Medium'
+                }
+              ].map((project) => {
+                const progress = (project.raised / project.goal) * 100;
+                return (
+                  <div
+                    key={project.id}
+                    className="card hover:border-green-500/50 transition-colors cursor-pointer"
+                    onClick={() => setSelectedConservation(selectedConservation === project.id ? null : project.id)}
+                  >
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 flex-shrink-0">
+                        {project.icon}
+                      </div>
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                        project.urgency === 'Critical'
+                          ? 'bg-red-500/20 text-red-400 border border-red-500/30'
+                          : project.urgency === 'High'
+                          ? 'bg-orange-500/20 text-orange-400 border border-orange-500/30'
+                          : 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30'
+                      }`}>
+                        {project.urgency}
+                      </span>
+                    </div>
+
+                    <h3 className="text-lg font-semibold text-text-primary mb-2">{project.name}</h3>
+                    <div className="flex items-center gap-2 text-sm text-text-secondary mb-3">
+                      <MapPin className="w-4 h-4" />
+                      {project.location}
+                    </div>
+                    <p className="text-sm text-text-secondary mb-4">{project.description}</p>
+
+                    {/* Progress */}
+                    <div className="mb-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-sm text-text-secondary">Progress</span>
+                        <span className="text-sm font-bold text-green-400">{Math.round(progress)}%</span>
+                      </div>
+                      <div className="w-full bg-gray-800 rounded-full h-2">
+                        <div
+                          className="bg-gradient-to-r from-green-500 to-emerald-500 h-2 rounded-full transition-all"
+                          style={{ width: `${progress}%` }}
+                        />
+                      </div>
+                      <div className="flex items-center justify-between mt-2 text-xs text-text-secondary">
+                        <span>₱{project.raised.toLocaleString()} raised</span>
+                        <span>₱{project.goal.toLocaleString()} goal</span>
+                      </div>
+                    </div>
+
+                    {/* Impact & Donors */}
+                    <div className="pt-4 border-t border-gray-700 space-y-2 mb-4">
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="text-text-secondary">Impact:</span>
+                        <span className="text-text-primary font-medium">{project.impact}</span>
+                      </div>
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="text-text-secondary">Donors:</span>
+                        <span className="text-text-primary font-medium">{project.donors}</span>
+                      </div>
+                    </div>
+
+                    {selectedConservation === project.id && (
+                      <div className="pt-4 border-t border-gray-700">
+                        <div className="mb-4">
+                          <label className="block text-sm font-medium text-text-primary mb-2">Donation Amount</label>
+                          <div className="grid grid-cols-4 gap-2 mb-3">
+                            {[500, 1000, 2500, 5000].map((amount) => (
+                              <button
+                                key={amount}
+                                className="px-3 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 border border-gray-700 text-sm text-text-primary transition-colors"
+                              >
+                                ₱{amount}
+                              </button>
+                            ))}
+                          </div>
+                          <input
+                            type="number"
+                            placeholder="Custom amount (₱)"
+                            className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-text-primary placeholder-text-secondary focus:outline-none focus:border-green-500"
+                          />
+                        </div>
+                        <PremiumButton variant="primary" fullWidth className="bg-green-600 hover:bg-green-700">
+                          <DollarSign className="w-4 h-4 mr-2" />
+                          Donate Now
+                        </PremiumButton>
+                      </div>
+                    )}
+
+                    {selectedConservation !== project.id && (
+                      <PremiumButton
+                        variant="secondary"
+                        size="sm"
+                        fullWidth
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedConservation(project.id);
+                        }}
+                      >
+                        <DollarSign className="w-4 h-4 mr-2" />
+                        Donate
+                      </PremiumButton>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Donation Impact Summary */}
+            <div className="card bg-gradient-to-r from-green-500/10 to-emerald-500/10 border-green-500/20">
+              <h3 className="text-xl font-bold text-text-primary mb-4">Collective Impact</h3>
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-green-400 mb-2">₱377K</div>
+                  <div className="text-sm text-text-secondary">Total Raised</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-green-400 mb-2">2,114</div>
+                  <div className="text-sm text-text-secondary">Total Donors</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-green-400 mb-2">6</div>
+                  <div className="text-sm text-text-secondary">Active Projects</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-green-400 mb-2">100%</div>
+                  <div className="text-sm text-text-secondary">Transparency</div>
+                </div>
+              </div>
+              <div className="mt-6 pt-6 border-t border-gray-700">
+                <p className="text-text-secondary text-sm mb-4">
+                  <strong className="text-text-primary">100% of donations</strong> go directly to conservation projects. 
+                  All administrative costs are covered separately to ensure maximum impact.
+                </p>
+                <div className="flex items-center gap-2 text-sm text-text-secondary">
+                  <CheckCircle2 className="w-4 h-4 text-green-400" />
+                  <span>Verified by independent auditors</span>
                 </div>
               </div>
             </div>
