@@ -161,18 +161,27 @@ const HomePage: React.FC = () => {
             <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[var(--bg-primary)] to-transparent z-10 pointer-events-none"></div>
             
             {/* Scrolling Products - Infinite Loop */}
-            <div className="overflow-hidden pb-6">
-              <div className="flex gap-6 animate-scroll-left" style={{ width: 'max-content' }}>
+            <div className="scrolling-container pb-6" style={{ overflow: 'hidden' }}>
+              <div className="scrolling-content animate-scroll-left" style={{ display: 'flex', gap: '1.5rem', width: 'max-content' }}>
                 {/* First set of products */}
                 {products.map((product, index) => (
                   <div 
                     key={`${product.name}-${index}`}
                     className="card group cursor-pointer flex-shrink-0 w-80 hover:border-accent-blue/50 transition-all duration-300"
                     onClick={() => {
-                      if (product.url.startsWith('#')) {
-                        navigate(`/products${product.url.replace('#', '')}`);
+                      // Handle navigation similar to ProductCard
+                      if (product.url === '#crm') {
+                        navigate('/products/crm');
+                      } else if (product.url === '#polaris') {
+                        navigate('/products/polaris');
+                      } else if (product.url === '#kapwa-response') {
+                        navigate('/products/kapwa-response');
+                      } else if (product.url === '#eventhub') {
+                        navigate('/products/eventhub');
                       } else if (product.url.startsWith('http')) {
                         window.open(product.url, '_blank');
+                      } else if (product.url.startsWith('#')) {
+                        navigate(`/products${product.url.replace('#', '')}`);
                       } else {
                         navigate(product.url);
                       }
@@ -223,10 +232,19 @@ const HomePage: React.FC = () => {
                     key={`${product.name}-duplicate-${index}`}
                     className="card group cursor-pointer flex-shrink-0 w-80 hover:border-accent-blue/50 transition-all duration-300"
                     onClick={() => {
-                      if (product.url.startsWith('#')) {
-                        navigate(`/products${product.url.replace('#', '')}`);
+                      // Handle navigation similar to ProductCard
+                      if (product.url === '#crm') {
+                        navigate('/products/crm');
+                      } else if (product.url === '#polaris') {
+                        navigate('/products/polaris');
+                      } else if (product.url === '#kapwa-response') {
+                        navigate('/products/kapwa-response');
+                      } else if (product.url === '#eventhub') {
+                        navigate('/products/eventhub');
                       } else if (product.url.startsWith('http')) {
                         window.open(product.url, '_blank');
+                      } else if (product.url.startsWith('#')) {
+                        navigate(`/products${product.url.replace('#', '')}`);
                       } else {
                         navigate(product.url);
                       }

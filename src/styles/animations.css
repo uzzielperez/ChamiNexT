@@ -651,20 +651,45 @@
 
 /* Horizontal Scrolling Animation for Products */
 @keyframes scroll-left {
-  0% {
+  from {
     transform: translateX(0);
   }
-  100% {
+  to {
     transform: translateX(-50%);
   }
 }
 
 .animate-scroll-left {
   animation: scroll-left 60s linear infinite;
+  will-change: transform;
 }
 
 .animate-scroll-left:hover {
   animation-play-state: paused;
+}
+
+/* Ensure the container can scroll */
+.scrolling-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.scrolling-content {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .animate-scroll-left {
+    animation: none;
+  }
+  
+  .scrolling-container {
+    overflow-x: auto;
+  }
 }
 
 /* Hide scrollbar for webkit browsers */
