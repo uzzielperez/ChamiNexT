@@ -1,7 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Code, Zap, Shield, TrendingUp, Users, Star } from 'lucide-react';
+import { ArrowRight, Code, Zap, Shield, TrendingUp, Users, Star, ExternalLink } from 'lucide-react';
 import AnimatedBackground from '../components/ui/AnimatedBackground';
+import { products } from '../data/products';
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
@@ -143,8 +144,8 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* PORTFOLIO/WORK SECTION */}
-      <section className="section">
+      {/* PORTFOLIO/WORK SECTION - Scrolling Products */}
+      <section className="section relative overflow-hidden">
         <div className="container">
           <div className="text-center mb-16">
             <h2 className="section-header">Featured Projects</h2>
@@ -153,42 +154,125 @@ const HomePage: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                title: "AI CV Optimizer",
-                description: "Real-time CV optimization with AI-powered suggestions and collaboration",
-                tech: ["React", "TypeScript", "AI/ML", "Node.js"],
-                image: "/api/placeholder/400/250"
-              },
-              {
-                title: "Talent Pipeline Manager",
-                description: "Complete recruitment management system for modern companies",
-                tech: ["React", "PostgreSQL", "GraphQL", "Docker"],
-                image: "/api/placeholder/400/250"
-              },
-              {
-                title: "Premium Course Platform",
-                description: "Interactive learning platform with video streaming and progress tracking",
-                tech: ["Next.js", "Stripe", "AWS", "Redis"],
-                image: "/api/placeholder/400/250"
-              }
-            ].map((project, index) => (
-              <div key={index} className="card group cursor-pointer">
-                <div className="aspect-video bg-gray-800 rounded-lg mb-4 flex items-center justify-center">
-                  <Code className="w-12 h-12 text-gray-600" />
-                </div>
-                <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                <p className="text-secondary mb-4">{project.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((tech) => (
-                    <span key={tech} className="glass px-3 py-1 rounded-full text-sm">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+          {/* Horizontal Scrolling Container */}
+          <div className="relative">
+            {/* Gradient Fade Overlays */}
+            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[var(--bg-primary)] to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[var(--bg-primary)] to-transparent z-10 pointer-events-none"></div>
+            
+            {/* Scrolling Products - Infinite Loop */}
+            <div className="overflow-hidden pb-6">
+              <div className="flex gap-6 animate-scroll-left" style={{ width: 'max-content' }}>
+                {/* First set of products */}
+                {products.map((product, index) => (
+                  <div 
+                    key={`${product.name}-${index}`}
+                    className="card group cursor-pointer flex-shrink-0 w-80 hover:border-accent-blue/50 transition-all duration-300"
+                    onClick={() => {
+                      if (product.url.startsWith('#')) {
+                        navigate(`/products${product.url.replace('#', '')}`);
+                      } else if (product.url.startsWith('http')) {
+                        window.open(product.url, '_blank');
+                      } else {
+                        navigate(product.url);
+                      }
+                    }}
+                  >
+                    <div className="aspect-video bg-gradient-to-br from-blue-600/20 to-purple-600/20 rounded-lg mb-4 flex items-center justify-center border border-gray-700 group-hover:border-accent-blue/50 transition-colors">
+                      <Code className="w-12 h-12 text-accent-blue group-hover:scale-110 transition-transform" />
+                    </div>
+                    <div className="flex items-start justify-between mb-2">
+                      <h3 className="text-xl font-bold text-text-primary group-hover:text-accent-blue transition-colors">
+                        {product.name}
+                      </h3>
+                      {product.url.startsWith('http') && (
+                        <ExternalLink className="w-4 h-4 text-text-secondary group-hover:text-accent-blue transition-colors flex-shrink-0 ml-2" />
+                      )}
+                    </div>
+                    <p className="text-secondary mb-4 text-sm" style={{ 
+                      display: '-webkit-box',
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: 'vertical',
+                      overflow: 'hidden'
+                    }}>
+                      {product.description}
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <div className="flex flex-wrap gap-2">
+                        {product.features.slice(0, 2).map((feature, idx) => (
+                          <span key={idx} className="glass px-2 py-1 rounded text-xs">
+                            {feature.split(' ')[0]}
+                          </span>
+                        ))}
+                      </div>
+                      {product.price !== undefined && (
+                        <span className="text-accent-blue font-bold">
+                          {product.price === 0 ? 'Free' : `€${product.price}`}
+                        </span>
+                      )}
+                    </div>
+                    <div className="mt-4 pt-4 border-t border-gray-800 flex items-center gap-2 text-sm text-accent-blue opacity-0 group-hover:opacity-100 transition-opacity">
+                      <span>View Details</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
+                  </div>
+                ))}
+                {/* Duplicate set for seamless loop */}
+                {products.map((product, index) => (
+                  <div 
+                    key={`${product.name}-duplicate-${index}`}
+                    className="card group cursor-pointer flex-shrink-0 w-80 hover:border-accent-blue/50 transition-all duration-300"
+                    onClick={() => {
+                      if (product.url.startsWith('#')) {
+                        navigate(`/products${product.url.replace('#', '')}`);
+                      } else if (product.url.startsWith('http')) {
+                        window.open(product.url, '_blank');
+                      } else {
+                        navigate(product.url);
+                      }
+                    }}
+                  >
+                    <div className="aspect-video bg-gradient-to-br from-blue-600/20 to-purple-600/20 rounded-lg mb-4 flex items-center justify-center border border-gray-700 group-hover:border-accent-blue/50 transition-colors">
+                      <Code className="w-12 h-12 text-accent-blue group-hover:scale-110 transition-transform" />
+                    </div>
+                    <div className="flex items-start justify-between mb-2">
+                      <h3 className="text-xl font-bold text-text-primary group-hover:text-accent-blue transition-colors">
+                        {product.name}
+                      </h3>
+                      {product.url.startsWith('http') && (
+                        <ExternalLink className="w-4 h-4 text-text-secondary group-hover:text-accent-blue transition-colors flex-shrink-0 ml-2" />
+                      )}
+                    </div>
+                    <p className="text-secondary mb-4 text-sm" style={{ 
+                      display: '-webkit-box',
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: 'vertical',
+                      overflow: 'hidden'
+                    }}>
+                      {product.description}
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <div className="flex flex-wrap gap-2">
+                        {product.features.slice(0, 2).map((feature, idx) => (
+                          <span key={idx} className="glass px-2 py-1 rounded text-xs">
+                            {feature.split(' ')[0]}
+                          </span>
+                        ))}
+                      </div>
+                      {product.price !== undefined && (
+                        <span className="text-accent-blue font-bold">
+                          {product.price === 0 ? 'Free' : `€${product.price}`}
+                        </span>
+                      )}
+                    </div>
+                    <div className="mt-4 pt-4 border-t border-gray-800 flex items-center gap-2 text-sm text-accent-blue opacity-0 group-hover:opacity-100 transition-opacity">
+                      <span>View Details</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
