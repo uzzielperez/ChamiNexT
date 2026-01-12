@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuroraBackground from '../components/ui/AuroraBackground';
 import PremiumButton from '../components/ui/PremiumButton';
-import { ArrowLeft, Code, ExternalLink, Github, Globe, Database, Server, Zap } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Code, ExternalLink, Github, Globe, Database, Server, Zap } from 'lucide-react';
 
 const PortfolioPage: React.FC = () => {
   const navigate = useNavigate();
