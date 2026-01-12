@@ -99,6 +99,22 @@ export const products: Product[] = [
       'Multi-language support (Tagalog, English)'
     ],
     isPremium: false
+  },
+  {
+    name: 'EventHub',
+    description: 'Event management platform for organizing and joining local events like Sunday football matches, board game nights, and community gatherings. Reserve spots, pay securely, and connect with your community.',
+    url: '#eventhub',
+    price: 179,
+    category: 'development',
+    features: [
+      'Event creation and management',
+      'Spot reservation system',
+      'Multi-location support (Madrid, Barcelona, Paris, Dubai, Turkey, etc.)',
+      'Payment integration (Bizum, Credit Card, Debit Card)',
+      'Event discovery and filtering',
+      'Community building features'
+    ],
+    isPremium: true
   }
 ];
 

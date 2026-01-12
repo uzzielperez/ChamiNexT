@@ -124,6 +124,25 @@ const PortfolioPage: React.FC = () => {
         disasters: '50+ tracked',
         communities: '100+'
       }
+    },
+    {
+      id: 'eventhub',
+      name: 'EventHub',
+      description: 'Event management platform for organizing and joining local events like Sunday football matches, board game nights, and community gatherings.',
+      tech: ['React', 'Payment Integration', 'Maps API', 'Real-time Booking'],
+      category: 'Full-Stack',
+      status: 'Sample',
+      features: [
+        'Event creation and management',
+        'Spot reservation system',
+        'Multi-location support',
+        'Payment integration (Bizum, Cards)'
+      ],
+      metrics: {
+        locations: '8+ cities',
+        events: '500+ monthly',
+        users: '5,000+'
+      }
     }
   ];
 
