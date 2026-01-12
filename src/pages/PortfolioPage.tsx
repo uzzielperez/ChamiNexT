@@ -105,10 +105,29 @@ const PortfolioPage: React.FC = () => {
         efficiency: '+45%',
         satisfaction: '4.6/5'
       }
+    },
+    {
+      id: 'kapwa-response',
+      name: 'Kapwa Response',
+      description: 'Socially-responsible disaster response and mapping platform for the Philippines, with integrated support for sustainable eco villages.',
+      tech: ['React', 'Maps API', 'Real-time Data', 'Community Platform'],
+      category: 'Social Impact',
+      status: 'Live',
+      features: [
+        'Disaster mapping and response',
+        'Eco village support network',
+        'Community resource sharing',
+        'Real-time emergency coordination'
+      ],
+      metrics: {
+        villages: '15+',
+        disasters: '50+ tracked',
+        communities: '100+'
+      }
     }
   ];
 
-  const categories = ['All', 'Full-Stack', 'Health-Tech', 'Wellness', 'Travel', 'CRM'];
+  const categories = ['All', 'Full-Stack', 'Health-Tech', 'Wellness', 'Travel', 'CRM', 'Social Impact'];
   const [activeCategory, setActiveCategory] = useState('All');
 
   const filteredProjects = activeCategory === 'All' 

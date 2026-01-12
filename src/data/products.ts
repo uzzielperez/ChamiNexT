@@ -82,6 +82,22 @@ export const products: Product[] = [
       'White-label customization'
     ],
     isPremium: true
+  },
+  {
+    name: 'Kapwa Response',
+    description: 'Socially-responsible disaster response and mapping platform for the Philippines, with integrated support for sustainable eco villages and community resilience.',
+    url: '#kapwa-response',
+    price: 0,
+    category: 'development',
+    features: [
+      'Real-time disaster mapping',
+      'Emergency response coordination',
+      'Eco village support network',
+      'Community resource sharing',
+      'Sustainable development tracking',
+      'Multi-language support (Tagalog, English)'
+    ],
+    isPremium: false
   }
 ];
 

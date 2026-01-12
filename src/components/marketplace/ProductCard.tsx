@@ -26,6 +26,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     if (url.startsWith('http')) return null; // External link
     if (url === '#crm') return '/products/crm';
     if (url === '#polaris') return '/products/polaris';
+    if (url === '#kapwa-response') return '/products/kapwa-response';
     return null;
   };
 
@@ -85,17 +86,23 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
       {/* Price and Action */}
       <div className="mt-auto">
-        {product.price && (
+        {product.price !== undefined && (
           <div className="flex items-center justify-between mb-3">
-            <span className="text-2xl font-bold text-gold-400">${product.price}</span>
-            <span className="text-sm text-gray-400">one-time</span>
+            {product.price === 0 ? (
+              <span className="text-2xl font-bold text-green-400">Free</span>
+            ) : (
+              <>
+                <span className="text-2xl font-bold text-gold-400">${product.price}</span>
+                <span className="text-sm text-gray-400">one-time</span>
+              </>
+            )}
           </div>
         )}
         
         <Button
           onClick={handleClick}
           fullWidth
-          className={product.isPremium ? 'bg-gold-600 hover:bg-gold-700' : ''}
+          className={product.isPremium ? 'bg-gold-600 hover:bg-gold-700' : product.price === 0 ? 'bg-green-600 hover:bg-green-700' : ''}
         >
           {product.url.startsWith('http') ? (
             <>
@@ -105,7 +112,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           ) : getProductRoute(product.url) ? (
             <>
               <ShoppingBag className="w-4 h-4 mr-2" />
-              View Sample
+              {product.price === 0 ? 'View Platform' : 'View Sample'}
             </>
           ) : (
             'Coming Soon'
