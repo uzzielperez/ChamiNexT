@@ -680,19 +680,20 @@
 }
 
 .scrolling-content {
-  display: inline-flex;
+  display: inline-flex !important;
   gap: 1.5rem;
-  animation: scroll-left 40s linear infinite;
+  animation: scroll-left 40s linear infinite !important;
   will-change: transform;
   white-space: nowrap;
+  position: relative;
 }
 
 .scrolling-content > * {
-  flex-shrink: 0;
+  flex-shrink: 0 !important;
 }
 
 .scrolling-content:hover {
-  animation-play-state: paused;
+  animation-play-state: paused !important;
 }
 
 /* Reduced motion support */
