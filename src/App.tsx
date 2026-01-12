@@ -5,6 +5,7 @@ import JobSeekersPage from './pages/JobSeekersPage';
 import VibeCoursePage from './pages/VibeCoursePage';
 import BuildingRagsCoursePage from './pages/BuildingRagsCoursePage';
 import AIAgentsCoursePage from './pages/AIAgentsCoursePage';
+import FullstackAICoursePage from './pages/FullstackAICoursePage';
 import PremiumHeader from './components/layout/PremiumHeader';
 import Footer from './components/layout/Footer';
 import PaymentPage from './pages/PaymentPage';
@@ -28,6 +29,7 @@ function App() {
             <Route path="/courses/vibe-coding/:lessonId?" element={<VibeCoursePage />} />
             <Route path="/courses/building-rags/:lessonId?" element={<BuildingRagsCoursePage />} />
             <Route path="/courses/ai-agents/:lessonId?" element={<AIAgentsCoursePage />} />
+            <Route path="/courses/fullstack-ai/:lessonId?" element={<FullstackAICoursePage />} />
             <Route path="/employers" element={<EmployersPage />} />
             <Route path="/marketplace" element={<MarketplacePage />} />
             <Route path="/payment" element={<PaymentPage />} />
