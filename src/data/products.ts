@@ -53,16 +53,18 @@ export const products: Product[] = [
   },
   {
     name: 'Polaris',
-    description: 'Revolutionary travel app that seamlessly integrates flight and hotel bookings in one unified platform, making trip planning effortless and efficient.',
+    description: 'A comprehensive travel companion that encourages exploration both near and far. Seamlessly book flights and hotels while discovering local adventures and finding the best public transportation routes to get you there.',
     url: '#polaris',
     price: 149,
     category: 'development',
     features: [
       'Unified flight and hotel booking',
-      'Real-time price comparison',
-      'Smart travel recommendations',
-      'Integrated itinerary management',
-      'Seamless booking experience'
+      'Local travel discovery and recommendations',
+      'Public transportation route optimization',
+      'Real-time transit schedules and updates',
+      'Explore nearby attractions and events',
+      'Encourages local and global exploration',
+      'Integrated itinerary management'
     ],
     isPremium: true
   },
