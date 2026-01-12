@@ -655,7 +655,7 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(calc(-100% / 2));
+    transform: translateX(-50%);
   }
 }
 
