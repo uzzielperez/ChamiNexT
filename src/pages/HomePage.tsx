@@ -178,6 +178,8 @@ const HomePage: React.FC = () => {
                         navigate('/products/kapwa-response');
                       } else if (product.url === '#eventhub') {
                         navigate('/products/eventhub');
+                      } else if (product.url === '#alfred') {
+                        navigate('/products/alfred');
                       } else if (product.url.startsWith('http')) {
                         window.open(product.url, '_blank');
                       } else if (product.url.startsWith('#')) {
@@ -241,6 +243,8 @@ const HomePage: React.FC = () => {
                         navigate('/products/kapwa-response');
                       } else if (product.url === '#eventhub') {
                         navigate('/products/eventhub');
+                      } else if (product.url === '#alfred') {
+                        navigate('/products/alfred');
                       } else if (product.url.startsWith('http')) {
                         window.open(product.url, '_blank');
                       } else if (product.url.startsWith('#')) {

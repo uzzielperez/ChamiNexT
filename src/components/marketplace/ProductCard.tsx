@@ -28,6 +28,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     if (url === '#polaris') return '/products/polaris';
     if (url === '#kapwa-response') return '/products/kapwa-response';
     if (url === '#eventhub') return '/products/eventhub';
+    if (url === '#alfred') return '/products/alfred';
     return null;
   };
 

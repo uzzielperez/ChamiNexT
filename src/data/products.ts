@@ -115,6 +115,23 @@ export const products: Product[] = [
       'Community building features'
     ],
     isPremium: true
+  },
+  {
+    name: 'Alfred - AI Executive Assistant',
+    description: 'Your intelligent executive assistant powered by AI. Manage your calendar, track spending, organize tasks with Kanban boards, and sync seamlessly with Google Calendar and iCloud. Features voice recognition, analytics dashboard, and strategic project management.',
+    url: '#alfred',
+    price: 249,
+    category: 'ai',
+    features: [
+      'AI-powered chat interface with voice recognition',
+      'Calendar integration (Google Calendar & iCloud)',
+      'Kanban board for task management',
+      'Analytics dashboard with spending tracking',
+      'Multi-category project organization',
+      'Real-time calendar sync portal',
+      'Strategic decision support'
+    ],
+    isPremium: true
   }
 ];
 
