@@ -274,27 +274,54 @@ const AlfredSamplePage: React.FC = () => {
           <div className="card border-accent-blue/20">
             <div className="mb-4">
               <h2 className="text-2xl font-bold text-text-primary mb-2">Live Application Preview</h2>
-              <p className="text-text-secondary">
-                The Alfred AI Executive Assistant application is available as a standalone application.
-                To view the full application, please navigate to the Alfred directory or deploy it separately.
+              <p className="text-text-secondary mb-4">
+                The Alfred AI Executive Assistant application can be embedded here when running locally.
+                Start the Alfred dev server to see it live, or view instructions below.
               </p>
             </div>
-            <div className="bg-gray-900/50 rounded-lg p-8 border border-gray-700 text-center">
-              <Bot className="w-16 h-16 text-cyan-400 mx-auto mb-4" />
-              <p className="text-text-secondary mb-4">
-                To run the Alfred application locally:
-              </p>
-              <div className="bg-black/50 rounded p-4 font-mono text-sm text-green-400 text-left max-w-2xl mx-auto">
-                <div className="mb-2">cd /Users/uzzielperez/Desktop/alfred</div>
-                <div>npm run dev</div>
-              </div>
-              <p className="text-text-secondary mt-6 text-sm">
-                Or build and serve the production version:
-              </p>
-              <div className="bg-black/50 rounded p-4 font-mono text-sm text-green-400 text-left max-w-2xl mx-auto">
-                <div className="mb-2">cd /Users/uzzielperez/Desktop/alfred</div>
-                <div className="mb-2">npm run build</div>
-                <div>npm run preview</div>
+            
+            {/* Embedded Alfred App */}
+            <div className="bg-gray-900/50 rounded-lg border border-gray-700 overflow-hidden mb-6" style={{ minHeight: '600px' }}>
+              <iframe
+                src="http://localhost:5173"
+                className="w-full h-full min-h-[600px] border-0"
+                title="Alfred AI Executive Assistant"
+                style={{ display: 'block' }}
+                onError={() => {
+                  console.log('Alfred app not available at localhost:5173');
+                }}
+              />
+            </div>
+
+            <div className="bg-gray-900/50 rounded-lg p-6 border border-gray-700">
+              <h3 className="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
+                <Bot className="w-5 h-5 text-cyan-400" />
+                How to View Alfred
+              </h3>
+              <div className="space-y-4">
+                <div>
+                  <p className="text-text-secondary mb-2 font-medium">Option 1: Run Development Server</p>
+                  <div className="bg-black/50 rounded p-4 font-mono text-sm text-green-400">
+                    <div className="mb-2">cd /Users/uzzielperez/Desktop/alfred</div>
+                    <div>npm run dev</div>
+                    <div className="mt-2 text-gray-400 text-xs"># Then refresh this page - Alfred will appear above</div>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-text-secondary mb-2 font-medium">Option 2: Build and Preview</p>
+                  <div className="bg-black/50 rounded p-4 font-mono text-sm text-green-400">
+                    <div className="mb-2">cd /Users/uzzielperez/Desktop/alfred</div>
+                    <div className="mb-2">npm run build</div>
+                    <div>npm run preview</div>
+                    <div className="mt-2 text-gray-400 text-xs"># Update iframe src above to match preview port</div>
+                  </div>
+                </div>
+                <div className="pt-4 border-t border-gray-700">
+                  <p className="text-text-secondary text-sm">
+                    <strong>Note:</strong> If Alfred is running on a different port, update the iframe src in the code to match.
+                    The iframe will automatically load when Alfred is available.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
