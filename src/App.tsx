@@ -16,6 +16,7 @@ import CRMSamplePage from './pages/CRMSamplePage';
 import PolarisSamplePage from './pages/PolarisSamplePage';
 import KapwaResponsePage from './pages/KapwaResponsePage';
 import EventHubPage from './pages/EventHubPage';
+import AlfredSamplePage from './pages/AlfredSamplePage';
 import PortfolioPage from './pages/PortfolioPage';
 import AIShowcasePage from './pages/AIShowcasePage';
 import InfrastructurePage from './pages/InfrastructurePage';
@@ -46,6 +47,7 @@ function App() {
             <Route path="/products/polaris" element={<PolarisSamplePage />} />
             <Route path="/products/kapwa-response" element={<KapwaResponsePage />} />
             <Route path="/products/eventhub" element={<EventHubPage />} />
+            <Route path="/products/alfred" element={<AlfredSamplePage />} />
             <Route path="/portfolio" element={<PortfolioPage />} />
             <Route path="/ai-showcase" element={<AIShowcasePage />} />
             <Route path="/infrastructure" element={<InfrastructurePage />} />
