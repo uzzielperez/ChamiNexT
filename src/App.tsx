@@ -27,6 +27,7 @@ import DevOpsPage from './pages/DevOpsPage';
 // Import premium design system styles
 import './styles/design-system.css';
 import './styles/animations.css';
+import './styles/alfred.css';
 
 function App() {
   return (

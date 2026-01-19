@@ -1,333 +1,79 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AuroraBackground from '../components/ui/AuroraBackground';
 import PremiumButton from '../components/ui/PremiumButton';
-import { ArrowLeft, Bot, Calendar, MessageSquare, LayoutKanban, Sync, BarChart3, Mic, Sparkles } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
+import Sidebar from '../components/alfred/Sidebar';
+import Dashboard from '../components/alfred/Dashboard';
+import Chat from '../components/alfred/Chat';
+import Kanban from '../components/alfred/Kanban';
+import SyncPortal from '../components/alfred/SyncPortal';
+import ErrorBoundary from '../components/alfred/ErrorBoundary';
+import { initialTasks } from '../components/alfred/data';
+import type { ProjectTask, ProjectCategory, CalendarEvent } from '../components/alfred/data';
+import '../styles/alfred.css';
 
 const AlfredSamplePage: React.FC = () => {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState<'overview' | 'preview'>('overview');
+  const [activeView, setActiveView] = useState<'dashboard' | 'chat' | 'kanban' | 'sync'>('dashboard');
+  const [tasks, setTasks] = useState<ProjectTask[]>(initialTasks);
+  const [liveEvents] = useState<CalendarEvent[]>([]);
 
-  // Sample data
-  const features = [
-    {
-      icon: Bot,
-      title: 'AI-Powered Chat',
-      description: 'Intelligent conversational interface with voice recognition capabilities for natural interaction.',
-      color: 'text-cyan-400'
-    },
-    {
-      icon: Calendar,
-      title: 'Calendar Integration',
-      description: 'Seamlessly sync with Google Calendar and iCloud for unified event management.',
-      color: 'text-blue-400'
-    },
-    {
-      icon: LayoutKanban,
-      title: 'Task Management',
-      description: 'Organize projects across multiple categories with visual Kanban boards.',
-      color: 'text-purple-400'
-    },
-    {
-      icon: BarChart3,
-      title: 'Analytics Dashboard',
-      description: 'Track spending, monitor calendar density, and analyze productivity metrics.',
-      color: 'text-green-400'
-    },
-    {
-      icon: Sync,
-      title: 'Sync Portal',
-      description: 'Real-time synchronization with external calendar services and data sources.',
-      color: 'text-orange-400'
-    },
-    {
-      icon: Mic,
-      title: 'Voice Recognition',
-      description: 'Hands-free interaction using advanced speech-to-text technology.',
-      color: 'text-pink-400'
-    }
-  ];
+  const addTask = (title: string, category: ProjectCategory) => {
+    const newTask: ProjectTask = {
+      id: Math.random().toString(36).substring(2, 9),
+      title,
+      category,
+      status: 'active',
+      priority: 'medium'
+    };
+    setTasks(prev => [newTask, ...prev]);
+  };
 
-  const sampleTasks = [
-    { id: '1', title: 'Quantum Field Simulation Analysis', category: 'PHYSICS', status: 'active', priority: 'high' },
-    { id: '2', title: 'Quarterly Portfolio Rebalancing', category: 'FINANCE', status: 'pending', priority: 'medium' },
-    { id: '3', title: 'Morning Heart Rate Variability Sync', category: 'HEALTH/LOVE', status: 'active', priority: 'medium' },
-    { id: '4', title: 'Route Optimization for Supply Run', category: 'LOGISTICS', status: 'completed', priority: 'low' },
-    { id: '5', title: 'Holographic Interface Sketching', category: 'CREATIVE PROJECTS', status: 'active', priority: 'high' }
-  ];
+  const updateTask = (taskId: string, updates: Partial<ProjectTask>) => {
+    setTasks(prev => prev.map(task => 
+      task.id === taskId ? { ...task, ...updates } : task
+    ));
+  };
 
   return (
-    <div className="min-h-screen bg-primary-dark text-text-primary relative overflow-hidden">
-      <AuroraBackground opacity={0.6} speed={1.0} />
-      
-      <div className="container mx-auto px-4 py-8 relative z-10">
-        {/* Header */}
-        <div className="mb-8">
+    <ErrorBoundary>
+      <div className="min-h-screen bg-[#000814] text-[#00d2ff] font-sans relative overflow-hidden">
+        {/* Back button */}
+        <div className="absolute top-4 left-4 z-50">
           <PremiumButton
             variant="secondary"
             onClick={() => navigate('/marketplace')}
-            className="mb-6 flex items-center gap-2"
+            className="flex items-center gap-2 bg-[#00d2ff11] border-[#00d2ff44] text-[#00d2ff] hover:bg-[#00d2ff22]"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Marketplace
           </PremiumButton>
-
-          <div className="card border-accent-blue/20 mb-6">
-            <div className="flex items-start gap-4 mb-4">
-              <div className="p-3 bg-cyan-500/20 rounded-lg border border-cyan-500/30">
-                <Bot className="w-8 h-8 text-cyan-400" />
-              </div>
-              <div className="flex-1">
-                <h1 className="text-hero-headline font-bold text-text-primary mb-2">
-                  Alfred — AI Executive Assistant
-                </h1>
-                <p className="text-subheadline text-text-secondary mb-4">
-                  Your intelligent executive assistant powered by AI. Manage your calendar, track spending, organize tasks with Kanban boards, and sync seamlessly with Google Calendar and iCloud.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <div className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-yellow-500/20 text-yellow-400 border border-yellow-500/30">
-                    Sample Preview — Not Fully Functional
-                  </div>
-                  <div className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">
-                    <Sparkles className="w-4 h-4 mr-1" />
-                    AI-Powered
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Navigation Tabs */}
-          <div className="flex gap-2 mb-6">
-            <button
-              onClick={() => setActiveTab('overview')}
-              className={`px-4 py-2 rounded-lg font-medium transition-all ${
-                activeTab === 'overview'
-                  ? 'bg-accent-blue text-white'
-                  : 'bg-gray-800 text-text-secondary hover:bg-gray-700'
-              }`}
-            >
-              Overview
-            </button>
-            <button
-              onClick={() => setActiveTab('preview')}
-              className={`px-4 py-2 rounded-lg font-medium transition-all ${
-                activeTab === 'preview'
-                  ? 'bg-accent-blue text-white'
-                  : 'bg-gray-800 text-text-secondary hover:bg-gray-700'
-              }`}
-            >
-              Live Preview
-            </button>
-          </div>
         </div>
 
-        {activeTab === 'overview' && (
-          <>
-            {/* Features Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-              {features.map((feature, index) => {
-                const Icon = feature.icon;
-                return (
-                  <div key={index} className="card border-accent-blue/20 hover:border-accent-blue/40 transition-colors">
-                    <div className={`p-3 bg-gradient-to-br ${feature.color.replace('text-', 'from-')}/20 to-transparent rounded-lg w-fit mb-4 border ${feature.color.replace('text-', 'border-')}/30`}>
-                      <Icon className={`w-6 h-6 ${feature.color}`} />
-                    </div>
-                    <h3 className="text-xl font-bold text-text-primary mb-2">{feature.title}</h3>
-                    <p className="text-text-secondary text-sm">{feature.description}</p>
-                  </div>
-                );
-              })}
-            </div>
+        {/* Background holographic grid */}
+        <div className="absolute inset-0 hex-bg opacity-30 pointer-events-none"></div>
+        
+        {/* Corner accents */}
+        <div className="absolute top-0 left-0 w-32 h-32 border-t-2 border-l-2 border-[#00d2ff11] -ml-4 -mt-4 pointer-events-none"></div>
+        <div className="absolute bottom-0 right-0 w-32 h-32 border-b-2 border-r-2 border-[#00d2ff11] -mr-4 -mb-4 pointer-events-none"></div>
 
-            {/* Sample Task Management */}
-            <div className="card border-accent-blue/20 mb-8">
-              <h2 className="text-2xl font-bold text-text-primary mb-6 flex items-center gap-2">
-                <LayoutKanban className="w-6 h-6 text-accent-blue" />
-                Task Management Preview
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {['active', 'pending', 'completed'].map((status) => (
-                  <div key={status} className="bg-gray-800/50 rounded-lg p-4 border border-gray-700">
-                    <h3 className="text-sm font-semibold text-text-secondary mb-3 uppercase tracking-wide">
-                      {status}
-                    </h3>
-                    <div className="space-y-2">
-                      {sampleTasks
-                        .filter(task => task.status === status)
-                        .map(task => (
-                          <div
-                            key={task.id}
-                            className="bg-gray-900/50 p-3 rounded border border-gray-700 hover:border-accent-blue/50 transition-colors"
-                          >
-                            <div className="flex items-start justify-between mb-2">
-                              <span className="text-xs px-2 py-1 rounded bg-purple-500/20 text-purple-400 border border-purple-500/30">
-                                {task.category}
-                              </span>
-                              <span className={`text-xs px-2 py-1 rounded ${
-                                task.priority === 'high' ? 'bg-red-500/20 text-red-400 border-red-500/30' :
-                                task.priority === 'medium' ? 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30' :
-                                'bg-gray-500/20 text-gray-400 border-gray-500/30'
-                              }`}>
-                                {task.priority}
-                              </span>
-                            </div>
-                            <p className="text-sm text-text-primary">{task.title}</p>
-                          </div>
-                        ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+        <div className="flex h-screen w-screen">
+          <Sidebar activeView={activeView} setActiveView={setActiveView} />
 
-            {/* Key Capabilities */}
-            <div className="card border-accent-blue/20">
-              <h2 className="text-2xl font-bold text-text-primary mb-6">Key Capabilities</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="text-lg font-semibold text-text-primary mb-3 flex items-center gap-2">
-                    <MessageSquare className="w-5 h-5 text-cyan-400" />
-                    AI Chat Interface
-                  </h3>
-                  <ul className="space-y-2 text-text-secondary">
-                    <li className="flex items-start gap-2">
-                      <span className="text-accent-blue mt-1">•</span>
-                      <span>Natural language processing for intuitive communication</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-accent-blue mt-1">•</span>
-                      <span>Voice recognition for hands-free operation</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-accent-blue mt-1">•</span>
-                      <span>Context-aware responses and suggestions</span>
-                    </li>
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-text-primary mb-3 flex items-center gap-2">
-                    <Calendar className="w-5 h-5 text-blue-400" />
-                    Calendar Management
-                  </h3>
-                  <ul className="space-y-2 text-text-secondary">
-                    <li className="flex items-start gap-2">
-                      <span className="text-accent-blue mt-1">•</span>
-                      <span>Google Calendar synchronization</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-accent-blue mt-1">•</span>
-                      <span>iCloud calendar integration</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-accent-blue mt-1">•</span>
-                      <span>Real-time event tracking and notifications</span>
-                    </li>
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-text-primary mb-3 flex items-center gap-2">
-                    <BarChart3 className="w-5 h-5 text-green-400" />
-                    Analytics & Insights
-                  </h3>
-                  <ul className="space-y-2 text-text-secondary">
-                    <li className="flex items-start gap-2">
-                      <span className="text-accent-blue mt-1">•</span>
-                      <span>Spending tracking and categorization</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-accent-blue mt-1">•</span>
-                      <span>Calendar density visualization</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-accent-blue mt-1">•</span>
-                      <span>Productivity metrics and trends</span>
-                    </li>
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-text-primary mb-3 flex items-center gap-2">
-                    <Sync className="w-5 h-5 text-orange-400" />
-                    Data Synchronization
-                  </h3>
-                  <ul className="space-y-2 text-text-secondary">
-                    <li className="flex items-start gap-2">
-                      <span className="text-accent-blue mt-1">•</span>
-                      <span>Multi-source data aggregation</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-accent-blue mt-1">•</span>
-                      <span>Secure API connections</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-accent-blue mt-1">•</span>
-                      <span>Automatic background sync</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </>
-        )}
-
-        {activeTab === 'preview' && (
-          <div className="card border-accent-blue/20">
-            <div className="mb-4">
-              <h2 className="text-2xl font-bold text-text-primary mb-2">Live Application Preview</h2>
-              <p className="text-text-secondary mb-4">
-                The Alfred AI Executive Assistant application can be embedded here when running locally.
-                Start the Alfred dev server to see it live, or view instructions below.
-              </p>
-            </div>
+          <main className="flex-1 overflow-hidden relative">
+            {/* Scanning line for the whole main area */}
+            <div className="scanning-line opacity-[0.03] pointer-events-none"></div>
             
-            {/* Embedded Alfred App */}
-            <div className="bg-gray-900/50 rounded-lg border border-gray-700 overflow-hidden mb-6" style={{ minHeight: '600px' }}>
-              <iframe
-                src="http://localhost:5173"
-                className="w-full h-full min-h-[600px] border-0"
-                title="Alfred AI Executive Assistant"
-                style={{ display: 'block' }}
-                onError={() => {
-                  console.log('Alfred app not available at localhost:5173');
-                }}
-              />
+            <div className="h-full overflow-auto relative z-10 custom-scrollbar">
+              {activeView === 'dashboard' && <Dashboard liveEvents={liveEvents} />}
+              {activeView === 'chat' && <Chat onAddTask={addTask} />}
+              {activeView === 'kanban' && <Kanban tasks={tasks} onUpdateTask={updateTask} />}
+              {activeView === 'sync' && <SyncPortal />}
             </div>
-
-            <div className="bg-gray-900/50 rounded-lg p-6 border border-gray-700">
-              <h3 className="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
-                <Bot className="w-5 h-5 text-cyan-400" />
-                How to View Alfred
-              </h3>
-              <div className="space-y-4">
-                <div>
-                  <p className="text-text-secondary mb-2 font-medium">Option 1: Run Development Server</p>
-                  <div className="bg-black/50 rounded p-4 font-mono text-sm text-green-400">
-                    <div className="mb-2">cd /Users/uzzielperez/Desktop/alfred</div>
-                    <div>npm run dev</div>
-                    <div className="mt-2 text-gray-400 text-xs"># Then refresh this page - Alfred will appear above</div>
-                  </div>
-                </div>
-                <div>
-                  <p className="text-text-secondary mb-2 font-medium">Option 2: Build and Preview</p>
-                  <div className="bg-black/50 rounded p-4 font-mono text-sm text-green-400">
-                    <div className="mb-2">cd /Users/uzzielperez/Desktop/alfred</div>
-                    <div className="mb-2">npm run build</div>
-                    <div>npm run preview</div>
-                    <div className="mt-2 text-gray-400 text-xs"># Update iframe src above to match preview port</div>
-                  </div>
-                </div>
-                <div className="pt-4 border-t border-gray-700">
-                  <p className="text-text-secondary text-sm">
-                    <strong>Note:</strong> If Alfred is running on a different port, update the iframe src in the code to match.
-                    The iframe will automatically load when Alfred is available.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
+          </main>
+        </div>
       </div>
-    </div>
+    </ErrorBoundary>
   );
 };
 
