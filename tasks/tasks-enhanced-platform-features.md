@@ -70,6 +70,11 @@
 - `src/pages/PolarisSamplePage.tsx` - Sample Polaris travel app (needs full implementation)
 - `src/pages/KapwaResponsePage.tsx` - Sample Kapwa Response platform (needs full implementation)
 - `src/pages/EventHubPage.tsx` - Sample EventHub interface (needs full implementation)
+- `src/pages/AlfredSamplePage.tsx` - Integrated Alfred AI Executive Assistant sample (native components)
+- `src/pages/AIStartupTemplatePage.tsx` - AI Startup Template sample with workflow, agents, and metrics dashboard
+- `src/components/alfred/` - Alfred UI components (Dashboard, Chat, Kanban, Sidebar, etc.)
+- `src/services/alfred/` - Alfred calendar and optimizer services
+- `src/styles/alfred.css` - Alfred holographic UI styles
 - `src/components/products/CRM/` - CRM product components directory
 - `src/components/products/Polaris/` - Polaris travel app components directory
 - `src/components/products/KapwaResponse/` - Kapwa Response components directory
@@ -160,6 +165,11 @@ Update the file after completing each sub-task, not just after completing an ent
   - [ ] 3.2 Build pricing calculator utility functions in `src/utils/pricingCalculator.ts`
   - [ ] 3.3 Add Polaris to the digital products catalog with appropriate pricing
   - [x] 3.4 Update product links: areuwell.org (https://areuwell.org) and Manifest.ink (https://manifest.ink)
+  - [x] 3.4a Add Alfred - AI Executive Assistant to digital products catalog ($249)
+  - [x] 3.4b Integrate Alfred sample page with native components at `/products/alfred`
+  - [x] 3.4c Add AI Startup Template to digital products catalog ($299)
+  - [x] 3.4d Create AI Startup Template sample page at `/products/ai-startup-template`
+  - [x] 3.4e Wire ProductCard route mapping and App.tsx route for AI Startup Template
   - [ ] 3.5 Enhance ProductCard and CourseCard components with pricing display
   - [ ] 3.6 Create paywall modal component `src/components/marketplace/PaywallModal.tsx`
   - [ ] 3.7 Integrate payment processing with existing Stripe setup
@@ -329,6 +339,36 @@ Update the file after completing each sub-task, not just after completing an ent
   - [ ] 13.19 Create event analytics dashboard for organizers
   - [ ] 13.20 Write unit tests for event management flows
   - [ ] 13.21 Test payment processing with all payment methods
+
+- [ ] 13A.0 Product Implementations - Alfred (AI Executive Assistant)
+  - [x] 13A.1 Add Alfred to marketplace product catalog
+  - [x] 13A.2 Create Alfred sample page with integrated native React components
+  - [x] 13A.3 Copy Alfred components, data, services, and styles into ChamiNexT
+  - [ ] 13A.4 Connect live Google Calendar and iCloud sync APIs
+  - [ ] 13A.5 Implement production AI chat backend (replace sample data)
+  - [ ] 13A.6 Add user authentication and persistent task/calendar storage
+  - [ ] 13A.7 Integrate Stripe purchase flow for Alfred premium access
+  - [ ] 13A.8 Write unit tests for Alfred integration
+  - [ ] 13A.9 Test voice recognition across browsers
+
+- [ ] 13B.0 Product Implementations - AI Startup Template
+  - [x] 13B.1 Add AI Startup Template to marketplace product catalog
+  - [x] 13B.2 Create sample interface with dashboard (MRR, ARR, CAC, LTV, churn)
+  - [x] 13B.3 Build step-by-step startup workflow UI (7 phases with AI agent labels)
+  - [x] 13B.4 Add AI Agents status view (Market Research, Marketing, Conversion, Revenue, etc.)
+  - [x] 13B.5 Add analytics view (conversion funnel, customer health score)
+  - [x] 13B.6 Wire marketplace navigation and `/products/ai-startup-template` route
+  - [ ] 13B.7 Implement Market Validation Agent with real competitor/customer research APIs
+  - [ ] 13B.8 Implement Marketing Automation Agent with campaign creation and A/B tests
+  - [ ] 13B.9 Implement Conversion Agent with funnel tracking and optimization
+  - [ ] 13B.10 Implement Revenue Intelligence Agent with live MRR/ARR from Stripe/billing
+  - [ ] 13B.11 Implement Acquisition Agent with lead pipeline automation
+  - [ ] 13B.12 Implement Retention Agent with churn prediction and at-risk alerts
+  - [ ] 13B.13 Connect analytics charts (revenue trends, cohort analysis)
+  - [ ] 13B.14 Add user onboarding wizard to configure startup profile and goals
+  - [ ] 13B.15 Integrate Stripe purchase flow for template premium access
+  - [ ] 13B.16 Write unit tests for workflow and metrics components
+  - [ ] 13B.17 Test end-to-end agent orchestration
 
 - [ ] 14.0 Payment Integration & Processing
   - [ ] 14.1 Set up Stripe account and configure webhooks

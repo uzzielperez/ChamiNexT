@@ -132,6 +132,24 @@ export const products: Product[] = [
       'Strategic decision support'
     ],
     isPremium: true
+  },
+  {
+    name: 'AI Startup Template',
+    description: 'Complete startup template powered by AI agents that automate market validation, marketing campaigns, conversion tracking, MRR/ARR monitoring, and all essential startup metrics. Follow a proven step-by-step workflow to launch and scale your startup.',
+    url: '#ai-startup-template',
+    price: 299,
+    category: 'ai',
+    features: [
+      'AI-powered market validation agents',
+      'Automated marketing campaign management',
+      'Real-time conversion tracking and analytics',
+      'MRR/ARR monitoring and forecasting',
+      'CAC, LTV, and churn rate tracking',
+      'Step-by-step startup workflow',
+      'Automated competitor analysis',
+      'Customer acquisition pipeline automation'
+    ],
+    isPremium: true
   }
 ];
 

@@ -17,6 +17,7 @@ import PolarisSamplePage from './pages/PolarisSamplePage';
 import KapwaResponsePage from './pages/KapwaResponsePage';
 import EventHubPage from './pages/EventHubPage';
 import AlfredSamplePage from './pages/AlfredSamplePage';
+import AIStartupTemplatePage from './pages/AIStartupTemplatePage';
 import PortfolioPage from './pages/PortfolioPage';
 import AIShowcasePage from './pages/AIShowcasePage';
 import InfrastructurePage from './pages/InfrastructurePage';
@@ -49,6 +50,7 @@ function App() {
             <Route path="/products/kapwa-response" element={<KapwaResponsePage />} />
             <Route path="/products/eventhub" element={<EventHubPage />} />
             <Route path="/products/alfred" element={<AlfredSamplePage />} />
+            <Route path="/products/ai-startup-template" element={<AIStartupTemplatePage />} />
             <Route path="/portfolio" element={<PortfolioPage />} />
             <Route path="/ai-showcase" element={<AIShowcasePage />} />
             <Route path="/infrastructure" element={<InfrastructurePage />} />
