@@ -1,232 +1,211 @@
 import React, { useState } from 'react';
-import Questionnaire from '../components/jobseekers/Questionnaire';
 import CVIterator from '../components/jobseekers/CVIterator';
-import { parseCV } from '../utils/cvParser';
-import PremiumButton from '../components/ui/PremiumButton';
+import Questionnaire from '../components/jobseekers/Questionnaire';
 import PremiumTabs from '../components/ui/PremiumTabs';
 import AuroraBackground from '../components/ui/AuroraBackground';
-import { Sparkles, FileText, Zap, ArrowLeft } from 'lucide-react';
+import PracticeDashboard from '../components/interview/PracticeDashboard';
+import InterviewSimulator from '../components/interview/InterviewSimulator';
+import TalentProfile from '../components/interview/TalentProfile';
+import ShipTestLobby from '../components/ship-tests/ShipTestLobby';
+import ShipTestSession, { enrollInShipTest } from '../components/ship-tests/ShipTestSession';
+import { parseCV } from '../utils/cvParser';
+import { loadShipEnrollment } from '../utils/interviewStorage';
+import type { PracticeProblem } from '../types/interview';
+import type { ShipTestChallenge } from '../types/interview';
+import { Brain, Rocket, User, Wrench, Sparkles, FileText } from 'lucide-react';
+import { canStartInterview, recordInterviewStart } from '../utils/subscriptionStorage';
+import { useNavigate } from 'react-router-dom';
 
+type ViewMode =
+  | 'practice'
+  | 'interview'
+  | 'ship-lobby'
+  | 'ship-session'
+  | 'profile'
+  | 'tools';
 
-type ViewMode = 'overview' | 'cv-iterator' | 'profile-builder';
+type ToolsSubview = 'menu' | 'cv' | 'builder';
 
 const JobSeekersPage: React.FC = () => {
-  const [currentView, setCurrentView] = useState<ViewMode>('overview');
+  const navigate = useNavigate();
+  const [currentView, setCurrentView] = useState<ViewMode>('practice');
+  const [toolsSubview, setToolsSubview] = useState<ToolsSubview>('menu');
+  const [activeProblem, setActiveProblem] = useState<PracticeProblem | null>(null);
   const [file, setFile] = useState<File | null>(null);
   const [parsedText, setParsedText] = useState<string | null>(null);
+  const shipEnrollment = loadShipEnrollment();
+
+  const tabs = [
+    { id: 'practice', label: 'Practice', icon: <Brain className="w-4 h-4" /> },
+    { id: 'ship-lobby', label: 'Ship Tests', icon: <Rocket className="w-4 h-4" /> },
+    { id: 'profile', label: 'Profile', icon: <User className="w-4 h-4" /> },
+    { id: 'tools', label: 'Tools', icon: <Wrench className="w-4 h-4" /> },
+  ];
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setFile(e.target.files[0]);
-    }
+    if (e.target.files) setFile(e.target.files[0]);
   };
 
   const handleUpload = async () => {
     if (file) {
       try {
-        const text = await parseCV(file);
-        setParsedText(text);
+        setParsedText(await parseCV(file));
       } catch (error) {
         console.error('Error parsing CV:', error);
       }
     }
   };
 
-  const tabs = [
-    { id: 'overview', label: 'Overview', icon: <Zap className="w-4 h-4" /> },
-    { id: 'cv-iterator', label: 'AI CV Optimizer', icon: <Sparkles className="w-4 h-4" /> },
-    { id: 'profile-builder', label: 'Profile Builder', icon: <FileText className="w-4 h-4" /> }
-  ];
+  const startInterview = (problem: PracticeProblem) => {
+    if (!canStartInterview()) {
+      navigate('/pricing');
+      return;
+    }
+    recordInterviewStart();
+    setActiveProblem(problem);
+    setCurrentView('interview');
+  };
 
-  const renderOverview = () => (
-    <div className="container mx-auto px-4 py-16 relative z-10">
-      <div className="text-center mb-12">
-        <h1 className="text-hero-headline font-bold mb-lg leading-tight text-text-primary">
-          Advance Your Career
-        </h1>
-        <p className="text-subheadline text-text-secondary mb-xl max-w-3xl mx-auto">
-          Choose how you want to enhance your professional profile and land your dream job.
-        </p>
-      </div>
+  const handleShipEnroll = (challenge: ShipTestChallenge) => {
+    if (shipEnrollment?.challengeId === challenge.id && shipEnrollment.status === 'active') {
+      setCurrentView('ship-session');
+      return;
+    }
+    enrollInShipTest(challenge.id);
+    setCurrentView('ship-session');
+  };
 
-      {/* Feature Cards */}
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-        {/* AI CV Iterator */}
-        <div className="card group">
-          <div className="flex items-center mb-6">
-            <div className="w-12 h-12 bg-accent-blue rounded-lg flex items-center justify-center mr-4">
-              <Sparkles className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <h3 className="text-2xl font-bold text-text-primary">AI CV Optimizer</h3>
-              <p className="text-accent-blue text-sm font-medium">NEW FEATURE</p>
-            </div>
-          </div>
-          
-          <p className="text-text-secondary mb-6">
-            Use AI to optimize your CV for specific job descriptions. Get real-time suggestions, 
-            keyword analysis, and iterative improvements through AI collaboration.
-          </p>
-          
-          <div className="space-y-3 mb-6">
-            <div className="flex items-center text-sm text-text-secondary">
-              <Zap className="w-4 h-4 mr-2 text-accent-blue" />
-              Real-time AI collaboration
-            </div>
-            <div className="flex items-center text-sm text-text-secondary">
-              <Zap className="w-4 h-4 mr-2 text-accent-blue" />
-              Job description analysis
-            </div>
-            <div className="flex items-center text-sm text-text-secondary">
-              <Zap className="w-4 h-4 mr-2 text-accent-blue" />
-              Version control & comparison
-            </div>
-          </div>
-          
-          <PremiumButton 
-            onClick={() => setCurrentView('cv-iterator')}
-            variant="primary"
-            size="lg"
-            className="w-full"
-          >
-            Start AI Optimization
-          </PremiumButton>
-        </div>
-
-        {/* Profile Builder */}
-        <div className="card group">
-          <div className="flex items-center mb-6">
-            <div className="w-12 h-12 bg-accent-purple rounded-lg flex items-center justify-center mr-4">
-              <FileText className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <h3 className="text-2xl font-bold text-text-primary">Profile Builder</h3>
-              <p className="text-accent-purple text-sm font-medium">CLASSIC TOOL</p>
-            </div>
-          </div>
-          
-          <p className="text-text-secondary mb-6">
-            Create a professional profile through our guided questionnaire. Upload your CV 
-            and answer questions to generate a polished profile.
-          </p>
-          
-          <div className="space-y-3 mb-6">
-            <div className="flex items-center text-sm text-text-secondary">
-              <Zap className="w-4 h-4 mr-2 text-accent-purple" />
-              Guided questionnaire
-            </div>
-            <div className="flex items-center text-sm text-text-secondary">
-              <Zap className="w-4 h-4 mr-2 text-accent-purple" />
-              CV upload & parsing
-            </div>
-            <div className="flex items-center text-sm text-text-secondary">
-              <Zap className="w-4 h-4 mr-2 text-accent-purple" />
-              Professional templates
-            </div>
-          </div>
-          
-          <PremiumButton 
-            onClick={() => setCurrentView('profile-builder')}
-            variant="secondary"
-            size="lg"
-            className="w-full"
-          >
-            Build Profile
-          </PremiumButton>
-        </div>
-      </div>
-
-      {/* Quick Stats */}
-      <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="text-center">
-          <div className="text-3xl font-bold text-accent-blue mb-2">10,000+</div>
-          <div className="text-text-secondary">CVs Optimized</div>
-        </div>
-        <div className="text-center">
-          <div className="text-3xl font-bold text-accent-blue mb-2">85%</div>
-          <div className="text-text-secondary">Interview Rate Increase</div>
-        </div>
-        <div className="text-center">
-          <div className="text-3xl font-bold text-accent-blue mb-2">24/7</div>
-          <div className="text-text-secondary">AI Assistant Available</div>
-        </div>
-      </div>
-    </div>
-  );
-
-  const renderProfileBuilder = () => (
-    <div className="container mx-auto px-4 py-16 relative z-10">
-      <div className="text-center mb-12">
-        <h1 className="text-section-header font-bold text-text-primary mb-4">Profile Builder</h1>
-        <p className="text-subheadline text-text-secondary">Create your professional profile through our guided process</p>
-      </div>
-
-      <div className="max-w-2xl mx-auto mb-8">
-        <div className="card">
-          <h2 className="text-2xl font-bold mb-6 text-text-primary">Upload Your CV</h2>
-          <div className="space-y-4">
-            <input
-              type="file"
-              accept=".pdf"
-              onChange={handleFileChange}
-              className="block w-full text-sm text-text-secondary 
-                file:mr-4 file:py-3 file:px-6 file:rounded-lg file:border-0 
-                file:text-sm file:font-semibold file:bg-accent-blue file:text-white 
-                hover:file:bg-accent-secondary file:transition-colors file:cursor-pointer
-                border border-border-color rounded-lg p-3 bg-bg-secondary"
-            />
-            <PremiumButton 
-              onClick={handleUpload} 
-              disabled={!file} 
-              variant="primary"
-              size="md"
-              className="w-full"
-            >
-              Upload & Parse CV
-            </PremiumButton>
-          </div>
-        </div>
-      </div>
-
-      <Questionnaire parsedText={parsedText} />
-    </div>
-  );
-
-  const renderCVIterator = () => (
-    <CVIterator
-      userId="user-123" // In a real app, this would come from authentication
-      initialCVContent={parsedText || ''}
-      onExit={() => setCurrentView('overview')}
-      onSave={(session) => {
-        console.log('Session saved:', session);
-        // In a real app, save to backend
-      }}
-    />
-  );
+  const fullScreenViews: ViewMode[] = ['interview', 'ship-session'];
+  const toolsFullScreen = currentView === 'tools' && toolsSubview === 'cv';
 
   return (
     <div className="min-h-screen bg-primary-dark text-text-primary relative overflow-hidden">
-      {/* Aurora Background */}
       <AuroraBackground opacity={0.6} speed={1.0} />
-      
-      {/* Content */}
+
       <div className="relative z-10">
-        {/* Navigation Tabs */}
-        {currentView !== 'cv-iterator' && (
+        {!fullScreenViews.includes(currentView) && !toolsFullScreen && (
           <div className="w-full px-4 pt-8">
-            <div className="container mx-auto max-w-4xl">
+            <div className="container mx-auto max-w-5xl">
               <PremiumTabs
                 tabs={tabs}
                 activeTab={currentView}
-                onTabChange={(tabId) => setCurrentView(tabId as ViewMode)}
+                onTabChange={(tabId) => {
+                  if (tabId === 'tools') {
+                    setToolsSubview('menu');
+                    setCurrentView('tools');
+                  } else if (tabId === 'ship-lobby' && shipEnrollment?.status === 'active') {
+                    setCurrentView('ship-session');
+                  } else setCurrentView(tabId as ViewMode);
+                }}
               />
             </div>
           </div>
         )}
-        
-        {currentView === 'overview' && renderOverview()}
-        {currentView === 'profile-builder' && renderProfileBuilder()}
-        {currentView === 'cv-iterator' && renderCVIterator()}
+
+        {currentView === 'practice' && (
+          <PracticeDashboard
+            onStartInterview={startInterview}
+            onOpenShipTests={() =>
+              shipEnrollment?.status === 'active'
+                ? setCurrentView('ship-session')
+                : setCurrentView('ship-lobby')
+            }
+            onOpenProfile={() => setCurrentView('profile')}
+          />
+        )}
+
+        {currentView === 'interview' && activeProblem && (
+          <InterviewSimulator
+            problem={activeProblem}
+            onExit={() => {
+              setActiveProblem(null);
+              setCurrentView('practice');
+            }}
+          />
+        )}
+
+        {currentView === 'ship-lobby' && (
+          <ShipTestLobby
+            onBack={() => setCurrentView('practice')}
+            onEnroll={handleShipEnroll}
+            activeChallengeId={shipEnrollment?.challengeId}
+          />
+        )}
+
+        {currentView === 'ship-session' && (
+          <ShipTestSession onExit={() => setCurrentView('ship-lobby')} />
+        )}
+
+        {currentView === 'profile' && (
+          <TalentProfile onBack={() => setCurrentView('practice')} />
+        )}
+
+        {currentView === 'tools' && toolsSubview === 'menu' && (
+          <div className="container mx-auto px-4 py-8 max-w-4xl">
+            <p className="text-center text-text-secondary mb-8 text-sm">
+              Legacy tools — core prep is Practice & Ship Tests.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+              <button
+                type="button"
+                className="card p-6 text-left hover:border-accent-blue/40 transition-colors"
+                onClick={() => setToolsSubview('cv')}
+              >
+                <Sparkles className="w-8 h-8 text-accent-blue mb-3" />
+                <h3 className="font-bold text-lg">AI CV Optimizer</h3>
+                <p className="text-text-secondary text-sm mt-2">Tailor your CV to a job description.</p>
+              </button>
+              <button
+                type="button"
+                className="card p-6 text-left hover:border-accent-blue/40 transition-colors"
+                onClick={() => setToolsSubview('builder')}
+              >
+                <FileText className="w-8 h-8 text-accent-blue mb-3" />
+                <h3 className="font-bold text-lg">Profile Builder</h3>
+                <p className="text-text-secondary text-sm mt-2">Guided questionnaire + CV upload.</p>
+              </button>
+            </div>
+          </div>
+        )}
+
+        {currentView === 'tools' && toolsSubview === 'cv' && (
+          <CVIterator
+            userId="local-user"
+            initialCVContent={parsedText || ''}
+            onExit={() => setToolsSubview('menu')}
+            onSave={() => {}}
+          />
+        )}
+
+        {currentView === 'tools' && toolsSubview === 'builder' && (
+          <div className="container mx-auto px-4 py-8 max-w-2xl">
+            <button
+              type="button"
+              className="text-accent-blue text-sm mb-6"
+              onClick={() => setToolsSubview('menu')}
+            >
+              ← Back to tools
+            </button>
+            <div className="card mb-8">
+              <h2 className="text-xl font-bold mb-4">Upload CV (PDF)</h2>
+              <input
+                type="file"
+                accept=".pdf"
+                onChange={handleFileChange}
+                className="block w-full text-sm text-text-secondary file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-accent-blue file:text-white"
+              />
+              <button
+                type="button"
+                className="btn-primary mt-4 w-full"
+                onClick={handleUpload}
+                disabled={!file}
+              >
+                Parse CV
+              </button>
+            </div>
+            <Questionnaire parsedText={parsedText} />
+          </div>
+        )}
       </div>
     </div>
   );

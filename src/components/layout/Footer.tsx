@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
           <div className="col-span-2 lg:col-span-1">
                           <div className="flex items-center">
                 <Code className="h-8 w-8 text-gold-500" />
-                <span className="ml-2 text-xl font-bold text-gold-400">ChamiNexT</span>
+                <span className="ml-2 text-xl font-bold text-gold-400">ChamiNext</span>
                 {/* Alternative logo image (kept as reserve):
                 <img 
                   src="/chaminext-logo.png" 
@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
                 */}
               </div>
                           <p className="mt-4 text-gray-400 text-sm">
-                Empowering the next generation of software engineers through mentorship, growth, and meaningful professional connections.
+                Interview prep and ship tests for the AI era.
               </p>
             <div className="mt-6 flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-white transition-colors">
@@ -40,24 +40,22 @@ const Footer: React.FC = () => {
           
           {/* For Developers */}
           <div>
-            <h3 className="text-sm font-semibold text-white uppercase tracking-wider">JobSeekers</h3>
+            <h3 className="text-sm font-semibold text-white uppercase tracking-wider">Practice</h3>
                           <ul className="mt-4 space-y-3">
-                <li><a href="/jobseekers" className="text-gray-400 hover:text-white text-sm transition-colors">Build Profile</a></li>
-                <li><a href="/jobseekers" className="text-gray-400 hover:text-white text-sm transition-colors">Generate CV</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Skills Assessment</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Learning Resources</a></li>
+                <li><a href="/practice" className="text-gray-400 hover:text-white text-sm transition-colors">AI Interviews</a></li>
+                <li><a href="/practice" className="text-gray-400 hover:text-white text-sm transition-colors">Ship Tests</a></li>
+              <li><a href="/practice" className="text-gray-400 hover:text-white text-sm transition-colors">Talent Profile</a></li>
+              <li><a href="/marketplace" className="text-gray-400 hover:text-white text-sm transition-colors">Courses</a></li>
             </ul>
           </div>
           
           {/* For Employers */}
           <div>
-            <h3 className="text-sm font-semibold text-white uppercase tracking-wider">For Employers</h3>
+            <h3 className="text-sm font-semibold text-white uppercase tracking-wider">Hiring</h3>
             <ul className="mt-4 space-y-3">
-              <li><a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Post a Job</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Find Developers</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Verify Skills</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Company Profile</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Hiring Solutions</a></li>
+              <li><a href="/employers" className="text-gray-400 hover:text-white text-sm transition-colors">Interview Studio</a></li>
+              <li><a href="/employers" className="text-gray-400 hover:text-white text-sm transition-colors">Assign Ship Tests</a></li>
+              <li><a href="/employers" className="text-gray-400 hover:text-white text-sm transition-colors">Rank candidates</a></li>
             </ul>
           </div>
           
@@ -87,7 +85,7 @@ const Footer: React.FC = () => {
         
         <div className="mt-12 pt-8 border-t border-gold-600/20">
           <p className="text-gray-400 text-sm text-center">
-            © {new Date().getFullYear()} ChamiNexT. All rights reserved.
+            © {new Date().getFullYear()} ChamiNext. All rights reserved.
           </p>
         </div>
       </div>

@@ -1,216 +1,210 @@
 import React, { useState } from 'react';
-import CandidateCard from '../components/employers/CandidateCard';
 import PremiumTabs from '../components/ui/PremiumTabs';
 import AuroraBackground from '../components/ui/AuroraBackground';
 import PremiumButton from '../components/ui/PremiumButton';
-import { Users, Search, Star, Filter } from 'lucide-react';
+import { Briefcase, Rocket, BarChart3, Plus, Link2 } from 'lucide-react';
+import {
+  loadRoles,
+  addRole,
+  loadApplications,
+  updateApplicationStatus,
+} from '../utils/employerStorage';
+import { shipTestChallenges } from '../data/shipTests';
+import { seedDemoPresentation } from '../utils/seedDemo';
 
-const sampleCandidates = [
-  {
-    name: 'Lian Reyes',
-    role: 'Frontend Developer',
-    avatarUrl: 'https://randomuser.me/api/portraits/women/1.jpg',
-    skills: ['React', 'TypeScript', 'Vue.js', 'Tailwind CSS'],
-    portfolioUrl: '#',
-  },
-  {
-    name: 'Mateo Santos',
-    role: 'Backend Developer',
-    avatarUrl: 'https://randomuser.me/api/portraits/men/2.jpg',
-    skills: ['Node.js', 'Python', 'Go', 'PostgreSQL'],
-    portfolioUrl: '#',
-  },
-  {
-    name: 'Sofia Cruz',
-    role: 'Full Stack Developer',
-    avatarUrl: 'https://randomuser.me/api/portraits/women/3.jpg',
-    skills: ['React', 'Node.js', 'GraphQL', 'AWS'],
-    portfolioUrl: '#',
-  },
-  {
-    name: 'Jose Garcia',
-    role: 'Mobile Developer',
-    avatarUrl: 'https://randomuser.me/api/portraits/men/4.jpg',
-    skills: ['React Native', 'Flutter', 'Swift', 'Kotlin'],
-    portfolioUrl: '#',
-  },
-  {
-    name: 'Isabella Reyes',
-    role: 'UI/UX Designer',
-    avatarUrl: 'https://randomuser.me/api/portraits/women/5.jpg',
-    skills: ['Figma', 'Sketch', 'Adobe XD', 'User Research'],
-    portfolioUrl: '#',
-  },
-  {
-    name: 'Juan dela Cruz',
-    role: 'DevOps Engineer',
-    avatarUrl: 'https://randomuser.me/api/portraits/men/6.jpg',
-    skills: ['Docker', 'Kubernetes', 'Terraform', 'CI/CD'],
-    portfolioUrl: '#',
-  },
-];
-
-type ViewMode = 'browse' | 'saved' | 'analytics';
+type ViewMode = 'roles' | 'assessments' | 'candidates';
 
 const EmployersPage: React.FC = () => {
-  const [currentView, setCurrentView] = useState<ViewMode>('browse');
+  const [currentView, setCurrentView] = useState<ViewMode>('candidates');
+  const [roles, setRoles] = useState(loadRoles());
+  const [applications, setApplications] = useState(loadApplications());
+  const [showCreate, setShowCreate] = useState(false);
+  const [newTitle, setNewTitle] = useState('Full Stack Engineer');
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  const refresh = () => {
+    setRoles(loadRoles());
+    setApplications(loadApplications());
+  };
 
   const tabs = [
-    { id: 'browse', label: 'Browse Talent', icon: <Search className="w-4 h-4" /> },
-    { id: 'saved', label: 'Saved Candidates', icon: <Star className="w-4 h-4" /> },
-    { id: 'analytics', label: 'Analytics', icon: <Users className="w-4 h-4" /> }
+    { id: 'roles', label: 'Roles', icon: <Briefcase className="w-4 h-4" /> },
+    { id: 'assessments', label: 'Assessments', icon: <Rocket className="w-4 h-4" /> },
+    { id: 'candidates', label: 'Candidates', icon: <BarChart3 className="w-4 h-4" /> },
   ];
 
-  const renderBrowse = () => (
-    <div className="container mx-auto px-4 py-16 relative z-10">
-      <div className="text-center mb-12">
-        <h1 className="text-hero-headline font-bold mb-lg leading-tight text-text-primary">
-          Discover Top Talent
-        </h1>
-        <p className="text-subheadline text-text-secondary mb-xl max-w-3xl mx-auto">
-          Browse verified candidate profiles and connect with the best developers, designers, and tech professionals.
-        </p>
-      </div>
+  const createRole = () => {
+    addRole({
+      title: newTitle,
+      level: 'Mid',
+      shipTestId: 'habit-tracker-24h',
+      assessmentType: 'both',
+    });
+    refresh();
+    setShowCreate(false);
+  };
 
-      {/* Search and Filter Bar */}
-      <div className="max-w-4xl mx-auto mb-12">
-        <div className="card">
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className="flex-1">
-              <input
-                type="text"
-                placeholder="Search by skills, role, or location..."
-                className="w-full px-4 py-3 bg-bg-tertiary border border-border-color rounded-lg 
-                  text-text-primary placeholder-text-secondary focus:outline-none focus:border-accent-blue"
-              />
-            </div>
-            <PremiumButton variant="primary" size="md" className="flex items-center gap-2">
-              <Filter className="w-4 h-4" />
-              Filters
-            </PremiumButton>
-            <PremiumButton variant="secondary" size="md">
-              Search
-            </PremiumButton>
-          </div>
-        </div>
-      </div>
+  const copyInvite = (roleId: string) => {
+    const url = `${window.location.origin}/apply?role=${roleId}`;
+    navigator.clipboard.writeText(url);
+    setCopiedId(roleId);
+    setTimeout(() => setCopiedId(null), 2000);
+  };
 
-      {/* Candidates Grid */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {sampleCandidates.map((candidate) => (
-          <CandidateCard key={candidate.name} candidate={candidate} />
-        ))}
-      </div>
-
-      {/* Load More */}
-      <div className="text-center mt-12">
-        <PremiumButton variant="outline" size="lg">
-          Load More Candidates
-        </PremiumButton>
-      </div>
-    </div>
-  );
-
-  const renderSaved = () => (
-    <div className="container mx-auto px-4 py-16 relative z-10">
-      <div className="text-center mb-12">
-        <h1 className="text-section-header font-bold text-text-primary mb-4">Saved Candidates</h1>
-        <p className="text-subheadline text-text-secondary">Your talent pipeline and shortlisted candidates</p>
-      </div>
-
-      <div className="max-w-4xl mx-auto">
-        <div className="card text-center py-16">
-          <Star className="w-16 h-16 text-accent-blue mx-auto mb-6" />
-          <h3 className="text-2xl font-bold text-text-primary mb-4">No Saved Candidates Yet</h3>
-          <p className="text-text-secondary mb-8">
-            Start browsing talent and save candidates to build your talent pipeline.
-          </p>
-          <PremiumButton 
-            variant="primary" 
-            size="lg"
-            onClick={() => setCurrentView('browse')}
-          >
-            Browse Talent
-          </PremiumButton>
-        </div>
-      </div>
-    </div>
-  );
-
-  const renderAnalytics = () => (
-    <div className="container mx-auto px-4 py-16 relative z-10">
-      <div className="text-center mb-12">
-        <h1 className="text-section-header font-bold text-text-primary mb-4">Hiring Analytics</h1>
-        <p className="text-subheadline text-text-secondary">Track your recruitment performance and insights</p>
-      </div>
-
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-        <div className="card text-center">
-          <div className="text-4xl font-bold text-accent-blue mb-2">24</div>
-          <div className="text-text-secondary">Profiles Viewed</div>
-        </div>
-        <div className="card text-center">
-          <div className="text-4xl font-bold text-accent-blue mb-2">8</div>
-          <div className="text-text-secondary">Candidates Contacted</div>
-        </div>
-        <div className="card text-center">
-          <div className="text-4xl font-bold text-accent-blue mb-2">3</div>
-          <div className="text-text-secondary">Interviews Scheduled</div>
-        </div>
-      </div>
-
-      <div className="max-w-4xl mx-auto">
-        <div className="card">
-          <h3 className="text-xl font-bold text-text-primary mb-6">Recent Activity</h3>
-          <div className="space-y-4">
-            <div className="flex items-center justify-between py-3 border-b border-border-color">
-              <div>
-                <p className="text-text-primary font-medium">Viewed Sofia Cruz's profile</p>
-                <p className="text-text-secondary text-sm">Full Stack Developer</p>
-              </div>
-              <span className="text-text-secondary text-sm">2 hours ago</span>
-            </div>
-            <div className="flex items-center justify-between py-3 border-b border-border-color">
-              <div>
-                <p className="text-text-primary font-medium">Saved Mateo Santos</p>
-                <p className="text-text-secondary text-sm">Backend Developer</p>
-              </div>
-              <span className="text-text-secondary text-sm">1 day ago</span>
-            </div>
-            <div className="flex items-center justify-between py-3">
-              <div>
-                <p className="text-text-primary font-medium">Contacted Lian Reyes</p>
-                <p className="text-text-secondary text-sm">Frontend Developer</p>
-              </div>
-              <span className="text-text-secondary text-sm">3 days ago</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+  const sortedApps = [...applications].sort((a, b) => b.shipping - a.shipping);
 
   return (
     <div className="min-h-screen bg-primary-dark text-text-primary relative overflow-hidden">
-      {/* Aurora Background */}
       <AuroraBackground opacity={0.6} speed={1.0} />
-      
-      {/* Content */}
+
       <div className="relative z-10">
-        {/* Navigation Tabs */}
         <div className="w-full px-4 pt-8">
-          <div className="container mx-auto max-w-4xl">
+          <div className="container mx-auto max-w-5xl">
             <PremiumTabs
               tabs={tabs}
               activeTab={currentView}
-              onTabChange={(tabId) => setCurrentView(tabId as ViewMode)}
+              onTabChange={(id) => setCurrentView(id as ViewMode)}
             />
           </div>
         </div>
-        
-        {currentView === 'browse' && renderBrowse()}
-        {currentView === 'saved' && renderSaved()}
-        {currentView === 'analytics' && renderAnalytics()}
+
+        <div className="container mx-auto px-4 py-12 max-w-6xl">
+          <div className="text-center mb-10">
+            <p className="text-sm text-accent-blue font-medium mb-2">Company Interview Studio</p>
+            <h1 className="text-hero-headline font-bold text-text-primary mb-4">Hire on shipped output</h1>
+            <p className="text-subheadline text-text-secondary max-w-2xl mx-auto">
+              Assign Ship Tests, review AI scores, rank candidates by thinking + shipping.
+            </p>
+            <PremiumButton variant="secondary" size="sm" className="mt-4" onClick={() => { seedDemoPresentation(); refresh(); }}>
+              Load employer demo data
+            </PremiumButton>
+          </div>
+
+          {currentView === 'roles' && (
+            <>
+              <div className="flex justify-end mb-6 gap-2">
+                <PremiumButton variant="primary" size="md" onClick={() => setShowCreate(!showCreate)}>
+                  <Plus className="w-4 h-4 mr-1" />
+                  Create role
+                </PremiumButton>
+              </div>
+              {showCreate && (
+                <div className="card p-6 mb-6 flex flex-wrap gap-4 items-end">
+                  <div className="flex-grow">
+                    <label className="text-sm text-text-secondary">Role title</label>
+                    <input
+                      value={newTitle}
+                      onChange={(e) => setNewTitle(e.target.value)}
+                      className="w-full mt-1 px-4 py-2 rounded-lg bg-bg-secondary border border-gray-700"
+                    />
+                  </div>
+                  <PremiumButton variant="primary" onClick={createRole}>Save</PremiumButton>
+                </div>
+              )}
+              {roles.length === 0 ? (
+                <p className="text-text-secondary text-center">No roles yet. Load demo data or create one.</p>
+              ) : (
+                roles.map((role) => (
+                  <div key={role.id} className="card p-6 mb-4 flex flex-wrap justify-between gap-4 items-center">
+                    <div>
+                      <h3 className="text-xl font-bold">{role.title}</h3>
+                      <p className="text-text-secondary text-sm">
+                        {role.level} · {role.assessmentType}
+                      </p>
+                    </div>
+                    <PremiumButton variant="outline" size="sm" onClick={() => copyInvite(role.id)}>
+                      <Link2 className="w-4 h-4 mr-1" />
+                      {copiedId === role.id ? 'Copied!' : 'Copy invite link'}
+                    </PremiumButton>
+                  </div>
+                ))
+              )}
+            </>
+          )}
+
+          {currentView === 'assessments' && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {shipTestChallenges.map((c) => (
+                <div key={c.id} className="card p-6">
+                  <h3 className="font-bold">{c.title}</h3>
+                  <p className="text-sm text-accent-blue mt-1">{c.format}</p>
+                  <p className="text-text-secondary text-sm mt-2">{c.description}</p>
+                </div>
+              ))}
+              <div className="card p-6 border-accent-blue/30">
+                <h3 className="font-bold">AI Interview Pack</h3>
+                <p className="text-text-secondary text-sm mt-2">All practice domains with adaptive follow-ups.</p>
+              </div>
+            </div>
+          )}
+
+          {currentView === 'candidates' && (
+            <div className="card overflow-x-auto">
+              <table className="w-full text-sm min-w-[640px]">
+                <thead>
+                  <tr className="border-b border-gray-700 text-text-secondary text-left">
+                    <th className="p-4">Candidate</th>
+                    <th className="p-4">Thinking</th>
+                    <th className="p-4">Shipping</th>
+                    <th className="p-4">Signal</th>
+                    <th className="p-4">Status</th>
+                    <th className="p-4" />
+                  </tr>
+                </thead>
+                <tbody>
+                  {sortedApps.map((c) => (
+                    <tr key={c.id} className="border-b border-gray-800">
+                      <td className="p-4 font-medium">{c.displayName}</td>
+                      <td className="p-4">{c.thinking}</td>
+                      <td className="p-4 font-bold text-accent-blue">{c.shipping}</td>
+                      <td className="p-4 text-text-secondary">{c.shipTestTitle}</td>
+                      <td className="p-4">
+                        <select
+                          value={c.status}
+                          onChange={(e) => {
+                            updateApplicationStatus(c.id, e.target.value as typeof c.status);
+                            refresh();
+                          }}
+                          className="bg-bg-secondary border border-gray-700 rounded px-2 py-1 text-sm"
+                        >
+                          <option value="new">New</option>
+                          <option value="review">Review</option>
+                          <option value="strong">Strong</option>
+                          <option value="hold">Hold</option>
+                        </select>
+                      </td>
+                      <td className="p-4">
+                        <a
+                          href={`/profile/${c.profileSlug}`}
+                          className="text-accent-blue hover:underline"
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          Profile
+                        </a>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              {sortedApps.length === 0 && (
+                <p className="p-8 text-center text-text-secondary">
+                  No applications. Candidates apply via invite link or Profile → Apply to demo role.
+                </p>
+              )}
+            </div>
+          )}
+
+          <div className="card border-accent-blue/20 p-6 mt-12 text-center">
+            <h3 className="font-bold mb-2">B2B pricing (demo)</h3>
+            <p className="text-text-secondary text-sm mb-4">
+              Starter €500–1k/mo · Growth €2–5k/mo · Pay-per-candidate €300–2k
+            </p>
+            <PremiumButton variant="secondary" onClick={() => window.location.href = '/pricing'}>
+              View all plans
+            </PremiumButton>
+          </div>
+        </div>
       </div>
     </div>
   );

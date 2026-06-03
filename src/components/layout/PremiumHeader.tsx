@@ -18,20 +18,21 @@ const PremiumHeader: React.FC = () => {
   }, []);
 
   const navigation = [
-    { name: 'Job Seekers', href: '/jobseekers', hasDropdown: false },
-    { name: 'Employers', href: '/employers', hasDropdown: false },
-    { name: 'Marketplace', href: '/marketplace', hasDropdown: false },
-    { 
-      name: 'Courses', 
-      href: '#', 
+    { name: 'Practice', href: '/practice', hasDropdown: false },
+    { name: 'For Companies', href: '/employers', hasDropdown: false },
+    { name: 'Pricing', href: '/pricing', hasDropdown: false },
+    {
+      name: 'Learn',
+      href: '#',
       hasDropdown: true,
       dropdownItems: [
+        { name: 'All courses', href: '/marketplace' },
         { name: 'Vibe Coding', href: '/courses/vibe-coding' },
         { name: 'Building RAGs', href: '/courses/building-rags' },
         { name: 'AI Agents', href: '/courses/ai-agents' },
-        { name: 'Full-Stack AI', href: '/courses/fullstack-ai' }
-      ]
-    }
+        { name: 'Full-Stack AI', href: '/courses/fullstack-ai' },
+      ],
+    },
   ];
 
   const isActiveLink = (href: string) => {
@@ -58,7 +59,7 @@ const PremiumHeader: React.FC = () => {
               </div>
               <span className="text-xl font-bold group-hover:scale-105 transition-transform duration-200" 
                     style={{ color: 'var(--text-primary)' }}>
-                ChamiNexT
+                ChamiNext
               </span>
             </Link>
           </div>
@@ -127,10 +128,10 @@ const PremiumHeader: React.FC = () => {
                 Sign In
               </button>
             </Link>
-            <Link to="/jobseekers">
+            <Link to="/practice">
               <button className="btn-primary px-4 py-2 text-sm">
                 <Sparkles className="w-4 h-4" />
-                <span>Get Started</span>
+                <span>Start practicing</span>
               </button>
             </Link>
           </div>
@@ -197,9 +198,9 @@ const PremiumHeader: React.FC = () => {
                     Sign In
                   </PremiumButton>
                 </Link>
-                <Link to="/jobseekers" className="block">
+                <Link to="/practice" className="block">
                   <PremiumButton variant="gradient" size="sm" fullWidth icon={<Sparkles className="w-4 h-4" />}>
-                    Get Started
+                    Start practicing
                   </PremiumButton>
                 </Link>
               </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import JobSeekersPage from './pages/JobSeekersPage';
 import VibeCoursePage from './pages/VibeCoursePage';
@@ -24,6 +24,10 @@ import InfrastructurePage from './pages/InfrastructurePage';
 import PerformancePage from './pages/PerformancePage';
 import APIDocsPage from './pages/APIDocsPage';
 import DevOpsPage from './pages/DevOpsPage';
+import PricingPage from './pages/PricingPage';
+import PublicProfilePage from './pages/PublicProfilePage';
+import ApplyPage from './pages/ApplyPage';
+import DemoBanner from './components/demo/DemoBanner';
 
 // Import premium design system styles
 import './styles/design-system.css';
@@ -38,12 +42,16 @@ function App() {
         <main className="flex-grow pt-16">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/jobseekers" element={<JobSeekersPage />} />
+            <Route path="/practice" element={<JobSeekersPage />} />
+            <Route path="/jobseekers" element={<Navigate to="/practice" replace />} />
             <Route path="/courses/vibe-coding/:lessonId?" element={<VibeCoursePage />} />
             <Route path="/courses/building-rags/:lessonId?" element={<BuildingRagsCoursePage />} />
             <Route path="/courses/ai-agents/:lessonId?" element={<AIAgentsCoursePage />} />
             <Route path="/courses/fullstack-ai/:lessonId?" element={<FullstackAICoursePage />} />
             <Route path="/employers" element={<EmployersPage />} />
+            <Route path="/pricing" element={<PricingPage />} />
+            <Route path="/profile/:slug" element={<PublicProfilePage />} />
+            <Route path="/apply" element={<ApplyPage />} />
             <Route path="/marketplace" element={<MarketplacePage />} />
             <Route path="/products/crm" element={<CRMSamplePage />} />
             <Route path="/products/polaris" element={<PolarisSamplePage />} />
@@ -62,6 +70,7 @@ function App() {
           </Routes>
         </main>
         <Footer />
+        <DemoBanner />
       </div>
     </Router>
   );

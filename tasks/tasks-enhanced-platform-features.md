@@ -129,6 +129,18 @@ Example:
 
 Update the file after completing each sub-task, not just after completing an entire parent task.
 
+## ChamiNext rebrand (PRD: `tasks/prd-chaminext-ai-interview-platform.md`, MVP: `tasks/tasks-chaminext-mvp.md`)
+
+- [x] R.1 Save PRD (AI Interview, Ship Tests, Interview Studio, monetization)
+- [x] R.2 Landing aligned to PRD tagline, principles, Ship Tests, differentiation table
+- [x] R.3 User-facing brand → ChamiNext (header, footer, meta title)
+- [x] R.4 MVP task list from PRD Phases 1–3
+- [x] R.5 Phase 1: AI Interview Simulator + scoring (`/practice`, `interview-agent`)
+- [x] R.6 Phase 2: 24h Ship Tests shell + demo evaluator
+- [ ] R.7 Phase 3: B2B Interview Studio live + Stripe tiers (see tasks-chaminext-mvp §4–5)
+
+Legacy notes: `tasks/interview-platform-rebrand.md` (superseded by PRD for pricing tiers)
+
 ## Tasks
 
 - [x] 0.0 Create feature branch
