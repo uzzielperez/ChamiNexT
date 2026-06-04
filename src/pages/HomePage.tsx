@@ -51,38 +51,52 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="min-h-screen">
-      <section className="hero-section relative overflow-hidden min-h-[100svh] flex flex-col">
+      <section className="hero-section relative overflow-hidden min-h-screen flex items-center justify-center">
         <HeroCodeBackground />
 
-        <div className="container relative z-10 max-w-3xl text-center flex-1 flex flex-col justify-center pt-24 pb-8">
+        <div className="container relative z-10 max-w-3xl text-center px-4 py-6 pb-44 md:pb-52">
           <h1 className="hero-display">Stop memorizing. Start shipping.</h1>
 
-          <p className="hero-subheadline mt-6 max-w-xl mx-auto text-[var(--text-secondary)]">
+          <p className="hero-subheadline mt-5 max-w-xl mx-auto text-[var(--text-secondary)]">
             AI interview practice that adapts to you, plus timed Ship Tests companies use
             to hire on real output, not trick questions.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 mt-10">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 mt-8">
             <button type="button" className="btn-primary" onClick={() => navigate('/practice')}>
               <span>Start a Ship Test</span>
               <ArrowRight className="w-5 h-5" />
             </button>
-            <button type="button" className="text-link bg-transparent border-0 cursor-pointer p-0" onClick={() => navigate('/employers')}>
+            <button
+              type="button"
+              className="text-link bg-transparent border-0 cursor-pointer p-0"
+              onClick={() => navigate('/employers')}
+            >
               See the Interview Studio
             </button>
           </div>
 
-          <p className="mt-8 text-sm text-[var(--text-secondary)] max-w-lg mx-auto">
-            <span className="italic text-[var(--text-primary)]">
+          <div className="mt-8 max-w-lg mx-auto">
+            <p className="hero-testimonial-quote">
               &ldquo;This is the most realistic interview practice I&apos;ve done.&rdquo;
-            </span>
-            <span className="block mt-1 not-italic">
-              Senior SWE, recently hired at a growth-stage startup
-            </span>
-          </p>
+            </p>
+            <div className="flex items-center justify-center gap-3 mt-4 pt-4 border-t border-white/[0.08]">
+              <div
+                className="w-8 h-8 rounded-full shrink-0 border border-[var(--border-color)] bg-[var(--bg-secondary)] flex items-center justify-center text-xs font-medium text-[var(--text-secondary)]"
+                aria-hidden
+              >
+                SW
+              </div>
+              <p className="hero-testimonial-attribution text-left">
+                Senior SWE, recently hired at a growth-stage startup
+              </p>
+            </div>
+          </div>
         </div>
 
-        <HeroProductPreview />
+        <div className="absolute bottom-0 left-0 right-0 z-10 pointer-events-none">
+          <HeroProductPreview />
+        </div>
       </section>
 
       <section

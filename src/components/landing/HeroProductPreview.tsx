@@ -2,7 +2,7 @@ import React from 'react';
 
 /** Static mock of practice UI — answers "what is this?" below the hero fold */
 const HeroProductPreview: React.FC = () => (
-  <div className="container relative z-10 max-w-4xl mx-auto mt-16 md:mt-20 px-4 pb-8">
+  <div className="container max-w-4xl mx-auto px-4 pb-6 pt-4 opacity-90">
     <div
       className="rounded-xl border border-[var(--border-color)] overflow-hidden shadow-2xl"
       style={{ backgroundColor: 'var(--bg-secondary)' }}

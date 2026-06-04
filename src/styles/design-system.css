@@ -151,6 +151,24 @@ body {
   text-underline-offset: 4px;
 }
 
+.hero-testimonial-quote {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.hero-testimonial-attribution {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  opacity: 0.85;
+}
+
 .hero-subheadline {
   font-size: var(--text-large);
   font-weight: 300;
