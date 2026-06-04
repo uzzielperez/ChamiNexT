@@ -1,0 +1,483 @@
+[
+  {
+    "id": "valid-anagram",
+    "title": "Valid Anagram",
+    "domain": "arrays",
+    "track": "software",
+    "difficulty": "easy",
+    "estimatedMinutes": 10,
+    "prompt": "Given two strings s and t, return true if t is an anagram of s.",
+    "hints": [
+      "Count characters.",
+      "Sort both strings and compare."
+    ],
+    "starterCode": "function isAnagram(s, t) {\n}",
+    "runLanguage": "javascript",
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "product-except-self",
+    "title": "Product Except Self",
+    "domain": "arrays",
+    "track": "software",
+    "difficulty": "medium",
+    "estimatedMinutes": 15,
+    "prompt": "Return an array where each element is the product of all elements except itself. O(n) without division.",
+    "hints": [
+      "Prefix and suffix products."
+    ],
+    "starterCode": "function productExceptSelf(nums) {\n}",
+    "runLanguage": "javascript",
+    "source": "inspired-by-nc-238",
+    "license": "original-rewrite"
+  },
+  {
+    "id": "max-subarray",
+    "title": "Maximum Subarray",
+    "domain": "arrays",
+    "track": "software",
+    "difficulty": "medium",
+    "estimatedMinutes": 15,
+    "prompt": "Find the contiguous subarray with the largest sum (Kadane). Explain edge cases.",
+    "hints": [
+      "Track current and global max."
+    ],
+    "starterCode": "function maxSubArray(nums) {\n}",
+    "runLanguage": "javascript",
+    "source": "inspired-by-nc-53",
+    "license": "original-rewrite"
+  },
+  {
+    "id": "merge-intervals",
+    "title": "Merge Intervals",
+    "domain": "arrays",
+    "track": "software",
+    "difficulty": "medium",
+    "estimatedMinutes": 15,
+    "prompt": "Merge overlapping intervals. Discuss sorting approach and complexity.",
+    "hints": [
+      "Sort by start."
+    ],
+    "starterCode": "function merge(intervals) {\n}",
+    "runLanguage": "javascript",
+    "source": "inspired-by-nc-56",
+    "license": "original-rewrite"
+  },
+  {
+    "id": "rotate-array",
+    "title": "Rotate Array",
+    "domain": "arrays",
+    "track": "software",
+    "difficulty": "medium",
+    "estimatedMinutes": 10,
+    "prompt": "Rotate array to the right by k steps in-place with O(1) extra space.",
+    "hints": [
+      "Reverse whole array then segments."
+    ],
+    "starterCode": "function rotate(nums, k) {\n}",
+    "runLanguage": "javascript",
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "container-water",
+    "title": "Container With Most Water",
+    "domain": "arrays",
+    "track": "software",
+    "difficulty": "medium",
+    "estimatedMinutes": 15,
+    "prompt": "Find two lines that form container holding most water.",
+    "hints": [
+      "Two pointers from ends."
+    ],
+    "starterCode": "function maxArea(height) {\n}",
+    "runLanguage": "javascript",
+    "source": "inspired-by-nc-11",
+    "license": "original-rewrite"
+  },
+  {
+    "id": "invert-tree",
+    "title": "Invert Binary Tree",
+    "domain": "trees",
+    "track": "software",
+    "difficulty": "easy",
+    "estimatedMinutes": 10,
+    "prompt": "Invert a binary tree recursively and iteratively.",
+    "hints": [
+      "Swap children at each node."
+    ],
+    "starterCode": "function invertTree(root) {\n}",
+    "runLanguage": "javascript",
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "max-depth-tree",
+    "title": "Max Depth of Tree",
+    "domain": "trees",
+    "track": "software",
+    "difficulty": "easy",
+    "estimatedMinutes": 10,
+    "prompt": "Return maximum depth of a binary tree.",
+    "hints": [
+      "DFS depth."
+    ],
+    "starterCode": "function maxDepth(root) {\n}",
+    "runLanguage": "javascript",
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "validate-bst",
+    "title": "Validate BST",
+    "domain": "trees",
+    "track": "software",
+    "difficulty": "medium",
+    "estimatedMinutes": 15,
+    "prompt": "Determine if a binary tree is a valid BST.",
+    "hints": [
+      "Pass min/max bounds."
+    ],
+    "starterCode": "function isValidBST(root) {\n}",
+    "runLanguage": "javascript",
+    "source": "inspired-by-nc-98",
+    "license": "original-rewrite"
+  },
+  {
+    "id": "level-order",
+    "title": "Binary Tree Level Order",
+    "domain": "trees",
+    "track": "software",
+    "difficulty": "medium",
+    "estimatedMinutes": 15,
+    "prompt": "Return level order traversal as nested arrays.",
+    "hints": [
+      "BFS with queue."
+    ],
+    "starterCode": "function levelOrder(root) {\n}",
+    "runLanguage": "javascript",
+    "source": "inspired-by-nc-102",
+    "license": "original-rewrite"
+  },
+  {
+    "id": "serialize-tree",
+    "title": "Serialize Binary Tree",
+    "domain": "trees",
+    "track": "software",
+    "difficulty": "hard",
+    "estimatedMinutes": 20,
+    "prompt": "Design serialize and deserialize for a binary tree.",
+    "hints": [
+      "Preorder with null markers."
+    ],
+    "starterCode": "function serialize(root) {\n}\nfunction deserialize(data) {\n}",
+    "runLanguage": "javascript",
+    "source": "inspired-by-nc-297",
+    "license": "original-rewrite"
+  },
+  {
+    "id": "lca-tree",
+    "title": "Lowest Common Ancestor",
+    "domain": "trees",
+    "track": "software",
+    "difficulty": "medium",
+    "estimatedMinutes": 15,
+    "prompt": "Find LCA of two nodes in a binary tree.",
+    "hints": [
+      "Post-order recursion."
+    ],
+    "starterCode": "function lowestCommonAncestor(root, p, q) {\n}",
+    "runLanguage": "javascript",
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "anagram-groups",
+    "title": "Group Anagrams",
+    "domain": "strings",
+    "track": "software",
+    "difficulty": "easy",
+    "estimatedMinutes": 10,
+    "prompt": "Group strings that are anagrams.",
+    "hints": [
+      "Sort as key."
+    ],
+    "starterCode": "function groupAnagrams(strs) {\n}",
+    "runLanguage": "javascript",
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "longest-substring",
+    "title": "Longest Substring Without Repeat",
+    "domain": "strings",
+    "track": "software",
+    "difficulty": "medium",
+    "estimatedMinutes": 15,
+    "prompt": "Length of longest substring without repeating characters.",
+    "hints": [
+      "Sliding window + set."
+    ],
+    "starterCode": "function lengthOfLongestSubstring(s) {\n}",
+    "runLanguage": "javascript",
+    "source": "inspired-by-nc-3",
+    "license": "original-rewrite"
+  },
+  {
+    "id": "valid-parens",
+    "title": "Valid Parentheses",
+    "domain": "strings",
+    "track": "software",
+    "difficulty": "easy",
+    "estimatedMinutes": 10,
+    "prompt": "Validate bracket sequences using a stack.",
+    "hints": [
+      "Map closing to opening."
+    ],
+    "starterCode": "function isValid(s) {\n}",
+    "runLanguage": "javascript",
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "encode-decode",
+    "title": "Encode and Decode Strings",
+    "domain": "strings",
+    "track": "software",
+    "difficulty": "medium",
+    "estimatedMinutes": 15,
+    "prompt": "Design encode/decode for list of strings with delimiter safety.",
+    "hints": [
+      "Length-prefix encoding."
+    ],
+    "starterCode": "function encode(strs) {\n}\nfunction decode(s) {\n}",
+    "runLanguage": "javascript",
+    "source": "inspired-by-nc-271",
+    "license": "original-rewrite"
+  },
+  {
+    "id": "palindrome-substring",
+    "title": "Longest Palindromic Substring",
+    "domain": "strings",
+    "track": "software",
+    "difficulty": "medium",
+    "estimatedMinutes": 15,
+    "prompt": "Find longest palindromic substring.",
+    "hints": [
+      "Expand around center."
+    ],
+    "starterCode": "function longestPalindrome(s) {\n}",
+    "runLanguage": "javascript",
+    "source": "inspired-by-nc-5",
+    "license": "original-rewrite"
+  },
+  {
+    "id": "min-window",
+    "title": "Minimum Window Substring",
+    "domain": "strings",
+    "track": "software",
+    "difficulty": "hard",
+    "estimatedMinutes": 20,
+    "prompt": "Smallest substring of s containing all characters of t.",
+    "hints": [
+      "Sliding window with counts."
+    ],
+    "starterCode": "function minWindow(s, t) {\n}",
+    "runLanguage": "javascript",
+    "source": "inspired-by-nc-76",
+    "license": "original-rewrite"
+  },
+  {
+    "id": "rate-limiter-design",
+    "title": "Design a Rate Limiter",
+    "domain": "system-design",
+    "track": "software",
+    "difficulty": "medium",
+    "estimatedMinutes": 20,
+    "prompt": "Design rate limiting for an API gateway. Token bucket vs sliding window.",
+    "hints": [
+      "Define SLAs first."
+    ],
+    "starterCode": "// Components and tradeoffs",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "url-shortener",
+    "title": "Design URL Shortener",
+    "domain": "system-design",
+    "track": "software",
+    "difficulty": "medium",
+    "estimatedMinutes": 20,
+    "prompt": "Design bit.ly-style service: encode, redirect, analytics.",
+    "hints": [
+      "Base62, DB sharding."
+    ],
+    "starterCode": "// API + storage",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "chat-system",
+    "title": "Design Real-time Chat",
+    "domain": "system-design",
+    "track": "software",
+    "difficulty": "hard",
+    "estimatedMinutes": 20,
+    "prompt": "Design WhatsApp-scale messaging. Delivery guarantees and presence.",
+    "hints": [
+      "WebSockets vs polling."
+    ],
+    "starterCode": "// Architecture",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "news-feed",
+    "title": "Design News Feed",
+    "domain": "system-design",
+    "track": "software",
+    "difficulty": "hard",
+    "estimatedMinutes": 20,
+    "prompt": "Design fan-out feed for social app. Hot users and cold storage.",
+    "hints": [
+      "Push vs pull fanout."
+    ],
+    "starterCode": "// Fan-out diagram",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "kv-store",
+    "title": "Design Key-Value Store",
+    "domain": "system-design",
+    "track": "software",
+    "difficulty": "medium",
+    "estimatedMinutes": 20,
+    "prompt": "Design distributed KV with eventual consistency.",
+    "hints": [
+      "Partitioning, replication."
+    ],
+    "starterCode": "// CAP tradeoffs",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "cdn-design",
+    "title": "Design a CDN",
+    "domain": "system-design",
+    "track": "software",
+    "difficulty": "medium",
+    "estimatedMinutes": 20,
+    "prompt": "How would you design a CDN for static assets globally?",
+    "hints": [
+      "Edge caches, invalidation."
+    ],
+    "starterCode": "// Edge + origin",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "broken-checkout",
+    "title": "Debug: Checkout Timeout",
+    "domain": "debugging",
+    "track": "software",
+    "difficulty": "hard",
+    "estimatedMinutes": 20,
+    "prompt": "Checkout succeeds but orders missing intermittently. 504s from payment service.",
+    "hints": [
+      "Idempotency keys."
+    ],
+    "starterCode": "// Hypothesis log",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "memory-leak-react",
+    "title": "Debug: Memory Leak in SPA",
+    "domain": "debugging",
+    "track": "software",
+    "difficulty": "medium",
+    "estimatedMinutes": 15,
+    "prompt": "Dashboard slows after hours of use. How do you find the leak?",
+    "hints": [
+      "Heap snapshots."
+    ],
+    "starterCode": "// Steps",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "race-condition",
+    "title": "Debug: Race in Cache",
+    "domain": "debugging",
+    "track": "software",
+    "difficulty": "medium",
+    "estimatedMinutes": 15,
+    "prompt": "Stale reads after deploy. Suspect cache invalidation race.",
+    "hints": [
+      "TTL vs event-driven."
+    ],
+    "starterCode": "// Timeline",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "db-deadlock",
+    "title": "Debug: DB Deadlocks",
+    "domain": "debugging",
+    "track": "software",
+    "difficulty": "hard",
+    "estimatedMinutes": 20,
+    "prompt": "Spike in deadlock errors under load. How to diagnose and fix?",
+    "hints": [
+      "Lock ordering."
+    ],
+    "starterCode": "// Mitigations",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "api-latency",
+    "title": "Debug: P99 Latency Spike",
+    "domain": "debugging",
+    "track": "software",
+    "difficulty": "medium",
+    "estimatedMinutes": 15,
+    "prompt": "P99 latency doubled after feature launch. Walk through investigation.",
+    "hints": [
+      "Trace waterfall."
+    ],
+    "starterCode": "// Metrics to check",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "auth-bug",
+    "title": "Debug: Intermittent 401s",
+    "domain": "debugging",
+    "track": "software",
+    "difficulty": "medium",
+    "estimatedMinutes": 15,
+    "prompt": "Users randomly logged out. JWT refresh flow suspected.",
+    "hints": [
+      "Clock skew, cookie domain."
+    ],
+    "starterCode": "// Root cause tree",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  }
+]

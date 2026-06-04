@@ -3,7 +3,7 @@ import type {
   ShipTestEnrollment,
   TalentProfile,
 } from '../types/interview';
-import { practiceProblems } from '../data/practiceProblems';
+import { allPracticeProblems as practiceProblems } from '../data/loadQuestionBank';
 
 const SESSIONS_KEY = 'chaminext_interview_sessions';
 const SHIP_KEY = 'chaminext_ship_enrollment';

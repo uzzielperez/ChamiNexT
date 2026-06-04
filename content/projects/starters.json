@@ -1,0 +1,50 @@
+[
+  {
+    "id": "rag-mini",
+    "title": "RAG Mini Starter",
+    "description": "Markdown ingest, chunk, embed, and query with cited snippets.",
+    "githubUrl": "https://github.com/chaminext/rag-mini-starter",
+    "shipTestId": "rag-chatbot-72h",
+    "tags": ["rag", "python"]
+  },
+  {
+    "id": "agent-tools",
+    "title": "Agent Tool Loop",
+    "description": "Planner + calculator/search tools with visible trace log.",
+    "githubUrl": "https://github.com/chaminext/agent-tools-starter",
+    "shipTestId": "agent-workflow-7d",
+    "tags": ["agents", "typescript"]
+  },
+  {
+    "id": "eval-harness",
+    "title": "Eval Harness",
+    "description": "Golden-set runner with rubric scoring for LLM outputs.",
+    "githubUrl": "https://github.com/chaminext/eval-harness-starter",
+    "shipTestId": "eval-dashboard-72h",
+    "tags": ["evals"]
+  },
+  {
+    "id": "ai-chat-widget",
+    "title": "Chat Widget Shell",
+    "description": "Single-page LLM UI with guardrails and message history.",
+    "githubUrl": "https://github.com/chaminext/chat-widget-starter",
+    "shipTestId": "ai-chat-widget-24h",
+    "tags": ["frontend"]
+  },
+  {
+    "id": "habit-mvp",
+    "title": "Habit Tracker MVP",
+    "description": "Streaks, daily check-in, mobile-first layout.",
+    "githubUrl": "https://github.com/chaminext/habit-tracker-starter",
+    "shipTestId": "habit-tracker-24h",
+    "tags": ["fullstack"]
+  },
+  {
+    "id": "crm-starter",
+    "title": "CRM Starter",
+    "description": "Contacts, pipeline stages, notes — Ship Test ready.",
+    "githubUrl": "https://github.com/chaminext/crm-starter",
+    "shipTestId": "lightweight-crm-72h",
+    "tags": ["crud"]
+  }
+]

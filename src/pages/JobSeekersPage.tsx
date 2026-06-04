@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CVIterator from '../components/jobseekers/CVIterator';
 import Questionnaire from '../components/jobseekers/Questionnaire';
 import PremiumTabs from '../components/ui/PremiumTabs';
@@ -14,7 +14,8 @@ import type { PracticeProblem } from '../types/interview';
 import type { ShipTestChallenge } from '../types/interview';
 import { Brain, Rocket, User, Wrench, Sparkles, FileText } from 'lucide-react';
 import { canStartInterview, recordInterviewStart } from '../utils/subscriptionStorage';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { getProblemById } from '../data/loadQuestionBank';
 
 type ViewMode =
   | 'practice'
@@ -28,6 +29,7 @@ type ToolsSubview = 'menu' | 'cv' | 'builder';
 
 const JobSeekersPage: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [currentView, setCurrentView] = useState<ViewMode>('practice');
   const [toolsSubview, setToolsSubview] = useState<ToolsSubview>('menu');
   const [activeProblem, setActiveProblem] = useState<PracticeProblem | null>(null);
@@ -65,6 +67,24 @@ const JobSeekersPage: React.FC = () => {
     setActiveProblem(problem);
     setCurrentView('interview');
   };
+
+  useEffect(() => {
+    const nav = location.state as { problemId?: string; view?: ViewMode } | null;
+    if (!nav) return;
+    if (nav.view) {
+      if (nav.view === 'ship-lobby' && shipEnrollment?.status === 'active') {
+        setCurrentView('ship-session');
+      } else {
+        setCurrentView(nav.view);
+      }
+    }
+    if (nav.problemId) {
+      const p = getProblemById(nav.problemId);
+      if (p) startInterview(p);
+    }
+    window.history.replaceState({}, document.title);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.state]);
 
   const handleShipEnroll = (challenge: ShipTestChallenge) => {
     if (shipEnrollment?.challengeId === challenge.id && shipEnrollment.status === 'active') {

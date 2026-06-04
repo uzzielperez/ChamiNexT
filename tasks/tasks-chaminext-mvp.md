@@ -82,3 +82,12 @@ Check off sub-tasks as completed: `- [ ]` → `- [x]`.
   - [ ] 6.1 One public 24h Ship Test challenge (dogfood)
   - [ ] 6.2 Record one mock interview clip for LinkedIn/YouTube
   - [ ] 6.3 Landing: pricing section (optional, when Stripe live)
+
+- [x] 7.0 Content, design context, PWA (content/mobile plan)
+  - [x] 7.1 `PRODUCT.md`, `DESIGN.md`, `.cursor/rules/impeccable-chaminext.mdc`
+  - [x] 7.2 Question bank: `content/question-bank/` + `loadQuestionBank.ts` (30 software + 15 AI)
+  - [x] 7.3 Ship catalog: 8 challenges in `content/ship-tests/challenges.json`
+  - [x] 7.4 AI-engineer interviewer prompts + Practice track filters
+  - [x] 7.5 `tasks/business-plan-chaminext.md`; deprecate `strategy-overview.md`
+  - [x] 7.6 PWA: `vite-plugin-pwa`, `/daily`, streaks, `MobileBottomNav`
+  - [x] 7.7 `content/course-map.json`, `content/projects/starters.json`, `/learn`

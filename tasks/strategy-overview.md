@@ -1,5 +1,7 @@
 # 🎯 ChamiNexT Enhancement Strategy: High-Level Overview
 
+> **Deprecated (June 2026):** This document reflects the older “talent ecosystem” direction. For current product, GTM, and revenue strategy, use **`tasks/business-plan-chaminext.md`** and **`tasks/prd-chaminext-ai-interview-platform.md`**.
+
 ## 📋 Executive Summary
 
 We're transforming ChamiNexT from a basic developer platform into a **comprehensive talent ecosystem** with AI-powered tools, advanced pipeline management, and monetized digital products. This strategy addresses three core user segments with equal priority while establishing sustainable revenue streams.

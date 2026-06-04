@@ -135,7 +135,8 @@ const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({ problem, onExit
         <div>
           <h2 className="text-2xl font-bold text-text-primary">{problem.title}</h2>
           <p className="text-sm text-text-secondary capitalize">
-            {problem.domain} · {problem.difficulty}
+            {problem.track === 'ai-engineer' ? 'AI Engineer' : 'Software'} · {problem.domain} ·{' '}
+            {problem.difficulty}
           </p>
         </div>
         <div className="flex gap-2">

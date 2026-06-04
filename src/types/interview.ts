@@ -3,7 +3,22 @@ export type ProblemDomain =
   | 'trees'
   | 'strings'
   | 'system-design'
-  | 'debugging';
+  | 'debugging'
+  | 'rag'
+  | 'agents'
+  | 'prompting'
+  | 'evals'
+  | 'ai-system-design'
+  | 'safety';
+
+export type PracticeTrack = 'software' | 'ai-engineer';
+
+export type EstimatedMinutes = 10 | 15 | 20;
+
+export interface ProblemTestCase {
+  stdin?: string;
+  expectedStdout?: string;
+}
 
 export type InterviewMessageRole = 'interviewer' | 'candidate' | 'system';
 
@@ -26,11 +41,16 @@ export interface PracticeProblem {
   id: string;
   title: string;
   domain: ProblemDomain;
+  track: PracticeTrack;
   difficulty: 'easy' | 'medium' | 'hard';
+  estimatedMinutes: EstimatedMinutes;
   prompt: string;
   hints: string[];
   starterCode: string;
   runLanguage?: 'javascript' | 'python' | null;
+  tests?: ProblemTestCase[];
+  source?: string;
+  license?: string;
 }
 
 export interface InterviewSession {

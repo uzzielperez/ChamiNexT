@@ -1,0 +1,21 @@
+---
+description: ChamiNext UI must follow Impeccable design context (PRODUCT.md + DESIGN.md)
+globs:
+  - src/**/*.tsx
+  - src/styles/**
+  - index.html
+  - public/**
+---
+
+# Impeccable + ChamiNext
+
+Before editing UI in this project:
+
+1. Read [PRODUCT.md](../../PRODUCT.md) and [DESIGN.md](../../DESIGN.md) at repo root.
+2. For design/redesign/polish tasks, follow the Impeccable skill (`~/.cursor/skills/impeccable` or `~/Desktop/impeccable/.cursor/skills/impeccable`).
+3. Product surfaces: Practice, Daily, Interview Simulator, Ship Tests, Profile, Employers.
+4. Brand surfaces: HomePage, Pricing.
+
+Avoid: hero-metric clichés, identical card grids, gradient text everywhere, decorative glass on every element, side-stripe borders, em dashes in copy.
+
+Match existing tokens in `src/styles/design-system.css`; prefer CSS variables over new one-off colors.

@@ -1,0 +1,242 @@
+[
+  {
+    "id": "rag-chunking-legal",
+    "title": "RAG Chunking for Legal Docs",
+    "domain": "rag",
+    "track": "ai-engineer",
+    "difficulty": "medium",
+    "estimatedMinutes": 15,
+    "prompt": "Design chunking and retrieval for legal documents. Cite failure modes and evaluation.",
+    "hints": [
+      "Chunk size vs overlap."
+    ],
+    "starterCode": "# Architecture notes",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "rag-hybrid-search",
+    "title": "Hybrid Search Strategy",
+    "domain": "rag",
+    "track": "ai-engineer",
+    "difficulty": "medium",
+    "estimatedMinutes": 15,
+    "prompt": "When combine vector search with keyword BM25? Tradeoffs.",
+    "hints": [
+      "Recall vs precision."
+    ],
+    "starterCode": "# Design",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "rag-citations",
+    "title": "Citation Quality in RAG",
+    "domain": "rag",
+    "track": "ai-engineer",
+    "difficulty": "hard",
+    "estimatedMinutes": 20,
+    "prompt": "How ensure answers include faithful citations? Metrics and guardrails.",
+    "hints": [
+      "Attribution eval set."
+    ],
+    "starterCode": "# Eval plan",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "agent-tools-vs-shot",
+    "title": "Agents: Tools vs Single Shot",
+    "domain": "agents",
+    "track": "ai-engineer",
+    "difficulty": "medium",
+    "estimatedMinutes": 15,
+    "prompt": "When should you use tool-calling agents vs one-shot LLM?",
+    "hints": [
+      "Reliability, cost."
+    ],
+    "starterCode": "# Decision matrix",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "agent-state",
+    "title": "Agent State Machine",
+    "domain": "agents",
+    "track": "ai-engineer",
+    "difficulty": "hard",
+    "estimatedMinutes": 20,
+    "prompt": "Design state machine for multi-step support agent with human handoff.",
+    "hints": [
+      "Persist checkpoints."
+    ],
+    "starterCode": "# States",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "agent-orchestration",
+    "title": "Multi-Agent Orchestration",
+    "domain": "agents",
+    "track": "ai-engineer",
+    "difficulty": "hard",
+    "estimatedMinutes": 20,
+    "prompt": "Planner + worker agents for code review. How avoid infinite loops?",
+    "hints": [
+      "Max steps, budgets."
+    ],
+    "starterCode": "# Flow",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "prompt-support-bot",
+    "title": "Support Bot System Prompt",
+    "domain": "prompting",
+    "track": "ai-engineer",
+    "difficulty": "medium",
+    "estimatedMinutes": 10,
+    "prompt": "Write system prompt for SaaS support bot. Tone, escalation, no hallucinated refunds.",
+    "hints": [
+      "Structured output."
+    ],
+    "starterCode": "# System prompt draft",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "prompt-few-shot",
+    "title": "Few-Shot vs Fine-Tune",
+    "domain": "prompting",
+    "track": "ai-engineer",
+    "difficulty": "medium",
+    "estimatedMinutes": 15,
+    "prompt": "Classify tickets: when few-shot prompting vs fine-tuning?",
+    "hints": [
+      "Data volume, drift."
+    ],
+    "starterCode": "# Comparison",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "eval-hallucination",
+    "title": "Hallucination Eval Rubric",
+    "domain": "evals",
+    "track": "ai-engineer",
+    "difficulty": "hard",
+    "estimatedMinutes": 20,
+    "prompt": "Build rubric and regression suite for hallucination in Q&A bot.",
+    "hints": [
+      "Golden set, LLM-judge risks."
+    ],
+    "starterCode": "# Rubric",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "eval-ab-prompt",
+    "title": "A/B Testing Prompts",
+    "domain": "evals",
+    "track": "ai-engineer",
+    "difficulty": "medium",
+    "estimatedMinutes": 15,
+    "prompt": "How run statistically valid A/B on prompt variants in production?",
+    "hints": [
+      "Sample size, guard metrics."
+    ],
+    "starterCode": "# Experiment design",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "ai-scale-embeddings",
+    "title": "Scale Embedding Pipeline",
+    "domain": "ai-system-design",
+    "track": "ai-engineer",
+    "difficulty": "hard",
+    "estimatedMinutes": 20,
+    "prompt": "Design pipeline to embed 10M docs/day. Cost and latency targets.",
+    "hints": [
+      "Batch vs stream."
+    ],
+    "starterCode": "# Pipeline",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "ai-inference-cost",
+    "title": "Inference Cost Optimization",
+    "domain": "ai-system-design",
+    "track": "ai-engineer",
+    "difficulty": "medium",
+    "estimatedMinutes": 15,
+    "prompt": "Reduce LLM inference cost 40% without killing quality. Options?",
+    "hints": [
+      "Caching, routing, smaller models."
+    ],
+    "starterCode": "# Plan",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "ai-model-routing",
+    "title": "Model Routing Layer",
+    "domain": "ai-system-design",
+    "track": "ai-engineer",
+    "difficulty": "medium",
+    "estimatedMinutes": 15,
+    "prompt": "Route queries to small vs large models. Architecture and fallbacks.",
+    "hints": [
+      "Classifier, thresholds."
+    ],
+    "starterCode": "# Router design",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "safety-prompt-injection",
+    "title": "Prompt Injection Defense",
+    "domain": "safety",
+    "track": "ai-engineer",
+    "difficulty": "hard",
+    "estimatedMinutes": 15,
+    "prompt": "Mitigate prompt injection in customer-facing chat with tools.",
+    "hints": [
+      "Input/output filters."
+    ],
+    "starterCode": "# Defenses",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "safety-pii-logs",
+    "title": "PII in Logs and Traces",
+    "domain": "safety",
+    "track": "ai-engineer",
+    "difficulty": "medium",
+    "estimatedMinutes": 10,
+    "prompt": "LLM app logging strategy that avoids PII retention violations.",
+    "hints": [
+      "Redaction, retention TTL."
+    ],
+    "starterCode": "# Policy",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  }
+]

@@ -1,0 +1,123 @@
+[
+  {
+    "id": "habit-tracker-24h",
+    "title": "Habit Tracker",
+    "format": "24h",
+    "description": "Ship a minimal habit tracker with daily check-ins and streaks.",
+    "pmBrief": "Users want a dead-simple habit tracker. MVP: add habit, mark done today, see streak. Mobile-friendly.",
+    "constraints": [
+      "No auth required for MVP",
+      "Must be deployable via public URL"
+    ],
+    "exampleDeliverables": [
+      "Live URL",
+      "README with tradeoffs",
+      "1-min demo script"
+    ]
+  },
+  {
+    "id": "ai-chat-widget-24h",
+    "title": "AI Chat Widget",
+    "format": "24h",
+    "description": "Single-page chat UI with system prompt, message history, and basic guardrails.",
+    "pmBrief": "Embed a support-style chat widget. Must show user/assistant roles and block empty sends.",
+    "constraints": [
+      "No API keys in client",
+      "Mock or env-based backend"
+    ],
+    "exampleDeliverables": [
+      "Deployed URL",
+      "Screenshot of guardrail message"
+    ]
+  },
+  {
+    "id": "expense-splitter-24h",
+    "title": "Expense Splitter",
+    "format": "24h",
+    "description": "Split bills among friends with shares and settle-up summary.",
+    "pmBrief": "Roommates need to log expenses and see who owes whom.",
+    "constraints": [
+      "Local storage OK",
+      "Mobile layout"
+    ],
+    "exampleDeliverables": [
+      "Live URL",
+      "README"
+    ]
+  },
+  {
+    "id": "rag-chatbot-72h",
+    "title": "Document Q&A Bot",
+    "format": "72h",
+    "description": "RAG chatbot over uploaded markdown or PDF snippets with citations.",
+    "pmBrief": "Query internal docs with cited answers. Handle empty retrieval.",
+    "constraints": [
+      "Show source snippets",
+      "Graceful no-result state"
+    ],
+    "exampleDeliverables": [
+      "Deployed app",
+      "Architecture diagram"
+    ]
+  },
+  {
+    "id": "lightweight-crm-72h",
+    "title": "Lightweight CRM",
+    "format": "72h",
+    "description": "CRM with contacts, pipeline stages, and notes.",
+    "pmBrief": "Startup needs basic lead tracking without Salesforce complexity.",
+    "constraints": [
+      "CRUD contacts",
+      "Kanban or list pipeline"
+    ],
+    "exampleDeliverables": [
+      "Live URL",
+      "Demo script"
+    ]
+  },
+  {
+    "id": "eval-dashboard-72h",
+    "title": "Eval Dashboard",
+    "format": "72h",
+    "description": "Upload prompts and model outputs; score with rubric and compare runs.",
+    "pmBrief": "AI team needs to regression-test prompt changes visually.",
+    "constraints": [
+      "Store runs locally or simple DB",
+      "Rubric UI"
+    ],
+    "exampleDeliverables": [
+      "URL",
+      "Sample eval export"
+    ]
+  },
+  {
+    "id": "micro-saas-7d",
+    "title": "Micro-SaaS MVP",
+    "format": "7d",
+    "description": "Niche productivity tool with auth and Stripe test payments.",
+    "pmBrief": "Validate one paid workflow. Stripe test mode acceptable.",
+    "constraints": [
+      "Auth required",
+      "One paid tier"
+    ],
+    "exampleDeliverables": [
+      "Production URL",
+      "Pricing page"
+    ]
+  },
+  {
+    "id": "agent-workflow-7d",
+    "title": "Agent Workflow Tool",
+    "format": "7d",
+    "description": "Multi-step agent that calls tools (search, calc) with visible trace.",
+    "pmBrief": "Demonstrate planner + tool execution with logging for debugging.",
+    "constraints": [
+      "Max 5 tools",
+      "Human-readable trace"
+    ],
+    "exampleDeliverables": [
+      "URL",
+      "Architecture note"
+    ]
+  }
+]

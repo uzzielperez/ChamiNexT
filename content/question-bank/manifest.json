@@ -1,0 +1,277 @@
+{
+  "version": 1,
+  "software": [
+    {
+      "id": "valid-anagram",
+      "domain": "arrays",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "product-except-self",
+      "domain": "arrays",
+      "source": "inspired-by-nc-238",
+      "license": "original-rewrite"
+    },
+    {
+      "id": "max-subarray",
+      "domain": "arrays",
+      "source": "inspired-by-nc-53",
+      "license": "original-rewrite"
+    },
+    {
+      "id": "merge-intervals",
+      "domain": "arrays",
+      "source": "inspired-by-nc-56",
+      "license": "original-rewrite"
+    },
+    {
+      "id": "rotate-array",
+      "domain": "arrays",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "container-water",
+      "domain": "arrays",
+      "source": "inspired-by-nc-11",
+      "license": "original-rewrite"
+    },
+    {
+      "id": "invert-tree",
+      "domain": "trees",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "max-depth-tree",
+      "domain": "trees",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "validate-bst",
+      "domain": "trees",
+      "source": "inspired-by-nc-98",
+      "license": "original-rewrite"
+    },
+    {
+      "id": "level-order",
+      "domain": "trees",
+      "source": "inspired-by-nc-102",
+      "license": "original-rewrite"
+    },
+    {
+      "id": "serialize-tree",
+      "domain": "trees",
+      "source": "inspired-by-nc-297",
+      "license": "original-rewrite"
+    },
+    {
+      "id": "lca-tree",
+      "domain": "trees",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "anagram-groups",
+      "domain": "strings",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "longest-substring",
+      "domain": "strings",
+      "source": "inspired-by-nc-3",
+      "license": "original-rewrite"
+    },
+    {
+      "id": "valid-parens",
+      "domain": "strings",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "encode-decode",
+      "domain": "strings",
+      "source": "inspired-by-nc-271",
+      "license": "original-rewrite"
+    },
+    {
+      "id": "palindrome-substring",
+      "domain": "strings",
+      "source": "inspired-by-nc-5",
+      "license": "original-rewrite"
+    },
+    {
+      "id": "min-window",
+      "domain": "strings",
+      "source": "inspired-by-nc-76",
+      "license": "original-rewrite"
+    },
+    {
+      "id": "rate-limiter-design",
+      "domain": "system-design",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "url-shortener",
+      "domain": "system-design",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "chat-system",
+      "domain": "system-design",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "news-feed",
+      "domain": "system-design",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "kv-store",
+      "domain": "system-design",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "cdn-design",
+      "domain": "system-design",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "broken-checkout",
+      "domain": "debugging",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "memory-leak-react",
+      "domain": "debugging",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "race-condition",
+      "domain": "debugging",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "db-deadlock",
+      "domain": "debugging",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "api-latency",
+      "domain": "debugging",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "auth-bug",
+      "domain": "debugging",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    }
+  ],
+  "aiEngineer": [
+    {
+      "id": "rag-chunking-legal",
+      "domain": "rag",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "rag-hybrid-search",
+      "domain": "rag",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "rag-citations",
+      "domain": "rag",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "agent-tools-vs-shot",
+      "domain": "agents",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "agent-state",
+      "domain": "agents",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "agent-orchestration",
+      "domain": "agents",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "prompt-support-bot",
+      "domain": "prompting",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "prompt-few-shot",
+      "domain": "prompting",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "eval-hallucination",
+      "domain": "evals",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "eval-ab-prompt",
+      "domain": "evals",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "ai-scale-embeddings",
+      "domain": "ai-system-design",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "ai-inference-cost",
+      "domain": "ai-system-design",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "ai-model-routing",
+      "domain": "ai-system-design",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "safety-prompt-injection",
+      "domain": "safety",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "safety-pii-logs",
+      "domain": "safety",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    }
+  ]
+}

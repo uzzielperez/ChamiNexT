@@ -27,7 +27,10 @@ import DevOpsPage from './pages/DevOpsPage';
 import PricingPage from './pages/PricingPage';
 import PublicProfilePage from './pages/PublicProfilePage';
 import ApplyPage from './pages/ApplyPage';
+import DailyPracticePage from './pages/DailyPracticePage';
+import LearnPage from './pages/LearnPage';
 import DemoBanner from './components/demo/DemoBanner';
+import MobileBottomNav from './components/layout/MobileBottomNav';
 
 // Import premium design system styles
 import './styles/design-system.css';
@@ -42,6 +45,8 @@ function App() {
         <main className="flex-grow pt-16">
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/daily" element={<DailyPracticePage />} />
+            <Route path="/learn" element={<LearnPage />} />
             <Route path="/practice" element={<JobSeekersPage />} />
             <Route path="/jobseekers" element={<Navigate to="/practice" replace />} />
             <Route path="/courses/vibe-coding/:lessonId?" element={<VibeCoursePage />} />
@@ -69,7 +74,10 @@ function App() {
             <Route path="/success" element={<SuccessPage />} />
           </Routes>
         </main>
-        <Footer />
+        <div className="hidden md:block">
+          <Footer />
+        </div>
+        <MobileBottomNav />
         <DemoBanner />
       </div>
     </Router>

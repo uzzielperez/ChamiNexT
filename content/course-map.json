@@ -1,0 +1,83 @@
+{
+  "courses": [
+    {
+      "id": "building-rags",
+      "title": "Building RAGs",
+      "path": "/courses/building-rags",
+      "modules": ["chunking", "retrieval", "evaluation"]
+    },
+    {
+      "id": "ai-agents",
+      "title": "AI Agents",
+      "path": "/courses/ai-agents",
+      "modules": ["tools", "state", "orchestration"]
+    },
+    {
+      "id": "vibe-coding",
+      "title": "Vibe Coding",
+      "path": "/courses/vibe-coding",
+      "modules": ["prompting", "iteration", "shipping"]
+    },
+    {
+      "id": "fullstack-ai",
+      "title": "Fullstack AI",
+      "path": "/courses/fullstack-ai",
+      "modules": ["api", "ui", "deploy"]
+    }
+  ],
+  "dailyBites": [
+    {
+      "id": "bite-rag-chunk",
+      "courseId": "building-rags",
+      "title": "Chunking for legal docs",
+      "excerpt": "Start with structure-aware chunks (sections, clauses) before fixed token windows. Overlap 10–15% between chunks to preserve context at boundaries. Log chunk IDs in retrieval metadata so answers can cite sources.",
+      "lessonLink": "/courses/building-rags"
+    },
+    {
+      "id": "bite-agent-tools",
+      "courseId": "ai-agents",
+      "title": "When to add a tool",
+      "excerpt": "Add a tool when the model needs fresh or authoritative data, not when a single prompt suffices. Keep tool schemas small; return structured JSON the planner can branch on.",
+      "lessonLink": "/courses/ai-agents"
+    },
+    {
+      "id": "bite-eval-regression",
+      "courseId": "building-rags",
+      "title": "Eval regression suite",
+      "excerpt": "Freeze 20–50 golden questions with expected behaviors (citation present, refusal on empty context). Re-run after every prompt or retrieval change; track pass rate, not vibes.",
+      "lessonLink": "/courses/building-rags"
+    },
+    {
+      "id": "bite-prompt-system",
+      "courseId": "vibe-coding",
+      "title": "System prompt boundaries",
+      "excerpt": "Separate role, constraints, and output format. Put safety and scope limits in the system layer; keep user messages for task specifics only.",
+      "lessonLink": "/courses/vibe-coding"
+    },
+    {
+      "id": "bite-ship-mvp",
+      "courseId": "fullstack-ai",
+      "title": "Ship the thinnest URL",
+      "excerpt": "One deployable path beats three local features. Auth, payments, and polish come after a public URL proves the workflow.",
+      "lessonLink": "/courses/fullstack-ai"
+    },
+    {
+      "id": "bite-safety-pii",
+      "courseId": "building-rags",
+      "title": "PII in logs",
+      "excerpt": "Redact emails and IDs before logging prompts. Use retention TTLs on chat logs; never train on production user content without consent.",
+      "lessonLink": "/courses/building-rags"
+    },
+    {
+      "id": "bite-latency-cost",
+      "courseId": "fullstack-ai",
+      "title": "Latency vs cost",
+      "excerpt": "Cache embeddings for stable corpora. Route simple queries to smaller models; reserve large models for multi-hop reasoning only.",
+      "lessonLink": "/courses/fullstack-ai"
+    }
+  ],
+  "questionLinks": [
+    { "courseId": "building-rags", "problemIds": ["rag-chunking-legal", "rag-hybrid-search"] },
+    { "courseId": "ai-agents", "problemIds": ["agent-tools-vs-shot", "agent-state"] }
+  ]
+}

@@ -49,6 +49,21 @@ exports.handler = async (event) => {
       };
     }
 
+    const track = problem.track || 'software';
+    const isAiEngineer = track === 'ai-engineer';
+
+    const scoreSystem = isAiEngineer
+      ? `You are a senior AI/ML engineering interviewer. Score 0-100 on: thinking, decomposition, communication, codeQuality (use codeQuality for system design / pseudo-code rigor when no code). Evaluate RAG design, evals, prompting, agents, safety, and production tradeoffs—not LeetCode tricks. Return ONLY JSON:
+{"scores":{"thinking":N,"decomposition":N,"communication":N,"codeQuality":N,"overall":N},"scoreNotes":"2-3 sentences"}`
+      : `You are a senior software engineering interviewer. Score 0-100 on: thinking, decomposition, communication, codeQuality. Return ONLY JSON:
+{"scores":{"thinking":N,"decomposition":N,"communication":N,"codeQuality":N,"overall":N},"scoreNotes":"2-3 sentences"}`;
+
+    const chatSystem = isAiEngineer
+      ? `You are an adaptive AI engineering interviewer for ChamiNext. Topics: RAG, agents, prompting, evals, AI system design, safety. Be Socratic; probe failure modes, cost/latency, and eval strategy. No textbook dumps. Return ONLY JSON:
+{"reply":"interviewer message","followUp":"optional sharper question"}`
+      : `You are an adaptive technical interviewer for ChamiNext. Be Socratic: short questions, no full solutions. Encourage reasoning and tradeoffs. AI-assisted coding is allowed if explained. Return ONLY JSON:
+{"reply":"interviewer message","followUp":"optional sharper question"}`;
+
     const transcript = messages
       .map((m) => `${m.role}: ${m.content}`)
       .join('\n');
@@ -60,8 +75,7 @@ exports.handler = async (event) => {
         messages: [
           {
             role: 'system',
-            content: `You are a senior engineering interviewer. Score the session 0-100 on: thinking, decomposition, communication, codeQuality. Return ONLY JSON:
-{"scores":{"thinking":N,"decomposition":N,"communication":N,"codeQuality":N,"overall":N},"scoreNotes":"2-3 sentences"}`,
+            content: scoreSystem,
           },
           {
             role: 'user',
@@ -88,12 +102,11 @@ exports.handler = async (event) => {
       messages: [
         {
           role: 'system',
-          content: `You are an adaptive technical interviewer for ChamiNext. Be Socratic: short questions, no full solutions. Encourage reasoning and tradeoffs. AI-assisted coding is allowed if explained. Return ONLY JSON:
-{"reply":"interviewer message","followUp":"optional sharper question"}`,
+          content: chatSystem,
         },
         {
           role: 'user',
-          content: `PROBLEM (${problem.domain}): ${problem.title}\n${problem.prompt}\n\nCANDIDATE CODE:\n${code}\n\nTRANSCRIPT:\n${transcript}\n\nCANDIDATE SAID:\n${candidateMessage || '(starting session)'}`,
+          content: `TRACK: ${track}\nPROBLEM (${problem.domain}): ${problem.title}\n${problem.prompt}\n\nCANDIDATE CODE:\n${code}\n\nTRANSCRIPT:\n${transcript}\n\nCANDIDATE SAID:\n${candidateMessage || '(starting session)'}`,
         },
       ],
     });
