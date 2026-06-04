@@ -9,9 +9,15 @@ export type ProblemDomain =
   | 'prompting'
   | 'evals'
   | 'ai-system-design'
-  | 'safety';
+  | 'safety'
+  | 'experimentation'
+  | 'funnel-analytics'
+  | 'growth-systems'
+  | 'attribution'
+  | 'martech-integrations'
+  | 'gtm-strategy';
 
-export type PracticeTrack = 'software' | 'ai-engineer';
+export type PracticeTrack = 'software' | 'ai-engineer' | 'market-engineering';
 
 export type EstimatedMinutes = 10 | 15 | 20;
 

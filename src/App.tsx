@@ -30,6 +30,7 @@ import ApplyPage from './pages/ApplyPage';
 import DailyPracticePage from './pages/DailyPracticePage';
 import LearnPage from './pages/LearnPage';
 import DemoBanner from './components/demo/DemoBanner';
+import TrialBanner from './components/layout/TrialBanner';
 import MobileBottomNav from './components/layout/MobileBottomNav';
 
 // Import premium design system styles
@@ -42,6 +43,7 @@ function App() {
     <Router>
       <div className="flex flex-col min-h-screen" style={{ backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
         <PremiumHeader />
+        <TrialBanner />
         <main className="flex-grow pt-16">
           <Routes>
             <Route path="/" element={<HomePage />} />

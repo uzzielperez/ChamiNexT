@@ -273,5 +273,79 @@
       "source": "curated-original",
       "license": "ChamiNext"
     }
+  ],
+  "marketEngineering": [
+    {
+      "id": "me-ab-test-design",
+      "domain": "experimentation",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "me-feature-flag-rollout",
+      "domain": "experimentation",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "me-funnel-dropoff",
+      "domain": "funnel-analytics",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "me-cohort-retention",
+      "domain": "funnel-analytics",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "me-referral-loop",
+      "domain": "growth-systems",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "me-plg-activation",
+      "domain": "growth-systems",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "me-attribution-model",
+      "domain": "attribution",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "me-utm-hygiene",
+      "domain": "attribution",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "me-cdp-pipeline",
+      "domain": "martech-integrations",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "me-crm-handoff",
+      "domain": "martech-integrations",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "me-launch-sequencing",
+      "domain": "gtm-strategy",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "me-pricing-page-test",
+      "domain": "gtm-strategy",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    }
   ]
 }

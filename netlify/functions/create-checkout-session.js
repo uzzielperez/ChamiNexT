@@ -9,6 +9,10 @@ const PLANS = {
   pro: { amount: 1900, name: 'ChamiNext Pro' },
   builder: { amount: 4900, name: 'ChamiNext Builder' },
   premium: { amount: 8900, name: 'ChamiNext Premium' },
+  'interview-season': {
+    amount: 14900,
+    name: 'ChamiNext Interview Season (90 days)',
+  },
 };
 
 exports.handler = async (event) => {

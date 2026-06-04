@@ -3,12 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import {
   ArrowRight,
   Building2,
-  Sparkles,
   Rocket,
   MessageSquare,
   Package,
 } from 'lucide-react';
-import AnimatedBackground from '../components/ui/AnimatedBackground';
+import HeroCodeBackground from '../components/landing/HeroCodeBackground';
+import HeroProductPreview from '../components/landing/HeroProductPreview';
 
 const PRINCIPLES = [
   'Shipping > Solving',
@@ -51,47 +51,52 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="min-h-screen">
-      <section className="hero-section grid-pattern relative overflow-hidden">
-        <AnimatedBackground opacity={0.4} speed={1.2} />
+      <section className="hero-section relative overflow-hidden min-h-[100svh] flex flex-col">
+        <HeroCodeBackground />
 
-        <div className="container relative z-10 max-w-4xl text-center">
-          <p className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium border border-accent-blue/30 bg-accent-blue/10 text-accent-blue mb-8">
-            <Sparkles className="w-4 h-4" />
-            ChamiNext
+        <div className="container relative z-10 max-w-3xl text-center flex-1 flex flex-col justify-center pt-24 pb-8">
+          <h1 className="hero-display">Stop memorizing. Start shipping.</h1>
+
+          <p className="hero-subheadline mt-6 max-w-xl mx-auto text-[var(--text-secondary)]">
+            AI interview practice that adapts to you, plus timed Ship Tests companies use
+            to hire on real output, not trick questions.
           </p>
 
-          <h1 className="hero-headline">
-            Interview prep and{' '}
-            <span style={{ color: 'var(--accent-bright)' }}>ship tests</span> for the
-            AI era.
-          </h1>
-
-          <p className="hero-subheadline mt-6 max-w-2xl mx-auto">
-            Think, build, and deploy. Not memorize. AI interviews, adaptive practice,
-            and timed Ship Tests, scored on what you actually shipped.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
-            <button className="btn-primary" onClick={() => navigate('/practice')}>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 mt-10">
+            <button type="button" className="btn-primary" onClick={() => navigate('/practice')}>
               <span>Start a Ship Test</span>
               <ArrowRight className="w-5 h-5" />
             </button>
-            <button className="btn-secondary" onClick={() => navigate('/employers')}>
-              Interview Studio
+            <button type="button" className="text-link bg-transparent border-0 cursor-pointer p-0" onClick={() => navigate('/employers')}>
+              See the Interview Studio
             </button>
           </div>
+
+          <p className="mt-8 text-sm text-[var(--text-secondary)] max-w-lg mx-auto">
+            <span className="italic text-[var(--text-primary)]">
+              &ldquo;This is the most realistic interview practice I&apos;ve done.&rdquo;
+            </span>
+            <span className="block mt-1 not-italic">
+              Senior SWE, recently hired at a growth-stage startup
+            </span>
+          </p>
         </div>
+
+        <HeroProductPreview />
       </section>
 
-      <section className="py-20 md:py-24" style={{ backgroundColor: 'var(--bg-secondary)' }}>
+      <section
+        id="how-it-works"
+        className="py-20 md:py-24"
+        style={{ backgroundColor: 'var(--bg-secondary)' }}
+      >
         <div className="container max-w-5xl">
           <div className="grid md:grid-cols-12 gap-8 items-end">
             <h2 className="md:col-span-7 text-2xl md:text-4xl font-bold leading-tight">
               The evaluation layer for engineering in the AI era.
             </h2>
             <p className="md:col-span-5 text-text-secondary md:pb-1">
-              From isolated puzzles to thinking, building, and shipping real
-              products.
+              From isolated puzzles to thinking, building, and shipping real products.
             </p>
           </div>
 
@@ -108,9 +113,7 @@ const HomePage: React.FC = () => {
 
       <section className="py-24">
         <div className="container max-w-5xl">
-          <h2 className="section-header max-w-xl mb-14">
-            Three ways to prove you can build.
-          </h2>
+          <h2 className="section-header max-w-xl mb-14">Three ways to prove you can build.</h2>
 
           <div className="border-t border-[var(--border-color)]">
             {FEATURES.map((item, i) => {
@@ -157,8 +160,7 @@ const HomePage: React.FC = () => {
         <div className="container max-w-5xl">
           <h2 className="section-header mb-3">Ship Test formats</h2>
           <p className="text-text-secondary max-w-xl mb-10">
-            AI plays PM, tech lead, reviewer, and user. Requirements evolve mid
-            sprint.
+            AI plays PM, tech lead, reviewer, and user. Requirements evolve mid sprint.
           </p>
 
           <div className="grid sm:grid-cols-3 border-t border-b border-[var(--border-color)] divide-y sm:divide-y-0 sm:divide-x divide-[var(--border-color)]">
@@ -179,6 +181,22 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
+      <section className="py-20" style={{ backgroundColor: 'var(--bg-secondary)' }}>
+        <div className="container max-w-4xl mx-auto text-center">
+          <h2 className="section-header mb-3">Interview Season</h2>
+          <p className="text-text-secondary max-w-xl mx-auto mb-2">
+            €149 for 90 days of full Builder access. One payment while you hunt a $100k–500k role.
+          </p>
+          <p className="text-sm text-text-secondary mb-6">
+            Less than a single human mock. Unlimited AI interviews and Ship Tests included.
+          </p>
+          <button type="button" className="btn-primary" onClick={() => navigate('/pricing')}>
+            See pricing
+            <ArrowRight className="w-5 h-5" />
+          </button>
+        </div>
+      </section>
+
       <section className="py-24">
         <div className="container">
           <div className="card border-accent-blue/20 max-w-4xl mx-auto p-8 md:p-12 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
@@ -189,12 +207,12 @@ const HomePage: React.FC = () => {
               <div>
                 <h2 className="text-2xl font-bold mb-2">Company Interview Studio</h2>
                 <p className="text-text-secondary max-w-md">
-                  Define roles, assign Ship Tests, and rank candidates on shipped
-                  output, not puzzle speed.
+                  Define roles, assign Ship Tests, and rank candidates on shipped output, not
+                  puzzle speed.
                 </p>
               </div>
             </div>
-            <button className="btn-primary shrink-0" onClick={() => navigate('/employers')}>
+            <button type="button" className="btn-primary shrink-0" onClick={() => navigate('/employers')}>
               Hire with Ship Tests
               <ArrowRight className="w-5 h-5" />
             </button>
@@ -226,20 +244,18 @@ const HomePage: React.FC = () => {
               </tr>
               <tr className="border-b border-[var(--border-color)]">
                 <td className="py-4 pr-4 font-semibold text-accent-blue">ChamiNext</td>
-                <td className="py-4 pr-4 font-medium text-text-primary">
-                  Thinking and shipping
-                </td>
+                <td className="py-4 pr-4 font-medium text-text-primary">Thinking and shipping</td>
                 <td className="py-4 text-text-primary">No memorization wall</td>
               </tr>
             </tbody>
           </table>
 
-          <div className="flex flex-col sm:flex-row items-center gap-4 mt-12">
-            <button className="btn-primary" onClick={() => navigate('/practice')}>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12">
+            <button type="button" className="btn-primary" onClick={() => navigate('/practice')}>
               Start free
               <ArrowRight className="w-5 h-5" />
             </button>
-            <button className="btn-secondary" onClick={() => navigate('/pricing')}>
+            <button type="button" className="btn-secondary" onClick={() => navigate('/pricing')}>
               View pricing
             </button>
           </div>

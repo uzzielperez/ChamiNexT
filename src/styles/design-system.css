@@ -1,7 +1,7 @@
 /* ChamiNexT Premium Redesign */
 /* Following the detailed design brief specifications */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;600;700&display=swap');
 
 :root {
   /* Core Color Palette - neutrals tinted toward brand blue (no pure #000/#fff) */
@@ -124,6 +124,33 @@ body {
   margin: 0 auto;
 }
 
+/* Landing H1 only — display serif per DESIGN.md */
+.hero-display {
+  font-family: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  max-width: 14ch;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--text-primary);
+}
+
+.text-link {
+  color: var(--accent-bright);
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color var(--duration-200) var(--ease-out);
+}
+
+.text-link:hover {
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
 .hero-subheadline {
   font-size: var(--text-large);
   font-weight: 300;
@@ -142,6 +169,19 @@ body {
 /* Emphasis is a single solid on-brand color, not gradient-clipped text. */
 .text-gradient {
   color: var(--accent-bright);
+}
+
+/* Nav links: never lose text on :active / :focus (avoid blank flash) */
+header nav a,
+header nav button[type='button'] {
+  -webkit-tap-highlight-color: transparent;
+}
+
+header nav a:active,
+header nav a:focus-visible,
+header nav button[type='button']:active,
+header nav button[type='button']:focus-visible {
+  opacity: 1;
 }
 
 .text-secondary {
@@ -237,11 +277,8 @@ body {
 /* Layout Components */
 .hero-section {
   min-height: 100vh;
-  padding: var(--space-xl) 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--gradient-hero);
+  padding: 0;
+  background: var(--bg-primary);
   position: relative;
 }
 

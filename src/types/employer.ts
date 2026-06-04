@@ -20,9 +20,18 @@ export interface CandidateApplication {
   status: 'new' | 'review' | 'strong' | 'hold';
 }
 
-export type SubscriptionPlan = 'free' | 'pro' | 'builder' | 'premium';
+export type SubscriptionPlan =
+  | 'free'
+  | 'pro'
+  | 'builder'
+  | 'premium'
+  | 'interview-season';
 
 export interface UserSubscription {
   plan: SubscriptionPlan;
   since: string;
+  /** Set for time-boxed plans (Interview Season) or 30-day free trial. */
+  expiresAt?: string;
+  /** Builder trial; one per device until accounts are server-backed. */
+  isTrial?: boolean;
 }

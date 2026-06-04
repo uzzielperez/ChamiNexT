@@ -19,7 +19,7 @@ export default defineConfig({
         display: 'standalone',
         start_url: '/daily',
         icons: [
-          { src: '/favicon.ico', sizes: '64x64', type: 'image/x-icon' },
+          { src: '/chaminext-mark.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any' },
         ],
       },
       workbox: {

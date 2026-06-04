@@ -1,3 +1,5 @@
+const { checkRateLimit, rateLimitResponse } = require('./_shared/rateLimit');
+
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'Content-Type',
@@ -18,6 +20,9 @@ exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, headers: corsHeaders, body: JSON.stringify({ error: 'Method not allowed' }) };
   }
+
+  const rl = checkRateLimit(event, 'coderun', 40);
+  if (!rl.allowed) return rateLimitResponse(rl.retryAfterSec, corsHeaders);
 
   try {
     const { code, language = 'javascript', stdin = '' } = JSON.parse(event.body || '{}');

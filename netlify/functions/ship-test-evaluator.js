@@ -1,4 +1,5 @@
 const { Groq } = require('groq-sdk');
+const { checkRateLimit, rateLimitResponse } = require('./_shared/rateLimit');
 
 const groq = process.env.GROQ_API_KEY ? new Groq({ apiKey: process.env.GROQ_API_KEY }) : null;
 
@@ -16,6 +17,9 @@ exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, headers: corsHeaders, body: JSON.stringify({ error: 'Method not allowed' }) };
   }
+
+  const rl = checkRateLimit(event, 'ship', 20);
+  if (!rl.allowed) return rateLimitResponse(rl.retryAfterSec, corsHeaders);
 
   try {
     const { challenge, deploymentUrl, events = [], enrolledAt, endsAt } = JSON.parse(event.body || '{}');

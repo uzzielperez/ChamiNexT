@@ -31,6 +31,12 @@ export async function callInterviewAgent(
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     });
+    if (res.status === 429) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(
+        (err as { error?: string }).error || 'Too many requests. Please wait a minute.'
+      );
+    }
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     return await res.json();
   } catch {

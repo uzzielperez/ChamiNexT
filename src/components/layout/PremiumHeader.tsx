@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Sparkles, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react';
 import PremiumButton from '../ui/PremiumButton';
+import ChamiNextLogo from '../brand/ChamiNextLogo';
 
 const PremiumHeader: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -36,8 +37,21 @@ const PremiumHeader: React.FC = () => {
   ];
 
   const isActiveLink = (href: string) => {
-    if (href === '/') return location.pathname === '/';
-    return location.pathname.startsWith(href);
+    if (href === '#' || href === '/') return location.pathname === '/';
+    return location.pathname === href || location.pathname.startsWith(`${href}/`);
+  };
+
+  const navLinkClass = (href: string) => {
+    const active = isActiveLink(href);
+    return [
+      'px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200',
+      'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-white/5',
+      'active:text-[var(--text-primary)] active:bg-white/10',
+      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-transparent',
+      active
+        ? '!text-[var(--accent-bright)] bg-[var(--accent-primary)]/15 hover:!text-[var(--accent-bright)]'
+        : '',
+    ].join(' ');
   };
 
   return (
@@ -52,15 +66,8 @@ const PremiumHeader: React.FC = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <Link to="/" className="flex items-center space-x-2 group">
-              <div className="w-8 h-8 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-200" 
-                   style={{ background: 'var(--gradient-button)' }}>
-                <Sparkles className="w-5 h-5 text-white" />
-              </div>
-              <span className="text-xl font-bold group-hover:scale-105 transition-transform duration-200" 
-                    style={{ color: 'var(--text-primary)' }}>
-                ChamiNext
-              </span>
+            <Link to="/" className="group transition-opacity duration-200 hover:opacity-90">
+              <ChamiNextLogo size="md" />
             </Link>
           </div>
 
@@ -70,32 +77,21 @@ const PremiumHeader: React.FC = () => {
               {navigation.map((item) => (
                 <div key={item.name} className="relative group">
                   {item.hasDropdown ? (
-                    <button className={`
-                      flex items-center px-3 py-2 rounded-lg text-sm font-medium 
-                      transition-all duration-200 hover:bg-white/10
-                      ${isActiveLink(item.href) 
-                        ? 'text-gold-400 bg-white/10' 
-                        : 'text-white/80 hover:text-white'
-                      }
-                    `}>
+                    <button
+                      type="button"
+                      className={`
+                        flex items-center px-3 py-2 rounded-lg text-sm font-medium
+                        transition-colors duration-200
+                        text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-white/5
+                        active:text-[var(--text-primary)] active:bg-white/10
+                        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)]
+                      `}
+                    >
                       {item.name}
                       <ChevronDown className="ml-1 w-4 h-4 group-hover:rotate-180 transition-transform duration-200" />
                     </button>
                   ) : (
-                    <Link
-                      to={item.href}
-                      className={`
-                        px-3 py-2 rounded-lg text-sm font-medium 
-                        transition-all duration-200
-                        ${isActiveLink(item.href) 
-                          ? 'text-gradient glass' 
-                          : 'hover:glass'
-                        }
-                      `}
-                      style={{ 
-                        color: isActiveLink(item.href) ? undefined : 'var(--text-secondary)',
-                      }}
-                    >
+                    <Link to={item.href} className={navLinkClass(item.href)}>
                       {item.name}
                     </Link>
                   )}
@@ -130,7 +126,7 @@ const PremiumHeader: React.FC = () => {
             </Link>
             <Link to="/practice">
               <button className="btn-primary px-4 py-2 text-sm">
-                <Sparkles className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4" />
                 <span>Start practicing</span>
               </button>
             </Link>
@@ -176,13 +172,7 @@ const PremiumHeader: React.FC = () => {
                   ) : (
                     <Link
                       to={item.href}
-                      className={`
-                        block px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200
-                        ${isActiveLink(item.href) 
-                          ? 'text-gold-400 bg-white/10' 
-                          : 'text-white/80 hover:text-white hover:bg-white/10'
-                        }
-                      `}
+                      className={`block ${navLinkClass(item.href)}`}
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       {item.name}
@@ -199,7 +189,7 @@ const PremiumHeader: React.FC = () => {
                   </PremiumButton>
                 </Link>
                 <Link to="/practice" className="block">
-                  <PremiumButton variant="gradient" size="sm" fullWidth icon={<Sparkles className="w-4 h-4" />}>
+                  <PremiumButton variant="primary" size="sm" fullWidth icon={<ArrowRight className="w-4 h-4" />}>
                     Start practicing
                   </PremiumButton>
                 </Link>

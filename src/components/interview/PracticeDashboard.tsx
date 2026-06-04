@@ -46,6 +46,7 @@ const PracticeDashboard: React.FC<PracticeDashboardProps> = ({
     { id: 'all', label: 'All' },
     { id: 'software', label: 'Software' },
     { id: 'ai-engineer', label: 'AI Engineer' },
+    { id: 'market-engineering', label: 'Market Eng' },
     { id: 'daily', label: 'Daily 10 min' },
   ];
 
@@ -97,7 +98,7 @@ const PracticeDashboard: React.FC<PracticeDashboardProps> = ({
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-2 mb-6">
+      <div className="flex flex-wrap gap-2 mb-6 overflow-x-auto pb-1">
         {tabs.map((t) => (
           <button
             key={t.id}

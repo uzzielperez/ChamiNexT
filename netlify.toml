@@ -2,6 +2,18 @@
   command = "npm run build"
   publish = "dist"
 
+[functions]
+  node_bundler = "esbuild"
+
+[functions."interview-agent"]
+  timeout = 26
+
+[functions."code-run"]
+  timeout = 20
+
+[functions."ship-test-evaluator"]
+  timeout = 26
+
 [[redirects]]
   from = "/*"
   to = "/index.html"

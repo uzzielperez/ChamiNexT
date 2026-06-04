@@ -11,6 +11,12 @@ ChamiNext is the evaluation layer for engineering in the AI era. Engineers pract
 - **Primary:** Junior and mid software engineers, career switchers, and AI/ML engineers preparing for modern interviews.
 - **Secondary:** Startup and scale-up hiring managers who want Ship Test pipelines instead of LeetCode-style screens.
 - **Daily mobile user:** Engineer spending 10–20 minutes per day on one lesson bite + one problem + optional micro-ship task.
+- **Market engineering:** Growth, experimentation, funnel, and GTM-technical roles (analytics + martech + launch).
+
+## Monetization
+
+- **Free tier** to taste the loop; **30-day Builder trial** (one per device until accounts are server-backed).
+- Paid: Pro / Builder / Premium monthly, **Interview Season** (90-day bundle), B2B Interview Studio.
 
 ## Strategic Principles
 
@@ -45,3 +51,4 @@ Direct, confident, technical but not jargon-heavy. No hype stacks. Short sentenc
 
 - **Brand:** Home, Pricing
 - **Product:** Practice, Daily, Ship Tests, Profile, Interview Simulator, Employers Interview Studio
+- **Practice tracks:** Software, AI Engineer, Market Engineering

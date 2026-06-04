@@ -36,6 +36,7 @@
 | **B2C Free** | 2 interviews/day, 1 Ship Test/mo, basic profile | €0 |
 | **B2C Pro** | Unlimited interviews, roadmap, score replay | €19/mo |
 | **B2C Builder** | All Ship formats, portfolio export, product reviewer | €49/mo |
+| **B2C Interview Season** | Builder entitlements for 90 days, one-time (active job search) | €149 once |
 | **B2C Premium** | System design sims, elite mocks, deep coaching | €89/mo |
 | **B2B Interview Studio** | Employer dashboard, seeded candidates, role packs | €500–10k/mo (target ACV bands) |
 | **Mobile Daily (PWA)** | Streaks, bites, daily problem, ship micro | Retention driver for Pro/Builder |
@@ -61,7 +62,7 @@
 
 ## 5. Go-to-market
 
-1. **Content-led:** Reddit / LinkedIn / YouTube — mock AI interviews, Ship Test teardowns, “daily 15 min” habit posts.
+1. **Content-led:** Reddit / LinkedIn / YouTube — mock AI interviews, Ship Test teardowns, “daily 15 min” habit posts. Lead practitioner CTA with **Interview Season** (€149 / 90 days) vs open-ended monthly.
 2. **Bootcamp partnerships:** White-label practice + Ship Test cohorts; rev-share on Builder tier.
 3. **Employer wedge:** Interview Studio demo with seeded profiles; land 3–5 design partners pre-Stripe B2B billing.
 4. **PWA install:** “Add to Home Screen” CTA on `/daily` for retention.

@@ -18,7 +18,8 @@ Avoid `#000` / `#fff` literals in new components; use CSS variables.
 ## Typography
 
 - **Font:** Inter (300, 400, 600, 700)
-- **Hero:** 60px / tight leading (landing only)
+- **Hero H1:** Instrument Serif via `.hero-display`, `clamp(3rem, 7vw, 5.5rem)` (landing only)
+- **Hero body:** Inter 20px subline
 - **Section:** 36px
 - **Body:** 16px, line-height 1.6
 - **Max line length:** 65–75ch for prose blocks
@@ -53,6 +54,12 @@ Hierarchy via scale + weight, not decoration.
 - Bottom tab bar min height 56px; safe-area padding
 - Touch targets ≥ 44px
 - Daily flow: single column, progress ring at top
+
+## Logo
+
+- **Mark:** Framed rounded square, “C” arc + forward chevron + deploy dot (ship signal). Electric blue stroke on `accent-primary` / `accent-bright`; light `accent-primary/10` fill. No sparkle icon, no purple gradient tile.
+- **Wordmark:** `Chami` (text primary) + `Next` (accent bright).
+- **Component:** `src/components/brand/ChamiNextLogo.tsx`; favicon `public/chaminext-mark.svg`.
 
 ## Registers
 

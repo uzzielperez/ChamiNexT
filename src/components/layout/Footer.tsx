@@ -1,25 +1,19 @@
 import React from 'react';
-import { Code, Twitter, Github, Linkedin, Instagram } from 'lucide-react';
+import { Twitter, Github, Linkedin, Instagram } from 'lucide-react';
+import ChamiNextLogo from '../brand/ChamiNextLogo';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-black-950 border-t border-gold-600/20 py-12">
+    <footer
+      className="border-t py-12"
+      style={{ backgroundColor: 'var(--bg-primary)', borderColor: 'var(--border-color)' }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
           {/* Brand */}
           <div className="col-span-2 lg:col-span-1">
-                          <div className="flex items-center">
-                <Code className="h-8 w-8 text-gold-500" />
-                <span className="ml-2 text-xl font-bold text-gold-400">ChamiNext</span>
-                {/* Alternative logo image (kept as reserve):
-                <img 
-                  src="/chaminext-logo.png" 
-                  alt="ChamiNexT Logo" 
-                  className="h-8 w-auto"
-                />
-                */}
-              </div>
-                          <p className="mt-4 text-gray-400 text-sm">
+            <ChamiNextLogo size="sm" />
+            <p className="mt-4 text-sm" style={{ color: 'var(--text-secondary)' }}>
                 Interview prep and ship tests for the AI era.
               </p>
             <div className="mt-6 flex space-x-4">

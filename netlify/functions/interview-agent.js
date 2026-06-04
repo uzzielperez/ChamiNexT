@@ -1,4 +1,5 @@
 const { Groq } = require('groq-sdk');
+const { checkRateLimit, rateLimitResponse } = require('./_shared/rateLimit');
 
 const groq = process.env.GROQ_API_KEY
   ? new Groq({ apiKey: process.env.GROQ_API_KEY })
@@ -18,6 +19,9 @@ exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, headers: corsHeaders, body: JSON.stringify({ error: 'Method not allowed' }) };
   }
+
+  const rl = checkRateLimit(event, 'interview', 30);
+  if (!rl.allowed) return rateLimitResponse(rl.retryAfterSec, corsHeaders);
 
   try {
     const body = JSON.parse(event.body || '{}');
@@ -50,19 +54,31 @@ exports.handler = async (event) => {
     }
 
     const track = problem.track || 'software';
-    const isAiEngineer = track === 'ai-engineer';
 
-    const scoreSystem = isAiEngineer
-      ? `You are a senior AI/ML engineering interviewer. Score 0-100 on: thinking, decomposition, communication, codeQuality (use codeQuality for system design / pseudo-code rigor when no code). Evaluate RAG design, evals, prompting, agents, safety, and production tradeoffs—not LeetCode tricks. Return ONLY JSON:
-{"scores":{"thinking":N,"decomposition":N,"communication":N,"codeQuality":N,"overall":N},"scoreNotes":"2-3 sentences"}`
-      : `You are a senior software engineering interviewer. Score 0-100 on: thinking, decomposition, communication, codeQuality. Return ONLY JSON:
-{"scores":{"thinking":N,"decomposition":N,"communication":N,"codeQuality":N,"overall":N},"scoreNotes":"2-3 sentences"}`;
+    const TRACK_PROMPTS = {
+      software: {
+        score: `You are a senior software engineering interviewer. Score 0-100 on: thinking, decomposition, communication, codeQuality. Return ONLY JSON:
+{"scores":{"thinking":N,"decomposition":N,"communication":N,"codeQuality":N,"overall":N},"scoreNotes":"2-3 sentences"}`,
+        chat: `You are an adaptive technical interviewer for ChamiNext. Be Socratic: short questions, no full solutions. Encourage reasoning and tradeoffs. AI-assisted coding is allowed if explained. Return ONLY JSON:
+{"reply":"interviewer message","followUp":"optional sharper question"}`,
+      },
+      'ai-engineer': {
+        score: `You are a senior AI/ML engineering interviewer. Score 0-100 on: thinking, decomposition, communication, codeQuality (use codeQuality for system design / pseudo-code rigor when no code). Evaluate RAG design, evals, prompting, agents, safety, and production tradeoffs—not LeetCode tricks. Return ONLY JSON:
+{"scores":{"thinking":N,"decomposition":N,"communication":N,"codeQuality":N,"overall":N},"scoreNotes":"2-3 sentences"}`,
+        chat: `You are an adaptive AI engineering interviewer for ChamiNext. Topics: RAG, agents, prompting, evals, AI system design, safety. Be Socratic; probe failure modes, cost/latency, and eval strategy. Return ONLY JSON:
+{"reply":"interviewer message","followUp":"optional sharper question"}`,
+      },
+      'market-engineering': {
+        score: `You are a senior market / growth engineering interviewer. Score 0-100 on: thinking, decomposition, communication, codeQuality (SQL, event design, or experiment rigor when no code). Evaluate experimentation discipline, funnel metrics, attribution honesty, martech architecture, and GTM sequencing—not vanity metrics. Return ONLY JSON:
+{"scores":{"thinking":N,"decomposition":N,"communication":N,"codeQuality":N,"overall":N},"scoreNotes":"2-3 sentences"}`,
+        chat: `You are an adaptive market engineering interviewer for ChamiNext. Topics: A/B tests, funnel analytics, growth loops, attribution, CDP/CRM integrations, launch strategy. Probe incrementality, metric definitions, and stakeholder communication. Return ONLY JSON:
+{"reply":"interviewer message","followUp":"optional sharper question"}`,
+      },
+    };
 
-    const chatSystem = isAiEngineer
-      ? `You are an adaptive AI engineering interviewer for ChamiNext. Topics: RAG, agents, prompting, evals, AI system design, safety. Be Socratic; probe failure modes, cost/latency, and eval strategy. No textbook dumps. Return ONLY JSON:
-{"reply":"interviewer message","followUp":"optional sharper question"}`
-      : `You are an adaptive technical interviewer for ChamiNext. Be Socratic: short questions, no full solutions. Encourage reasoning and tradeoffs. AI-assisted coding is allowed if explained. Return ONLY JSON:
-{"reply":"interviewer message","followUp":"optional sharper question"}`;
+    const prompts = TRACK_PROMPTS[track] || TRACK_PROMPTS.software;
+    const scoreSystem = prompts.score;
+    const chatSystem = prompts.chat;
 
     const transcript = messages
       .map((m) => `${m.role}: ${m.content}`)

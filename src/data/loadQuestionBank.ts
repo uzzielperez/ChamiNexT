@@ -1,11 +1,17 @@
 import type { PracticeProblem, PracticeTrack } from '../types/interview';
 import softwareBank from '../../content/question-bank/software.json';
 import aiBank from '../../content/question-bank/ai-engineer.json';
+import marketBank from '../../content/question-bank/market-engineering.json';
 
 const software = softwareBank as PracticeProblem[];
 const aiEngineer = aiBank as PracticeProblem[];
+const marketEngineering = marketBank as PracticeProblem[];
 
-export const allPracticeProblems: PracticeProblem[] = [...software, ...aiEngineer];
+export const allPracticeProblems: PracticeProblem[] = [
+  ...software,
+  ...aiEngineer,
+  ...marketEngineering,
+];
 
 export function getProblemsByTrack(track: PracticeTrack | 'all'): PracticeProblem[] {
   if (track === 'all') return allPracticeProblems;
