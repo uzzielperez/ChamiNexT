@@ -202,6 +202,44 @@
       "license": "ChamiNext"
     }
   ],
+  "cybersecurity": [
+    {
+      "id": "cyber-threat-model-saas",
+      "domain": "threat-modeling",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "cyber-web-audit-legacy",
+      "domain": "web-security",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "cyber-oauth-session-fixation",
+      "domain": "auth-identity",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "cyber-zero-trust-internal",
+      "domain": "secure-design",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "cyber-ransomware-incident",
+      "domain": "incident-response",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "cyber-tls-and-secrets",
+      "domain": "crypto",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    }
+  ],
   "aiEngineer": [
     {
       "id": "rag-chunking-legal",

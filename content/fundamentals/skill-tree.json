@@ -299,6 +299,104 @@
           ]
         }
       ]
+    },
+    "cybersecurity": {
+      "label": "Cybersecurity",
+      "segments": ["appsec", "cloud security", "secops"],
+      "root": {
+        "id": "cyber-root",
+        "label": "Assume breach · defend in depth"
+      },
+      "branches": [
+        {
+          "id": "mindset",
+          "label": "Security mindset",
+          "description": "Threat modeling before controls",
+          "leaves": [
+            {
+              "id": "threat-modeling",
+              "label": "Threat modeling",
+              "fundamentals": [
+                "name assets and trust boundaries first",
+                "prioritize threats by likelihood and impact",
+                "tie controls to specific failure modes"
+              ],
+              "domains": ["threat-modeling"]
+            }
+          ]
+        },
+        {
+          "id": "application",
+          "label": "Application security",
+          "description": "Web apps and identity",
+          "leaves": [
+            {
+              "id": "web-vulns",
+              "label": "Web vulnerabilities",
+              "fundamentals": [
+                "root cause over symptom patching",
+                "output encoding and parameterized queries",
+                "secure defaults in frameworks"
+              ],
+              "domains": ["web-security"]
+            },
+            {
+              "id": "auth-identity",
+              "label": "Auth & identity",
+              "fundamentals": [
+                "OAuth/OIDC flows and failure modes",
+                "session binding and token storage",
+                "least privilege for humans and services"
+              ],
+              "domains": ["auth-identity"]
+            }
+          ]
+        },
+        {
+          "id": "architecture",
+          "label": "Secure architecture",
+          "description": "Design for containment",
+          "leaves": [
+            {
+              "id": "secure-design",
+              "label": "Secure by design",
+              "fundamentals": [
+                "zero trust over perimeter-only models",
+                "blast-radius limits between environments",
+                "pragmatic rollout without blocking shipping"
+              ],
+              "domains": ["secure-design"]
+            },
+            {
+              "id": "crypto-basics",
+              "label": "Cryptography in practice",
+              "fundamentals": [
+                "what each control actually protects",
+                "key lifecycle and access boundaries",
+                "TLS and secrets hygiene in production"
+              ],
+              "domains": ["crypto"]
+            }
+          ]
+        },
+        {
+          "id": "operations",
+          "label": "Detection & response",
+          "description": "When prevention fails",
+          "leaves": [
+            {
+              "id": "incident-response",
+              "label": "Incident response",
+              "fundamentals": [
+                "contain without destroying evidence",
+                "scope lateral movement and credential exposure",
+                "communicate with legal and leadership early"
+              ],
+              "domains": ["incident-response"]
+            }
+          ]
+        }
+      ]
     }
   },
   "benchmarks": {

@@ -139,6 +139,8 @@ const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({ problem, onExit
               ? 'AI Engineer'
               : problem.track === 'quant'
                 ? 'Quant'
+                : problem.track === 'cybersecurity'
+                  ? 'Cybersecurity'
                 : problem.track === 'market-engineering'
                   ? 'Market Engineering'
                   : 'Software'}{' '}

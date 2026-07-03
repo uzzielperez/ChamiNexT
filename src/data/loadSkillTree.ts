@@ -3,7 +3,7 @@ import skillTreeData from '../../content/fundamentals/skill-tree.json';
 import { allPracticeProblems, getProblemsByTrack } from './loadQuestionBank';
 import { loadFieldProblems } from '../utils/fieldReportStorage';
 
-export type SkillTreeTrackId = 'software' | 'ai-engineer' | 'quant';
+export type SkillTreeTrackId = 'software' | 'ai-engineer' | 'quant' | 'cybersecurity';
 
 export interface SkillTreeLeaf {
   id: string;
@@ -122,7 +122,7 @@ export function getSkillTree(track: SkillTreeTrackId): SkillTreeView {
   };
 }
 
-export const skillTreeTrackIds: SkillTreeTrackId[] = ['software', 'ai-engineer', 'quant'];
+export const skillTreeTrackIds: SkillTreeTrackId[] = ['software', 'ai-engineer', 'quant', 'cybersecurity'];
 
 export function getAllSkillTrees(): SkillTreeView[] {
   return skillTreeTrackIds.map(getSkillTree);

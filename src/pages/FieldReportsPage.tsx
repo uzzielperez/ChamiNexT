@@ -41,6 +41,7 @@ const TRACKS: { id: PracticeTrack; label: string }[] = [
   { id: 'software', label: 'Software' },
   { id: 'ai-engineer', label: 'AI Engineer' },
   { id: 'quant', label: 'Quant' },
+  { id: 'cybersecurity', label: 'Cybersecurity' },
   { id: 'market-engineering', label: 'Market Eng' },
 ];
 

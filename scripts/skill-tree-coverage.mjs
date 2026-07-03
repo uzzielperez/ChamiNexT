@@ -14,6 +14,7 @@ const manifest = JSON.parse(readFileSync(join(root, 'content/question-bank/manif
 const domainsByTrack = {
   software: new Set(manifest.software.map((p) => p.domain)),
   quant: new Set((manifest.quant || []).map((p) => p.domain)),
+  cybersecurity: new Set((manifest.cybersecurity || []).map((p) => p.domain)),
   'ai-engineer': new Set(manifest.aiEngineer.map((p) => p.domain)),
   'market-engineering': new Set(manifest.marketEngineering.map((p) => p.domain)),
 };
@@ -21,6 +22,7 @@ const domainsByTrack = {
 const domainOwners = {
   software: domainsByTrack.software,
   quant: domainsByTrack.quant,
+  cybersecurity: domainsByTrack.cybersecurity,
   'ai-engineer': domainsByTrack['ai-engineer'],
 };
 

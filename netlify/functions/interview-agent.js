@@ -80,6 +80,12 @@ exports.handler = async (event) => {
         chat: `You are an adaptive quant interviewer for ChamiNext. Topics: probability, statistics, backtesting integrity, capacity and costs, production signal judgment. Be Socratic and adversarial on statistical claims (sample size, costs, multiple testing). AI-assisted work is allowed if explained. Return ONLY JSON:
 {"reply":"interviewer message","followUp":"optional sharper question"}`,
       },
+      cybersecurity: {
+        score: `You are a senior cybersecurity interviewer (appsec, identity, secure architecture, incident response). Score 0-100 on: thinking, decomposition, communication, codeQuality (use for config, pseudo-code, or detection logic when present). Evaluate threat modeling, root-cause reasoning, control trade-offs, and operational judgment—not certification trivia or acronym dumps. Return ONLY JSON:
+{"scores":{"thinking":N,"decomposition":N,"communication":N,"codeQuality":N,"overall":N},"scoreNotes":"2-3 sentences"}`,
+        chat: `You are an adaptive cybersecurity interviewer for ChamiNext. Topics: threat modeling, web vulns, auth/OAuth, zero trust, crypto/TLS in practice, incident response. Be Socratic; probe assumptions, blast radius, and what you would verify before trusting a fix. Return ONLY JSON:
+{"reply":"interviewer message","followUp":"optional sharper question"}`,
+      },
     };
 
     const prompts = TRACK_PROMPTS[track] || TRACK_PROMPTS.software;

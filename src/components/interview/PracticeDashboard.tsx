@@ -52,6 +52,7 @@ const PracticeDashboard: React.FC<PracticeDashboardProps> = ({
     { id: 'software', label: 'Software' },
     { id: 'ai-engineer', label: 'AI Engineer' },
     { id: 'quant', label: 'Quant' },
+    { id: 'cybersecurity', label: 'Cybersecurity' },
     { id: 'market-engineering', label: 'Market Eng' },
     { id: 'daily', label: 'Daily 10 min' },
   ];
@@ -74,7 +75,7 @@ const PracticeDashboard: React.FC<PracticeDashboardProps> = ({
           <GitBranch className="w-5 h-5 text-accent-blue shrink-0" />
           <p className="text-sm text-text-secondary min-w-0">
             <span className="font-semibold text-text-primary">Skill trees</span> — software, AI,
-            and quant fundamentals with every bank problem mapped.
+            quant, and cybersecurity fundamentals with every bank problem mapped.
           </p>
         </div>
         <ArrowRight className="w-4 h-4 text-accent-blue shrink-0" />

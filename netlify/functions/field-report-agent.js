@@ -52,7 +52,7 @@ exports.handler = async (event) => {
 For each input question, produce a practice problem that tests the same underlying skill with reasoning and AI-collaboration in mind (not rote recall).
 Pick "domain" from: arrays, trees, strings, system-design, debugging, rag, agents, prompting, evals, ai-system-design, safety, experimentation, funnel-analytics, growth-systems, attribution, martech-integrations, gtm-strategy.
 Return ONLY JSON of shape:
-{"problems":[{"title":"short title","prompt":"problem statement that asks for approach + trade-offs then solution","domain":"...","difficulty":"easy|medium|hard","track":"software|ai-engineer|quant|market-engineering","estimatedMinutes":10|15|20}]}`;
+{"problems":[{"title":"short title","prompt":"problem statement that asks for approach + trade-offs then solution","domain":"...","difficulty":"easy|medium|hard","track":"software|ai-engineer|quant|cybersecurity|market-engineering","estimatedMinutes":10|15|20}]}`;
 
     const user = `COMPANY: ${report.company}
 ROLE: ${report.role}

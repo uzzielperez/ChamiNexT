@@ -1,0 +1,110 @@
+[
+  {
+    "id": "cyber-threat-model-saas",
+    "title": "Threat Model a B2B SaaS API",
+    "domain": "threat-modeling",
+    "track": "cybersecurity",
+    "difficulty": "medium",
+    "estimatedMinutes": 15,
+    "prompt": "You're reviewing a new B2B SaaS product: customers upload documents, your API processes them with a worker queue, and results are served via REST + webhooks. Multi-tenant, SSO via SAML, admin console for each customer org.\n\nWalk me through a lightweight threat model: assets, trust boundaries, top 5 threats (STRIDE or similar), and the controls you would prioritize in v1 vs defer. No checklist recitation — justify trade-offs under a small eng team.",
+    "hints": [
+      "Where does tenant isolation break first?",
+      "Webhook signing and replay.",
+      "SSO misconfiguration and session handling."
+    ],
+    "starterCode": "# Threat model outline\n# Assets:\n# Trust boundaries:\n# Top threats (ranked):\n# v1 controls vs later:",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "cyber-web-audit-legacy",
+    "title": "Audit a Legacy Web App",
+    "domain": "web-security",
+    "track": "cybersecurity",
+    "difficulty": "medium",
+    "estimatedMinutes": 15,
+    "prompt": "A legacy PHP app has: user search with a `q` query param echoed on the page, file upload to `/uploads`, and admin panel protected only by a cookie `is_admin=1`. A pen tester filed two findings: stored XSS and possible SQLi in search.\n\nHow do you triage and fix without a full rewrite? Explain root cause for each class of bug, immediate mitigations, and what you would add to CI or code review so they don't return.",
+    "hints": [
+      "Output encoding vs input validation.",
+      "Parameterized queries.",
+      "Cookie flags and server-side authorization."
+    ],
+    "starterCode": "# Triage plan\n# XSS: root cause / fix / prevention\n# SQLi: root cause / fix / prevention\n# Admin auth: root cause / fix",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "cyber-oauth-session-fixation",
+    "title": "OAuth Session Fixation",
+    "domain": "auth-identity",
+    "track": "cybersecurity",
+    "difficulty": "hard",
+    "estimatedMinutes": 20,
+    "prompt": "Your mobile app uses OAuth 2.0 authorization code + PKCE with a custom URL scheme callback. Security reports that after login, sometimes User A sees User B's dashboard on a shared tablet. Logs show valid tokens for both users around the same time.\n\nHypothesize failure modes (state/nonce, redirect URI, token storage, refresh rotation). How do you reproduce safely, fix, and verify? What monitoring would catch recurrence?",
+    "hints": [
+      "PKCE alone doesn't fix session mix-up.",
+      "Secure storage on shared devices.",
+      "state parameter binding to client session."
+    ],
+    "starterCode": "# Hypotheses (ranked):\n# Repro steps:\n# Fix:\n# Verification + monitoring:",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "cyber-zero-trust-internal",
+    "title": "Zero Trust for Internal Services",
+    "domain": "secure-design",
+    "track": "cybersecurity",
+    "difficulty": "medium",
+    "estimatedMinutes": 15,
+    "prompt": "Internal microservices today trust the VPC: any service can call any other on port 443 with no mTLS. A compromised staging pod was used to pivot to production APIs.\n\nDesign a pragmatic zero-trust rollout: identity for workloads, network policy, secrets, and blast-radius limits. What do you ship in 30 days vs 6 months? How do you avoid breaking developer velocity?",
+    "hints": [
+      "Service identity (SPIFFE/SPIRE or cloud IAM).",
+      "Policy at L7 vs flat network ACLs.",
+      "Staging ≠ production credentials."
+    ],
+    "starterCode": "# Current failure mode:\n# 30-day plan:\n# 6-month target:\n# Dev velocity guardrails:",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "cyber-ransomware-incident",
+    "title": "Ransomware on an Endpoint",
+    "domain": "incident-response",
+    "track": "cybersecurity",
+    "difficulty": "hard",
+    "estimatedMinutes": 20,
+    "prompt": "Tuesday 9:14am: EDR alerts on a finance laptop — suspicious encryption activity, outbound connection to an unknown IP. The user had access to shared drives and a VPN to internal tools. No recent backups verified for that share.\n\nWalk me through your first 60 minutes: contain, preserve evidence, communicate, and decide whether to pay (assume you advise leadership). What you need from legal, IT, and the user. What would you change after recovery?",
+    "hints": [
+      "Isolate without destroying forensic artifacts.",
+      "Scope: lateral movement and credential exposure.",
+      "Recovery order: identity, backups, rebuild."
+    ],
+    "starterCode": "# T+0 to T+60 (timeline):\n# Containment:\n# Evidence:\n# Comms (internal / external):\n# Post-incident hardening:",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "cyber-tls-and-secrets",
+    "title": "TLS and Secrets in Production",
+    "domain": "crypto",
+    "track": "cybersecurity",
+    "difficulty": "medium",
+    "estimatedMinutes": 15,
+    "prompt": "A junior engineer proposes: store API keys in env vars, use TLS 1.2 everywhere, rotate keys annually, and encrypt the database with AES-256 at rest. Auditors ask why that's not enough.\n\nExplain what each control actually protects against, common failure modes (key distribution, cipher suites, KMS access, secrets in logs), and what you would add for a regulated fintech. No buzzwords without mechanism.",
+    "hints": [
+      "Encryption at rest vs in transit vs in use.",
+      "Who can decrypt? Break-glass?",
+      "Certificate lifecycle and HSTS."
+    ],
+    "starterCode": "# Control → protects against → gap\n# Fintech additions:\n# Key rotation that actually works:",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  }
+]

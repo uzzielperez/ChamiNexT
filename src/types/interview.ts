@@ -17,7 +17,7 @@ export type ProblemDomain =
   | 'martech-integrations'
   | 'gtm-strategy';
 
-export type PracticeTrack = 'software' | 'ai-engineer' | 'quant' | 'market-engineering';
+export type PracticeTrack = 'software' | 'ai-engineer' | 'quant' | 'cybersecurity' | 'market-engineering';
 
 export type EstimatedMinutes = 10 | 15 | 20;
 
