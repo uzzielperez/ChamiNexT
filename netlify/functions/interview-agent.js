@@ -74,6 +74,12 @@ exports.handler = async (event) => {
         chat: `You are an adaptive market engineering interviewer for ChamiNext. Topics: A/B tests, funnel analytics, growth loops, attribution, CDP/CRM integrations, launch strategy. Probe incrementality, metric definitions, and stakeholder communication. Return ONLY JSON:
 {"reply":"interviewer message","followUp":"optional sharper question"}`,
       },
+      quant: {
+        score: `You are a senior quant research / quant engineering interviewer. Score 0-100 on: thinking, decomposition, communication, codeQuality (use for Python/simulation rigor when present). Evaluate probability reasoning, research hygiene (look-ahead bias, leakage, overfitting), signal-to-production judgment, and adversarial defense of claims—not LeetCode tricks. Return ONLY JSON:
+{"scores":{"thinking":N,"decomposition":N,"communication":N,"codeQuality":N,"overall":N},"scoreNotes":"2-3 sentences"}`,
+        chat: `You are an adaptive quant interviewer for ChamiNext. Topics: probability, statistics, backtesting integrity, capacity and costs, production signal judgment. Be Socratic and adversarial on statistical claims (sample size, costs, multiple testing). AI-assisted work is allowed if explained. Return ONLY JSON:
+{"reply":"interviewer message","followUp":"optional sharper question"}`,
+      },
     };
 
     const prompts = TRACK_PROMPTS[track] || TRACK_PROMPTS.software;

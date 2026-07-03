@@ -1,0 +1,56 @@
+[
+  {
+    "id": "quant-lookahead-bias",
+    "title": "Look-Ahead Bias in a Backtest",
+    "domain": "evals",
+    "track": "quant",
+    "difficulty": "medium",
+    "estimatedMinutes": 15,
+    "prompt": "A junior researcher shows you a backtest with Sharpe 2.1 on daily equity signals. You suspect look-ahead bias in the feature pipeline. Walk me through how you would audit the pipeline, what failure modes you look for (point-in-time data, survivorship, corporate actions), and how you would redesign the eval so the result is trustworthy. No code required — structure your answer as: hypotheses → checks → fix.",
+    "hints": [
+      "As-of joins: what did you know at decision time?",
+      "Train/test leakage vs feature leakage.",
+      "What would you require before trusting live paper trading?"
+    ],
+    "starterCode": "# Audit plan (bullets or pseudo-code)\n# 1. Data lineage\n# 2. Point-in-time checks\n# 3. Redesigned eval",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "quant-conditional-expectation",
+    "title": "Conditional Expectation Puzzle",
+    "domain": "arrays",
+    "track": "quant",
+    "difficulty": "medium",
+    "estimatedMinutes": 15,
+    "prompt": "You roll a fair die repeatedly until you see a 6. Let X be the number of rolls. What is E[X]? Explain your reasoning from first principles (not just quoting a formula). Then: how would you verify with a short simulation, and what would make you distrust a Monte Carlo estimate?",
+    "hints": [
+      "Geometric distribution intuition.",
+      "Law of large numbers vs finite sample noise.",
+      "Seed and sample size for simulation."
+    ],
+    "starterCode": "import random\n\ndef simulate_one() -> int:\n    rolls = 0\n    while True:\n        rolls += 1\n        if random.randint(1, 6) == 6:\n            return rolls\n\n# Estimate E[X] and explain variance of your estimator",
+    "runLanguage": "python",
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "quant-signal-capacity",
+    "title": "Signal Capacity Before Production",
+    "domain": "ai-system-design",
+    "track": "quant",
+    "difficulty": "hard",
+    "estimatedMinutes": 20,
+    "prompt": "You have a short-horizon mean-reversion signal that backtests well at $10M notional but the PM wants to scale to $500M. How do you decide if the signal is production-ready at scale? Cover: capacity constraints, turnover and transaction costs, impact, monitoring in live trading, and what would make you kill the strategy after launch.",
+    "hints": [
+      "Backtest PnL vs net of costs at target size.",
+      "Crowding and alpha decay.",
+      "Kill criteria before emotional attachment."
+    ],
+    "starterCode": "# Decision framework\n# Capacity estimate:\n# Cost model:\n# Go / no-go gates:",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  }
+]

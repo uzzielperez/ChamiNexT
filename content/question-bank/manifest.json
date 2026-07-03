@@ -182,6 +182,26 @@
       "license": "ChamiNext"
     }
   ],
+  "quant": [
+    {
+      "id": "quant-lookahead-bias",
+      "domain": "evals",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "quant-conditional-expectation",
+      "domain": "arrays",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    },
+    {
+      "id": "quant-signal-capacity",
+      "domain": "ai-system-design",
+      "source": "curated-original",
+      "license": "ChamiNext"
+    }
+  ],
   "aiEngineer": [
     {
       "id": "rag-chunking-legal",

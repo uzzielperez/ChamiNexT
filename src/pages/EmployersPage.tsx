@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import PremiumTabs from '../components/ui/PremiumTabs';
-import AuroraBackground from '../components/ui/AuroraBackground';
 import PremiumButton from '../components/ui/PremiumButton';
-import { Briefcase, Rocket, BarChart3, Plus, Link2 } from 'lucide-react';
+import { Briefcase, Rocket, BarChart3, Plus, Link2, ArrowRight } from 'lucide-react';
 import {
   loadRoles,
   addRole,
@@ -11,8 +11,19 @@ import {
 } from '../utils/employerStorage';
 import { shipTestChallenges } from '../data/shipTests';
 import { seedDemoPresentation } from '../utils/seedDemo';
+import type { CandidateApplication } from '../types/employer';
 
 type ViewMode = 'roles' | 'assessments' | 'candidates';
+
+const STATUS_LABELS: Record<CandidateApplication['status'], string> = {
+  new: 'New',
+  review: 'Reviewing',
+  strong: 'Shortlisted',
+  hold: 'On hold',
+};
+
+const statusSelectClass = (status: CandidateApplication['status']) =>
+  `status-badge status-${status} min-w-[7.5rem] text-center`;
 
 const EmployersPage: React.FC = () => {
   const [currentView, setCurrentView] = useState<ViewMode>('candidates');
@@ -54,10 +65,8 @@ const EmployersPage: React.FC = () => {
   const sortedApps = [...applications].sort((a, b) => b.shipping - a.shipping);
 
   return (
-    <div className="min-h-screen bg-primary-dark text-text-primary relative overflow-hidden">
-      <AuroraBackground opacity={0.6} speed={1.0} />
-
-      <div className="relative z-10">
+    <div className="app-shell text-text-primary">
+      <div>
         <div className="w-full px-4 pt-8">
           <div className="container mx-auto max-w-5xl">
             <PremiumTabs
@@ -68,16 +77,32 @@ const EmployersPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="container mx-auto px-4 py-12 max-w-6xl">
+        <div className="container mx-auto px-4 py-12 max-w-6xl pb-24 md:pb-12">
           <div className="text-center mb-10">
             <p className="text-sm text-accent-blue font-medium mb-2">Company Interview Studio</p>
-            <h1 className="text-hero-headline font-bold text-text-primary mb-4">Hire on shipped output</h1>
+            <h1 className="text-hero-headline font-bold text-text-primary mb-4">
+              Hire on output. Skip the whiteboard theater.
+            </h1>
             <p className="text-subheadline text-text-secondary max-w-2xl mx-auto">
-              Assign Ship Tests, review AI scores, rank candidates by thinking + shipping.
+              Send a real project challenge. Get thinking scores, shipping scores, and a ranked
+              shortlist — in 24–72 hours.
             </p>
-            <PremiumButton variant="secondary" size="sm" className="mt-4" onClick={() => { seedDemoPresentation(); refresh(); }}>
-              Load employer demo data
-            </PremiumButton>
+            <div className="mt-8 flex flex-col items-center gap-2">
+              <PremiumButton
+                variant="primary"
+                size="lg"
+                onClick={() => {
+                  seedDemoPresentation();
+                  refresh();
+                }}
+              >
+                Load employer demo data
+              </PremiumButton>
+              <p className="text-text-secondary text-sm max-w-md">
+                Populates sample roles, Ship Test assignments, and ranked candidates so you can
+                explore the studio in one click.
+              </p>
+            </div>
           </div>
 
           {currentView === 'roles' && (
@@ -95,17 +120,24 @@ const EmployersPage: React.FC = () => {
                     <input
                       value={newTitle}
                       onChange={(e) => setNewTitle(e.target.value)}
-                      className="w-full mt-1 px-4 py-2 rounded-lg bg-bg-secondary border border-gray-700"
+                      className="w-full mt-1 px-4 py-2 rounded-lg bg-[var(--bg-secondary)] border border-[var(--border-color)] text-text-primary"
                     />
                   </div>
-                  <PremiumButton variant="primary" onClick={createRole}>Save</PremiumButton>
+                  <PremiumButton variant="primary" onClick={createRole}>
+                    Save
+                  </PremiumButton>
                 </div>
               )}
               {roles.length === 0 ? (
-                <p className="text-text-secondary text-center">No roles yet. Load demo data or create one.</p>
+                <p className="text-text-secondary text-center">
+                  No roles yet. Load demo data or create one.
+                </p>
               ) : (
                 roles.map((role) => (
-                  <div key={role.id} className="card p-6 mb-4 flex flex-wrap justify-between gap-4 items-center">
+                  <div
+                    key={role.id}
+                    className="card p-6 mb-4 flex flex-wrap justify-between gap-4 items-center"
+                  >
                     <div>
                       <h3 className="text-xl font-bold">{role.title}</h3>
                       <p className="text-text-secondary text-sm">
@@ -133,7 +165,9 @@ const EmployersPage: React.FC = () => {
               ))}
               <div className="card p-6 border-accent-blue/30">
                 <h3 className="font-bold">AI Interview Pack</h3>
-                <p className="text-text-secondary text-sm mt-2">All practice domains with adaptive follow-ups.</p>
+                <p className="text-text-secondary text-sm mt-2">
+                  All practice domains with adaptive follow-ups.
+                </p>
               </div>
             </div>
           )}
@@ -142,7 +176,7 @@ const EmployersPage: React.FC = () => {
             <div className="card overflow-x-auto">
               <table className="w-full text-sm min-w-[640px]">
                 <thead>
-                  <tr className="border-b border-gray-700 text-text-secondary text-left">
+                  <tr className="border-b border-[var(--border-color)] text-text-secondary text-left">
                     <th className="p-4">Candidate</th>
                     <th className="p-4">Thinking</th>
                     <th className="p-4">Shipping</th>
@@ -153,7 +187,7 @@ const EmployersPage: React.FC = () => {
                 </thead>
                 <tbody>
                   {sortedApps.map((c) => (
-                    <tr key={c.id} className="border-b border-gray-800">
+                    <tr key={c.id} className="border-b border-[var(--border-color)]">
                       <td className="p-4 font-medium">{c.displayName}</td>
                       <td className="p-4">{c.thinking}</td>
                       <td className="p-4 font-bold text-accent-blue">{c.shipping}</td>
@@ -162,15 +196,22 @@ const EmployersPage: React.FC = () => {
                         <select
                           value={c.status}
                           onChange={(e) => {
-                            updateApplicationStatus(c.id, e.target.value as typeof c.status);
+                            updateApplicationStatus(
+                              c.id,
+                              e.target.value as CandidateApplication['status']
+                            );
                             refresh();
                           }}
-                          className="bg-bg-secondary border border-gray-700 rounded px-2 py-1 text-sm"
+                          className={statusSelectClass(c.status)}
+                          aria-label={`Status for ${c.displayName}`}
                         >
-                          <option value="new">New</option>
-                          <option value="review">Review</option>
-                          <option value="strong">Strong</option>
-                          <option value="hold">Hold</option>
+                          {(Object.keys(STATUS_LABELS) as CandidateApplication['status'][]).map(
+                            (s) => (
+                              <option key={s} value={s} className="bg-[#0a0b0d] text-white">
+                                {STATUS_LABELS[s]}
+                              </option>
+                            )
+                          )}
                         </select>
                       </td>
                       <td className="p-4">
@@ -189,20 +230,25 @@ const EmployersPage: React.FC = () => {
               </table>
               {sortedApps.length === 0 && (
                 <p className="p-8 text-center text-text-secondary">
-                  No applications. Candidates apply via invite link or Profile → Apply to demo role.
+                  No applications. Candidates apply via invite link or Profile → Apply to demo
+                  role.
                 </p>
               )}
             </div>
           )}
 
-          <div className="card border-accent-blue/20 p-6 mt-12 text-center">
-            <h3 className="font-bold mb-2">B2B pricing (demo)</h3>
-            <p className="text-text-secondary text-sm mb-4">
-              Starter €500–1k/mo · Growth €2–5k/mo · Pay-per-candidate €300–2k
-            </p>
-            <PremiumButton variant="secondary" onClick={() => window.location.href = '/pricing'}>
-              View all plans
-            </PremiumButton>
+          <div className="studio-cta-card mt-12 p-8 rounded-[var(--radius-card)] border border-[var(--border-color)] bg-[var(--bg-secondary)] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+            <div>
+              <h3 className="text-xl font-bold mb-2">Ready to hire on real output?</h3>
+              <p className="text-text-secondary text-sm">
+                Starter from €500/mo · No setup fees
+              </p>
+            </div>
+            <Link to="/pricing" className="shrink-0">
+              <PremiumButton variant="primary" size="md" icon={<ArrowRight className="w-4 h-4" />}>
+                View pricing
+              </PremiumButton>
+            </Link>
           </div>
         </div>
       </div>

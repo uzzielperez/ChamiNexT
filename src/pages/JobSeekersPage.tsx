@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import CVIterator from '../components/jobseekers/CVIterator';
 import Questionnaire from '../components/jobseekers/Questionnaire';
 import PremiumTabs from '../components/ui/PremiumTabs';
-import AuroraBackground from '../components/ui/AuroraBackground';
 import PracticeDashboard from '../components/interview/PracticeDashboard';
 import InterviewSimulator from '../components/interview/InterviewSimulator';
 import TalentProfile from '../components/interview/TalentProfile';
@@ -69,7 +68,9 @@ const JobSeekersPage: React.FC = () => {
   };
 
   useEffect(() => {
-    const nav = location.state as { problemId?: string; view?: ViewMode } | null;
+    const nav = location.state as
+      | { problemId?: string; view?: ViewMode; fieldProblem?: PracticeProblem }
+      | null;
     if (!nav) return;
     if (nav.view) {
       if (nav.view === 'ship-lobby' && shipEnrollment?.status === 'active') {
@@ -78,7 +79,9 @@ const JobSeekersPage: React.FC = () => {
         setCurrentView(nav.view);
       }
     }
-    if (nav.problemId) {
+    if (nav.fieldProblem) {
+      startInterview(nav.fieldProblem);
+    } else if (nav.problemId) {
       const p = getProblemById(nav.problemId);
       if (p) startInterview(p);
     }
@@ -99,10 +102,8 @@ const JobSeekersPage: React.FC = () => {
   const toolsFullScreen = currentView === 'tools' && toolsSubview === 'cv';
 
   return (
-    <div className="min-h-screen bg-primary-dark text-text-primary relative overflow-hidden">
-      <AuroraBackground opacity={0.6} speed={1.0} />
-
-      <div className="relative z-10">
+    <div className="app-shell text-text-primary">
+      <div>
         {!fullScreenViews.includes(currentView) && !toolsFullScreen && (
           <div className="w-full px-4 pt-8">
             <div className="container mx-auto max-w-5xl">

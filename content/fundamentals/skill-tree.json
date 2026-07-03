@@ -1,0 +1,241 @@
+{
+  "version": 2,
+  "updated": "2026-07-03",
+  "description": "First-principles skill trees for ChamiNext. Problems attach by track + domain. Agents read this file; do not regenerate in LLM runs.",
+  "tracks": {
+    "software": {
+      "label": "Software Engineering",
+      "segments": ["general SWE", "backend", "full-stack"],
+      "nodes": [
+        {
+          "id": "decomposition",
+          "label": "Problem decomposition",
+          "order": 1,
+          "fundamentals": [
+            "clarify constraints before coding",
+            "break ambiguous problems into subproblems",
+            "name edge cases explicitly"
+          ],
+          "domains": ["arrays", "strings", "trees"]
+        },
+        {
+          "id": "arrays",
+          "label": "Arrays & two pointers",
+          "order": 2,
+          "fundamentals": [
+            "choose the right invariant for sliding windows",
+            "trade memory for time deliberately",
+            "state complexity before optimizing"
+          ],
+          "domains": ["arrays"]
+        },
+        {
+          "id": "trees",
+          "label": "Trees & graphs",
+          "order": 3,
+          "fundamentals": [
+            "pick traversal for the question (DFS vs BFS)",
+            "handle null / empty base cases",
+            "explain recursive vs iterative trade-offs"
+          ],
+          "domains": ["trees"]
+        },
+        {
+          "id": "strings",
+          "label": "Strings & parsing",
+          "order": 4,
+          "fundamentals": [
+            "character-level vs substring reasoning",
+            "hash maps for frequency and grouping",
+            "watch off-by-one on indices"
+          ],
+          "domains": ["strings"]
+        },
+        {
+          "id": "debugging",
+          "label": "Debugging under pressure",
+          "order": 5,
+          "fundamentals": [
+            "reproduce before fixing",
+            "isolate failure scope",
+            "explain root cause not symptom"
+          ],
+          "domains": ["debugging"]
+        },
+        {
+          "id": "system-design-swe",
+          "label": "System design",
+          "order": 6,
+          "fundamentals": [
+            "capacity and latency estimates",
+            "bottleneck identification",
+            "consistency vs availability trade-offs"
+          ],
+          "domains": ["system-design"]
+        },
+        {
+          "id": "ai-collaboration-swe",
+          "label": "AI-assisted delivery",
+          "order": 7,
+          "fundamentals": [
+            "verify AI output instead of trusting it",
+            "explain decisions AI did not make for you",
+            "recover when AI output is wrong"
+          ],
+          "domains": ["debugging", "system-design"]
+        }
+      ]
+    },
+    "ai-engineer": {
+      "label": "AI / ML Engineering",
+      "segments": ["ML engineer", "research engineer", "AI lab"],
+      "nodes": [
+        {
+          "id": "rag-fundamentals",
+          "label": "RAG & retrieval",
+          "order": 1,
+          "fundamentals": [
+            "chunking and retrieval trade-offs",
+            "citation and grounding",
+            "failure modes: hallucination, stale index"
+          ],
+          "domains": ["rag"]
+        },
+        {
+          "id": "eval-discipline",
+          "label": "Eval discipline",
+          "order": 2,
+          "fundamentals": [
+            "define ground truth before scoring",
+            "offline vs online metrics",
+            "regression when model changes"
+          ],
+          "domains": ["evals"]
+        },
+        {
+          "id": "prompting",
+          "label": "Prompting & few-shot design",
+          "order": 3,
+          "fundamentals": [
+            "system vs user message roles",
+            "when few-shot helps vs hurts",
+            "eval prompts like you eval models"
+          ],
+          "domains": ["prompting"]
+        },
+        {
+          "id": "agents-orchestration",
+          "label": "Agents & orchestration",
+          "order": 4,
+          "fundamentals": [
+            "tool use vs prompt-only",
+            "state and failure recovery",
+            "cost and latency budgets"
+          ],
+          "domains": ["agents"]
+        },
+        {
+          "id": "ai-systems",
+          "label": "ML systems & serving",
+          "order": 5,
+          "fundamentals": [
+            "inference serving and batching",
+            "feature and vector store patterns",
+            "deployment and monitoring"
+          ],
+          "domains": ["ai-system-design"]
+        },
+        {
+          "id": "safety-guardrails",
+          "label": "Safety & guardrails",
+          "order": 6,
+          "fundamentals": [
+            "prompt injection awareness",
+            "PII and logging boundaries",
+            "human-in-the-loop when needed"
+          ],
+          "domains": ["safety"]
+        },
+        {
+          "id": "from-scratch-ml",
+          "label": "ML from first principles",
+          "order": 7,
+          "fundamentals": [
+            "implement core blocks without hiding libraries",
+            "debug training failures (loss spikes)",
+            "explain what the model is learning"
+          ],
+          "domains": ["ai-system-design", "evals"]
+        }
+      ]
+    },
+    "quant": {
+      "label": "Quant / Research Engineering",
+      "segments": ["quant research", "quant dev", "prop trading"],
+      "nodes": [
+        {
+          "id": "probability-stats",
+          "label": "Probability & statistics",
+          "order": 1,
+          "fundamentals": [
+            "conditional expectation and Bayes",
+            "hypothesis testing discipline",
+            "explain assumptions behind a claim"
+          ],
+          "domains": ["arrays"]
+        },
+        {
+          "id": "research-hygiene",
+          "label": "Research hygiene",
+          "order": 2,
+          "fundamentals": [
+            "look-ahead bias and data leakage",
+            "train/test split honesty",
+            "multiple-testing and overfitting"
+          ],
+          "domains": ["evals"]
+        },
+        {
+          "id": "signal-to-production",
+          "label": "Signal to production",
+          "order": 3,
+          "fundamentals": [
+            "backtest vs live gap",
+            "transaction costs and capacity",
+            "n to N scaling argument"
+          ],
+          "domains": ["ai-system-design"]
+        },
+        {
+          "id": "adversarial-defense",
+          "label": "Adversarial reasoning",
+          "order": 4,
+          "fundamentals": [
+            "defend sample size and methodology",
+            "answer follow-ups on failure modes",
+            "intellectual humility under pushback"
+          ],
+          "domains": ["evals", "debugging"]
+        },
+        {
+          "id": "quant-coding",
+          "label": "Quant coding",
+          "order": 5,
+          "fundamentals": [
+            "correct efficient Python for research",
+            "pandas/numpy fluency",
+            "simulation to sanity-check math"
+          ],
+          "domains": ["arrays", "strings", "debugging"]
+        }
+      ]
+    }
+  },
+  "benchmarks": {
+    "nodeCoverageMinProblems": 1,
+    "fieldValidationMinReports": 3,
+    "humanAiScoreCorrelationTarget": 0.6,
+    "scoreVarianceMaxPoints": 8,
+    "weeklyEmptyDiffTargetPct": 40
+  }
+}

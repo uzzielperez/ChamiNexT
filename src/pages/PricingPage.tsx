@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import AuroraBackground from '../components/ui/AuroraBackground';
+import { Link, useNavigate } from 'react-router-dom';
 import PremiumButton from '../components/ui/PremiumButton';
 import { Check, ArrowLeft, Calendar } from 'lucide-react';
 import {
@@ -40,34 +39,40 @@ const monthlyTiers: {
   price: string;
   desc: string;
   features: string[];
-  highlight?: boolean;
+  recommended?: boolean;
 }[] = [
   {
     id: 'free',
     name: 'Free',
     price: '€0',
-    desc: 'Try the loop',
+    desc: 'Explore the platform',
     features: ['2 AI interviews / day', '1 Ship Test / month', 'Basic talent profile'],
   },
   {
     id: 'pro',
     name: 'Pro',
     price: '€19/mo',
-    desc: 'Daily interview prep',
+    desc: 'For consistent daily practice',
     features: ['Unlimited AI interviews', 'Personalized roadmap', 'Score reports & replay'],
   },
   {
     id: 'builder',
     name: 'Builder',
     price: '€49/mo',
-    desc: 'Ship Tests unlocked',
-    features: ['Everything in Pro', 'All Ship Test formats', 'Portfolio export', 'AI product reviewer'],
+    desc: 'For active job seekers',
+    features: [
+      'Everything in Pro',
+      'All Ship Test formats',
+      'Portfolio export',
+      'AI product reviewer',
+    ],
+    recommended: true,
   },
   {
     id: 'premium',
     name: 'Premium',
     price: '€89/mo',
-    desc: 'Elite loop',
+    desc: 'For competitive roles at top companies',
     features: ['System design simulations', 'Elite mock interviews', 'Deep coaching notes'],
   },
 ];
@@ -115,9 +120,8 @@ const PricingPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
-      <AuroraBackground opacity={0.5} speed={0.9} />
-      <div className="container mx-auto px-4 py-12 relative z-10 max-w-6xl">
+    <div className="app-shell">
+      <div className="container mx-auto px-4 py-12 max-w-6xl pb-24 md:pb-12">
         <PremiumButton variant="ghost" size="sm" onClick={() => navigate('/')} className="mb-8">
           <ArrowLeft className="w-4 h-4 mr-2" />
           Home
@@ -125,8 +129,17 @@ const PricingPage: React.FC = () => {
         <div className="text-center mb-12">
           <h1 className="text-hero-headline font-bold mb-4">Pricing</h1>
           <p className="text-subheadline text-text-secondary max-w-xl mx-auto">
-            Prep priced for practitioners targeting $100k–500k roles. Companies: Interview Studio
-            from €500/mo.
+            Built for engineers targeting six-figure roles.
+          </p>
+          <p className="text-sm text-text-secondary mt-4">
+            Hiring?{' '}
+            <Link to="/employers" className="text-accent-blue font-medium hover:underline">
+              Interview Studio starts at €500/mo
+            </Link>{' '}
+            →{' '}
+            <Link to="/employers" className="text-accent-blue font-medium hover:underline">
+              View company plans
+            </Link>
           </p>
         </div>
 
@@ -135,9 +148,8 @@ const PricingPage: React.FC = () => {
             <div>
               <h2 className="text-xl font-bold mb-1">Free 30-day trial</h2>
               <p className="text-text-secondary text-sm max-w-xl">
-                Full Builder for one month: unlimited AI interviews, all Ship Test formats,
-                portfolio export. No credit card in demo mode. One trial per device until accounts
-                are live.
+                Full Builder for one month: unlimited AI interviews, all Ship Test formats, portfolio
+                export. No credit card in demo mode. One trial per device until accounts are live.
               </p>
             </div>
             <PremiumButton variant="primary" size="lg" onClick={startTrial} className="shrink-0">
@@ -146,8 +158,9 @@ const PricingPage: React.FC = () => {
           </div>
         )}
 
-        <div className="card p-8 md:p-10 mb-12 border-accent-blue/40 ring-1 ring-accent-blue/25">
-          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8">
+        <div className="card plan-featured p-8 md:p-10 mb-4">
+          <div className="popular-badge">Most Popular</div>
+          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 pt-2">
             <div className="flex-1 max-w-2xl">
               <span className="text-xs font-bold text-accent-blue uppercase tracking-wide mb-3 inline-flex items-center gap-2">
                 <Calendar className="w-4 h-4" />
@@ -170,9 +183,7 @@ const PricingPage: React.FC = () => {
             <div className="lg:text-right shrink-0">
               <p className="text-4xl font-bold text-text-primary">{INTERVIEW_SEASON.price}</p>
               <p className="text-sm text-text-secondary mt-1">{INTERVIEW_SEASON.priceDetail}</p>
-              <p className="text-xs text-text-secondary mt-2">
-                vs ~€147 for 3× Builder monthly
-              </p>
+              <p className="text-xs text-text-secondary mt-2">vs ~€147 for 3× Builder monthly</p>
               <PremiumButton
                 variant="primary"
                 size="lg"
@@ -186,11 +197,19 @@ const PricingPage: React.FC = () => {
           </div>
         </div>
 
-        <p className="text-center text-sm text-text-secondary mb-6">Or pay monthly</p>
+        <div className="section-divider">
+          <span>Or pay monthly</span>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {monthlyTiers.map((t) => (
-            <div key={t.id} className="card p-6 flex flex-col">
+            <div
+              key={t.id}
+              className={`card p-6 flex flex-col ${t.recommended ? 'plan-builder-recommended' : ''}`}
+            >
+              {t.recommended && (
+                <span className="text-xs font-semibold text-accent-blue mb-2">Recommended</span>
+              )}
               <h2 className="text-xl font-bold">{t.name}</h2>
               <p className="text-2xl font-bold my-2" style={{ color: 'var(--accent-bright)' }}>
                 {t.price}
@@ -204,15 +223,36 @@ const PricingPage: React.FC = () => {
                   </li>
                 ))}
               </ul>
-              <PremiumButton
-                variant="secondary"
-                size="md"
-                fullWidth
-                onClick={() => checkout(t.id)}
-                loading={loading === t.id}
-              >
-                {t.id === 'free' ? 'Start free' : 'Get plan'}
-              </PremiumButton>
+              {t.id === 'free' ? (
+                <button
+                  type="button"
+                  onClick={() => checkout('free')}
+                  className="text-link text-left w-full"
+                  disabled={loading === 'free'}
+                >
+                  Start for free →
+                </button>
+              ) : t.id === 'builder' ? (
+                <PremiumButton
+                  variant="primary"
+                  size="md"
+                  fullWidth
+                  onClick={() => checkout(t.id)}
+                  loading={loading === t.id}
+                >
+                  Get Builder
+                </PremiumButton>
+              ) : (
+                <PremiumButton
+                  variant="secondary"
+                  size="md"
+                  fullWidth
+                  onClick={() => checkout(t.id)}
+                  loading={loading === t.id}
+                >
+                  Get {t.name}
+                </PremiumButton>
+              )}
             </div>
           ))}
         </div>

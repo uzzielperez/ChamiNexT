@@ -137,9 +137,11 @@ const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({ problem, onExit
           <p className="text-sm text-text-secondary capitalize">
             {problem.track === 'ai-engineer'
               ? 'AI Engineer'
-              : problem.track === 'market-engineering'
-                ? 'Market Engineering'
-                : 'Software'}{' '}
+              : problem.track === 'quant'
+                ? 'Quant'
+                : problem.track === 'market-engineering'
+                  ? 'Market Engineering'
+                  : 'Software'}{' '}
             · {problem.domain} ·{' '}
             {problem.difficulty}
           </p>

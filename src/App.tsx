@@ -28,6 +28,8 @@ import PricingPage from './pages/PricingPage';
 import PublicProfilePage from './pages/PublicProfilePage';
 import ApplyPage from './pages/ApplyPage';
 import DailyPracticePage from './pages/DailyPracticePage';
+import FieldReportsPage from './pages/FieldReportsPage';
+import SkillTreesPage from './pages/SkillTreesPage';
 import LearnPage from './pages/LearnPage';
 import DemoBanner from './components/demo/DemoBanner';
 import TrialBanner from './components/layout/TrialBanner';
@@ -48,6 +50,8 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/daily" element={<DailyPracticePage />} />
+            <Route path="/field-reports" element={<FieldReportsPage />} />
+            <Route path="/skills" element={<SkillTreesPage />} />
             <Route path="/learn" element={<LearnPage />} />
             <Route path="/practice" element={<JobSeekersPage />} />
             <Route path="/jobseekers" element={<Navigate to="/practice" replace />} />

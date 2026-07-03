@@ -20,6 +20,7 @@ const PremiumHeader: React.FC = () => {
 
   const navigation = [
     { name: 'Practice', href: '/practice', hasDropdown: false },
+    { name: 'Skill trees', href: '/skills', hasDropdown: false },
     { name: 'For Companies', href: '/employers', hasDropdown: false },
     { name: 'Pricing', href: '/pricing', hasDropdown: false },
     {
@@ -36,6 +37,8 @@ const PremiumHeader: React.FC = () => {
     },
   ];
 
+  const isLanding = location.pathname === '/';
+
   const isActiveLink = (href: string) => {
     if (href === '#' || href === '/') return location.pathname === '/';
     return location.pathname === href || location.pathname.startsWith(`${href}/`);
@@ -45,23 +48,23 @@ const PremiumHeader: React.FC = () => {
     const active = isActiveLink(href);
     return [
       'px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200',
-      'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-white/5',
-      'active:text-[var(--text-primary)] active:bg-white/10',
-      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-transparent',
+      'hover:bg-white/5 active:bg-white/10',
+      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)]',
       active
-        ? '!text-[var(--accent-bright)] bg-[var(--accent-primary)]/15 hover:!text-[var(--accent-bright)]'
+        ? '!text-[var(--accent-bright)] bg-[var(--accent-primary)]/15'
         : '',
     ].join(' ');
   };
 
+  const headerSolid = !isLanding || isScrolled;
+
   return (
-    <header className={`
-      fixed top-0 left-0 right-0 z-50 transition-all duration-300
-      ${isScrolled 
-        ? 'glass border-b shadow-lg' 
-        : 'bg-transparent'
-      }
-    `} style={{ borderColor: isScrolled ? 'var(--border-color)' : 'transparent' }}>
+    <header
+      className={`site-header fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
+        headerSolid ? 'bg-[#0a0b0d]/95 backdrop-blur-md shadow-lg' : 'bg-transparent border-transparent'
+      }`}
+      style={{ borderColor: headerSolid ? 'var(--border-color)' : 'transparent' }}
+    >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -77,16 +80,7 @@ const PremiumHeader: React.FC = () => {
               {navigation.map((item) => (
                 <div key={item.name} className="relative group">
                   {item.hasDropdown ? (
-                    <button
-                      type="button"
-                      className={`
-                        flex items-center px-3 py-2 rounded-lg text-sm font-medium
-                        transition-colors duration-200
-                        text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-white/5
-                        active:text-[var(--text-primary)] active:bg-white/10
-                        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)]
-                      `}
-                    >
+                    <button type="button" className={`flex items-center ${navLinkClass('#')}`}>
                       {item.name}
                       <ChevronDown className="ml-1 w-4 h-4 group-hover:rotate-180 transition-transform duration-200" />
                     </button>

@@ -17,7 +17,7 @@ export type ProblemDomain =
   | 'martech-integrations'
   | 'gtm-strategy';
 
-export type PracticeTrack = 'software' | 'ai-engineer' | 'market-engineering';
+export type PracticeTrack = 'software' | 'ai-engineer' | 'quant' | 'market-engineering';
 
 export type EstimatedMinutes = 10 | 15 | 20;
 
@@ -119,4 +119,53 @@ export interface TalentProfile {
   strengthDomains: ProblemDomain[];
   weaknessDomains: ProblemDomain[];
   summary: string;
+}
+
+export type InterviewStage =
+  | 'recruiter-screen'
+  | 'technical-screen'
+  | 'take-home'
+  | 'onsite'
+  | 'system-design'
+  | 'other';
+
+export type InterviewOutcome =
+  | 'pending'
+  | 'passed-round'
+  | 'rejected'
+  | 'offer'
+  | 'unknown';
+
+// A real interview a candidate actually went through. This is the signal that
+// makes the platform self-improving: real questions in, sharper practice out.
+export interface InterviewReport {
+  id: string;
+  company: string;
+  role: string;
+  track: PracticeTrack;
+  stage: InterviewStage;
+  difficulty: 'easy' | 'medium' | 'hard';
+  questionsAsked: string[];
+  whatWentWell?: string;
+  whatStruggled?: string;
+  outcome: InterviewOutcome;
+  usedAI?: boolean;
+  reportedAt: string;
+}
+
+// A practice problem generated from a real interview report.
+export interface FieldSourcedProblem extends PracticeProblem {
+  originReportId: string;
+  originCompany: string;
+  createdAt: string;
+}
+
+export interface FieldReportInsights {
+  totalReports: number;
+  totalQuestions: number;
+  problemsGenerated: number;
+  companies: string[];
+  domainFrequency: { domain: ProblemDomain; count: number }[];
+  weakAreas: string[];
+  outcomes: Record<InterviewOutcome, number>;
 }
