@@ -63,7 +63,93 @@ ChamiNext is **not** a LeetCode clone. We are a **daily practice + evaluation pl
 
 ---
 
-## Slide 5 — Solution (product)
+## Slide 4b — Strong signal & beachhead segments
+
+### What we measure (the strong signal)
+
+> **Can this person go from an ambiguous technical claim → a validated, defensible conclusion → something shippable under pressure — while an interviewer adversarially probes their assumptions — with AI as co-pilot, not crutch?**
+
+This is **not** a persona. It is the portable artifact we produce that LeetCode green checks and HackerRank scores cannot.
+
+| Rubric dimension | What it catches | Why incumbents miss it |
+|------------------|-----------------|------------------------|
+| **Research hygiene** | Look-ahead bias, leakage, overfitting, bad stats | Puzzle banks don't test it; take-homes are cheatable |
+| **Adversarial reasoning** | Defends methodology when pushed | Async screens don't follow up |
+| **Decomposition** | Clarifies constraints before coding | Throughput ≠ thinking |
+| **Communication** | Explains trade-offs clearly | Binary pass/fail |
+| **Ship proof** | Deployed URL in 24–72h | No standardized credential |
+| **AI fluency** | Uses AI with explained judgment | Incumbents treat AI as cheating |
+
+**Investor line:** *Portable proof of research hygiene + ship readiness.*  
+**Candidate line:** *Recall gets you to the screen. Readiness gets you the offer.*
+
+**Moat (Path B):** assessment score → hire decision → on-the-job outcome → rubric recalibration. Until outcomes exist, we validate against expert graders + onsite pass-through vs. LeetCode/HackerRank.
+
+### One signal, two segments (Year 1)
+
+```
+                    ┌─────────────────────────────────────┐
+                    │  CORE SIGNAL (same engine)          │
+                    │  hygiene · adversarial · ship · comm│
+                    └──────────────┬──────────────────────┘
+                                   │
+              ┌────────────────────┴────────────────────┐
+              ▼                                         ▼
+   ┌──────────────────────┐               ┌──────────────────────┐
+   │  TRACK A — PRIMARY   │               │  TRACK B — SECONDARY │
+   │  Academia → industry │               │  Global remote talent│
+   │  CERN · PhDs · QR    │               │  (e.g. Philippines)  │
+   └──────────┬───────────┘               └──────────┬───────────┘
+              ▼                                         ▼
+   Quant · AI labs ·                          Remote-first SMBs;
+   research eng buyers                        B2C volume + community
+   High ACV · founder fit                     Verified readiness,
+                                              not salary arbitrage
+```
+
+### Track A — Academics & researchers → industry *(Year 1 beachhead)*
+
+**Who:** Particle physicists (CERN and peers), PhDs, postdocs transitioning to quant / ML / research engineering.
+
+**Why they fit:** Already live the loop we score — hypothesis → analysis → defend under hostile questioning. Industry gap = *shipping* and product trade-offs, not raw IQ.
+
+**Buyer pain:** False negative on a researcher is catastrophic; senior-eng interview time is scarce.
+
+| Buyer | Why they pay for our signal |
+|-------|----------------------------|
+| Quant / prop shops | "Research hygiene" is explicit hiring criteria |
+| AI labs / ML eng | PhDs who can't ship; need eval beyond paper count |
+| Research-eng startups | Deep signal without Karat-scale spend |
+
+**Positioning:** *ChamiNext is the industry-readiness layer for researchers — prove you can defend a claim and ship, not just publish.*
+
+**Founder advantage:** Authentic persona (physics → industry); network (CERN, Apex-style hiring contacts); quant skill tree + adversarial mocks already built.
+
+**GTM:** "Academia → industry" landing · Ship Test + quant/AI trees · B2B: *"Screen PhDs for hygiene before senior onsite."*
+
+### Track B — Filipino / global remote talent *(parallel, not primary pitch)*
+
+**Who:** English-fluent engineers in high-volume markets seeking remote roles with US/EU employers.
+
+**Why orthogonal:** Same signal engine; different **distribution** (community, diaspora, bootcamps). Communication is a scored dimension — we surface quality in a noisy applicant pool.
+
+**How we talk about it:** Verified remote-ready engineers (communication + ship proof). **Never** lead with low salary — that is Mercor/BPO positioning, not evaluation layer.
+
+| | Track A | Track B |
+|--|---------|---------|
+| Signal emphasis | Research hygiene + adversarial | Communication + ship + AI fluency |
+| ACV | High | Lower unless eval SaaS buyer |
+| Year 1 role | **Lead B2B + brand** | B2C volume, field reports, data flywheel |
+| Pitch deck | Hero slide | Appendix / expansion market |
+
+### What would falsify Track A
+
+- Quant/ML buyers won't trust AI rubrics without human validation, **or**
+- Researchers won't pay €149 for prep (Interview Season).
+
+→ Then Track B volume matters more — but we still need buyers who pay for **signal**, not **headcount**.
+
+---
 
 ### Three product lines, one flywheel
 
@@ -170,7 +256,90 @@ Profile slug with thinking scores, ship URLs, and track history—not another PD
 3. **AI-native rubrics** — thinking, decomposition, communication, code/design quality.
 4. **Practice → profile → Interview Studio** on one platform (not bolt-on hiring).
 
-**Positioning line:** *LeetCode measures recall. We measure readiness.*
+**Positioning line (candidates):** *LeetCode measures recall. We measure readiness.*
+
+**Positioning line (partners / employers):** *The readiness and validation layer on top of your existing prep and screening stack — not a replacement for it.*
+
+> See **Slide 9b — Ecosystem positioning** for how we coexist with incumbents instead of triggering budget warfare.
+
+---
+
+## Slide 9b — Ecosystem positioning (partners & incumbents)
+
+### One line that keeps us in the stack
+
+**ChamiNext is the readiness and validation layer on top of the prep and screening stack — not a replacement for it.**
+
+We are **downstream signal** (reasoning, AI fluency, ship proof), not **upstream volume** (pattern banks, async screens). Incumbents rarely kill startups for being better; they react when they feel **budget theft** or **brand replacement**. We avoid both.
+
+### The hiring stack (layer cake)
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  VOLUME LAYER — they own this                               │
+│  LeetCode / NeetCode · HackerRank / CodeSignal / CoderPad   │
+└──────────────────────────────┬──────────────────────────────┘
+                               │ patterns & screen pass
+                               ▼
+┌─────────────────────────────────────────────────────────────┐
+│  SIGNAL LAYER — we own this                                 │
+│  Skill trees · AI mocks · Ship Tests · Field reports ·      │
+│  outcome-calibrated scoring · talent profile                │
+└──────────────────────────────┬──────────────────────────────┘
+                               │ readiness profile + rubric scores
+                               ▼
+┌─────────────────────────────────────────────────────────────┐
+│  HIRE — ATS · onsite · offer                                │
+└─────────────────────────────────────────────────────────────┘
+
+        MATCHING LAYER (peers, not enemies)
+        Dex / talent agents · Mercor / expert marketplaces
+              ↕ candidate supply & verified signal back
+```
+
+### What we say to each player
+
+| Player | They fear | We say |
+|--------|-----------|--------|
+| **LeetCode / NeetCode** | Losing daily habit + Premium subs | "We send people to grind patterns *with you*; we own the mock + defense interview they can't fake." |
+| **HackerRank / CodeSignal** | Losing employer assessment $ | "We're not your async screen — we're the **walkthrough + ship proof** that makes your pass/fail trustworthy again." |
+| **AI crowd (Dex, etc.)** | Losing the relationship | "We're **eval infrastructure** — you match, we produce portable signal both sides trust." |
+| **Bootcamps / courses** | Another content competitor | "We're the **practice lab** for your curriculum, not the curriculum." |
+
+### Product & GTM tactics (link out when necessary)
+
+| Tactic | Why it helps |
+|--------|----------------|
+| **Honest prep paths on skill-tree leaves** | Optional links to LeetCode Explore / NeetCode for pattern reps → "Come back here for the mock interview." We route the stack; we don't wall the garden. |
+| **"Inspired by" → prove it here** | Attribute external problems (`inspired-by-nc-238`); ChamiNext owns scoring reasoning + communication, not recall volume. |
+| **Employer supplement, not rip-and-replace** | "Keep HackerRank for volume screening. Add ChamiNext for custom problems + live defense + Ship Test on your shortlist." New budget line (**validation / readiness**), not fighting the existing assessment contract. |
+| **Integrations as peace offering** | Import screen pass → invite to walkthrough; export scores → Greenhouse/Lever; webhooks on Ship Test complete. **Middleware**, not competitor. |
+| **Field reports loop** | "We learn from what the market actually asks" — research infrastructure, not content piracy. |
+
+### Copy split (same thesis, different audience)
+
+| Audience | Tone | Example |
+|----------|------|---------|
+| **Candidates (marketing)** | Sharp differentiation | "Recall gets you to the screen. Readiness gets you the offer." |
+| **Partners / employers** | Complementary | "The evaluation layer that **extends** your existing stack." |
+| **Press / investors** | Category creation | "Post-AI **signal infrastructure** for technical hiring." |
+
+**Avoid in partner-facing contexts:** "LeetCode is dead," "replace HackerRank," competing on problem count, scraping their bank.
+
+### Partnership motions (low effort, high signal)
+
+1. **Affiliate / referral** — "Prep partner" links from skill trees (UTM; rev-share later).
+2. **Bootcamp white-label** — They teach; we run mocks + Ship Tests.
+3. **"Verified by ChamiNext" badge** — Portable profile; recruiters still sourced via LinkedIn / agents.
+4. **Content collab** — "Patterns on their channel, defense interview on ours."
+5. **Employer design partner** — Run normal screen, pilot our walkthrough on top 20%; compare signal. No rip-and-replace ask.
+
+### Mental model (speaker note)
+
+**LeetCode / HackerRank = gym equipment.**  
+**ChamiNext = sparring + game film + scout report.**
+
+Link out when someone needs reps. Own the moment they need to **think out loud, ship something, or defend a decision** — the layer incumbents can't copy quickly and don't fully want to (it cannibalizes async screen revenue).
 
 ---
 
@@ -436,7 +605,8 @@ Profile slug with thinking scores, ship URLs, and track history—not another PD
 | LLM API cost at scale | Tier gating, rate limits, Bedrock committed use |
 | B2B long sales cycle | Design partners + demo seed data |
 | Trial abuse | Neon user accounts + Stripe |
-| Content licensing | Original prompts only |
+| Content licensing | Original prompts only; link out to LeetCode/NeetCode for pattern reps — no scrape |
+| Incumbent hostility | Ecosystem positioning: supplement stack, integrations, honest outbound links (Slide 9b) |
 
 ---
 
@@ -447,9 +617,9 @@ When converting this deck:
 1. Use **dark background** (`#0a0b0d`) and **blue accent** (`#3b82f6`) per ChamiNext brand.
 2. One slide per `## Slide N` section.
 3. Prefer **tables and diagrams** over bullet walls.
-4. Emphasize slides **2–4** (problem), **5–7** (solution), **9** (competition), **12** (financials), **17–18** (AWS + CTA).
+4. Emphasize slides **2–4** (problem + thesis), **4b** (strong signal + beachhead), **5–7** (solution), **9 + 9b** (competition + ecosystem), **12** (financials), **17–18** (AWS + CTA).
 5. Speaker notes: expand Slide 17 with Bedrock model choice (Claude 3.5 Sonnet for interviewer, Haiku for scoring).
 
 ---
 
-*End of deck. Source docs: `tasks/business-plan-chaminext.md`, `PRODUCT.md`, `tasks/production-readiness.md`.*
+*End of deck. Source docs: `tasks/business-plan-chaminext.md`, `tasks/chaminext-discovery-gtm-strategy.md`, `tasks/chaminext-market-briefing.md`, `PRODUCT.md`, `tasks/production-readiness.md`.*
