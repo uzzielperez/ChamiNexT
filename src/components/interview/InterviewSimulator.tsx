@@ -1,9 +1,9 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
-import { Send, Square, MessageSquare, Play } from 'lucide-react';
+import { Send, Square, MessageSquare, Play, Clock, Lightbulb } from 'lucide-react';
 import { runCode } from '../../utils/codeRunner';
 import PremiumButton from '../ui/PremiumButton';
 import ScoreBreakdown from './ScoreBreakdown';
-import type { InterviewMessage, InterviewSession, PracticeProblem } from '../../types/interview';
+import type { InterviewMessage, InterviewSession, PracticeProblem, PracticeTrack } from '../../types/interview';
 import { callInterviewAgent } from '../../utils/interviewAgent';
 import { saveSession } from '../../utils/interviewStorage';
 
@@ -12,6 +12,20 @@ interface InterviewSimulatorProps {
   onExit: () => void;
 }
 
+const TRACK_LABELS: Record<PracticeTrack, string> = {
+  software: 'Software',
+  'ai-engineer': 'AI Engineer',
+  quant: 'Quant',
+  cybersecurity: 'Cybersecurity',
+  'market-engineering': 'Market Engineering',
+};
+
+const formatElapsed = (seconds: number) => {
+  const m = Math.floor(seconds / 60);
+  const s = seconds % 60;
+  return `${m}:${s.toString().padStart(2, '0')}`;
+};
+
 const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({ problem, onExit }) => {
   const [code, setCode] = useState(problem.starterCode);
   const [input, setInput] = useState('');
@@ -19,12 +33,23 @@ const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({ problem, onExit
   const [loading, setLoading] = useState(false);
   const [sessionEnded, setSessionEnded] = useState(false);
   const [session, setSession] = useState<InterviewSession | null>(null);
+  const [revealedHints, setRevealedHints] = useState(0);
+  const [elapsed, setElapsed] = useState(0);
   const chatEndRef = useRef<HTMLDivElement>(null);
   const sessionId = useRef(`session-${Date.now()}`);
   const startedAt = useRef(new Date().toISOString());
   const hasStarted = useRef(false);
   const [runOutput, setRunOutput] = useState('');
   const [running, setRunning] = useState(false);
+
+  const budgetSeconds = problem.estimatedMinutes * 60;
+  const overBudget = elapsed > budgetSeconds;
+
+  useEffect(() => {
+    if (sessionEnded) return;
+    const t = setInterval(() => setElapsed((e) => e + 1), 1000);
+    return () => clearInterval(t);
+  }, [sessionEnded]);
 
   const appendMessage = (role: InterviewMessage['role'], content: string) => {
     const msg: InterviewMessage = {
@@ -135,20 +160,21 @@ const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({ problem, onExit
         <div>
           <h2 className="text-2xl font-bold text-text-primary">{problem.title}</h2>
           <p className="text-sm text-text-secondary capitalize">
-            {problem.track === 'ai-engineer'
-              ? 'AI Engineer'
-              : problem.track === 'quant'
-                ? 'Quant'
-                : problem.track === 'cybersecurity'
-                  ? 'Cybersecurity'
-                : problem.track === 'market-engineering'
-                  ? 'Market Engineering'
-                  : 'Software'}{' '}
-            · {problem.domain} ·{' '}
-            {problem.difficulty}
+            {TRACK_LABELS[problem.track] ?? 'Software'} · {problem.domain} · {problem.difficulty}
           </p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex items-center gap-2">
+          <span
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium tabular-nums border ${
+              overBudget
+                ? 'border-amber-400/40 bg-amber-400/10 text-amber-300'
+                : 'border-[var(--border-color)] bg-[var(--bg-secondary)] text-text-secondary'
+            }`}
+            title={`Target: ${problem.estimatedMinutes} minutes`}
+          >
+            <Clock className="w-3.5 h-3.5" aria-hidden />
+            {formatElapsed(elapsed)} / {problem.estimatedMinutes}:00
+          </span>
           {!sessionEnded && (
             <PremiumButton variant="secondary" size="sm" onClick={endInterview} disabled={loading}>
               <Square className="w-4 h-4 mr-1" />
@@ -167,8 +193,10 @@ const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({ problem, onExit
           <p className="text-text-secondary text-sm whitespace-pre-wrap">{problem.prompt}</p>
         </div>
         <div className="card p-0 overflow-hidden flex flex-col min-h-[280px]">
-          <div className="px-4 py-2 border-b border-gray-700 flex justify-between items-center">
-            <span className="text-sm font-medium text-text-secondary">Your code</span>
+          <div className="px-4 py-2 border-b border-[var(--border-color)] flex justify-between items-center">
+            <span className="text-sm font-medium text-text-secondary">
+              Your code{problem.runLanguage ? ` · ${problem.runLanguage}` : ''}
+            </span>
             {problem.runLanguage && (
               <PremiumButton variant="ghost" size="sm" onClick={handleRunCode} loading={running}>
                 <Play className="w-3 h-3 mr-1" />
@@ -180,11 +208,12 @@ const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({ problem, onExit
             value={code}
             onChange={(e) => setCode(e.target.value)}
             disabled={sessionEnded}
-            className="flex-1 w-full p-4 bg-bg-secondary text-text-primary font-mono text-sm resize-none focus:outline-none min-h-[200px]"
+            className="flex-1 w-full p-4 bg-[var(--bg-secondary)] text-text-primary font-mono text-sm resize-none focus:outline-none min-h-[200px] leading-relaxed"
             spellCheck={false}
+            aria-label="Code editor"
           />
           {runOutput && (
-            <pre className="p-3 text-xs bg-black/40 border-t border-gray-700 text-green-400 overflow-auto max-h-24">
+            <pre className="p-3 text-xs bg-black/40 border-t border-[var(--border-color)] text-green-400 overflow-auto max-h-24">
               {runOutput}
             </pre>
           )}
@@ -193,9 +222,12 @@ const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({ problem, onExit
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 card flex flex-col min-h-[360px] max-h-[480px]">
-          <div className="px-4 py-3 border-b border-gray-700 flex items-center gap-2">
+          <div className="px-4 py-3 border-b border-[var(--border-color)] flex items-center gap-2">
             <MessageSquare className="w-4 h-4 text-accent-blue" />
             <span className="font-medium text-text-primary">AI Interviewer</span>
+            <span className="text-xs text-text-secondary ml-auto">
+              Think out loud — your reasoning is scored, not just the code.
+            </span>
           </div>
           <div className="flex-1 overflow-y-auto p-4 space-y-3">
             {messages.map((m) => (
@@ -205,12 +237,14 @@ const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({ problem, onExit
                   m.role === 'candidate'
                     ? 'ml-auto bg-accent-blue/20 text-text-primary'
                     : m.role === 'interviewer'
-                      ? 'bg-gray-800 text-text-primary'
-                      : 'bg-gray-800/50 text-text-secondary text-xs italic'
+                      ? 'bg-[var(--bg-tertiary)] text-text-primary'
+                      : 'bg-[var(--bg-tertiary)]/60 text-text-secondary text-xs italic'
                 }`}
               >
                 {m.role !== 'system' && (
-                  <span className="block text-xs text-text-secondary mb-1 capitalize">{m.role}</span>
+                  <span className="block text-xs text-text-secondary mb-1">
+                    {m.role === 'candidate' ? 'You' : 'Interviewer'}
+                  </span>
                 )}
                 {m.content}
               </div>
@@ -219,13 +253,13 @@ const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({ problem, onExit
             <div ref={chatEndRef} />
           </div>
           {!sessionEnded && (
-            <div className="p-3 border-t border-gray-700 flex gap-2">
+            <div className="p-3 border-t border-[var(--border-color)] flex gap-2">
               <input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && (e.preventDefault(), sendMessage())}
                 placeholder="Explain your thinking…"
-                className="flex-1 px-3 py-2 rounded-lg bg-bg-secondary border border-gray-700 text-text-primary text-sm focus:outline-none focus:border-accent-blue"
+                className="flex-1 px-3 py-2 rounded-lg bg-[var(--bg-secondary)] border border-[var(--border-color)] text-text-primary text-sm focus:outline-none focus:border-accent-blue"
                 disabled={loading}
               />
               <PremiumButton variant="primary" size="sm" onClick={sendMessage} disabled={loading || !input.trim()}>
@@ -238,12 +272,36 @@ const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({ problem, onExit
         <div className="space-y-4">
           {session?.scores && <ScoreBreakdown scores={session.scores} notes={session.scoreNotes} />}
           <div className="card p-4">
-            <h4 className="font-semibold text-text-primary mb-2">Hints</h4>
-            <ul className="text-sm text-text-secondary space-y-2">
-              {problem.hints.map((h) => (
-                <li key={h}>• {h}</li>
-              ))}
-            </ul>
+            <div className="flex items-center justify-between mb-2">
+              <h4 className="font-semibold text-text-primary flex items-center gap-1.5">
+                <Lightbulb className="w-4 h-4 text-accent-blue" aria-hidden />
+                Hints
+              </h4>
+              <span className="text-xs text-text-secondary tabular-nums">
+                {revealedHints}/{problem.hints.length} used
+              </span>
+            </div>
+            {revealedHints === 0 && (
+              <p className="text-xs text-text-secondary mb-3">
+                Try without hints first — real interviews reward independent reasoning.
+              </p>
+            )}
+            {revealedHints > 0 && (
+              <ol className="text-sm text-text-secondary space-y-2 mb-3 list-decimal pl-5">
+                {problem.hints.slice(0, revealedHints).map((h) => (
+                  <li key={h}>{h}</li>
+                ))}
+              </ol>
+            )}
+            {revealedHints < problem.hints.length && (
+              <button
+                type="button"
+                onClick={() => setRevealedHints((n) => n + 1)}
+                className="text-accent-blue text-sm font-medium hover:underline"
+              >
+                Reveal {revealedHints === 0 ? 'first' : 'next'} hint
+              </button>
+            )}
           </div>
         </div>
       </div>

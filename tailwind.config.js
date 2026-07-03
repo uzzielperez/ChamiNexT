@@ -4,6 +4,15 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Design-system tokens (mirror src/styles/design-system.css :root).
+        // rgb + <alpha-value> so /10, /20... opacity modifiers work.
+        'text-primary': 'rgb(244 245 247 / <alpha-value>)',
+        'text-secondary': 'rgb(154 161 172 / <alpha-value>)',
+        'accent-blue': 'rgb(59 130 246 / <alpha-value>)',
+        'accent-bright': 'rgb(96 165 250 / <alpha-value>)',
+        'bg-primary': 'rgb(10 11 13 / <alpha-value>)',
+        'bg-secondary': 'rgb(21 23 27 / <alpha-value>)',
+        'bg-tertiary': 'rgb(28 31 36 / <alpha-value>)',
         gold: {
           50: '#fffdf7',
           100: '#fffaeb',

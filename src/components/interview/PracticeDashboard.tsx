@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { ArrowRight, Brain, Rocket, Radio, GitBranch } from 'lucide-react';
+import { ArrowRight, Brain, Check, Rocket, Radio, GitBranch } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PremiumButton from '../ui/PremiumButton';
 import {
@@ -12,6 +12,20 @@ import type { PracticeProblem, PracticeTrack } from '../../types/interview';
 const PROFILE_MILESTONE = 10;
 
 type FilterMode = 'all' | PracticeTrack | 'daily';
+
+const TRACK_LABELS: Record<PracticeTrack, string> = {
+  software: 'Software',
+  'ai-engineer': 'AI Engineer',
+  quant: 'Quant',
+  cybersecurity: 'Cybersecurity',
+  'market-engineering': 'Market Engineering',
+};
+
+const DIFFICULTY_DOT: Record<PracticeProblem['difficulty'], string> = {
+  easy: 'skill-difficulty-easy',
+  medium: 'skill-difficulty-medium',
+  hard: 'skill-difficulty-hard',
+};
 
 interface PracticeDashboardProps {
   onStartInterview: (problem: PracticeProblem) => void;
@@ -38,14 +52,48 @@ const PracticeDashboard: React.FC<PracticeDashboardProps> = ({
     return getProblemsByTrack(filter);
   }, [filter]);
 
-  const recommended =
-    filtered.find((p) => p.id !== lastSession?.problemId) ?? filtered[0];
-
-  const domainCount: Record<string, number> = {};
+  // Best overall score per practiced problem, plus per-domain averages.
+  const bestScoreByProblem: Record<string, number> = {};
+  const domainScores: Record<string, number[]> = {};
   sessions.forEach((s) => {
+    if (!s.scores) return;
+    const prev = bestScoreByProblem[s.problemId];
+    if (prev === undefined || s.scores.overall > prev) {
+      bestScoreByProblem[s.problemId] = s.scores.overall;
+    }
     const p = allPracticeProblems.find((x) => x.id === s.problemId);
-    if (p) domainCount[p.domain] = (domainCount[p.domain] || 0) + 1;
+    if (p) (domainScores[p.domain] ??= []).push(s.scores.overall);
   });
+
+  // Recommend un-practiced work in your weakest scored domain first, then any
+  // un-practiced problem, then anything that isn't the last session.
+  const { recommended, recommendReason } = useMemo(() => {
+    const unpracticed = filtered.filter((p) => bestScoreByProblem[p.id] === undefined);
+    const domainAvgs = Object.entries(domainScores)
+      .map(([d, scores]) => ({ d, avg: scores.reduce((a, b) => a + b, 0) / scores.length }))
+      .sort((a, b) => a.avg - b.avg);
+    for (const { d, avg } of domainAvgs) {
+      const hit = unpracticed.find((p) => p.domain === d);
+      if (hit) {
+        return {
+          recommended: hit,
+          recommendReason: `Your weakest domain so far (avg ${Math.round(avg)}). Reps here move your profile most.`,
+        };
+      }
+    }
+    if (unpracticed.length > 0) {
+      return {
+        recommended: unpracticed[0],
+        recommendReason: 'New territory: no scored attempt in this domain yet.',
+      };
+    }
+    const fallback = filtered.find((p) => p.id !== lastSession?.problemId) ?? filtered[0];
+    return {
+      recommended: fallback,
+      recommendReason: 'Everything practiced once. Retry to push your best scores up.',
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filtered, lastSession?.problemId]);
 
   const tabs: { id: FilterMode; label: string }[] = [
     { id: 'all', label: 'All' },
@@ -75,7 +123,8 @@ const PracticeDashboard: React.FC<PracticeDashboardProps> = ({
           <GitBranch className="w-5 h-5 text-accent-blue shrink-0" />
           <p className="text-sm text-text-secondary min-w-0">
             <span className="font-semibold text-text-primary">Skill trees</span> — software, AI,
-            quant, and cybersecurity fundamentals with every bank problem mapped.
+            quant, cybersecurity, and market engineering fundamentals with every bank problem
+            mapped.
           </p>
         </div>
         <ArrowRight className="w-4 h-4 text-accent-blue shrink-0" />
@@ -98,8 +147,9 @@ const PracticeDashboard: React.FC<PracticeDashboardProps> = ({
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
         <div className="p-6 rounded-[var(--radius-card)] card-recommended bg-[var(--bg-secondary)] md:scale-[1.02] md:-translate-y-0.5">
           <Brain className="w-8 h-8 text-accent-blue mb-4" />
-          <h3 className="text-lg font-bold mb-2">Recommended next</h3>
-          <p className="text-text-secondary text-sm mb-4">{recommended?.title}</p>
+          <h3 className="text-lg font-bold mb-1">Recommended next</h3>
+          <p className="text-text-primary text-sm font-medium mb-1">{recommended?.title}</p>
+          <p className="text-text-secondary text-xs mb-4">{recommendReason}</p>
           <PremiumButton
             variant="primary"
             size="md"
@@ -168,33 +218,38 @@ const PracticeDashboard: React.FC<PracticeDashboardProps> = ({
         Problem bank <span className="count-badge">{filtered.length}</span>
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {filtered.map((problem) => (
-          <div
-            key={problem.id}
-            className="problem-card p-5 flex flex-col rounded-[var(--radius-card)] border border-[var(--border-color)] bg-[var(--bg-secondary)]"
-          >
-            <div className="flex justify-between items-start mb-2 gap-2">
-              <h3 className="font-bold text-text-primary">{problem.title}</h3>
-              <span className="text-xs px-2 py-1 rounded-full bg-[var(--bg-tertiary)] text-text-secondary capitalize shrink-0">
-                {problem.difficulty}
-              </span>
-            </div>
-            <p className="text-xs text-accent-blue capitalize mb-1">
-              {problem.domain} · {problem.track} · ~{problem.estimatedMinutes}m
-            </p>
-            <p className="text-text-secondary text-sm flex-grow mb-4 line-clamp-2">{problem.prompt}</p>
-            {domainCount[problem.domain] !== undefined && domainCount[problem.domain] > 0 && (
-              <p className="text-xs text-text-secondary mb-2">
-                Attempts in domain: {domainCount[problem.domain]}
+        {filtered.map((problem) => {
+          const bestScore = bestScoreByProblem[problem.id];
+          return (
+            <div
+              key={problem.id}
+              className="problem-card p-5 flex flex-col rounded-[var(--radius-card)] border border-[var(--border-color)] bg-[var(--bg-secondary)]"
+            >
+              <div className="flex justify-between items-start mb-2 gap-2">
+                <h3 className="font-bold text-text-primary min-w-0">{problem.title}</h3>
+                <span className="flex items-center gap-1.5 text-xs px-2 py-1 rounded-full bg-[var(--bg-tertiary)] text-text-secondary capitalize shrink-0">
+                  <span className={`skill-difficulty-dot ${DIFFICULTY_DOT[problem.difficulty]}`} aria-hidden />
+                  {problem.difficulty}
+                </span>
+              </div>
+              <p className="text-xs text-accent-blue capitalize mb-1">
+                {problem.domain} · {TRACK_LABELS[problem.track]} · ~{problem.estimatedMinutes}m
               </p>
-            )}
-            <div className="problem-cta">
-              <PremiumButton variant="outline" size="sm" className="w-full" onClick={() => onStartInterview(problem)}>
-                Run AI interview
-              </PremiumButton>
+              <p className="text-text-secondary text-sm flex-grow mb-4 line-clamp-2">{problem.prompt}</p>
+              {bestScore !== undefined && (
+                <p className="text-xs text-text-secondary mb-2 flex items-center gap-1.5">
+                  <Check className="w-3.5 h-3.5 text-emerald-400" aria-hidden />
+                  Practiced · best score {bestScore}
+                </p>
+              )}
+              <div className="problem-cta">
+                <PremiumButton variant="outline" size="sm" className="w-full" onClick={() => onStartInterview(problem)}>
+                  {bestScore !== undefined ? 'Retry interview' : 'Run AI interview'}
+                </PremiumButton>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

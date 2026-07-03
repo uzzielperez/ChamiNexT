@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "updated": "2026-07-03",
   "description": "Hierarchical skill trees. Branches group fundamentals; leaves hold domains and attach to the question bank.",
   "tracks": {
@@ -393,6 +393,97 @@
                 "communicate with legal and leadership early"
               ],
               "domains": ["incident-response"]
+            }
+          ]
+        }
+      ]
+    },
+    "market-engineering": {
+      "label": "Market Engineering",
+      "segments": ["growth engineering", "marketing analytics", "GTM technical"],
+      "root": {
+        "id": "market-root",
+        "label": "Growth you can defend"
+      },
+      "branches": [
+        {
+          "id": "measure",
+          "label": "Measure",
+          "description": "Experiments and funnels with honest metrics",
+          "leaves": [
+            {
+              "id": "experiment-design",
+              "label": "Experiment design",
+              "fundamentals": [
+                "define the decision before the test",
+                "power, sample size, and stopping rules",
+                "guardrail metrics against local optimization"
+              ],
+              "domains": ["experimentation"]
+            },
+            {
+              "id": "funnel-analytics",
+              "label": "Funnel analytics",
+              "fundamentals": [
+                "event taxonomy before dashboards",
+                "cohort vs snapshot views",
+                "segment before averaging"
+              ],
+              "domains": ["funnel-analytics"]
+            }
+          ]
+        },
+        {
+          "id": "grow",
+          "label": "Grow",
+          "description": "Loops and attribution, not vanity metrics",
+          "leaves": [
+            {
+              "id": "growth-loops",
+              "label": "Growth loops",
+              "fundamentals": [
+                "loops over funnels for compounding channels",
+                "quantify loop constants and bottlenecks",
+                "payback period over raw CAC"
+              ],
+              "domains": ["growth-systems"]
+            },
+            {
+              "id": "attribution",
+              "label": "Attribution honesty",
+              "fundamentals": [
+                "incrementality over last-click",
+                "holdouts and geo tests when possible",
+                "state what attribution cannot tell you"
+              ],
+              "domains": ["attribution"]
+            }
+          ]
+        },
+        {
+          "id": "operate",
+          "label": "Operate",
+          "description": "Stack architecture and launch execution",
+          "leaves": [
+            {
+              "id": "martech-architecture",
+              "label": "Martech architecture",
+              "fundamentals": [
+                "CDP as source of truth, tools as consumers",
+                "identity resolution across systems",
+                "consent and data quality at ingestion"
+              ],
+              "domains": ["martech-integrations"]
+            },
+            {
+              "id": "gtm-strategy",
+              "label": "GTM strategy",
+              "fundamentals": [
+                "sequence channels by learning speed",
+                "position against the alternative, not competitors",
+                "instrument the launch before shipping it"
+              ],
+              "domains": ["gtm-strategy"]
             }
           ]
         }

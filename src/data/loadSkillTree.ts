@@ -2,8 +2,23 @@ import type { PracticeProblem } from '../types/interview';
 import skillTreeData from '../../content/fundamentals/skill-tree.json';
 import { allPracticeProblems, getProblemsByTrack } from './loadQuestionBank';
 import { loadFieldProblems } from '../utils/fieldReportStorage';
+import { loadSessions } from '../utils/interviewStorage';
 
-export type SkillTreeTrackId = 'software' | 'ai-engineer' | 'quant' | 'cybersecurity';
+export type SkillTreeTrackId =
+  | 'software'
+  | 'ai-engineer'
+  | 'quant'
+  | 'cybersecurity'
+  | 'market-engineering';
+
+export interface LeafProgress {
+  /** Problem ids on this leaf with at least one scored session. */
+  practicedIds: Set<string>;
+  practicedCount: number;
+  totalCount: number;
+  /** Best overall score across the leaf's practiced problems, if any. */
+  bestScore?: number;
+}
 
 export interface SkillTreeLeaf {
   id: string;
@@ -12,6 +27,7 @@ export interface SkillTreeLeaf {
   domains: string[];
   problems: PracticeProblem[];
   fieldProblems: PracticeProblem[];
+  progress: LeafProgress;
 }
 
 export interface SkillTreeBranch {
@@ -28,6 +44,8 @@ export interface SkillTreeView {
   root: { id: string; label: string };
   branches: SkillTreeBranch[];
   totalProblems: number;
+  /** Unique problems on this tree with at least one scored session. */
+  practicedProblems: number;
   leafCount: number;
   uncoveredProblems: PracticeProblem[];
 }
@@ -76,8 +94,32 @@ function problemsForLeaf(
   };
 }
 
-function hydrateLeaf(track: SkillTreeTrackId, raw: RawLeaf, bank: PracticeProblem[], field: PracticeProblem[]): SkillTreeLeaf {
+type ScoredMap = Map<string, number>;
+
+/** problemId -> best overall score, from scored sessions in localStorage. */
+function loadScoredProblems(): ScoredMap {
+  const map: ScoredMap = new Map();
+  loadSessions().forEach((s) => {
+    if (!s.scores) return;
+    const prev = map.get(s.problemId);
+    if (prev === undefined || s.scores.overall > prev) {
+      map.set(s.problemId, s.scores.overall);
+    }
+  });
+  return map;
+}
+
+function hydrateLeaf(
+  track: SkillTreeTrackId,
+  raw: RawLeaf,
+  bank: PracticeProblem[],
+  field: PracticeProblem[],
+  scored: ScoredMap
+): SkillTreeLeaf {
   const { bank: bankHits, field: fieldHits } = problemsForLeaf(track, raw.domains, bank, field);
+  const all = [...bankHits, ...fieldHits];
+  const practicedIds = new Set(all.filter((p) => scored.has(p.id)).map((p) => p.id));
+  const scores = [...practicedIds].map((id) => scored.get(id) as number);
   return {
     id: raw.id,
     label: raw.label,
@@ -85,6 +127,12 @@ function hydrateLeaf(track: SkillTreeTrackId, raw: RawLeaf, bank: PracticeProble
     domains: raw.domains,
     problems: bankHits,
     fieldProblems: fieldHits,
+    progress: {
+      practicedIds,
+      practicedCount: practicedIds.size,
+      totalCount: all.length,
+      bestScore: scores.length ? Math.max(...scores) : undefined,
+    },
   };
 }
 
@@ -92,12 +140,13 @@ export function getSkillTree(track: SkillTreeTrackId): SkillTreeView {
   const meta = tree.tracks[track];
   const bank = getProblemsByTrack(track);
   const fieldAll = loadFieldProblems();
+  const scored = loadScoredProblems();
 
   const branches: SkillTreeBranch[] = meta.branches.map((branch) => ({
     id: branch.id,
     label: branch.label,
     description: branch.description,
-    leaves: branch.leaves.map((leaf) => hydrateLeaf(track, leaf, bank, fieldAll)),
+    leaves: branch.leaves.map((leaf) => hydrateLeaf(track, leaf, bank, fieldAll, scored)),
   }));
 
   const coveredIds = new Set<string>();
@@ -109,6 +158,7 @@ export function getSkillTree(track: SkillTreeTrackId): SkillTreeView {
   );
 
   const leafCount = branches.reduce((n, b) => n + b.leaves.length, 0);
+  const practicedProblems = bank.filter((p) => scored.has(p.id)).length;
 
   return {
     id: track,
@@ -117,12 +167,19 @@ export function getSkillTree(track: SkillTreeTrackId): SkillTreeView {
     root: meta.root,
     branches,
     totalProblems: bank.length,
+    practicedProblems,
     leafCount,
     uncoveredProblems: bank.filter((p) => !coveredIds.has(p.id)),
   };
 }
 
-export const skillTreeTrackIds: SkillTreeTrackId[] = ['software', 'ai-engineer', 'quant', 'cybersecurity'];
+export const skillTreeTrackIds: SkillTreeTrackId[] = [
+  'software',
+  'ai-engineer',
+  'quant',
+  'cybersecurity',
+  'market-engineering',
+];
 
 export function getAllSkillTrees(): SkillTreeView[] {
   return skillTreeTrackIds.map(getSkillTree);

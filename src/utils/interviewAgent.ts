@@ -16,10 +16,14 @@ export interface InterviewAgentResponse {
   scoreNotes?: string;
 }
 
+// Ordered like a real interview: clarify, approach, trade-offs, testing, wrap-up.
 const FALLBACK_REPLIES = [
-  'Walk me through your approach before optimizing.',
-  'What tradeoff did you choose and what would you do with more time?',
-  'How would you test this? Any edge cases you are worried about?',
+  'Before you start: what constraints or requirements would you clarify first?',
+  'Walk me through your approach at a high level before writing any code.',
+  'What trade-off did you just make, and what would you do differently with more time?',
+  'What is the time and space complexity, and where is the bottleneck?',
+  'How would you test this? Name the edge cases you are most worried about.',
+  'If the input were 100x larger, what would break first?',
 ];
 
 export async function callInterviewAgent(
@@ -61,9 +65,9 @@ function fallbackAgent(payload: InterviewAgentRequest): InterviewAgentResponse {
     };
   }
 
-  const idx = payload.messages.length % FALLBACK_REPLIES.length;
+  const candidateTurns = payload.messages.filter((m) => m.role === 'candidate').length;
+  const idx = Math.min(candidateTurns, FALLBACK_REPLIES.length - 1);
   return {
     reply: FALLBACK_REPLIES[idx],
-    followUp: 'Can you explain the complexity of your solution?',
   };
 }

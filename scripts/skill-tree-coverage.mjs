@@ -24,6 +24,7 @@ const domainOwners = {
   quant: domainsByTrack.quant,
   cybersecurity: domainsByTrack.cybersecurity,
   'ai-engineer': domainsByTrack['ai-engineer'],
+  'market-engineering': domainsByTrack['market-engineering'],
 };
 
 let covered = 0;

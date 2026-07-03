@@ -12,11 +12,12 @@ const SkillTreesPage: React.FC = () => {
   const totals = summary.reduce(
     (acc, t) => {
       acc.problems += t.totalProblems;
+      acc.practiced += t.practicedProblems;
       acc.leaves += t.leafCount;
       acc.branches += t.branches.length;
       return acc;
     },
-    { problems: 0, leaves: 0, branches: 0 }
+    { problems: 0, practiced: 0, leaves: 0, branches: 0 }
   );
 
   return (
@@ -38,6 +39,7 @@ const SkillTreesPage: React.FC = () => {
         </p>
         <p className="text-xs text-text-secondary mt-4">
           {totals.branches} branches · {totals.leaves} skills · {totals.problems} curated problems
+          {totals.practiced > 0 && ` · ${totals.practiced} practiced`}
         </p>
       </div>
 
