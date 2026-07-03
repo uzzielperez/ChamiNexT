@@ -12,14 +12,15 @@ const SkillTreesPage: React.FC = () => {
   const totals = summary.reduce(
     (acc, t) => {
       acc.problems += t.totalProblems;
-      acc.nodes += t.nodes.length;
+      acc.leaves += t.leafCount;
+      acc.branches += t.branches.length;
       return acc;
     },
-    { problems: 0, nodes: 0 }
+    { problems: 0, leaves: 0, branches: 0 }
   );
 
   return (
-    <div className="container mx-auto px-4 py-12 max-w-4xl pb-24 md:pb-12">
+    <div className="container mx-auto px-4 py-12 max-w-6xl pb-24 md:pb-12">
       <div className="text-center mb-10">
         <p className="text-sm text-accent-blue font-medium uppercase tracking-wide flex items-center justify-center gap-2">
           <GitBranch className="w-4 h-4" /> Skill trees
@@ -28,16 +29,15 @@ const SkillTreesPage: React.FC = () => {
           First-principles prep paths
         </h1>
         <p className="text-subheadline text-text-secondary max-w-2xl mx-auto">
-          Every problem in the bank maps to a fundamentals node — reasoning, not recall. Practice
-          from the tree or grow it with{' '}
+          Every problem in the bank maps to a leaf on the tree — reasoning, not recall. Practice
+          from a branch or grow it with{' '}
           <Link to="/field-reports" className="text-accent-blue hover:underline">
             field reports
           </Link>
           .
         </p>
         <p className="text-xs text-text-secondary mt-4">
-          {totals.nodes} nodes · {totals.problems} curated problems across{' '}
-          {summary.length} tracks
+          {totals.branches} branches · {totals.leaves} skills · {totals.problems} curated problems
         </p>
       </div>
 
@@ -48,7 +48,7 @@ const SkillTreesPage: React.FC = () => {
         <Radio className="w-5 h-5 text-accent-blue shrink-0" />
         <p className="text-sm text-text-secondary">
           <span className="font-semibold text-text-primary">Self-improving loop:</span> real
-          interview questions you log appear under matching nodes as field-sourced practice.
+          interview questions you log appear under matching leaves as field-sourced practice.
         </p>
       </Link>
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Prints skill-tree node coverage vs question-bank manifest domains.
+ * Prints skill-tree leaf coverage vs question-bank manifest domains.
  * Usage: node scripts/skill-tree-coverage.mjs
  */
 import { readFileSync } from 'node:fs';
@@ -31,19 +31,23 @@ const gaps = [];
 for (const [trackId, track] of Object.entries(tree.tracks)) {
   const owned = domainOwners[trackId] || new Set();
   console.log(`\n## ${track.label} (${trackId})`);
-  for (const node of track.nodes) {
-    total += 1;
-    const hit = node.domains.some((d) => owned.has(d));
-    if (hit) covered += 1;
-    else gaps.push({ track: trackId, node: node.id, label: node.label, domains: node.domains });
-    const status = hit ? 'OK' : 'GAP';
-    console.log(`  [${status}] ${node.id} — domains: ${node.domains.join(', ')}`);
+  console.log(`  root: ${track.root.label}`);
+  for (const branch of track.branches) {
+    console.log(`  branch: ${branch.label}`);
+    for (const leaf of branch.leaves) {
+      total += 1;
+      const hit = leaf.domains.some((d) => owned.has(d));
+      if (hit) covered += 1;
+      else gaps.push({ track: trackId, branch: branch.id, leaf: leaf.id, label: leaf.label, domains: leaf.domains });
+      const status = hit ? 'OK' : 'GAP';
+      console.log(`    [${status}] ${leaf.id} — domains: ${leaf.domains.join(', ')}`);
+    }
   }
 }
 
 const pct = total ? Math.round((covered / total) * 100) : 0;
-console.log(`\n--- Summary: ${covered}/${total} nodes have bank coverage (${pct}%) ---`);
+console.log(`\n--- Summary: ${covered}/${total} leaves have bank coverage (${pct}%) ---`);
 if (gaps.length) {
-  console.log('\nUncovered nodes:');
-  gaps.forEach((g) => console.log(`  - ${g.track}.${g.node} (${g.label})`));
+  console.log('\nUncovered leaves:');
+  gaps.forEach((g) => console.log(`  - ${g.track}.${g.branch}.${g.leaf} (${g.label})`));
 }

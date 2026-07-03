@@ -1,10 +1,14 @@
 import React, { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronDown, ChevronRight } from 'lucide-react';
 import PremiumButton from '../ui/PremiumButton';
 import type { PracticeProblem } from '../../types/interview';
 import type { FieldSourcedProblem } from '../../types/interview';
-import { getSkillTree, skillTreeTrackIds, type SkillTreeTrackId } from '../../data/loadSkillTree';
+import {
+  getSkillTree,
+  skillTreeTrackIds,
+  type SkillTreeLeaf,
+  type SkillTreeTrackId,
+} from '../../data/loadSkillTree';
 
 interface SkillTreePanelProps {
   trackId: SkillTreeTrackId;
@@ -15,9 +19,9 @@ const ProblemRow: React.FC<{
   field?: boolean;
   onStart: (p: PracticeProblem) => void;
 }> = ({ problem, field, onStart }) => (
-  <div className="flex flex-wrap items-center justify-between gap-2 py-2 border-t border-[var(--border-color)] first:border-t-0">
+  <div className="skill-tree-problem-row">
     <div className="min-w-0">
-      <p className="text-sm font-medium text-text-primary truncate">{problem.title}</p>
+      <p className="text-sm font-medium text-text-primary">{problem.title}</p>
       <p className="text-xs text-text-secondary capitalize">
         {problem.difficulty} · ~{problem.estimatedMinutes}m
         {field ? ' · field-sourced' : ''}
@@ -29,13 +33,57 @@ const ProblemRow: React.FC<{
   </div>
 );
 
+const SkillTreeLeafCard: React.FC<{
+  leaf: SkillTreeLeaf;
+  open: boolean;
+  onToggle: () => void;
+  onStart: (p: PracticeProblem) => void;
+}> = ({ leaf, open, onToggle, onStart }) => {
+  const count = leaf.problems.length + leaf.fieldProblems.length;
+  return (
+    <li className="skill-tree-leaf">
+      <button type="button" className="skill-tree-leaf-btn" onClick={onToggle} aria-expanded={open}>
+        <span className="skill-tree-leaf-dot" aria-hidden />
+        <span className="flex-1 min-w-0 text-left">
+          <span className="font-semibold text-text-primary text-sm block">{leaf.label}</span>
+          <span className="text-xs text-text-secondary capitalize">{leaf.domains.join(' · ')}</span>
+        </span>
+        <span className="skill-tree-count">{count}</span>
+      </button>
+      {open && (
+        <div className="skill-tree-leaf-body">
+          <ul className="text-xs text-text-secondary space-y-1 mb-3 list-disc pl-4">
+            {leaf.fundamentals.map((f) => (
+              <li key={f}>{f}</li>
+            ))}
+          </ul>
+          {count === 0 ? (
+            <p className="text-xs text-text-secondary italic">No problems yet on this branch.</p>
+          ) : (
+            <div className="space-y-0">
+              {leaf.problems.map((p) => (
+                <ProblemRow key={p.id} problem={p} onStart={onStart} />
+              ))}
+              {leaf.fieldProblems.map((p) => (
+                <ProblemRow key={p.id} problem={p} field onStart={onStart} />
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+    </li>
+  );
+};
+
 const SkillTreePanel: React.FC<SkillTreePanelProps> = ({ trackId }) => {
   const navigate = useNavigate();
   const tree = useMemo(() => getSkillTree(trackId), [trackId]);
-  const [openNodes, setOpenNodes] = useState<Set<string>>(() => new Set([tree.nodes[0]?.id]));
+  const [openLeaves, setOpenLeaves] = useState<Set<string>>(
+    () => new Set([tree.branches[0]?.leaves[0]?.id].filter(Boolean) as string[])
+  );
 
-  const toggle = (id: string) => {
-    setOpenNodes((prev) => {
+  const toggleLeaf = (id: string) => {
+    setOpenLeaves((prev) => {
       const next = new Set(prev);
       if (next.has(id)) next.delete(id);
       else next.add(id);
@@ -53,76 +101,52 @@ const SkillTreePanel: React.FC<SkillTreePanelProps> = ({ trackId }) => {
   };
 
   return (
-    <div className="space-y-3">
-      <p className="text-sm text-text-secondary mb-6">
-        {tree.segments.join(' · ')} — {tree.totalProblems} curated problems mapped to{' '}
-        {tree.nodes.length} fundamentals nodes.
+    <div className="skill-tree-canvas">
+      <p className="text-sm text-text-secondary mb-8 text-center">
+        {tree.segments.join(' · ')} — {tree.leafCount} skills · {tree.totalProblems} problems
       </p>
 
-      {tree.nodes.map((node) => {
-        const count = node.problems.length + node.fieldProblems.length;
-        const open = openNodes.has(node.id);
-        return (
-          <div
-            key={node.id}
-            className="rounded-[var(--radius-card)] border border-[var(--border-color)] bg-[var(--bg-secondary)] overflow-hidden"
-          >
-            <button
-              type="button"
-              className="w-full flex items-start gap-3 p-4 text-left hover:bg-white/[0.02] transition-colors"
-              onClick={() => toggle(node.id)}
-              aria-expanded={open}
-            >
-              <span className="text-accent-blue font-mono text-sm font-bold w-6 shrink-0 pt-0.5">
-                {String(node.order).padStart(2, '0')}
-              </span>
-              <div className="flex-1 min-w-0">
-                <div className="flex flex-wrap items-center gap-2">
-                  <h3 className="font-bold text-text-primary">{node.label}</h3>
-                  <span className="text-xs px-2 py-0.5 rounded-full bg-[var(--bg-tertiary)] text-text-secondary">
-                    {count} problem{count === 1 ? '' : 's'}
-                  </span>
-                </div>
-                <p className="text-xs text-accent-blue capitalize mt-1">{node.domains.join(' · ')}</p>
-              </div>
-              {open ? (
-                <ChevronDown className="w-5 h-5 text-text-secondary shrink-0" />
-              ) : (
-                <ChevronRight className="w-5 h-5 text-text-secondary shrink-0" />
-              )}
-            </button>
+      {/* Root */}
+      <div className="skill-tree-root-wrap">
+        <div className="skill-tree-root">
+          <span className="text-xs uppercase tracking-wider text-accent-blue font-medium">Root</span>
+          <span className="font-bold text-text-primary text-lg">{tree.root.label}</span>
+          <span className="text-xs text-text-secondary">{tree.label}</span>
+        </div>
+        <div className="skill-tree-trunk" aria-hidden />
+      </div>
 
-            {open && (
-              <div className="px-4 pb-4 pl-[3.25rem] border-t border-[var(--border-color)]">
-                <ul className="text-sm text-text-secondary space-y-1 mb-4 list-disc pl-4">
-                  {node.fundamentals.map((f) => (
-                    <li key={f}>{f}</li>
-                  ))}
-                </ul>
-                {count === 0 ? (
-                  <p className="text-xs text-text-secondary italic">
-                    No problems yet — log a field report to grow this branch.
-                  </p>
-                ) : (
-                  <div>
-                    {node.problems.map((p) => (
-                      <ProblemRow key={p.id} problem={p} onStart={startProblem} />
-                    ))}
-                    {node.fieldProblems.map((p) => (
-                      <ProblemRow key={p.id} problem={p} field onStart={startProblem} />
-                    ))}
-                  </div>
+      {/* Branches fan */}
+      <div className="skill-tree-branches">
+        {tree.branches.map((branch) => (
+          <div key={branch.id} className="skill-tree-branch">
+            <div className="skill-tree-branch-head">
+              <div className="skill-tree-branch-connector" aria-hidden />
+              <div className="skill-tree-branch-label">
+                <h3 className="font-bold text-text-primary">{branch.label}</h3>
+                {branch.description && (
+                  <p className="text-xs text-text-secondary mt-0.5">{branch.description}</p>
                 )}
               </div>
-            )}
+            </div>
+            <ul className="skill-tree-leaves">
+              {branch.leaves.map((leaf) => (
+                <SkillTreeLeafCard
+                  key={leaf.id}
+                  leaf={leaf}
+                  open={openLeaves.has(leaf.id)}
+                  onToggle={() => toggleLeaf(leaf.id)}
+                  onStart={startProblem}
+                />
+              ))}
+            </ul>
           </div>
-        );
-      })}
+        ))}
+      </div>
 
       {tree.uncoveredProblems.length > 0 && (
-        <p className="text-xs text-amber-400/90 mt-4">
-          {tree.uncoveredProblems.length} bank problem(s) not mapped to a node — check skill-tree.json
-          domains.
+        <p className="text-xs text-amber-400/90 mt-8 text-center">
+          {tree.uncoveredProblems.length} problem(s) not on any branch.
         </p>
       )}
     </div>
@@ -141,7 +165,7 @@ export const SkillTreeTabs: React.FC<{
     quant: 'Quant',
   };
   return (
-    <div className="flex flex-wrap gap-2 mb-8">
+    <div className="flex flex-wrap gap-2 mb-8 justify-center">
       {skillTreeTrackIds.map((id) => (
         <button
           key={id}

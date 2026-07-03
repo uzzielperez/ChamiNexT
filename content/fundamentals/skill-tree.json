@@ -1,232 +1,302 @@
 {
-  "version": 2,
+  "version": 3,
   "updated": "2026-07-03",
-  "description": "First-principles skill trees for ChamiNext. Problems attach by track + domain. Agents read this file; do not regenerate in LLM runs.",
+  "description": "Hierarchical skill trees. Branches group fundamentals; leaves hold domains and attach to the question bank.",
   "tracks": {
     "software": {
       "label": "Software Engineering",
       "segments": ["general SWE", "backend", "full-stack"],
-      "nodes": [
+      "root": {
+        "id": "software-root",
+        "label": "Ship quality signal"
+      },
+      "branches": [
         {
-          "id": "decomposition",
-          "label": "Problem decomposition",
-          "order": 1,
-          "fundamentals": [
-            "clarify constraints before coding",
-            "break ambiguous problems into subproblems",
-            "name edge cases explicitly"
-          ],
-          "domains": ["arrays", "strings", "trees"]
+          "id": "foundations",
+          "label": "Foundations",
+          "description": "How you think before you code",
+          "leaves": [
+            {
+              "id": "decomposition",
+              "label": "Problem decomposition",
+              "fundamentals": [
+                "clarify constraints before coding",
+                "break ambiguous problems into subproblems",
+                "name edge cases explicitly"
+              ],
+              "domains": ["arrays", "strings", "trees"]
+            }
+          ]
         },
         {
-          "id": "arrays",
-          "label": "Arrays & two pointers",
-          "order": 2,
-          "fundamentals": [
-            "choose the right invariant for sliding windows",
-            "trade memory for time deliberately",
-            "state complexity before optimizing"
-          ],
-          "domains": ["arrays"]
+          "id": "core-domains",
+          "label": "Core domains",
+          "description": "Data structures and algorithms in practice",
+          "leaves": [
+            {
+              "id": "arrays",
+              "label": "Arrays & two pointers",
+              "fundamentals": [
+                "invariants for sliding windows",
+                "trade memory for time deliberately",
+                "state complexity before optimizing"
+              ],
+              "domains": ["arrays"]
+            },
+            {
+              "id": "trees",
+              "label": "Trees & graphs",
+              "fundamentals": [
+                "pick traversal for the question",
+                "handle null and empty base cases",
+                "recursive vs iterative trade-offs"
+              ],
+              "domains": ["trees"]
+            },
+            {
+              "id": "strings",
+              "label": "Strings & parsing",
+              "fundamentals": [
+                "character-level vs substring reasoning",
+                "hash maps for frequency and grouping",
+                "watch off-by-one on indices"
+              ],
+              "domains": ["strings"]
+            }
+          ]
         },
         {
-          "id": "trees",
-          "label": "Trees & graphs",
-          "order": 3,
-          "fundamentals": [
-            "pick traversal for the question (DFS vs BFS)",
-            "handle null / empty base cases",
-            "explain recursive vs iterative trade-offs"
-          ],
-          "domains": ["trees"]
+          "id": "production",
+          "label": "Production",
+          "description": "Debug and design at scale",
+          "leaves": [
+            {
+              "id": "debugging",
+              "label": "Debugging under pressure",
+              "fundamentals": [
+                "reproduce before fixing",
+                "isolate failure scope",
+                "explain root cause not symptom"
+              ],
+              "domains": ["debugging"]
+            },
+            {
+              "id": "system-design-swe",
+              "label": "System design",
+              "fundamentals": [
+                "capacity and latency estimates",
+                "bottleneck identification",
+                "consistency vs availability trade-offs"
+              ],
+              "domains": ["system-design"]
+            }
+          ]
         },
         {
-          "id": "strings",
-          "label": "Strings & parsing",
-          "order": 4,
-          "fundamentals": [
-            "character-level vs substring reasoning",
-            "hash maps for frequency and grouping",
-            "watch off-by-one on indices"
-          ],
-          "domains": ["strings"]
-        },
-        {
-          "id": "debugging",
-          "label": "Debugging under pressure",
-          "order": 5,
-          "fundamentals": [
-            "reproduce before fixing",
-            "isolate failure scope",
-            "explain root cause not symptom"
-          ],
-          "domains": ["debugging"]
-        },
-        {
-          "id": "system-design-swe",
-          "label": "System design",
-          "order": 6,
-          "fundamentals": [
-            "capacity and latency estimates",
-            "bottleneck identification",
-            "consistency vs availability trade-offs"
-          ],
-          "domains": ["system-design"]
-        },
-        {
-          "id": "ai-collaboration-swe",
-          "label": "AI-assisted delivery",
-          "order": 7,
-          "fundamentals": [
-            "verify AI output instead of trusting it",
-            "explain decisions AI did not make for you",
-            "recover when AI output is wrong"
-          ],
-          "domains": ["debugging", "system-design"]
+          "id": "ai-era",
+          "label": "AI era",
+          "description": "Working with AI as a teammate",
+          "leaves": [
+            {
+              "id": "ai-collaboration-swe",
+              "label": "AI-assisted delivery",
+              "fundamentals": [
+                "verify AI output instead of trusting it",
+                "explain decisions AI did not make for you",
+                "recover when AI output is wrong"
+              ],
+              "domains": ["debugging", "system-design"]
+            }
+          ]
         }
       ]
     },
     "ai-engineer": {
       "label": "AI / ML Engineering",
       "segments": ["ML engineer", "research engineer", "AI lab"],
-      "nodes": [
+      "root": {
+        "id": "ai-root",
+        "label": "Build · measure · ship ML"
+      },
+      "branches": [
         {
-          "id": "rag-fundamentals",
-          "label": "RAG & retrieval",
-          "order": 1,
-          "fundamentals": [
-            "chunking and retrieval trade-offs",
-            "citation and grounding",
-            "failure modes: hallucination, stale index"
-          ],
-          "domains": ["rag"]
+          "id": "build",
+          "label": "Build",
+          "description": "Retrieval, agents, and prompts",
+          "leaves": [
+            {
+              "id": "rag-fundamentals",
+              "label": "RAG & retrieval",
+              "fundamentals": [
+                "chunking and retrieval trade-offs",
+                "citation and grounding",
+                "failure modes: hallucination, stale index"
+              ],
+              "domains": ["rag"]
+            },
+            {
+              "id": "prompting",
+              "label": "Prompting & few-shot",
+              "fundamentals": [
+                "system vs user message roles",
+                "when few-shot helps vs hurts",
+                "eval prompts like you eval models"
+              ],
+              "domains": ["prompting"]
+            },
+            {
+              "id": "agents-orchestration",
+              "label": "Agents & orchestration",
+              "fundamentals": [
+                "tool use vs prompt-only",
+                "state and failure recovery",
+                "cost and latency budgets"
+              ],
+              "domains": ["agents"]
+            }
+          ]
         },
         {
-          "id": "eval-discipline",
-          "label": "Eval discipline",
-          "order": 2,
-          "fundamentals": [
-            "define ground truth before scoring",
-            "offline vs online metrics",
-            "regression when model changes"
-          ],
-          "domains": ["evals"]
+          "id": "measure",
+          "label": "Measure",
+          "description": "Evals and first-principles ML",
+          "leaves": [
+            {
+              "id": "eval-discipline",
+              "label": "Eval discipline",
+              "fundamentals": [
+                "define ground truth before scoring",
+                "offline vs online metrics",
+                "regression when model changes"
+              ],
+              "domains": ["evals"]
+            },
+            {
+              "id": "from-scratch-ml",
+              "label": "ML from first principles",
+              "fundamentals": [
+                "implement core blocks without hiding libraries",
+                "debug training failures (loss spikes)",
+                "explain what the model is learning"
+              ],
+              "domains": ["ai-system-design", "evals"]
+            }
+          ]
         },
         {
-          "id": "prompting",
-          "label": "Prompting & few-shot design",
-          "order": 3,
-          "fundamentals": [
-            "system vs user message roles",
-            "when few-shot helps vs hurts",
-            "eval prompts like you eval models"
-          ],
-          "domains": ["prompting"]
+          "id": "operate",
+          "label": "Operate",
+          "description": "Serving and systems",
+          "leaves": [
+            {
+              "id": "ai-systems",
+              "label": "ML systems & serving",
+              "fundamentals": [
+                "inference serving and batching",
+                "feature and vector store patterns",
+                "deployment and monitoring"
+              ],
+              "domains": ["ai-system-design"]
+            }
+          ]
         },
         {
-          "id": "agents-orchestration",
-          "label": "Agents & orchestration",
-          "order": 4,
-          "fundamentals": [
-            "tool use vs prompt-only",
-            "state and failure recovery",
-            "cost and latency budgets"
-          ],
-          "domains": ["agents"]
-        },
-        {
-          "id": "ai-systems",
-          "label": "ML systems & serving",
-          "order": 5,
-          "fundamentals": [
-            "inference serving and batching",
-            "feature and vector store patterns",
-            "deployment and monitoring"
-          ],
-          "domains": ["ai-system-design"]
-        },
-        {
-          "id": "safety-guardrails",
-          "label": "Safety & guardrails",
-          "order": 6,
-          "fundamentals": [
-            "prompt injection awareness",
-            "PII and logging boundaries",
-            "human-in-the-loop when needed"
-          ],
-          "domains": ["safety"]
-        },
-        {
-          "id": "from-scratch-ml",
-          "label": "ML from first principles",
-          "order": 7,
-          "fundamentals": [
-            "implement core blocks without hiding libraries",
-            "debug training failures (loss spikes)",
-            "explain what the model is learning"
-          ],
-          "domains": ["ai-system-design", "evals"]
+          "id": "trust",
+          "label": "Trust",
+          "description": "Safety and guardrails",
+          "leaves": [
+            {
+              "id": "safety-guardrails",
+              "label": "Safety & guardrails",
+              "fundamentals": [
+                "prompt injection awareness",
+                "PII and logging boundaries",
+                "human-in-the-loop when needed"
+              ],
+              "domains": ["safety"]
+            }
+          ]
         }
       ]
     },
     "quant": {
       "label": "Quant / Research Engineering",
       "segments": ["quant research", "quant dev", "prop trading"],
-      "nodes": [
+      "root": {
+        "id": "quant-root",
+        "label": "Research hygiene → production"
+      },
+      "branches": [
         {
-          "id": "probability-stats",
-          "label": "Probability & statistics",
-          "order": 1,
-          "fundamentals": [
-            "conditional expectation and Bayes",
-            "hypothesis testing discipline",
-            "explain assumptions behind a claim"
-          ],
-          "domains": ["arrays"]
+          "id": "math",
+          "label": "Math & coding",
+          "description": "Probability and implementation",
+          "leaves": [
+            {
+              "id": "probability-stats",
+              "label": "Probability & statistics",
+              "fundamentals": [
+                "conditional expectation and Bayes",
+                "hypothesis testing discipline",
+                "explain assumptions behind a claim"
+              ],
+              "domains": ["arrays"]
+            },
+            {
+              "id": "quant-coding",
+              "label": "Quant coding",
+              "fundamentals": [
+                "correct efficient Python for research",
+                "pandas/numpy fluency",
+                "simulation to sanity-check math"
+              ],
+              "domains": ["arrays", "strings", "debugging"]
+            }
+          ]
         },
         {
-          "id": "research-hygiene",
-          "label": "Research hygiene",
-          "order": 2,
-          "fundamentals": [
-            "look-ahead bias and data leakage",
-            "train/test split honesty",
-            "multiple-testing and overfitting"
-          ],
-          "domains": ["evals"]
+          "id": "research",
+          "label": "Research integrity",
+          "description": "Valid signal, not overfit noise",
+          "leaves": [
+            {
+              "id": "research-hygiene",
+              "label": "Research hygiene",
+              "fundamentals": [
+                "look-ahead bias and data leakage",
+                "train/test split honesty",
+                "multiple-testing and overfitting"
+              ],
+              "domains": ["evals"]
+            },
+            {
+              "id": "adversarial-defense",
+              "label": "Adversarial reasoning",
+              "fundamentals": [
+                "defend sample size and methodology",
+                "answer follow-ups on failure modes",
+                "intellectual humility under pushback"
+              ],
+              "domains": ["evals", "debugging"]
+            }
+          ]
         },
         {
-          "id": "signal-to-production",
-          "label": "Signal to production",
-          "order": 3,
-          "fundamentals": [
-            "backtest vs live gap",
-            "transaction costs and capacity",
-            "n to N scaling argument"
-          ],
-          "domains": ["ai-system-design"]
-        },
-        {
-          "id": "adversarial-defense",
-          "label": "Adversarial reasoning",
-          "order": 4,
-          "fundamentals": [
-            "defend sample size and methodology",
-            "answer follow-ups on failure modes",
-            "intellectual humility under pushback"
-          ],
-          "domains": ["evals", "debugging"]
-        },
-        {
-          "id": "quant-coding",
-          "label": "Quant coding",
-          "order": 5,
-          "fundamentals": [
-            "correct efficient Python for research",
-            "pandas/numpy fluency",
-            "simulation to sanity-check math"
-          ],
-          "domains": ["arrays", "strings", "debugging"]
+          "id": "production",
+          "label": "Production",
+          "description": "From backtest to live",
+          "leaves": [
+            {
+              "id": "signal-to-production",
+              "label": "Signal to production",
+              "fundamentals": [
+                "backtest vs live gap",
+                "transaction costs and capacity",
+                "n to N scaling argument"
+              ],
+              "domains": ["ai-system-design"]
+            }
+          ]
         }
       ]
     }
