@@ -50,5 +50,13 @@ Direct, confident, technical but not jargon-heavy. No hype stacks. Short sentenc
 ## Key surfaces
 
 - **Brand:** Home, Pricing
-- **Product:** Practice, Daily, Ship Tests, Profile, Interview Simulator, Employers Interview Studio
-- **Practice tracks:** Software, AI Engineer, Market Engineering
+- **Product:** Practice, Daily, Ship Tests, Profile, Interview Simulator, Skill Trees, Interview Intel, Interview Loop, Employers Interview Studio
+- **Practice tracks:** Software, AI Engineer, Quant, Cybersecurity, Market Engineering
+
+## Field-data learnings (see tasks/learnings-interview-intel.md)
+
+- Real interviews are mostly non-algorithmic: domain rapid-fire, behavioral,
+  and recruiter questions dominate. Soft rounds are first-class domains.
+- Candidates fail from stage unpreparedness, not just content: simulate the
+  full loop (recruiter screen → technical → behavioral), not isolated problems.
+- Scraped intel seeds the question flywheel; user field reports are the moat.

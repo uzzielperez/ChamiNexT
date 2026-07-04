@@ -1,0 +1,54 @@
+{
+  "reddit": {
+    "subreddits": [
+      "cscareerquestions",
+      "ExperiencedDevs",
+      "leetcode",
+      "quant",
+      "quantfinance",
+      "cybersecurity",
+      "MachineLearning",
+      "dataengineering",
+      "csMajors"
+    ],
+    "queries": [
+      "interview experience",
+      "interview process",
+      "onsite interview questions",
+      "behavioral interview questions",
+      "recruiter screen what to expect"
+    ],
+    "postsPerQuery": 8,
+    "commentsPerPost": 6,
+    "minPostScore": 10,
+    "minCommentScore": 5,
+    "timeRange": "year"
+  },
+  "hackernews": {
+    "queries": [
+      "interview process",
+      "my interview experience",
+      "hiring process engineering"
+    ],
+    "storiesPerQuery": 10,
+    "commentsPerStory": 8
+  },
+  "rss": [
+    { "name": "interviewing.io blog", "url": "https://interviewing.io/blog/feed.xml" },
+    { "name": "dev.to interview tag", "url": "https://dev.to/feed/tag/interview" },
+    { "name": "dev.to career tag", "url": "https://dev.to/feed/tag/career" },
+    { "name": "Pragmatic Engineer", "url": "https://blog.pragmaticengineer.com/rss/" }
+  ],
+  "pages": [],
+  "youtube": {
+    "queries": [
+      "software engineer interview experience 2025",
+      "machine learning engineer interview process",
+      "quant interview experience",
+      "cybersecurity analyst interview questions asked",
+      "behavioral interview questions software engineer actual"
+    ],
+    "videosPerQuery": 5,
+    "videoIds": []
+  }
+}

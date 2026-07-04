@@ -26,6 +26,16 @@ const FALLBACK_REPLIES = [
   'If the input were 100x larger, what would break first?',
 ];
 
+// Behavioral/recruiter rounds: STAR-style follow-ups.
+const SOFT_FALLBACK_REPLIES = [
+  'Take me into the situation first: where was this, and what was at stake?',
+  'What did you specifically do there, as opposed to what the team did?',
+  'What was the actual outcome? Numbers help if you have them.',
+  'Looking back, what would you do differently?',
+  'Give me a moment in that story where you were wrong. How did you find out?',
+  'Last one: why does this story matter for the role you want?',
+];
+
 export async function callInterviewAgent(
   payload: InterviewAgentRequest
 ): Promise<InterviewAgentResponse> {
@@ -65,9 +75,11 @@ function fallbackAgent(payload: InterviewAgentRequest): InterviewAgentResponse {
     };
   }
 
+  const soft = payload.problem.domain === 'behavioral' || payload.problem.domain === 'recruiter';
+  const replies = soft ? SOFT_FALLBACK_REPLIES : FALLBACK_REPLIES;
   const candidateTurns = payload.messages.filter((m) => m.role === 'candidate').length;
-  const idx = Math.min(candidateTurns, FALLBACK_REPLIES.length - 1);
+  const idx = Math.min(candidateTurns, replies.length - 1);
   return {
-    reply: FALLBACK_REPLIES[idx],
+    reply: replies[idx],
   };
 }

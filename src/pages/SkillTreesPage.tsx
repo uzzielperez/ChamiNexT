@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { GitBranch, Radio } from 'lucide-react';
+import { GitBranch, Radio, Zap } from 'lucide-react';
 import SkillTreePanel, { SkillTreeTabs } from '../components/skills/SkillTreePanel';
 import type { SkillTreeTrackId } from '../data/loadSkillTree';
 import { getAllSkillTrees } from '../data/loadSkillTree';
@@ -43,16 +43,28 @@ const SkillTreesPage: React.FC = () => {
         </p>
       </div>
 
-      <Link
-        to="/field-reports"
-        className="flex items-center gap-3 p-4 mb-8 rounded-[var(--radius-card)] border border-accent-blue/30 bg-accent-blue/5 hover:bg-accent-blue/10 transition-colors"
-      >
-        <Radio className="w-5 h-5 text-accent-blue shrink-0" />
-        <p className="text-sm text-text-secondary">
-          <span className="font-semibold text-text-primary">Self-improving loop:</span> real
-          interview questions you log appear under matching leaves as field-sourced practice.
-        </p>
-      </Link>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+        <Link
+          to="/drill"
+          className="flex items-center gap-3 p-4 rounded-[var(--radius-card)] border border-accent-blue/30 bg-accent-blue/5 hover:bg-accent-blue/10 transition-colors"
+        >
+          <Zap className="w-5 h-5 text-accent-blue shrink-0" />
+          <p className="text-sm text-text-secondary">
+            <span className="font-semibold text-text-primary">Test these fundamentals:</span> a
+            5-minute rapid-fire drill built from the bullets on this tree.
+          </p>
+        </Link>
+        <Link
+          to="/field-reports"
+          className="flex items-center gap-3 p-4 rounded-[var(--radius-card)] border border-[var(--border-color)] bg-[var(--bg-secondary)] hover:border-accent-blue/40 transition-colors"
+        >
+          <Radio className="w-5 h-5 text-accent-blue shrink-0" />
+          <p className="text-sm text-text-secondary">
+            <span className="font-semibold text-text-primary">Self-improving loop:</span> real
+            interview questions you log appear under matching leaves as field-sourced practice.
+          </p>
+        </Link>
+      </div>
 
       <SkillTreeTabs active={track} onChange={setTrack} />
       <SkillTreePanel trackId={track} />

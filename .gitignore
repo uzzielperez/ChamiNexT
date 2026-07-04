@@ -22,3 +22,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+# Interview intel scrape cache
+scripts/interview-intel/.cache/

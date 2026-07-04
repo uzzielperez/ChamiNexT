@@ -114,11 +114,38 @@ RULES:
       },
     };
 
-    const focus = TRACK_FOCUS[track] || TRACK_FOCUS.software;
+    // Behavioral / recruiter questions get a dedicated persona: same scoring
+    // keys, reinterpreted for soft rounds so the UI stays consistent.
+    const SOFT_FOCUS = {
+      behavioral: {
+        role: 'a senior hiring manager running a behavioral interview',
+        chat: 'You are assessing real experience, judgment, and self-awareness. Push for STAR specifics: what was the situation, what did THEY do (not the team), what happened, what did they learn. Probe vague answers ("we improved things") for numbers, names of trade-offs, and their individual contribution. Ask about failures and conflicts, not just wins.',
+        score:
+          'Reinterpret the dimensions for a behavioral round: thinking = judgment and reflection quality; decomposition = story structure (situation, task, action, result); communication = clarity and concision; codeQuality = specificity and evidence (concrete details, metrics, named trade-offs vs vague generalities).',
+      },
+      recruiter: {
+        role: 'an experienced technical recruiter running a screening call',
+        chat: 'You are assessing role fit, motivation, and communication. Ask about their background, why this role and company, compensation expectations, timelines, and logistics. Follow up the way a real recruiter would: gently but persistently on vague or evasive answers.',
+        score:
+          'Reinterpret the dimensions for a recruiter screen: thinking = self-positioning and motivation coherence; decomposition = ability to summarize their background relevantly; communication = warmth, clarity, concision; codeQuality = specificity (real examples, honest numbers, clear asks).',
+      },
+    };
+
+    const SOFT_PROTOCOL = `
+INTERVIEW PROTOCOL:
+1. Open with the question from the problem prompt, then run natural follow-ups: dig into the same story before moving to a new question.
+2. Ask exactly ONE question per reply. Keep replies to 1-3 sentences. Never lecture or coach mid-interview.
+3. Probe vagueness immediately: "what did you specifically do?", "what was the actual outcome?", "what would you do differently?".
+4. Challenge at least one answer, even a good one; composure under pushback is part of the signal.
+5. Stay in character as a real interviewer. No meta-commentary about the exercise.`;
+
+    const soft = SOFT_FOCUS[problem.domain];
+    const focus = soft || TRACK_FOCUS[track] || TRACK_FOCUS.software;
+    const protocol = soft ? SOFT_PROTOCOL : CHAT_PROTOCOL;
 
     const chatSystem = `You are ${focus.role} running a live mock interview for ChamiNext.
 ${focus.chat}
-${CHAT_PROTOCOL}
+${protocol}
 Return ONLY JSON:
 {"reply":"interviewer message (one question, 2-4 sentences)","followUp":"optional sharper follow-up question, omit unless it adds pressure"}`;
 

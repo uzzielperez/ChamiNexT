@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { ArrowRight, Brain, Check, Rocket, Radio, GitBranch } from 'lucide-react';
+import { ArrowRight, Brain, Check, Rocket, Radio, GitBranch, Radar, Repeat, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PremiumButton from '../ui/PremiumButton';
 import {
@@ -115,24 +115,69 @@ const PracticeDashboard: React.FC<PracticeDashboardProps> = ({
         </p>
       </div>
 
-      <Link
-        to="/skills"
-        className="flex items-center justify-between gap-3 p-4 mb-4 rounded-[var(--radius-card)] border border-[var(--border-color)] bg-[var(--bg-secondary)] hover:border-accent-blue/40 transition-colors"
-      >
-        <div className="flex items-center gap-3 min-w-0">
-          <GitBranch className="w-5 h-5 text-accent-blue shrink-0" />
-          <p className="text-sm text-text-secondary min-w-0">
-            <span className="font-semibold text-text-primary">Skill trees</span> — software, AI,
-            quant, cybersecurity, and market engineering fundamentals with every bank problem
-            mapped.
-          </p>
-        </div>
-        <ArrowRight className="w-4 h-4 text-accent-blue shrink-0" />
-      </Link>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <Link
+          to="/loop"
+          className="flex items-center justify-between gap-3 p-4 rounded-[var(--radius-card)] border border-accent-blue/30 bg-accent-blue/5 hover:bg-accent-blue/10 transition-colors"
+        >
+          <div className="flex items-center gap-3 min-w-0">
+            <Repeat className="w-5 h-5 text-accent-blue shrink-0" />
+            <p className="text-sm text-text-secondary min-w-0">
+              <span className="font-semibold text-text-primary">Interview Loop</span> — full
+              company-style loop, scored stage by stage.
+            </p>
+          </div>
+          <ArrowRight className="w-4 h-4 text-accent-blue shrink-0" />
+        </Link>
+
+        <Link
+          to="/drill"
+          className="flex items-center justify-between gap-3 p-4 rounded-[var(--radius-card)] border border-accent-blue/30 bg-accent-blue/5 hover:bg-accent-blue/10 transition-colors"
+        >
+          <div className="flex items-center gap-3 min-w-0">
+            <Zap className="w-5 h-5 text-accent-blue shrink-0" />
+            <p className="text-sm text-text-secondary min-w-0">
+              <span className="font-semibold text-text-primary">Rapid-fire drill</span> — 5
+              minutes, 8 screening questions, graded answers.
+            </p>
+          </div>
+          <ArrowRight className="w-4 h-4 text-accent-blue shrink-0" />
+        </Link>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <Link
+          to="/skills"
+          className="flex items-center justify-between gap-3 p-4 rounded-[var(--radius-card)] border border-[var(--border-color)] bg-[var(--bg-secondary)] hover:border-accent-blue/40 transition-colors"
+        >
+          <div className="flex items-center gap-3 min-w-0">
+            <GitBranch className="w-5 h-5 text-accent-blue shrink-0" />
+            <p className="text-sm text-text-secondary min-w-0">
+              <span className="font-semibold text-text-primary">Skill trees</span> — fundamentals
+              for all five tracks, every bank problem mapped.
+            </p>
+          </div>
+          <ArrowRight className="w-4 h-4 text-accent-blue shrink-0" />
+        </Link>
+
+        <Link
+          to="/intel"
+          className="flex items-center justify-between gap-3 p-4 rounded-[var(--radius-card)] border border-[var(--border-color)] bg-[var(--bg-secondary)] hover:border-accent-blue/40 transition-colors"
+        >
+          <div className="flex items-center gap-3 min-w-0">
+            <Radar className="w-5 h-5 text-accent-blue shrink-0" />
+            <p className="text-sm text-text-secondary min-w-0">
+              <span className="font-semibold text-text-primary">Interview intel</span> — real
+              processes and exact questions from the field.
+            </p>
+          </div>
+          <ArrowRight className="w-4 h-4 text-accent-blue shrink-0" />
+        </Link>
+      </div>
 
       <Link
         to="/field-reports"
-        className="flex items-center justify-between gap-3 p-4 mb-8 rounded-[var(--radius-card)] border border-accent-blue/30 bg-accent-blue/5 hover:bg-accent-blue/10 transition-colors"
+        className="flex items-center justify-between gap-3 p-4 mb-8 rounded-[var(--radius-card)] border border-[var(--border-color)] bg-[var(--bg-secondary)] hover:border-accent-blue/40 transition-colors"
       >
         <div className="flex items-center gap-3 min-w-0">
           <Radio className="w-5 h-5 text-accent-blue shrink-0" />

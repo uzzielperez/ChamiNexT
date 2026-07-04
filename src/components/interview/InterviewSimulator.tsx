@@ -10,6 +10,10 @@ import { saveSession } from '../../utils/interviewStorage';
 interface InterviewSimulatorProps {
   problem: PracticeProblem;
   onExit: () => void;
+  /** When run as part of a multi-stage loop. */
+  stage?: { label: string; index: number; total: number };
+  /** Called after the session is scored and saved. */
+  onComplete?: (session: InterviewSession) => void;
 }
 
 const TRACK_LABELS: Record<PracticeTrack, string> = {
@@ -26,7 +30,13 @@ const formatElapsed = (seconds: number) => {
   return `${m}:${s.toString().padStart(2, '0')}`;
 };
 
-const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({ problem, onExit }) => {
+const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({
+  problem,
+  onExit,
+  stage,
+  onComplete,
+}) => {
+  const softRound = problem.domain === 'behavioral' || problem.domain === 'recruiter';
   const [code, setCode] = useState(problem.starterCode);
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<InterviewMessage[]>([]);
@@ -149,6 +159,7 @@ const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({ problem, onExit
       setSession(ended);
       setSessionEnded(true);
       appendMessage('system', 'Interview ended. Scores saved to your talent profile.');
+      onComplete?.(ended);
     } finally {
       setLoading(false);
     }
@@ -158,6 +169,11 @@ const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({ problem, onExit
     <div className="container mx-auto px-4 py-8 max-w-7xl">
       <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
         <div>
+          {stage && (
+            <p className="text-xs font-semibold uppercase tracking-wide text-accent-bright mb-1">
+              Stage {stage.index} of {stage.total} · {stage.label}
+            </p>
+          )}
           <h2 className="text-2xl font-bold text-text-primary">{problem.title}</h2>
           <p className="text-sm text-text-secondary capitalize">
             {TRACK_LABELS[problem.track] ?? 'Software'} · {problem.domain} · {problem.difficulty}
@@ -178,20 +194,25 @@ const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({ problem, onExit
           {!sessionEnded && (
             <PremiumButton variant="secondary" size="sm" onClick={endInterview} disabled={loading}>
               <Square className="w-4 h-4 mr-1" />
-              End & score
+              {stage ? 'Finish stage' : 'End & score'}
             </PremiumButton>
           )}
           <PremiumButton variant="ghost" size="sm" onClick={onExit}>
-            Back
+            {stage ? 'Exit loop' : 'Back'}
           </PremiumButton>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+      <div className={`grid grid-cols-1 gap-6 mb-6 ${softRound ? '' : 'lg:grid-cols-2'}`}>
         <div className="card p-4">
-          <h3 className="font-semibold text-text-primary mb-3">Problem</h3>
-          <p className="text-text-secondary text-sm whitespace-pre-wrap">{problem.prompt}</p>
+          <h3 className="font-semibold text-text-primary mb-3">
+            {softRound ? 'The question' : 'Problem'}
+          </h3>
+          <p className="text-text-secondary text-sm whitespace-pre-wrap max-w-[75ch]">
+            {problem.prompt}
+          </p>
         </div>
+        {!softRound && (
         <div className="card p-0 overflow-hidden flex flex-col min-h-[280px]">
           <div className="px-4 py-2 border-b border-[var(--border-color)] flex justify-between items-center">
             <span className="text-sm font-medium text-text-secondary">
@@ -218,15 +239,20 @@ const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({ problem, onExit
             </pre>
           )}
         </div>
+        )}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 card flex flex-col min-h-[360px] max-h-[480px]">
           <div className="px-4 py-3 border-b border-[var(--border-color)] flex items-center gap-2">
             <MessageSquare className="w-4 h-4 text-accent-blue" />
-            <span className="font-medium text-text-primary">AI Interviewer</span>
+            <span className="font-medium text-text-primary">
+              {problem.domain === 'recruiter' ? 'Recruiter' : 'AI Interviewer'}
+            </span>
             <span className="text-xs text-text-secondary ml-auto">
-              Think out loud — your reasoning is scored, not just the code.
+              {softRound
+                ? 'Answer with real stories — specifics are the signal.'
+                : 'Think out loud — your reasoning is scored, not just the code.'}
             </span>
           </div>
           <div className="flex-1 overflow-y-auto p-4 space-y-3">
@@ -270,7 +296,9 @@ const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({ problem, onExit
         </div>
 
         <div className="space-y-4">
-          {session?.scores && <ScoreBreakdown scores={session.scores} notes={session.scoreNotes} />}
+          {session?.scores && (
+            <ScoreBreakdown scores={session.scores} notes={session.scoreNotes} soft={softRound} />
+          )}
           <div className="card p-4">
             <div className="flex items-center justify-between mb-2">
               <h4 className="font-semibold text-text-primary flex items-center gap-1.5">

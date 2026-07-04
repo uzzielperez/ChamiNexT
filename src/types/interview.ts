@@ -15,7 +15,9 @@ export type ProblemDomain =
   | 'growth-systems'
   | 'attribution'
   | 'martech-integrations'
-  | 'gtm-strategy';
+  | 'gtm-strategy'
+  | 'behavioral'
+  | 'recruiter';
 
 export type PracticeTrack = 'software' | 'ai-engineer' | 'quant' | 'cybersecurity' | 'market-engineering';
 
@@ -158,6 +160,60 @@ export interface FieldSourcedProblem extends PracticeProblem {
   originReportId: string;
   originCompany: string;
   createdAt: string;
+}
+
+// ── Interview intel (scraped from public sources) ──────────────────
+// Built offline by scripts/interview-intel/; bundled as static content.
+
+export type IntelQuestionKind =
+  | 'coding'
+  | 'system-design'
+  | 'behavioral'
+  | 'recruiter'
+  | 'take-home'
+  | 'domain-knowledge';
+
+export type IntelSourceType = 'reddit' | 'hn' | 'blog' | 'youtube';
+
+export interface IntelQuestion {
+  id: string;
+  text: string;
+  kind: IntelQuestionKind;
+  stage: InterviewStage;
+  track: PracticeTrack;
+  sourceUrl: string;
+  sourceType: IntelSourceType;
+}
+
+export interface IntelStage {
+  stage: InterviewStage;
+  notes: string;
+}
+
+export interface IntelSourceRef {
+  type: IntelSourceType;
+  title: string;
+  url: string;
+}
+
+export interface CompanyIntel {
+  id: string;
+  company: string;
+  tracks: PracticeTrack[];
+  roles: string[];
+  stages: IntelStage[];
+  processNotes: string[];
+  questions: IntelQuestion[];
+  sources: IntelSourceRef[];
+}
+
+export interface InterviewIntelData {
+  version: number;
+  generatedAt: string;
+  extraction: 'llm' | 'heuristic';
+  totalSourceDocs: number;
+  companies: CompanyIntel[];
+  generalQuestions: IntelQuestion[];
 }
 
 export interface FieldReportInsights {

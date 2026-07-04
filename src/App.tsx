@@ -30,6 +30,9 @@ import ApplyPage from './pages/ApplyPage';
 import DailyPracticePage from './pages/DailyPracticePage';
 import FieldReportsPage from './pages/FieldReportsPage';
 import SkillTreesPage from './pages/SkillTreesPage';
+import InterviewIntelPage from './pages/InterviewIntelPage';
+import InterviewLoopPage from './pages/InterviewLoopPage';
+import RapidFireDrillPage from './pages/RapidFireDrillPage';
 import LearnPage from './pages/LearnPage';
 import DemoBanner from './components/demo/DemoBanner';
 import TrialBanner from './components/layout/TrialBanner';
@@ -52,6 +55,9 @@ function App() {
             <Route path="/daily" element={<DailyPracticePage />} />
             <Route path="/field-reports" element={<FieldReportsPage />} />
             <Route path="/skills" element={<SkillTreesPage />} />
+            <Route path="/intel" element={<InterviewIntelPage />} />
+            <Route path="/loop" element={<InterviewLoopPage />} />
+            <Route path="/drill" element={<RapidFireDrillPage />} />
             <Route path="/learn" element={<LearnPage />} />
             <Route path="/practice" element={<JobSeekersPage />} />
             <Route path="/jobseekers" element={<Navigate to="/practice" replace />} />

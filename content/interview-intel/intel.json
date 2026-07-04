@@ -1,0 +1,337 @@
+{
+  "version": 1,
+  "generatedAt": "2026-07-03T15:53:18.252Z",
+  "extraction": "heuristic",
+  "totalSourceDocs": 222,
+  "companies": [
+    {
+      "id": "google",
+      "company": "Google",
+      "tracks": [
+        "cybersecurity",
+        "software"
+      ],
+      "roles": [],
+      "stages": [],
+      "processNotes": [],
+      "questions": [
+        {
+          "id": "iq-3",
+          "text": "What are the two types of encryption?",
+          "kind": "domain-knowledge",
+          "stage": "other",
+          "track": "cybersecurity",
+          "sourceUrl": "https://www.reddit.com/r/cybersecurity/comments/1dcw4dj/my_journey_to_securing_a_remote_entry_level/",
+          "sourceType": "reddit"
+        },
+        {
+          "id": "iq-4",
+          "text": "How does DNS work?",
+          "kind": "domain-knowledge",
+          "stage": "other",
+          "track": "cybersecurity",
+          "sourceUrl": "https://www.reddit.com/r/cybersecurity/comments/1dcw4dj/my_journey_to_securing_a_remote_entry_level/",
+          "sourceType": "reddit"
+        },
+        {
+          "id": "iq-5",
+          "text": "What's the MITRE attack framework?",
+          "kind": "domain-knowledge",
+          "stage": "other",
+          "track": "cybersecurity",
+          "sourceUrl": "https://www.reddit.com/r/cybersecurity/comments/1dcw4dj/my_journey_to_securing_a_remote_entry_level/",
+          "sourceType": "reddit"
+        },
+        {
+          "id": "iq-6",
+          "text": "What's the cyber kill chain?",
+          "kind": "domain-knowledge",
+          "stage": "other",
+          "track": "cybersecurity",
+          "sourceUrl": "https://www.reddit.com/r/cybersecurity/comments/1dcw4dj/my_journey_to_securing_a_remote_entry_level/",
+          "sourceType": "reddit"
+        },
+        {
+          "id": "iq-7",
+          "text": "Can hashing be reversed?",
+          "kind": "coding",
+          "stage": "other",
+          "track": "cybersecurity",
+          "sourceUrl": "https://www.reddit.com/r/cybersecurity/comments/1dcw4dj/my_journey_to_securing_a_remote_entry_level/",
+          "sourceType": "reddit"
+        },
+        {
+          "id": "iq-9",
+          "text": "What is the volatile/const/static keyword in C?",
+          "kind": "domain-knowledge",
+          "stage": "other",
+          "track": "software",
+          "sourceUrl": "https://www.reddit.com/r/csMajors/comments/111dqem/summer_2023_swe_internship_search_recap/",
+          "sourceType": "reddit"
+        },
+        {
+          "id": "iq-10",
+          "text": "You are asked to design a blog site.",
+          "kind": "system-design",
+          "stage": "system-design",
+          "track": "software",
+          "sourceUrl": "https://www.reddit.com/r/csMajors/comments/z4l0l0/2023_internship_grind_summary_realistic/",
+          "sourceType": "reddit"
+        },
+        {
+          "id": "iq-11",
+          "text": "You are asked to explain recursion and edge cases to someone who wasnt in tech.",
+          "kind": "domain-knowledge",
+          "stage": "other",
+          "track": "software",
+          "sourceUrl": "https://www.reddit.com/r/csMajors/comments/z4l0l0/2023_internship_grind_summary_realistic/",
+          "sourceType": "reddit"
+        }
+      ],
+      "sources": [
+        {
+          "type": "reddit",
+          "title": "My journey to securing a remote entry level Cybersecurity job with no prior Cyber experience and < 1 year of IT experien",
+          "url": "https://www.reddit.com/r/cybersecurity/comments/1dcw4dj/my_journey_to_securing_a_remote_entry_level/"
+        },
+        {
+          "type": "reddit",
+          "title": "Summer 2023 SWE internship search recap",
+          "url": "https://www.reddit.com/r/csMajors/comments/111dqem/summer_2023_swe_internship_search_recap/"
+        },
+        {
+          "type": "reddit",
+          "title": "2023 internship grind summary (realistic)",
+          "url": "https://www.reddit.com/r/csMajors/comments/z4l0l0/2023_internship_grind_summary_realistic/"
+        }
+      ]
+    },
+    {
+      "id": "amazon",
+      "company": "Amazon",
+      "tracks": [
+        "software"
+      ],
+      "roles": [],
+      "stages": [],
+      "processNotes": [],
+      "questions": [
+        {
+          "id": "iq-1",
+          "text": "You are asked to write the HTML/CSS for the whole page.",
+          "kind": "domain-knowledge",
+          "stage": "other",
+          "track": "software",
+          "sourceUrl": "https://news.ycombinator.com/item?id=7040382",
+          "sourceType": "hn"
+        },
+        {
+          "id": "iq-12",
+          "text": "You are asked to do some web development right off the bat, as in write HTML/JS from scratch to implement some interactivity.",
+          "kind": "coding",
+          "stage": "other",
+          "track": "software",
+          "sourceUrl": "https://www.reddit.com/r/csMajors/comments/q84828/sharing_process_info_for_facebook_microsoft/",
+          "sourceType": "reddit"
+        }
+      ],
+      "sources": [
+        {
+          "type": "hn",
+          "title": "My Amazon interview experience",
+          "url": "https://news.ycombinator.com/item?id=7040382"
+        },
+        {
+          "type": "reddit",
+          "title": "Sharing Process Info for Facebook, Microsoft, Citadel, Intuit, Palantir + Intern Offer Decision",
+          "url": "https://www.reddit.com/r/csMajors/comments/q84828/sharing_process_info_for_facebook_microsoft/"
+        }
+      ]
+    },
+    {
+      "id": "meta",
+      "company": "Meta",
+      "tracks": [
+        "software"
+      ],
+      "roles": [],
+      "stages": [],
+      "processNotes": [],
+      "questions": [
+        {
+          "id": "iq-2",
+          "text": "You are asked to do an LLD question (think \"design a chess game\" or \"design a parking lot\" but in \\~45 minutes).",
+          "kind": "system-design",
+          "stage": "system-design",
+          "track": "software",
+          "sourceUrl": "https://www.reddit.com/r/leetcode/comments/1kjdbb6/detailed_prep_breakdown_startup_job_big_tech/",
+          "sourceType": "reddit"
+        }
+      ],
+      "sources": [
+        {
+          "type": "reddit",
+          "title": "Detailed Prep Breakdown: Startup Job > Big Tech Offers",
+          "url": "https://www.reddit.com/r/leetcode/comments/1kjdbb6/detailed_prep_breakdown_startup_job_big_tech/"
+        }
+      ]
+    },
+    {
+      "id": "oracle",
+      "company": "Oracle",
+      "tracks": [
+        "ai-engineer"
+      ],
+      "roles": [],
+      "stages": [],
+      "processNotes": [],
+      "questions": [
+        {
+          "id": "iq-8",
+          "text": "What is elastic net regression?",
+          "kind": "domain-knowledge",
+          "stage": "other",
+          "track": "ai-engineer",
+          "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/beoxx8/discussion_when_ml_and_data_science_are_the_death/",
+          "sourceType": "reddit"
+        }
+      ],
+      "sources": [
+        {
+          "type": "reddit",
+          "title": "[Discussion] When ML and Data Science are the death of a good company: A cautionary tale.",
+          "url": "https://www.reddit.com/r/MachineLearning/comments/beoxx8/discussion_when_ml_and_data_science_are_the_death/"
+        }
+      ]
+    },
+    {
+      "id": "citadel",
+      "company": "Citadel",
+      "tracks": [
+        "quant"
+      ],
+      "roles": [],
+      "stages": [],
+      "processNotes": [],
+      "questions": [
+        {
+          "id": "iq-24",
+          "text": "Why did you leave the field of quantity?",
+          "kind": "behavioral",
+          "stage": "other",
+          "track": "quant",
+          "sourceUrl": "https://www.youtube.com/watch?v=HYlZbDebakk",
+          "sourceType": "youtube"
+        }
+      ],
+      "sources": [
+        {
+          "type": "youtube",
+          "title": "ex-Citadel Quant: The Exact Blueprint To Make $750,000/Year! (in 2026)",
+          "url": "https://www.youtube.com/watch?v=HYlZbDebakk"
+        }
+      ]
+    }
+  ],
+  "generalQuestions": [
+    {
+      "id": "iq-13",
+      "text": "What is the difference between an abstract class and an interface?",
+      "kind": "domain-knowledge",
+      "stage": "other",
+      "track": "software",
+      "sourceUrl": "https://www.youtube.com/watch?v=f7eG-IusGrM",
+      "sourceType": "youtube"
+    },
+    {
+      "id": "iq-14",
+      "text": "How do you handle tight deadlines?",
+      "kind": "behavioral",
+      "stage": "other",
+      "track": "software",
+      "sourceUrl": "https://www.youtube.com/watch?v=f7eG-IusGrM",
+      "sourceType": "youtube"
+    },
+    {
+      "id": "iq-15",
+      "text": "What is the difference between SQL and NoSQL databases?",
+      "kind": "coding",
+      "stage": "other",
+      "track": "software",
+      "sourceUrl": "https://www.youtube.com/watch?v=f7eG-IusGrM",
+      "sourceType": "youtube"
+    },
+    {
+      "id": "iq-16",
+      "text": "What is REST API?",
+      "kind": "domain-knowledge",
+      "stage": "other",
+      "track": "software",
+      "sourceUrl": "https://www.youtube.com/watch?v=f7eG-IusGrM",
+      "sourceType": "youtube"
+    },
+    {
+      "id": "iq-17",
+      "text": "How do you handle conflicts in a team?",
+      "kind": "behavioral",
+      "stage": "other",
+      "track": "software",
+      "sourceUrl": "https://www.youtube.com/watch?v=f7eG-IusGrM",
+      "sourceType": "youtube"
+    },
+    {
+      "id": "iq-18",
+      "text": "What is agile methodology?",
+      "kind": "domain-knowledge",
+      "stage": "other",
+      "track": "software",
+      "sourceUrl": "https://www.youtube.com/watch?v=f7eG-IusGrM",
+      "sourceType": "youtube"
+    },
+    {
+      "id": "iq-19",
+      "text": "What is a micros service architecture?",
+      "kind": "system-design",
+      "stage": "system-design",
+      "track": "software",
+      "sourceUrl": "https://www.youtube.com/watch?v=f7eG-IusGrM",
+      "sourceType": "youtube"
+    },
+    {
+      "id": "iq-20",
+      "text": "What is garbage collection in Java?",
+      "kind": "domain-knowledge",
+      "stage": "other",
+      "track": "software",
+      "sourceUrl": "https://www.youtube.com/watch?v=f7eG-IusGrM",
+      "sourceType": "youtube"
+    },
+    {
+      "id": "iq-21",
+      "text": "What is the difference between list, tuple, set, and dictionary?",
+      "kind": "domain-knowledge",
+      "stage": "other",
+      "track": "software",
+      "sourceUrl": "https://www.youtube.com/watch?v=vcNLbJ4JDic",
+      "sourceType": "youtube"
+    },
+    {
+      "id": "iq-22",
+      "text": "Why do you want to join Accenture?",
+      "kind": "behavioral",
+      "stage": "other",
+      "track": "software",
+      "sourceUrl": "https://www.youtube.com/watch?v=vcNLbJ4JDic",
+      "sourceType": "youtube"
+    },
+    {
+      "id": "iq-23",
+      "text": "You are asked to reverse a string or check whether a string is a palindrome.",
+      "kind": "coding",
+      "stage": "other",
+      "track": "software",
+      "sourceUrl": "https://www.youtube.com/watch?v=vcNLbJ4JDic",
+      "sourceType": "youtube"
+    }
+  ]
+}
