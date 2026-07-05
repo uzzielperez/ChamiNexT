@@ -36,6 +36,7 @@ const TRACK_TABS: { id: TrackFilter; label: string }[] = [
   { id: 'quant', label: 'Quant' },
   { id: 'cybersecurity', label: 'Cybersecurity' },
   { id: 'market-engineering', label: 'Market Eng' },
+  { id: 'ai-for-science', label: 'AI for Science' },
 ];
 
 const KIND_TONE: Record<IntelQuestionKind, string> = {

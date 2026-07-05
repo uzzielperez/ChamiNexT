@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "updated": "2026-07-05",
+  "description": "Deep problem tests for mission-driven hiring — climate, health, poverty, frontier-science ethics. Sourced from curated originals; field intel from DeepMind, Anthropic, and mission orgs enriches over time via intel:frontier pipeline.",
+  "tests": [
+    {
+      "id": "frontier-climate-grid",
+      "mission": "climate",
+      "title": "Grid stress under extreme weather",
+      "orgExamples": ["Watershed", "Google DeepMind", "climate tech startups"],
+      "prompt": "A utility asks you to predict which substations will fail during heat waves so they can pre-position crews. You have 10 years of outage logs and weather reanalysis. In 20 minutes: frame the problem, name leakage risks, propose a validation plan, and state what you will not automate (and why).",
+      "ethicsPrompts": [
+        "Neighborhoods with historical under-investment may have worse data — how does that affect your model's fairness?",
+        "Who benefits if you optimize for utility cost vs resident downtime?"
+      ],
+      "whatGoodLooksLike": "Causal framing, uncertainty quantification, explicit equity trade-off, prospective validation — not just AUC on held-out years.",
+      "practiceProblemId": "sci-climate-uncertainty",
+      "estimatedMinutes": 30
+    },
+    {
+      "id": "frontier-cancer-trial",
+      "mission": "health",
+      "title": "Trial enrollment with ML",
+      "orgExamples": ["Recursion", "Isomorphic Labs", "Tempus", "Insitro"],
+      "prompt": "Design an ML system to identify patients likely to benefit from a Phase II oncology trial. The clinician interviewer will attack: label definition, confounding from treatment history, and what happens when the model is wrong.",
+      "ethicsPrompts": [
+        "What if enrollment optimization skews the trial away from underrepresented genotypes?",
+        "What do you tell a patient when the model says 'unlikely responder'?"
+      ],
+      "whatGoodLooksLike": "Clear label, external cohort validation, clinician-in-the-loop, harm analysis — not retrospective AUROC alone.",
+      "practiceProblemId": "sci-health-validation",
+      "estimatedMinutes": 30
+    },
+    {
+      "id": "frontier-poverty-targeting",
+      "mission": "poverty",
+      "title": "Targeting scarce aid",
+      "orgExamples": ["GiveDirectly", "impact eval NGOs", "development economics labs"],
+      "prompt": "You have satellite imagery and mobile money metadata to target cash transfers. The interviewer wants your identification strategy, how you avoid Goodharting poverty proxies, and what evidence you need before scaling from 10k to 10M people.",
+      "ethicsPrompts": [
+        "Consent when people did not know their data trains the model.",
+        "Political capture of the targeting algorithm."
+      ],
+      "whatGoodLooksLike": "RCT or phased rollout, pre-specified metrics, community harm review — not offline proxy accuracy.",
+      "practiceProblemId": "sci-poverty-rct",
+      "estimatedMinutes": 30
+    },
+    {
+      "id": "frontier-anthropic-safety",
+      "mission": "ethics",
+      "title": "Shipping a scientific assistant",
+      "orgExamples": ["Anthropic", "OpenAI", "DeepMind safety teams"],
+      "prompt": "Your scientific coding assistant helps researchers run simulations. A user asks it to optimize a compound with dual-use potential. Walk through your policy, technical mitigations, escalation path, and what you log — as if in an Anthropic-style values interview.",
+      "ethicsPrompts": [
+        "When is refusal the wrong product choice?",
+        "How do you avoid safety theater while still moving fast?"
+      ],
+      "whatGoodLooksLike": "Concrete policy tiers, monitoring, human review triggers, honest trade-offs — not slogans.",
+      "practiceProblemId": "sci-ethics-dual-use",
+      "estimatedMinutes": 20
+    },
+    {
+      "id": "frontier-deepmind-research",
+      "mission": "science",
+      "title": "Research integrity under pressure",
+      "orgExamples": ["Google DeepMind", "FAIR", "Microsoft Research"],
+      "prompt": "Leadership wants a Nature-worthy result before a competitor's announcement. Your internal replication is mixed. How do you communicate, what do you ship, and how do you structure the team's next two weeks?",
+      "ethicsPrompts": [
+        "Career incentives vs scientific honesty.",
+        "What you owe the field vs your employer."
+      ],
+      "whatGoodLooksLike": "Transparent uncertainty, pre-specified success criteria, adversarial internal review — not narrative spin.",
+      "practiceProblemId": "sci-reproducibility",
+      "estimatedMinutes": 20
+    },
+    {
+      "id": "frontier-conservation-sensors",
+      "mission": "climate",
+      "title": "Biodiversity from sensor networks",
+      "orgExamples": ["conservation tech NGOs", "Pachama-style orgs", "academic ecology labs"],
+      "prompt": "Camera traps and audio sensors produce sparse labels. Design an ML pipeline to detect species decline trends — and defend why your uncertainty bands are honest enough for a conservation funding decision.",
+      "ethicsPrompts": [
+        "Indigenous land data sovereignty.",
+        "False alarms that divert limited ranger time."
+      ],
+      "whatGoodLooksLike": "Label noise modeling, spatial bias correction, stakeholder-specific decision thresholds.",
+      "practiceProblemId": "sci-climate-uncertainty",
+      "estimatedMinutes": 30
+    }
+  ]
+}

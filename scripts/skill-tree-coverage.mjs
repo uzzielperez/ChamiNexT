@@ -17,6 +17,7 @@ const domainsByTrack = {
   cybersecurity: new Set((manifest.cybersecurity || []).map((p) => p.domain)),
   'ai-engineer': new Set(manifest.aiEngineer.map((p) => p.domain)),
   'market-engineering': new Set(manifest.marketEngineering.map((p) => p.domain)),
+  'ai-for-science': new Set((manifest.aiForScience || []).map((p) => p.domain)),
 };
 
 const domainOwners = {
@@ -25,6 +26,7 @@ const domainOwners = {
   cybersecurity: domainsByTrack.cybersecurity,
   'ai-engineer': domainsByTrack['ai-engineer'],
   'market-engineering': domainsByTrack['market-engineering'],
+  'ai-for-science': domainsByTrack['ai-for-science'],
 };
 
 let covered = 0;

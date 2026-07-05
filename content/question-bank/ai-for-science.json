@@ -1,0 +1,172 @@
+[
+  {
+    "id": "sci-leakage-omics",
+    "title": "Leakage in Genomic ML",
+    "domain": "scientific-methods",
+    "track": "ai-for-science",
+    "difficulty": "hard",
+    "estimatedMinutes": 20,
+    "prompt": "You are training a model to predict treatment response from patient omics data. Walk through how look-ahead bias or leakage could invalidate your results — and how you would design the split and validation to convince a skeptical reviewer at a frontier lab (DeepMind-style, Anthropic-style, or a pharma ML team).",
+    "hints": [
+      "Name three concrete leakage paths beyond random train/test split.",
+      "What would you pre-register before seeing test metrics?"
+    ],
+    "starterCode": "# Validation plan",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "sci-ethics-dual-use",
+    "title": "Dual-use capability",
+    "domain": "research-ethics",
+    "track": "ai-for-science",
+    "difficulty": "medium",
+    "estimatedMinutes": 15,
+    "prompt": "Your team built a model that dramatically improves protein structure prediction for a therapeutic target — but the same architecture could accelerate harmful agents. How do you decide what to publish, what to ship internally, and what to escalate? The interviewer will push on whose harm you are optimizing for.",
+    "hints": [
+      "Separate capability from deployment.",
+      "Name who must sign off and what evidence you need."
+    ],
+    "starterCode": "",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "sci-ethics-consent",
+    "title": "Consent in health data",
+    "domain": "research-ethics",
+    "track": "ai-for-science",
+    "difficulty": "medium",
+    "estimatedMinutes": 15,
+    "prompt": "A hospital partner offers de-identified records for your cancer-risk model. What consent, governance, and failure-mode questions do you ask before training — and what do you tell a patient advocate who asks why they should trust the system?",
+    "hints": [
+      "De-identification is not anonymity.",
+      "Who is harmed if the model is wrong?"
+    ],
+    "starterCode": "",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "sci-climate-uncertainty",
+    "title": "Climate forecast uncertainty",
+    "domain": "mission-problems",
+    "track": "ai-for-science",
+    "difficulty": "hard",
+    "estimatedMinutes": 20,
+    "prompt": "Design an ML approach to improve regional drought forecasts. The interviewer wants: what physical constraints you respect, how you quantify uncertainty, and what you would NOT claim to policymakers even if the offline metric looks good.",
+    "hints": [
+      "Offline accuracy ≠ decision quality.",
+      "Name one equity failure mode."
+    ],
+    "starterCode": "# Approach outline",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "sci-health-validation",
+    "title": "From bench to bedside",
+    "domain": "mission-problems",
+    "track": "ai-for-science",
+    "difficulty": "hard",
+    "estimatedMinutes": 20,
+    "prompt": "Your model ranks drug candidates in silico with strong retrospective performance. Outline the validation path to a decision a clinician would act on — and where most ML papers stop too early.",
+    "hints": [
+      "Prospective vs retrospective.",
+      "What is your negative control?"
+    ],
+    "starterCode": "",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "sci-poverty-rct",
+    "title": "Impact measurement discipline",
+    "domain": "mission-problems",
+    "track": "ai-for-science",
+    "difficulty": "medium",
+    "estimatedMinutes": 15,
+    "prompt": "An NGO wants your model to target cash transfers for poverty alleviation. How do you avoid Goodharting the metric — and what RCT or quasi-experimental design would you insist on before scaling?",
+    "hints": [
+      "Proxy metrics vs lived outcomes.",
+      "Leakage from targeting into measurement."
+    ],
+    "starterCode": "",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "sci-alignment-tradeoff",
+    "title": "Alignment vs capability",
+    "domain": "research-ethics",
+    "track": "ai-for-science",
+    "difficulty": "medium",
+    "estimatedMinutes": 15,
+    "prompt": "Explain a real trade-off between improving model capability and improving alignment/safety on a scientific assistant. When would you delay a release? The interviewer will challenge whether you are hiding behind safety to avoid shipping.",
+    "hints": [
+      "Give a concrete scenario, not philosophy.",
+      "What eval would change your mind?"
+    ],
+    "starterCode": "",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "sci-reproducibility",
+    "title": "Reproducibility crisis",
+    "domain": "scientific-methods",
+    "track": "ai-for-science",
+    "difficulty": "medium",
+    "estimatedMinutes": 15,
+    "prompt": "A celebrated result in your subfield fails to replicate on a new cohort. Walk through your diagnostic process — and how you communicate uncertainty to leadership who already announced the win.",
+    "hints": [
+      "Distinguish bug, distribution shift, and p-hacking.",
+      "What do you ship while investigating?"
+    ],
+    "starterCode": "",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "sci-rag-scientific",
+    "title": "RAG for scientific literature",
+    "domain": "scientific-methods",
+    "track": "ai-for-science",
+    "difficulty": "medium",
+    "estimatedMinutes": 20,
+    "prompt": "Build a retrieval system for a research scientist at a frontier lab. How do you handle contradictory papers, citation chains, and hallucinated summaries — and how do you evaluate before researchers trust it in a live workflow?",
+    "hints": [
+      "Citation grounding is not enough.",
+      "Human-in-the-loop triggers."
+    ],
+    "starterCode": "# Architecture notes",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "sci-behavioral-mission",
+    "title": "Why this mission?",
+    "domain": "behavioral",
+    "track": "ai-for-science",
+    "difficulty": "medium",
+    "estimatedMinutes": 10,
+    "prompt": "Tell me about a time you chose a harder path because it was the right scientific or ethical choice — not because it was career-optimal. The interviewer will probe for performative answers.",
+    "hints": [
+      "Specifics: what you gave up.",
+      "What you would do differently."
+    ],
+    "starterCode": "",
+    "runLanguage": null,
+    "source": "curated-original",
+    "license": "ChamiNext"
+  }
+]

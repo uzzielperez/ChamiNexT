@@ -23,6 +23,7 @@ const TRACKS: { id: PracticeTrack; label: string }[] = [
   { id: 'quant', label: 'Quant' },
   { id: 'cybersecurity', label: 'Cybersecurity' },
   { id: 'market-engineering', label: 'Market Engineering' },
+  { id: 'ai-for-science', label: 'AI for Science' },
 ];
 
 const readinessTone = (n: number) =>

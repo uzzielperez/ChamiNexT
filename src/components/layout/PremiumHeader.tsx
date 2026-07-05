@@ -23,6 +23,8 @@ const PremiumHeader: React.FC = () => {
     { name: 'Skill trees', href: '/skills', hasDropdown: false },
     { name: 'Intel', href: '/intel', hasDropdown: false },
     { name: 'Jobs', href: '/jobs', hasDropdown: false },
+    { name: 'Frontier', href: '/frontier', hasDropdown: false },
+    { name: 'Referrals', href: '/referrals', hasDropdown: false },
     { name: 'For Companies', href: '/employers', hasDropdown: false },
     { name: 'Pricing', href: '/pricing', hasDropdown: false },
     {
@@ -30,7 +32,8 @@ const PremiumHeader: React.FC = () => {
       href: '#',
       hasDropdown: true,
       dropdownItems: [
-        { name: 'All courses', href: '/marketplace' },
+        { name: 'All courses', href: '/learn' },
+        { name: 'Marketplace', href: '/marketplace' },
         { name: 'Vibe Coding', href: '/courses/vibe-coding' },
         { name: 'Building RAGs', href: '/courses/building-rags' },
         { name: 'AI Agents', href: '/courses/ai-agents' },

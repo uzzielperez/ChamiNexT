@@ -2,6 +2,7 @@ import type { SubscriptionPlan, UserSubscription } from '../types/employer';
 
 const SUB_KEY = 'chaminext_subscription';
 const TRIAL_USED_KEY = 'chaminext_trial_used';
+const REFERRAL_BONUS_KEY = 'chaminext_referral_bonus';
 const INTERVIEW_SEASON_DAYS = 90;
 const TRIAL_DAYS = 30;
 
@@ -101,9 +102,69 @@ export function hasBuilderAccess(): boolean {
 }
 
 export function canStartInterview(): boolean {
-  if (getEffectivePlan() !== 'free') return true;
+  const limit = getDailyInterviewLimit();
   const usage = getTodayUsage();
-  return usage.interviews < PLAN_LIMITS.free.interviewsPerDay;
+  return usage.interviews < limit;
+}
+
+/** Free tier + optional referral bonus interviews per day. */
+export function getDailyInterviewLimit(): number {
+  if (getEffectivePlan() !== 'free') return 999;
+  const base = PLAN_LIMITS.free.interviewsPerDay;
+  try {
+    const raw = localStorage.getItem(REFERRAL_BONUS_KEY);
+    if (!raw) return base;
+    const bonus = JSON.parse(raw) as { extraPerDay: number; expiresAt: string };
+    if (new Date(bonus.expiresAt) < new Date()) return base;
+    return base + (bonus.extraPerDay || 0);
+  } catch {
+    return base;
+  }
+}
+
+export function grantReferralBonusInterviews(extraPerDay: number, days: number): void {
+  const expiresAt = new Date();
+  expiresAt.setDate(expiresAt.getDate() + days);
+  localStorage.setItem(
+    REFERRAL_BONUS_KEY,
+    JSON.stringify({ extraPerDay, expiresAt: expiresAt.toISOString() })
+  );
+}
+
+/** Extend trial or paid plan expiry; grants builder trial if on free. */
+export function extendSubscriptionDays(days: number): number {
+  if (days <= 0) return 0;
+  const sub = loadSubscription();
+  const now = new Date();
+
+  if (sub.expiresAt && new Date(sub.expiresAt) >= now) {
+    const d = new Date(sub.expiresAt);
+    d.setDate(d.getDate() + days);
+    sub.expiresAt = d.toISOString();
+    saveSubscriptionPayload(sub);
+    return days;
+  }
+
+  if (getEffectivePlan() === 'free') {
+    const payload: UserSubscription = {
+      plan: 'builder',
+      since: sub.since || now.toISOString(),
+      expiresAt: addDaysIso(days),
+      isTrial: true,
+    };
+    saveSubscriptionPayload(payload);
+    return days;
+  }
+
+  const d = new Date();
+  d.setDate(d.getDate() + days);
+  sub.expiresAt = d.toISOString();
+  saveSubscriptionPayload(sub);
+  return days;
+}
+
+function saveSubscriptionPayload(payload: UserSubscription): void {
+  localStorage.setItem(SUB_KEY, JSON.stringify(payload));
 }
 
 export function recordInterviewStart(): void {

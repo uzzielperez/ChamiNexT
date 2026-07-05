@@ -34,6 +34,9 @@ import InterviewIntelPage from './pages/InterviewIntelPage';
 import InterviewLoopPage from './pages/InterviewLoopPage';
 import RapidFireDrillPage from './pages/RapidFireDrillPage';
 import JobsPage from './pages/JobsPage';
+import FrontierProblemsPage from './pages/FrontierProblemsPage';
+import ReferralsPage from './pages/ReferralsPage';
+import ReferralCapture from './components/referral/ReferralCapture';
 import LearnPage from './pages/LearnPage';
 import DemoBanner from './components/demo/DemoBanner';
 import TrialBanner from './components/layout/TrialBanner';
@@ -47,6 +50,7 @@ import './styles/alfred.css';
 function App() {
   return (
     <Router>
+      <ReferralCapture />
       <div className="flex flex-col min-h-screen" style={{ backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
         <PremiumHeader />
         <TrialBanner />
@@ -60,6 +64,8 @@ function App() {
             <Route path="/loop" element={<InterviewLoopPage />} />
             <Route path="/drill" element={<RapidFireDrillPage />} />
             <Route path="/jobs" element={<JobsPage />} />
+            <Route path="/frontier" element={<FrontierProblemsPage />} />
+            <Route path="/referrals" element={<ReferralsPage />} />
             <Route path="/learn" element={<LearnPage />} />
             <Route path="/practice" element={<JobSeekersPage />} />
             <Route path="/jobseekers" element={<Navigate to="/practice" replace />} />

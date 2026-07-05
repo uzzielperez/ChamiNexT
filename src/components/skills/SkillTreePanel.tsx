@@ -242,6 +242,7 @@ export const SkillTreeTabs: React.FC<{
     quant: 'Quant',
     cybersecurity: 'Cybersecurity',
     'market-engineering': 'Market Engineering',
+    'ai-for-science': 'AI for Science',
   };
   return (
     <div className="flex flex-wrap gap-2 mb-8 justify-center">

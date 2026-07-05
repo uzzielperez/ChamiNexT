@@ -405,5 +405,17 @@
       "source": "curated-original",
       "license": "ChamiNext"
     }
+  ],
+  "aiForScience": [
+    { "id": "sci-leakage-omics", "domain": "scientific-methods", "source": "curated-original", "license": "ChamiNext" },
+    { "id": "sci-ethics-dual-use", "domain": "research-ethics", "source": "curated-original", "license": "ChamiNext" },
+    { "id": "sci-ethics-consent", "domain": "research-ethics", "source": "curated-original", "license": "ChamiNext" },
+    { "id": "sci-climate-uncertainty", "domain": "mission-problems", "source": "curated-original", "license": "ChamiNext" },
+    { "id": "sci-health-validation", "domain": "mission-problems", "source": "curated-original", "license": "ChamiNext" },
+    { "id": "sci-poverty-rct", "domain": "mission-problems", "source": "curated-original", "license": "ChamiNext" },
+    { "id": "sci-alignment-tradeoff", "domain": "research-ethics", "source": "curated-original", "license": "ChamiNext" },
+    { "id": "sci-reproducibility", "domain": "scientific-methods", "source": "curated-original", "license": "ChamiNext" },
+    { "id": "sci-rag-scientific", "domain": "scientific-methods", "source": "curated-original", "license": "ChamiNext" },
+    { "id": "sci-behavioral-mission", "domain": "mission-problems", "source": "curated-original", "license": "ChamiNext" }
   ]
 }

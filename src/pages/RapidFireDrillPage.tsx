@@ -24,6 +24,7 @@ const TRACKS: { id: SkillTreeTrackId; label: string }[] = [
   { id: 'quant', label: 'Quant' },
   { id: 'cybersecurity', label: 'Cybersecurity' },
   { id: 'market-engineering', label: 'Market Engineering' },
+  { id: 'ai-for-science', label: 'AI for Science' },
 ];
 
 const VERDICT_STYLE: Record<DrillVerdict, { label: string; className: string }> = {

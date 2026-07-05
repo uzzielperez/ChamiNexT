@@ -6,6 +6,7 @@ import ScoreBreakdown from './ScoreBreakdown';
 import type { InterviewMessage, InterviewSession, PracticeProblem, PracticeTrack } from '../../types/interview';
 import { callInterviewAgent } from '../../utils/interviewAgent';
 import { saveSession } from '../../utils/interviewStorage';
+import { trackReferralQualified } from '../../utils/referralApi';
 
 interface InterviewSimulatorProps {
   problem: PracticeProblem;
@@ -22,6 +23,7 @@ const TRACK_LABELS: Record<PracticeTrack, string> = {
   quant: 'Quant',
   cybersecurity: 'Cybersecurity',
   'market-engineering': 'Market Engineering',
+  'ai-for-science': 'AI for Science',
 };
 
 const formatElapsed = (seconds: number) => {
@@ -159,6 +161,7 @@ const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({
       setSession(ended);
       setSessionEnded(true);
       appendMessage('system', 'Interview ended. Scores saved to your talent profile.');
+      void trackReferralQualified();
       onComplete?.(ended);
     } finally {
       setLoading(false);

@@ -9,7 +9,7 @@
  *  - YouTube search + caption transcripts
  *
  * Usage:
- *   node scripts/interview-intel/scrape.mjs [--source reddit|hn|rss|youtube]
+ *   node scripts/interview-intel/scrape.mjs [--source reddit|hn|rss|youtube] [--profile frontier]
  *
  * Output: scripts/interview-intel/.cache/raw-docs.json
  * Politeness: sequential fetches with delays, descriptive User-Agent, and
@@ -22,7 +22,45 @@ import { execFileSync } from 'node:child_process';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const cacheDir = join(here, '.cache');
-const sources = JSON.parse(readFileSync(join(here, 'sources.json'), 'utf8'));
+
+const profileArg = process.argv.includes('--profile')
+  ? process.argv[process.argv.indexOf('--profile') + 1]
+  : null;
+
+function mergeList(base = [], extra = []) {
+  return [...new Set([...base, ...extra])];
+}
+
+function loadSources() {
+  const base = JSON.parse(readFileSync(join(here, 'sources.json'), 'utf8'));
+  if (profileArg !== 'frontier') return base;
+  const extra = JSON.parse(readFileSync(join(here, 'sources-frontier.json'), 'utf8'));
+  return {
+    ...base,
+    reddit: {
+      ...base.reddit,
+      subreddits: mergeList(base.reddit.subreddits, extra.reddit?.subreddits),
+      queries: mergeList(base.reddit.queries, extra.reddit?.queries),
+      postsPerQuery: Math.max(base.reddit.postsPerQuery, extra.reddit?.postsPerQuery ?? 0),
+      commentsPerPost: Math.max(base.reddit.commentsPerPost, extra.reddit?.commentsPerPost ?? 0),
+    },
+    hackernews: {
+      ...base.hackernews,
+      queries: mergeList(base.hackernews?.queries, extra.hackernews?.queries),
+      storiesPerQuery: Math.max(base.hackernews?.storiesPerQuery ?? 10, extra.hackernews?.storiesPerQuery ?? 0),
+      commentsPerStory: Math.max(base.hackernews?.commentsPerStory ?? 8, extra.hackernews?.commentsPerStory ?? 0),
+    },
+    rss: [...(base.rss ?? []), ...(extra.rss ?? [])],
+    youtube: {
+      ...base.youtube,
+      queries: mergeList(base.youtube.queries, extra.youtube?.queries),
+      videosPerQuery: Math.max(base.youtube.videosPerQuery, extra.youtube?.videosPerQuery ?? 0),
+    },
+    missionCompanies: extra.missionCompanies ?? [],
+  };
+}
+
+const sources = loadSources();
 
 const UA =
   'ChamiNextIntelBot/1.0 (interview prep research; contact: hello@chaminext.example)';

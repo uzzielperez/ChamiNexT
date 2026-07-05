@@ -17,6 +17,11 @@ node scripts/interview-intel/scrape.mjs --source hn
 node scripts/interview-intel/scrape.mjs --source rss
 node scripts/interview-intel/scrape.mjs --source youtube
 
+# Frontier / AI-for-science profile (DeepMind, Anthropic, ethics, mission orgs):
+npm run intel:frontier
+# equivalent to:
+node scripts/interview-intel/scrape.mjs --profile frontier && node scripts/interview-intel/extract.mjs
+
 # 2. Extract structured intel into content/interview-intel/intel.json
 GROQ_API_KEY=... node scripts/interview-intel/extract.mjs        # best quality
 node scripts/interview-intel/extract.mjs                          # heuristic fallback

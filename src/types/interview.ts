@@ -17,11 +17,35 @@ export type ProblemDomain =
   | 'martech-integrations'
   | 'gtm-strategy'
   | 'behavioral'
-  | 'recruiter';
+  | 'recruiter'
+  | 'research-ethics'
+  | 'scientific-methods'
+  | 'mission-problems';
 
-export type PracticeTrack = 'software' | 'ai-engineer' | 'quant' | 'cybersecurity' | 'market-engineering';
+export type PracticeTrack =
+  | 'software'
+  | 'ai-engineer'
+  | 'quant'
+  | 'cybersecurity'
+  | 'market-engineering'
+  | 'ai-for-science';
 
-export type EstimatedMinutes = 10 | 15 | 20;
+export type MissionArea = 'climate' | 'health' | 'poverty' | 'science' | 'ethics';
+
+export interface FrontierProblemTest {
+  id: string;
+  mission: MissionArea;
+  title: string;
+  /** Who asks this kind of question (from field intel). */
+  orgExamples: string[];
+  prompt: string;
+  ethicsPrompts: string[];
+  whatGoodLooksLike: string;
+  practiceProblemId?: string;
+  estimatedMinutes: 20 | 30 | 45;
+}
+
+export type EstimatedMinutes = 10 | 15 | 20 | 30 | 45;
 
 export interface ProblemTestCase {
   stdin?: string;

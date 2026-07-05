@@ -43,6 +43,7 @@ const TRACKS: { id: PracticeTrack; label: string }[] = [
   { id: 'quant', label: 'Quant' },
   { id: 'cybersecurity', label: 'Cybersecurity' },
   { id: 'market-engineering', label: 'Market Eng' },
+  { id: 'ai-for-science', label: 'AI for Science' },
 ];
 
 const OUTCOMES: { id: InterviewOutcome; label: string }[] = [

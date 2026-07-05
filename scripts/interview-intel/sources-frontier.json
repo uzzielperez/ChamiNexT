@@ -1,0 +1,74 @@
+{
+  "_note": "Merged into scrape when run with --profile frontier. Targets DeepMind, Anthropic, frontier-science ML, ethics, and mission hiring intel.",
+  "reddit": {
+    "subreddits": [
+      "MachineLearning",
+      "bioinformatics",
+      "EffectiveAltruism",
+      "datascience",
+      "compsci",
+      "GradSchool",
+      "PhD",
+      "climatechange"
+    ],
+    "queries": [
+      "DeepMind interview",
+      "Anthropic interview",
+      "Google research scientist interview",
+      "AI safety interview questions",
+      "research engineer interview ethics",
+      "biotech ML interview",
+      "climate machine learning job interview",
+      "OpenAI research interview experience"
+    ],
+    "postsPerQuery": 6,
+    "commentsPerPost": 8,
+    "minPostScore": 5,
+    "minCommentScore": 3,
+    "timeRange": "year"
+  },
+  "hackernews": {
+    "queries": [
+      "DeepMind interview",
+      "Anthropic hiring",
+      "research scientist interview",
+      "AI for science"
+    ],
+    "storiesPerQuery": 8,
+    "commentsPerStory": 10
+  },
+  "rss": [
+    { "name": "Anthropic blog", "url": "https://www.anthropic.com/rss.xml" },
+    { "name": "DeepMind blog", "url": "https://deepmind.google/blog/rss.xml" },
+    { "name": "OpenAI blog", "url": "https://openai.com/blog/rss.xml" }
+  ],
+  "youtube": {
+    "queries": [
+      "DeepMind interview experience research scientist",
+      "Anthropic interview process ML engineer",
+      "Google DeepMind research engineer interview",
+      "AI safety interview questions",
+      "research scientist interview machine learning ethics",
+      "biotech machine learning interview",
+      "climate AI research interview"
+    ],
+    "videosPerQuery": 4,
+    "videoIds": []
+  },
+  "missionCompanies": [
+    "Anthropic",
+    "Google DeepMind",
+    "DeepMind",
+    "OpenAI",
+    "Isomorphic Labs",
+    "Recursion",
+    "Insitro",
+    "Benchling",
+    "Watershed",
+    "Pachama",
+    "Commonwealth Fusion",
+    "Tempus",
+    "Faire",
+    "GiveDirectly"
+  ]
+}

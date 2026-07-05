@@ -112,7 +112,20 @@ RULES:
         score:
           'Evaluate threat modeling, root-cause reasoning, control trade-offs, and operational judgment, not certification trivia or acronym dumps. Use codeQuality for config, pseudo-code, or detection logic when present.',
       },
+      'ai-for-science': {
+        role: 'a senior research interviewer at a frontier AI-for-science lab (DeepMind / Anthropic / mission-driven biotech or climate team)',
+        chat: 'Focus on research hygiene, scientific ML validity, ethics and dual-use, and mission impact (climate, health, poverty). Probe leakage, pre-registration discipline, who is harmed when the model is wrong, and what they would NOT claim to leadership or policymakers. Challenge performative ethics — demand concrete trade-offs and escalation paths.',
+        score:
+          'Evaluate scientific reasoning, research hygiene, ethical judgment under pressure, and communication to skeptical scientists — not buzzwords. Use codeQuality for experimental design, validation plans, or pseudo-code rigor. Penalize confident claims without falsifiable structure.',
+      },
     };
+
+    const MISSION_PROTOCOL = `
+MISSION / ETHICS PROTOCOL (when problem domain is research-ethics, mission-problems, or scientific-methods):
+1. At least one follow-up must probe WHO IS HARMED if the candidate is wrong.
+2. At least one follow-up must probe WHAT EVIDENCE would change their mind.
+3. Reject hand-wavy "we would be careful" — ask for governance, pre-registration, or escalation specifics.
+4. Treat alignment and safety as engineering trade-offs, not moral performance art.`;
 
     // Behavioral / recruiter questions get a dedicated persona: same scoring
     // keys, reinterpreted for soft rounds so the UI stays consistent.
@@ -141,7 +154,14 @@ INTERVIEW PROTOCOL:
 
     const soft = SOFT_FOCUS[problem.domain];
     const focus = soft || TRACK_FOCUS[track] || TRACK_FOCUS.software;
-    const protocol = soft ? SOFT_PROTOCOL : CHAT_PROTOCOL;
+    const missionDomain = ['research-ethics', 'mission-problems', 'scientific-methods'].includes(
+      problem.domain
+    );
+    const protocol = soft
+      ? SOFT_PROTOCOL
+      : missionDomain
+        ? `${CHAT_PROTOCOL}\n${MISSION_PROTOCOL}`
+        : CHAT_PROTOCOL;
 
     const chatSystem = `You are ${focus.role} running a live mock interview for ChamiNext.
 ${focus.chat}

@@ -69,7 +69,7 @@ const LessonViewer: React.FC<LessonViewerProps> = ({
   return (
     <div className="flex flex-col h-full">
       {/* Lesson Header */}
-      <div className="card mb-6 border-accent-blue/20">
+      <div className="card mb-6 border-[var(--border-color)] bg-[var(--bg-secondary)]">
         <div className="flex items-start justify-between mb-4">
           <div className="flex-1">
             <div className="flex items-center gap-3 mb-2">
@@ -94,9 +94,9 @@ const LessonViewer: React.FC<LessonViewerProps> = ({
         </div>
 
         {/* Progress Bar */}
-        <div className="w-full bg-gray-800 rounded-full h-2 mb-4">
+        <div className="hub-progress-track mb-4">
           <div
-            className="bg-gradient-to-r from-accent-blue to-accent-purple h-2 rounded-full transition-all duration-500"
+            className="hub-progress-fill"
             style={{ width: `${((currentIndex + 1) / lessons.length) * 100}%` }}
           />
         </div>
@@ -139,7 +139,7 @@ const LessonViewer: React.FC<LessonViewerProps> = ({
       </div>
 
       {/* Lesson Content */}
-      <div className="card flex-1 overflow-y-auto">
+      <div className="hub-catalog-card flex-1 overflow-y-auto">
         <div className="prose prose-invert prose-lg max-w-none">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
@@ -168,18 +168,18 @@ const LessonViewer: React.FC<LessonViewerProps> = ({
               code: ({ node, inline, ...props }: any) => {
                 if (inline) {
                   return (
-                    <code className="bg-gray-800 px-2 py-1 rounded text-accent-blue text-sm font-mono" {...props} />
+                    <code className="bg-[var(--bg-tertiary)] px-2 py-1 rounded text-accent-bright text-sm font-mono" {...props} />
                   );
                 }
                 return (
                   <code
-                    className="block bg-gray-900 p-4 rounded-lg overflow-x-auto mb-4 text-sm font-mono text-gray-300"
+                    className="block bg-[var(--bg-tertiary)] p-4 rounded-lg overflow-x-auto mb-4 text-sm font-mono text-text-secondary"
                     {...props}
                   />
                 );
               },
               pre: ({ node, ...props }) => (
-                <pre className="bg-gray-900 p-4 rounded-lg overflow-x-auto mb-4" {...props} />
+                <pre className="bg-[var(--bg-tertiary)] p-4 rounded-lg overflow-x-auto mb-4" {...props} />
               ),
               blockquote: ({ node, ...props }) => (
                 <blockquote className="border-l-4 border-accent-blue pl-4 italic text-text-secondary my-4" {...props} />

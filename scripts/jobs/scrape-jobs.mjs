@@ -63,6 +63,7 @@ function inferTrack(text) {
   const t = text.toLowerCase();
   if (/quant|trading|hedge fund|prop shop|market mak/.test(t)) return 'quant';
   if (/security engineer|infosec|appsec|penetration|soc analyst|threat|cybersecurity/.test(t)) return 'cybersecurity';
+  if (/deepmind|anthropic|drug discovery|biotech|genomic|climate model|protein structure|ai safety|alignment|oncology|conservation|poverty alleviation|scientific ml|research ethics/.test(t)) return 'ai-for-science';
   if (/machine.?learning|ml engineer|ai engineer|llm|deep learning|data scien|research engineer|computer vision|nlp/.test(t)) return 'ai-engineer';
   if (/growth engineer|marketing analytics|martech|demand gen|growth market/.test(t)) return 'market-engineering';
   return 'software';
@@ -72,6 +73,8 @@ const missionRe = new RegExp(SOURCES.missionKeywords, 'i');
 // Boards with no description text still deserve the flag when the company
 // itself is a frontier-science org.
 const MISSION_COMPANIES = new Set([
+  'Anthropic',
+  'OpenAI',
   'Recursion',
   'Isomorphic Labs',
   'Watershed',
@@ -80,6 +83,7 @@ const MISSION_COMPANIES = new Set([
   'Tempus',
   'Insitro',
   'Benchling',
+  'Scale AI',
 ]);
 const engineerRe = /engineer|developer|scientist|research|ml |ai |data|security|quant|sre|devops|infrastructure|backend|frontend|full.?stack/i;
 

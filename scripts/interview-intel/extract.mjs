@@ -29,7 +29,7 @@ const limitArg = process.argv.includes('--limit')
 /* ── Shared vocab ───────────────────────────────────────────────── */
 const KINDS = ['coding', 'system-design', 'behavioral', 'recruiter', 'take-home', 'domain-knowledge'];
 const STAGES = ['recruiter-screen', 'technical-screen', 'take-home', 'onsite', 'system-design', 'other'];
-const TRACKS = ['software', 'ai-engineer', 'quant', 'cybersecurity', 'market-engineering'];
+const TRACKS = ['software', 'ai-engineer', 'quant', 'cybersecurity', 'market-engineering', 'ai-for-science'];
 
 const KNOWN_COMPANIES = [
   'Google', 'Meta', 'Amazon', 'Apple', 'Microsoft', 'Netflix', 'Stripe', 'Airbnb',
@@ -48,7 +48,8 @@ function inferTrack(doc) {
   const hay = `${doc.meta?.subreddit ?? ''} ${doc.title} ${doc.text.slice(0, 1500)}`.toLowerCase();
   if (/quant|trading|hedge fund|prop shop|market maker/.test(hay)) return 'quant';
   if (/cybersecurity|infosec|appsec|security engineer|soc analyst|penetration/.test(hay)) return 'cybersecurity';
-  if (/machine.?learning|ml engineer|ai engineer|llm|deep learning|data scien/.test(hay)) return 'ai-engineer';
+  if (/deepmind|anthropic|ai for science|drug discovery|biotech|genomic|climate model|protein structure|ai safety|alignment|research ethics|dual.?use|poverty alleviation|cancer research|frontier lab|isomorphic|recursion|insitro/.test(hay)) return 'ai-for-science';
+  if (/machine.?learning|ml engineer|ai engineer|llm|deep learning|data scien|research engineer|computer vision|nlp/.test(hay)) return 'ai-engineer';
   if (/growth|marketing analytics|martech|demand gen|a\/b test/.test(hay)) return 'market-engineering';
   return 'software';
 }

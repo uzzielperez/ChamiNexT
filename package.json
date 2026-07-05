@@ -11,9 +11,11 @@
     "intel:scrape": "node scripts/interview-intel/scrape.mjs",
     "intel:extract": "node scripts/interview-intel/extract.mjs",
     "intel": "node scripts/interview-intel/scrape.mjs && node scripts/interview-intel/extract.mjs",
+    "intel:frontier": "node scripts/interview-intel/scrape.mjs --profile frontier && node scripts/interview-intel/extract.mjs",
     "jobs:scrape": "node scripts/jobs/scrape-jobs.mjs"
   },
   "dependencies": {
+    "@netlify/blobs": "^10.7.9",
     "@stripe/react-stripe-js": "^3.9.0",
     "@stripe/stripe-js": "^7.8.0",
     "groq-sdk": "^0.30.0",

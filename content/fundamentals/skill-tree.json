@@ -488,6 +488,107 @@
           ]
         }
       ]
+    },
+    "ai-for-science": {
+      "label": "AI for Science",
+      "segments": ["research ML", "frontier labs", "mission-driven engineering"],
+      "root": {
+        "id": "science-root",
+        "label": "Reason well · ship honestly · do no harm"
+      },
+      "branches": [
+        {
+          "id": "scientific-methods",
+          "label": "Scientific methods",
+          "description": "How you know what you know",
+          "leaves": [
+            {
+              "id": "research-hygiene",
+              "label": "Research hygiene",
+              "fundamentals": [
+                "look-ahead bias and data leakage in scientific ML",
+                "pre-registration vs exploratory analysis honesty",
+                "when a benchmark does not transfer to deployment"
+              ],
+              "domains": ["scientific-methods", "evals"]
+            },
+            {
+              "id": "experiment-design",
+              "label": "Experiment design",
+              "fundamentals": [
+                "define the causal question before picking a model",
+                "power, sample size, and negative controls",
+                "ablation that isolates one claim"
+              ],
+              "domains": ["scientific-methods", "experimentation"]
+            }
+          ]
+        },
+        {
+          "id": "ethics",
+          "label": "Ethics & safety",
+          "description": "What you will and will not optimize for",
+          "leaves": [
+            {
+              "id": "research-ethics",
+              "label": "Research ethics",
+              "fundamentals": [
+                "dual-use: when a capability should not ship",
+                "consent, privacy, and vulnerable populations in data",
+                "who bears harm when the model is wrong"
+              ],
+              "domains": ["research-ethics", "safety"]
+            },
+            {
+              "id": "ai-safety-labs",
+              "label": "AI safety judgment",
+              "fundamentals": [
+                "alignment vs capability trade-offs in plain language",
+                "red-teaming and failure-mode imagination",
+                "when to escalate vs ship with guardrails"
+              ],
+              "domains": ["research-ethics", "safety"]
+            }
+          ]
+        },
+        {
+          "id": "mission",
+          "label": "Mission problems",
+          "description": "Climate, health, poverty — thinking that scales",
+          "leaves": [
+            {
+              "id": "climate-ai",
+              "label": "Climate & earth systems",
+              "fundamentals": [
+                "uncertainty quantification in physical forecasts",
+                "measurement vs intervention — what ML can and cannot fix",
+                "equity when climate impacts are uneven"
+              ],
+              "domains": ["mission-problems"]
+            },
+            {
+              "id": "health-ai",
+              "label": "Health & drug discovery",
+              "fundamentals": [
+                "biological plausibility vs correlation in omics",
+                "clinical validation path from model to patient",
+                "reproducibility across cohorts and sites"
+              ],
+              "domains": ["mission-problems"]
+            },
+            {
+              "id": "poverty-impact",
+              "label": "Poverty & impact",
+              "fundamentals": [
+                "RCT discipline vs observational claims",
+                "goodharting when the metric becomes the target",
+                "implementation constraints in the real world"
+              ],
+              "domains": ["mission-problems"]
+            }
+          ]
+        }
+      ]
     }
   },
   "benchmarks": {

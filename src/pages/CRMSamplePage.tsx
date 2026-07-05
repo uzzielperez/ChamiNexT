@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import AuroraBackground from '../components/ui/AuroraBackground';
-import PremiumButton from '../components/ui/PremiumButton';
-import { ArrowLeft, Users, Briefcase, Building2, TrendingUp, Mail, Phone, MapPin } from 'lucide-react';
+import ProductSampleLayout from '../components/hub/ProductSampleLayout';
+import { Users, Briefcase, Building2, TrendingUp, Mail, Phone, MapPin } from 'lucide-react';
 
 const CRMSamplePage: React.FC = () => {
-  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<'dashboard' | 'contacts' | 'candidates'>('dashboard');
 
   // Sample data
@@ -32,102 +29,61 @@ const CRMSamplePage: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-primary-dark text-text-primary relative overflow-hidden">
-      <AuroraBackground opacity={0.6} speed={1.0} />
-      
-      <div className="container mx-auto px-4 py-8 relative z-10">
-        {/* Header */}
-        <div className="mb-8">
-          <PremiumButton
-            variant="secondary"
-            onClick={() => navigate('/marketplace')}
-            className="mb-6 flex items-center gap-2"
+    <ProductSampleLayout
+      title="ChamiNexT CRM"
+      description="White-label customer relationship management for tech companies and startups, with built-in talent pipeline features."
+      sampleLabel="Sample preview — not fully functional"
+    >
+      <div className="hub-tab-bar">
+        {(
+          [
+            { id: 'dashboard' as const, label: 'Dashboard', icon: TrendingUp },
+            { id: 'contacts' as const, label: 'Contacts', icon: Users },
+            { id: 'candidates' as const, label: 'Candidates', icon: Briefcase },
+          ] as const
+        ).map(({ id, label, icon: Icon }) => (
+          <button
+            key={id}
+            type="button"
+            onClick={() => setActiveTab(id)}
+            className={`hub-tab${activeTab === id ? ' is-active' : ''}`}
           >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Marketplace
-          </PremiumButton>
+            <Icon className="w-4 h-4" />
+            {label}
+          </button>
+        ))}
+      </div>
 
-          <div className="card border-accent-blue/20 mb-6">
-            <h1 className="text-hero-headline font-bold text-text-primary mb-4">
-              ChamiNexT CRM — Sample Interface
-            </h1>
-            <p className="text-subheadline text-text-secondary mb-4">
-              White-label customer relationship management system tailored for tech companies and startups, with built-in talent pipeline features.
-            </p>
-            <div className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-yellow-500/20 text-yellow-400 border border-yellow-500/30">
-              Sample Preview — Not Fully Functional
-            </div>
-          </div>
-
-          {/* Navigation Tabs */}
-          <div className="flex gap-2 mb-6">
-            <button
-              onClick={() => setActiveTab('dashboard')}
-              className={`px-6 py-3 rounded-lg font-medium transition-all ${
-                activeTab === 'dashboard'
-                  ? 'bg-accent-blue text-white'
-                  : 'bg-gray-800/50 text-text-secondary hover:bg-gray-800 border border-gray-700'
-              }`}
-            >
-              <TrendingUp className="w-4 h-4 inline mr-2" />
-              Dashboard
-            </button>
-            <button
-              onClick={() => setActiveTab('contacts')}
-              className={`px-6 py-3 rounded-lg font-medium transition-all ${
-                activeTab === 'contacts'
-                  ? 'bg-accent-blue text-white'
-                  : 'bg-gray-800/50 text-text-secondary hover:bg-gray-800 border border-gray-700'
-              }`}
-            >
-              <Users className="w-4 h-4 inline mr-2" />
-              Contacts
-            </button>
-            <button
-              onClick={() => setActiveTab('candidates')}
-              className={`px-6 py-3 rounded-lg font-medium transition-all ${
-                activeTab === 'candidates'
-                  ? 'bg-accent-blue text-white'
-                  : 'bg-gray-800/50 text-text-secondary hover:bg-gray-800 border border-gray-700'
-              }`}
-            >
-              <Briefcase className="w-4 h-4 inline mr-2" />
-              Candidates
-            </button>
-          </div>
-        </div>
-
-        {/* Content */}
         {activeTab === 'dashboard' && (
-          <div className="card">
-            <h2 className="text-section-header font-bold text-text-primary mb-6">Dashboard Overview</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <div className="bg-gradient-to-br from-accent-blue/20 to-accent-purple/20 rounded-lg p-6 border border-accent-blue/30">
-                <div className="flex items-center justify-between mb-4">
-                  <Users className="w-8 h-8 text-accent-blue" />
-                  <span className="text-sm text-text-secondary">Total</span>
+          <div className="hub-catalog-card">
+            <h2 className="text-lg font-bold text-text-primary mb-6">Dashboard overview</h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-8">
+              <div className="hub-stat">
+                <div className="flex items-center justify-between mb-2">
+                  <Users className="w-5 h-5 text-accent-bright" />
+                  <span className="text-xs text-text-secondary">Total</span>
                 </div>
-                <div className="text-3xl font-bold text-text-primary mb-1">{stats.contacts}</div>
-                <div className="text-sm text-text-secondary">Active Contacts</div>
+                <div className="hub-stat-value">{stats.contacts}</div>
+                <div className="hub-stat-label">Active contacts</div>
               </div>
 
-              <div className="bg-gradient-to-br from-accent-purple/20 to-pink-500/20 rounded-lg p-6 border border-accent-purple/30">
-                <div className="flex items-center justify-between mb-4">
-                  <Briefcase className="w-8 h-8 text-accent-purple" />
-                  <span className="text-sm text-text-secondary">Total</span>
+              <div className="hub-stat">
+                <div className="flex items-center justify-between mb-2">
+                  <Briefcase className="w-5 h-5 text-accent-bright" />
+                  <span className="text-xs text-text-secondary">Total</span>
                 </div>
-                <div className="text-3xl font-bold text-text-primary mb-1">{stats.candidates}</div>
-                <div className="text-sm text-text-secondary">Candidates</div>
+                <div className="hub-stat-value">{stats.candidates}</div>
+                <div className="hub-stat-label">Candidates</div>
               </div>
 
-              <div className="bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-lg p-6 border border-green-500/30">
-                <div className="flex items-center justify-between mb-4">
-                  <Building2 className="w-8 h-8 text-green-400" />
-                  <span className="text-sm text-text-secondary">Total</span>
+              <div className="hub-stat">
+                <div className="flex items-center justify-between mb-2">
+                  <Building2 className="w-5 h-5 text-emerald-400" />
+                  <span className="text-xs text-text-secondary">Total</span>
                 </div>
-                <div className="text-3xl font-bold text-text-primary mb-1">{stats.companies}</div>
-                <div className="text-sm text-text-secondary">Companies</div>
+                <div className="hub-stat-value">{stats.companies}</div>
+                <div className="hub-stat-label">Companies</div>
               </div>
             </div>
 
@@ -245,8 +201,7 @@ const CRMSamplePage: React.FC = () => {
             </div>
           </div>
         )}
-      </div>
-    </div>
+    </ProductSampleLayout>
   );
 };
 

@@ -12,6 +12,7 @@ const TRACKS: { id: PracticeTrack | 'all'; label: string }[] = [
   { id: 'quant', label: 'Quant' },
   { id: 'cybersecurity', label: 'Cybersecurity' },
   { id: 'market-engineering', label: 'Market Engineering' },
+  { id: 'ai-for-science', label: 'AI for Science' },
 ];
 
 const TRACK_LABELS: Record<string, string> = {
@@ -20,6 +21,7 @@ const TRACK_LABELS: Record<string, string> = {
   quant: 'Quant',
   cybersecurity: 'Cybersecurity',
   'market-engineering': 'Market Eng',
+  'ai-for-science': 'AI for Science',
 };
 
 const PAGE_SIZE = 40;

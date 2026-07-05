@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import LessonViewer from '../components/courses/LessonViewer';
-import PremiumTabs from '../components/ui/PremiumTabs';
-import AuroraBackground from '../components/ui/AuroraBackground';
-import { BookOpen, ArrowLeft, Play, CheckCircle2 } from 'lucide-react';
-import PremiumButton from '../components/ui/PremiumButton';
+import CoursePageLayout from '../components/hub/CoursePageLayout';
+import CourseOverviewSections from '../components/hub/CourseOverviewSections';
+import { BookOpen, Play } from 'lucide-react';
 import { courses } from '../data/products';
 
 interface Lesson {
@@ -289,143 +287,47 @@ npm run build
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-primary-dark text-text-primary relative overflow-hidden">
-        <AuroraBackground opacity={0.6} speed={1.0} />
-        <div className="container mx-auto px-4 py-16 relative z-10">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-accent-blue mx-auto mb-4"></div>
-            <p className="text-text-secondary">Loading course content...</p>
-          </div>
-        </div>
-      </div>
+      <CoursePageLayout
+        title="Vibe Coding"
+        description="Loading…"
+        completedCount={0}
+        totalLessons={0}
+        progress={0}
+        tabs={tabs}
+        activeTab={activeTab}
+        onTabChange={(id) => setActiveTab(id as 'lessons' | 'overview')}
+        loading
+      >
+        {null}
+      </CoursePageLayout>
     );
   }
 
   return (
-    <div className="min-h-screen bg-primary-dark text-text-primary relative overflow-hidden">
-      <AuroraBackground opacity={0.6} speed={1.0} />
-      
-      <div className="container mx-auto px-4 py-8 relative z-10">
-        {/* Header */}
-        <div className="mb-8">
-          <PremiumButton
-            variant="secondary"
-            onClick={() => navigate('/marketplace')}
-            className="mb-6 flex items-center gap-2"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Marketplace
-          </PremiumButton>
-
-          <div className="card border-accent-blue/20 mb-6">
-            <h1 className="text-hero-headline font-bold text-text-primary mb-4">
-              {course?.name || 'Vibe Coding: Intuitive Development'}
-            </h1>
-            <p className="text-subheadline text-text-secondary mb-6">
-              {course?.description}
-            </p>
-
-            {/* Course Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-              <div className="bg-gray-800/50 rounded-lg p-4 border border-gray-700">
-                <div className="text-sm text-text-secondary mb-1">Duration</div>
-                <div className="text-xl font-bold text-text-primary">{course?.duration}</div>
-              </div>
-              <div className="bg-gray-800/50 rounded-lg p-4 border border-gray-700">
-                <div className="text-sm text-text-secondary mb-1">Level</div>
-                <div className="text-xl font-bold text-text-primary capitalize">{course?.level}</div>
-              </div>
-              <div className="bg-gray-800/50 rounded-lg p-4 border border-gray-700">
-                <div className="text-sm text-text-secondary mb-1">Progress</div>
-                <div className="text-xl font-bold text-text-primary">
-                  {completedCount} / {lessons.length} lessons
-                </div>
-              </div>
-            </div>
-
-            {/* Progress Bar */}
-            <div className="w-full bg-gray-800 rounded-full h-3 mb-4">
-              <div
-                className="bg-gradient-to-r from-accent-blue to-accent-purple h-3 rounded-full transition-all duration-500"
-                style={{ width: `${progress}%` }}
-              />
-            </div>
-          </div>
-
-          {/* Tabs */}
-          <div className="mb-6">
-            <PremiumTabs
-              tabs={tabs}
-              activeTab={activeTab}
-              onTabChange={(tabId) => setActiveTab(tabId as 'lessons' | 'overview')}
-            />
-          </div>
-        </div>
-
-        {/* Content */}
-        {activeTab === 'overview' && (
-          <div className="card">
-            <h2 className="text-section-header font-bold text-text-primary mb-6">Course Overview</h2>
-            
-            <div className="mb-8">
-              <h3 className="text-xl font-semibold text-text-primary mb-4">What You'll Learn</h3>
-              <ul className="space-y-3">
-                {course?.features.map((feature, index) => (
-                  <li key={index} className="flex items-start gap-3 text-text-secondary">
-                    <CheckCircle2 className="w-5 h-5 text-accent-blue flex-shrink-0 mt-0.5" />
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="mb-8">
-              <h3 className="text-xl font-semibold text-text-primary mb-4">Course Modules</h3>
-              <div className="space-y-4">
-                {lessons.map((lesson, index) => (
-                  <div
-                    key={lesson.id}
-                    className="bg-gray-800/50 rounded-lg p-4 border border-gray-700 hover:border-accent-blue/50 transition-colors cursor-pointer"
-                    onClick={() => {
-                      setActiveTab('lessons');
-                      handleLessonChange(lesson.id);
-                    }}
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 rounded-full bg-accent-blue/20 flex items-center justify-center text-accent-blue font-bold">
-                          {index + 1}
-                        </div>
-                        <div>
-                          <h4 className="text-lg font-semibold text-text-primary">{lesson.title}</h4>
-                          {lesson.duration && (
-                            <p className="text-sm text-text-secondary">{lesson.duration}</p>
-                          )}
-                        </div>
-                      </div>
-                      {lesson.completed && (
-                        <CheckCircle2 className="w-6 h-6 text-green-400" />
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
-
-        {activeTab === 'lessons' && (
-          <div className="min-h-[600px]">
-            <LessonViewer
-              lessons={lessons}
-              currentLessonId={currentLessonId}
-              onLessonChange={handleLessonChange}
-              onComplete={handleComplete}
-            />
-          </div>
-        )}
-      </div>
-    </div>
+    <CoursePageLayout
+      title={course?.name || 'Vibe Coding: Intuitive Development'}
+      description={course?.description || ''}
+      duration={course?.duration}
+      level={course?.level}
+      completedCount={completedCount}
+      totalLessons={lessons.length}
+      progress={progress}
+      tabs={tabs}
+      activeTab={activeTab}
+      onTabChange={(id) => setActiveTab(id as 'lessons' | 'overview')}
+      backTo="/learn"
+    >
+      <CourseOverviewSections
+        course={course}
+        lessons={lessons}
+        activeTab={activeTab}
+        currentLessonId={currentLessonId}
+        onSelectLesson={handleLessonChange}
+        onGoToLessons={() => setActiveTab('lessons')}
+        onLessonChange={handleLessonChange}
+        onComplete={handleComplete}
+      />
+    </CoursePageLayout>
   );
 };
 

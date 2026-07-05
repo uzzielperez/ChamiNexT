@@ -9,7 +9,8 @@ export type SkillTreeTrackId =
   | 'ai-engineer'
   | 'quant'
   | 'cybersecurity'
-  | 'market-engineering';
+  | 'market-engineering'
+  | 'ai-for-science';
 
 export interface LeafProgress {
   /** Problem ids on this leaf with at least one scored session. */
@@ -179,6 +180,7 @@ export const skillTreeTrackIds: SkillTreeTrackId[] = [
   'quant',
   'cybersecurity',
   'market-engineering',
+  'ai-for-science',
 ];
 
 export function getAllSkillTrees(): SkillTreeView[] {

@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { ArrowRight, Brain, Briefcase, Check, Rocket, Radio, GitBranch, Radar, Repeat, Zap } from 'lucide-react';
+import { ArrowRight, Brain, Briefcase, Check, Rocket, Radio, GitBranch, Radar, Repeat, Zap, FlaskConical, Gift } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PremiumButton from '../ui/PremiumButton';
 import {
@@ -19,6 +19,7 @@ const TRACK_LABELS: Record<PracticeTrack, string> = {
   quant: 'Quant',
   cybersecurity: 'Cybersecurity',
   'market-engineering': 'Market Engineering',
+  'ai-for-science': 'AI for Science',
 };
 
 const DIFFICULTY_DOT: Record<PracticeProblem['difficulty'], string> = {
@@ -102,6 +103,7 @@ const PracticeDashboard: React.FC<PracticeDashboardProps> = ({
     { id: 'quant', label: 'Quant' },
     { id: 'cybersecurity', label: 'Cybersecurity' },
     { id: 'market-engineering', label: 'Market Eng' },
+    { id: 'ai-for-science', label: 'AI for Science' },
     { id: 'daily', label: 'Daily 10 min' },
   ];
 
@@ -154,7 +156,7 @@ const PracticeDashboard: React.FC<PracticeDashboardProps> = ({
             <GitBranch className="w-5 h-5 text-accent-blue shrink-0" />
             <p className="text-sm text-text-secondary min-w-0">
               <span className="font-semibold text-text-primary">Skill trees</span> — fundamentals
-              for all five tracks, every bank problem mapped.
+              for all six tracks, every bank problem mapped.
             </p>
           </div>
           <ArrowRight className="w-4 h-4 text-accent-blue shrink-0" />
@@ -172,6 +174,34 @@ const PracticeDashboard: React.FC<PracticeDashboardProps> = ({
             </p>
           </div>
           <ArrowRight className="w-4 h-4 text-accent-blue shrink-0" />
+        </Link>
+
+        <Link
+          to="/referrals"
+          className="flex items-center justify-between gap-3 p-4 rounded-[var(--radius-card)] border border-[var(--border-color)] bg-[var(--bg-secondary)] hover:border-emerald-400/40 transition-colors"
+        >
+          <div className="flex items-center gap-3 min-w-0">
+            <Gift className="w-5 h-5 text-emerald-400 shrink-0" />
+            <p className="text-sm text-text-secondary min-w-0">
+              <span className="font-semibold text-text-primary">Refer a friend</span> — they get
+              bonus practice; you earn +7 days when they finish an interview.
+            </p>
+          </div>
+          <ArrowRight className="w-4 h-4 text-emerald-400 shrink-0" />
+        </Link>
+
+        <Link
+          to="/frontier"
+          className="flex items-center justify-between gap-3 p-4 rounded-[var(--radius-card)] border border-emerald-400/30 bg-[var(--bg-secondary)] hover:border-emerald-400/50 transition-colors"
+        >
+          <div className="flex items-center gap-3 min-w-0">
+            <FlaskConical className="w-5 h-5 text-emerald-400 shrink-0" />
+            <p className="text-sm text-text-secondary min-w-0">
+              <span className="font-semibold text-text-primary">Frontier problem tests</span> —
+              climate, health, poverty, ethics — DeepMind / Anthropic-style deep screens.
+            </p>
+          </div>
+          <ArrowRight className="w-4 h-4 text-emerald-400 shrink-0" />
         </Link>
 
         <Link
