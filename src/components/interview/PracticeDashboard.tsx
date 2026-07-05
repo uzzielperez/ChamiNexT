@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { ArrowRight, Brain, Check, Rocket, Radio, GitBranch, Radar, Repeat, Zap } from 'lucide-react';
+import { ArrowRight, Brain, Briefcase, Check, Rocket, Radio, GitBranch, Radar, Repeat, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PremiumButton from '../ui/PremiumButton';
 import {
@@ -145,7 +145,7 @@ const PracticeDashboard: React.FC<PracticeDashboardProps> = ({
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
         <Link
           to="/skills"
           className="flex items-center justify-between gap-3 p-4 rounded-[var(--radius-card)] border border-[var(--border-color)] bg-[var(--bg-secondary)] hover:border-accent-blue/40 transition-colors"
@@ -169,6 +169,20 @@ const PracticeDashboard: React.FC<PracticeDashboardProps> = ({
             <p className="text-sm text-text-secondary min-w-0">
               <span className="font-semibold text-text-primary">Interview intel</span> — real
               processes and exact questions from the field.
+            </p>
+          </div>
+          <ArrowRight className="w-4 h-4 text-accent-blue shrink-0" />
+        </Link>
+
+        <Link
+          to="/jobs"
+          className="flex items-center justify-between gap-3 p-4 rounded-[var(--radius-card)] border border-[var(--border-color)] bg-[var(--bg-secondary)] hover:border-accent-blue/40 transition-colors"
+        >
+          <div className="flex items-center gap-3 min-w-0">
+            <Briefcase className="w-5 h-5 text-accent-blue shrink-0" />
+            <p className="text-sm text-text-secondary min-w-0">
+              <span className="font-semibold text-text-primary">Find jobs</span> — live roles
+              mapped to practice tracks, mission-driven orgs flagged.
             </p>
           </div>
           <ArrowRight className="w-4 h-4 text-accent-blue shrink-0" />

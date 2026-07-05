@@ -1,0 +1,35 @@
+name: Refresh jobs board
+
+on:
+  schedule:
+    # Mondays and Thursdays, 06:00 UTC.
+    - cron: '0 6 * * 1,4'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Scrape job sources
+        run: node scripts/jobs/scrape-jobs.mjs
+
+      - name: Commit updated board
+        run: |
+          git config user.name "jobs-refresh-bot"
+          git config user.email "actions@github.com"
+          git add content/jobs/jobs.json
+          if git diff --cached --quiet; then
+            echo "No changes."
+          else
+            git commit -m "chore: refresh jobs board ($(date -u +%Y-%m-%d))"
+            git push
+          fi

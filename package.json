@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "intel:scrape": "node scripts/interview-intel/scrape.mjs",
     "intel:extract": "node scripts/interview-intel/extract.mjs",
-    "intel": "node scripts/interview-intel/scrape.mjs && node scripts/interview-intel/extract.mjs"
+    "intel": "node scripts/interview-intel/scrape.mjs && node scripts/interview-intel/extract.mjs",
+    "jobs:scrape": "node scripts/jobs/scrape-jobs.mjs"
   },
   "dependencies": {
     "@stripe/react-stripe-js": "^3.9.0",

@@ -22,6 +22,7 @@ const PremiumHeader: React.FC = () => {
     { name: 'Practice', href: '/practice', hasDropdown: false },
     { name: 'Skill trees', href: '/skills', hasDropdown: false },
     { name: 'Intel', href: '/intel', hasDropdown: false },
+    { name: 'Jobs', href: '/jobs', hasDropdown: false },
     { name: 'For Companies', href: '/employers', hasDropdown: false },
     { name: 'Pricing', href: '/pricing', hasDropdown: false },
     {

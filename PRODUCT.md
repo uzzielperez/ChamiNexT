@@ -26,6 +26,19 @@ ChamiNext is the evaluation layer for engineering in the AI era. Engineers pract
 4. AI is part of the workflow, not cheating
 5. Real output is the only signal that matters
 
+## Positioning evolution (v1.1, July 2026)
+
+See `tasks/pitch-deck-chaminext.md` evolution log. **Product unchanged** — positioning
+layer added:
+
+- **North star:** Route misallocated technical talent toward work that matters
+  (frontier science, drug discovery, climate) — with proof, not credentials.
+- **Operating model:** Same evaluation engine serves the full employer pipeline
+  (mission-driven and money-first). Lead with mission; sell to whoever has pain
+  and budget. No moral laundering on the employers page.
+- **Copy split:** Mission-forward on home/founder story; neutral on employer-facing
+  surfaces. See Slide 4c in pitch deck.
+
 ## Tone
 
 Direct, confident, technical but not jargon-heavy. No hype stacks. Short sentences on landing; precise language in product UI.

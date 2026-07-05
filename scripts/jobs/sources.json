@@ -1,0 +1,49 @@
+{
+  "_note": "Job sources without partnerships. Greenhouse/Lever board APIs are public JSON; unknown board tokens 404 and are skipped gracefully. LinkedIn guest endpoint is best-effort (often 403/999). Glassdoor is omitted: hard anti-bot + ToS, revisit via partnership or licensed API (Adzuna/JSearch).",
+  "greenhouseBoards": [
+    "anthropic",
+    "openai",
+    "stripe",
+    "databricks",
+    "scaleai",
+    "benchling",
+    "recursionpharmaceuticals",
+    "isomorphiclabs",
+    "watershed",
+    "pachama",
+    "spanio",
+    "commonwealthfusionsystems",
+    "tempus",
+    "insitro",
+    "grammarly",
+    "cloudflare",
+    "figma",
+    "duolingo"
+  ],
+  "leverBoards": [
+    "palantir",
+    "mistral",
+    "plaid",
+    "attentive",
+    "voltrondata"
+  ],
+  "remotive": {
+    "searches": ["machine learning", "software engineer", "data engineer", "security engineer"]
+  },
+  "remoteok": {
+    "tags": ["engineer", "machine-learning", "python", "security"]
+  },
+  "hackerNews": {
+    "whoIsHiring": true,
+    "maxComments": 250
+  },
+  "linkedin": {
+    "enabled": true,
+    "searches": [
+      { "keywords": "machine learning engineer", "location": "European Union" },
+      { "keywords": "research engineer", "location": "Remote" },
+      { "keywords": "software engineer", "location": "Switzerland" }
+    ]
+  },
+  "missionKeywords": "cancer|oncology|drug discovery|pharma|biotech|genomic|protein|clinical|climate|carbon|renewable|solar|fusion|conservation|biodiversity|wildlife|health(care)?|vaccine|epidemi|disease|sustainab|deforest|ocean|agri(tech|culture)|food security|humanitarian|nonprofit|scientific|research lab"
+}

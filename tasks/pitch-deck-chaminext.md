@@ -2,19 +2,36 @@
 
 > **Format:** Slide-ready markdown for Gemini / Google Slides / Gamma  
 > **Audience:** Angels, AWS / Amazon Bedrock partners, design-partner employers  
-> **Date:** June 2026  
+> **Version:** v1.1 (evolved July 2026 — builds on v1 June 2026; nothing removed)  
 > **Product:** [chaminext.com](https://chaminext.com) (demo live; Stripe + auth in production roadmap)
+
+---
+
+## Evolution log
+
+| Version | Date | What changed |
+|---------|------|--------------|
+| **v1** | June 2026 | Initial deck: evaluation layer, Track A (academia → quant/AI labs), Track B (global remote), ecosystem positioning |
+| **v1.1** | July 2026 | Mission connector added: frontier-science wedge, three-bucket employer pipeline, copy split by audience, founder proof-of-concept. **Product and financials unchanged** — this is positioning evolution, not a pivot |
+
+**How to read v1.1:** Slides marked **Evolved** add a layer on top of the original. Use evolved lines for mission-driven pitches (friends, frontier-science buyers, press). Use original lines for generic employer / AWS / category pitches. Both are true.
 
 ---
 
 ## Slide 1 — Title
 
-**ChamiNext**  
-*The evaluation layer for engineering in the AI era*
+**ChamiNext**
 
-Practice like you work. Ship real output. Hire on signal—not puzzle count.
+| Layer | Tagline | Subline |
+|-------|---------|---------|
+| **Previous (v1)** | *The evaluation layer for engineering in the AI era* | Practice like you work. Ship real output. Hire on signal—not puzzle count. |
+| **Evolved (v1.1)** | *Route misallocated technical talent toward work that matters — with proof, not credentials* | Prove you can reason, defend, and ship. Stop getting filtered by puzzle theater. |
 
-**Founder:** [Your name]  
+**Lead with evolved for:** friends, mission-aligned angels, frontier-science design partners, founder story.  
+**Lead with previous for:** AWS/Bedrock, generic SMB employers, category-comparison contexts.
+
+**Founder:** Uzziel Perez — physicist → ML researcher → agentic systems (CERN/LHCb, RAG pipelines, calorimeter reconstruction). Own career = proof that the academia → frontier-industry path works.
+
 **Ask:** Design partners + AWS credits / Bedrock pilot to reach first paying customers in 90 days
 
 ---
@@ -51,7 +68,16 @@ Practice like you work. Ship real output. Hire on signal—not puzzle count.
 
 ## Slide 4 — Our thesis
 
+### Previous (v1)
+
 > **Shipping beats solving. Reasoning beats memorization. Real output is the only signal that matters.**
+
+### Evolved (v1.1) — adds the *why*, keeps the *how*
+
+> **Misallocated talent is a civilization problem. Puzzle theater is how we misallocate it.**  
+> **Shipping beats solving. Reasoning beats memorization. Real output is the only signal that matters.**
+
+The evaluation engine is the same. The evolved thesis names the connector: brilliant people filtered by the wrong tests into the wrong rooms — including rooms where humanity's hardest problems (drug discovery, climate, conservation, frontier science) can't find them.
 
 ChamiNext is **not** a LeetCode clone. We are a **daily practice + evaluation platform** where:
 
@@ -80,12 +106,38 @@ This is **not** a persona. It is the portable artifact we produce that LeetCode 
 | **Ship proof** | Deployed URL in 24–72h | No standardized credential |
 | **AI fluency** | Uses AI with explained judgment | Incumbents treat AI as cheating |
 
-**Investor line:** *Portable proof of research hygiene + ship readiness.*  
-**Candidate line:** *Recall gets you to the screen. Readiness gets you the offer.*
+**Investor line (v1):** *Portable proof of research hygiene + ship readiness.*  
+**Investor line (v1.1):** *The readiness layer for frontier-science hiring — and any employer who needs the same signal.*  
+**Candidate line (both):** *Recall gets you to the screen. Readiness gets you the offer.*
 
 **Moat (Path B):** assessment score → hire decision → on-the-job outcome → rubric recalibration. Until outcomes exist, we validate against expert graders + onsite pass-through vs. LeetCode/HackerRank.
 
-### One signal, two segments (Year 1)
+### One signal, three employer buckets (v1.1)
+
+Same engine. Different doors. We do **not** turn away revenue from money-first employers — we lead with mission, sell to whoever has pain and budget.
+
+```
+                    ┌─────────────────────────────────────┐
+                    │  CORE SIGNAL (unchanged)            │
+                    │  hygiene · adversarial · ship · comm│
+                    └──────────────┬──────────────────────┘
+                                   │
+         ┌─────────────────────────┼─────────────────────────┐
+         ▼                         ▼                         ▼
+┌─────────────────┐    ┌─────────────────────┐    ┌─────────────────────┐
+│ BUCKET 1 — LEAD │    │ BUCKET 2 — SELL     │    │ BUCKET 3 — HALO   │
+│ Mission magnet  │    │ Revenue pipeline    │    │ Story + data      │
+│ Frontier science│    │ Quant · AI labs ·   │    │ Conservation ·    │
+│ Drug discovery  │    │ serious SaaS · fintech│  │ NGO science ·     │
+│ Climate · bio ML│    │ research-eng startups│   │ fellowship track  │
+│ Brand · founder │    │ B2B ACV · design    │    │ Free / grants ·   │
+│ story · press   │    │ partners this Q     │    │ not Y1 revenue    │
+└─────────────────┘    └─────────────────────┘    └─────────────────────┘
+```
+
+**Rule:** Be emotional about Bucket 1 (north star). Be mechanical about Bucket 2 (operating model). Be honest about Bucket 3 (mission without pretending everyone pays).
+
+### One signal, two segments (Year 1) — previous (v1)
 
 ```
                     ┌─────────────────────────────────────┐
@@ -109,23 +161,35 @@ This is **not** a persona. It is the portable artifact we produce that LeetCode 
 
 ### Track A — Academics & researchers → industry *(Year 1 beachhead)*
 
-**Who:** Particle physicists (CERN and peers), PhDs, postdocs transitioning to quant / ML / research engineering.
+**Who:** Particle physicists (CERN and peers), PhDs, postdocs transitioning to industry ML / research engineering.
 
 **Why they fit:** Already live the loop we score — hypothesis → analysis → defend under hostile questioning. Industry gap = *shipping* and product trade-offs, not raw IQ.
 
 **Buyer pain:** False negative on a researcher is catastrophic; senior-eng interview time is scarce.
 
-| Buyer | Why they pay for our signal |
-|-------|----------------------------|
+| Buyer (v1) | Why they pay for our signal |
+|------------|----------------------------|
 | Quant / prop shops | "Research hygiene" is explicit hiring criteria |
 | AI labs / ML eng | PhDs who can't ship; need eval beyond paper count |
 | Research-eng startups | Deep signal without Karat-scale spend |
 
-**Positioning:** *ChamiNext is the industry-readiness layer for researchers — prove you can defend a claim and ship, not just publish.*
+| Buyer (v1.1 — add as hero row, keep v1 rows) | Why they pay for our signal |
+|----------------------------------------------|----------------------------|
+| **Drug discovery / bio ML** (Isomorphic, Recursion, pharma ML teams) | Look-ahead bias & leakage = literal hiring criteria; false positive ships a fake model |
+| **Climate / geospatial ML** | Same hygiene rubric; domain data + reproducibility under pressure |
+| **Quant / prop shops** | Research hygiene explicit; high ACV |
+| **AI labs / ML eng** | PhDs who can't ship; eval beyond paper count |
+| **Serious SaaS / fintech** | Money-first mission OK — they still need people who defend claims and ship; we don't moral-launder |
 
-**Founder advantage:** Authentic persona (physics → industry); network (CERN, Apex-style hiring contacts); quant skill tree + adversarial mocks already built.
+**Positioning (v1):** *ChamiNext is the industry-readiness layer for researchers — prove you can defend a claim and ship, not just publish.*
 
-**GTM:** "Academia → industry" landing · Ship Test + quant/AI trees · B2B: *"Screen PhDs for hygiene before senior onsite."*
+**Positioning (v1.1):** *ChamiNext routes researchers and technical talent toward roles where reasoning and ship proof actually matter — from drug discovery and climate to high-stakes industry. Same signal. Different doors.*
+
+**Founder advantage:** Authentic persona (physics → ML → agentic systems for scientific problems); network (CERN, Apex-style hiring contacts); quant + AI skill trees + adversarial mocks + interview intel pipeline already built.
+
+**GTM (v1):** "Academia → industry" landing · Ship Test + quant/AI trees · B2B: *"Screen PhDs for hygiene before senior onsite."*
+
+**GTM (v1.1 add):** Frontier-science landing copy · "AI for Science" skill-tree track (experiment design, stats hygiene, reproducibility) · Field reports from real mission-org interview loops · B2B: *"Screen ML researchers for hygiene before senior onsite — whether you're curing disease or shipping models."*
 
 ### Track B — Filipino / global remote talent *(parallel, not primary pitch)*
 
@@ -148,6 +212,45 @@ This is **not** a persona. It is the portable artifact we produce that LeetCode 
 - Researchers won't pay €149 for prep (Interview Season).
 
 → Then Track B volume matters more — but we still need buyers who pay for **signal**, not **headcount**.
+
+---
+
+## Slide 4c — Mission & copy split *(v1.1 — new)*
+
+### The connector (founder north star)
+
+> Help technical talent **prove** they can reason and ship — so they stop getting filtered by theater and start landing roles where that actually matters: frontier science, drug discovery, climate, and high-stakes industry.
+
+This is not "only nonprofits." It is not "only money." It is a **routing + proof layer** — the evaluation engine is mission-neutral; the **story** is mission-forward.
+
+### What we do *not* do
+
+| Avoid | Why |
+|-------|-----|
+| Pretend every employer is saving the world | Moral laundering; candidates will smell it |
+| Turn away money-first employers who hire rigorously | They fund the flywheel; same signal applies |
+| Build a product only for mission orgs | Underfunded conservation NGOs can't pay B2B ACV in Y1 |
+| Lead investor/AWS pitches with only mission language | Category "AI hiring" still needs infrastructure framing |
+
+### Copy split — which line where
+
+| Audience | Version | Example |
+|----------|---------|---------|
+| **Home / founder story** | v1.1 evolved | "Route misallocated talent toward work that matters — with proof, not credentials." |
+| **Candidates (marketing)** | v1 (sharp) | "Recall gets you to the screen. Readiness gets you the offer." |
+| **Frontier-science candidates** | v1.1 | "Industry-readiness for researchers — defend your claim and ship, not just publish." |
+| **Employers (any)** | v1 (neutral) | "The evaluation layer that extends your existing stack." |
+| **Money-first employers** | v1 only | Same employer line. No mission posturing. Rubric is the product. |
+| **Investors (mission pitch)** | v1.1 | "Readiness infrastructure for frontier-science hiring — wedge into a crowded category." |
+| **Investors (category pitch)** | v1 | "Post-AI signal infrastructure for technical hiring." |
+| **AWS / Bedrock** | v1 | "Assess engineering talent on governed AI interviews + ship credentials." |
+| **Press** | v1.1 | "The platform that gets brilliant people out of puzzle theater and into work that counts." |
+
+### Emotional fuel vs operating model (speaker note)
+
+- **2am fuel:** mission connector, founder story, Bucket 1 buyers  
+- **10am calendar:** Bucket 2 design partners, revenue, ship features  
+- **Serving a SaaS company that only cares about ARR is not betrayal** — improving the hiring mechanism for their candidates is still a win. We don't endorse their soul; we certify their signal.
 
 ---
 
@@ -256,9 +359,11 @@ Profile slug with thinking scores, ship URLs, and track history—not another PD
 3. **AI-native rubrics** — thinking, decomposition, communication, code/design quality.
 4. **Practice → profile → Interview Studio** on one platform (not bolt-on hiring).
 
-**Positioning line (candidates):** *LeetCode measures recall. We measure readiness.*
+**Positioning line (candidates, v1):** *LeetCode measures recall. We measure readiness.*
 
-**Positioning line (partners / employers):** *The readiness and validation layer on top of your existing prep and screening stack — not a replacement for it.*
+**Positioning line (candidates, v1.1 add):** *Puzzle throughput doesn't predict who can cure disease, model climate, or ship real science. We measure readiness.*
+
+**Positioning line (partners / employers, v1 — use for all employer contexts):** *The readiness and validation layer on top of your existing prep and screening stack — not a replacement for it.*
 
 > See **Slide 9b — Ecosystem positioning** for how we coexist with incumbents instead of triggering budget warfare.
 
@@ -318,11 +423,11 @@ We are **downstream signal** (reasoning, AI fluency, ship proof), not **upstream
 
 ### Copy split (same thesis, different audience)
 
-| Audience | Tone | Example |
-|----------|------|---------|
-| **Candidates (marketing)** | Sharp differentiation | "Recall gets you to the screen. Readiness gets you the offer." |
-| **Partners / employers** | Complementary | "The evaluation layer that **extends** your existing stack." |
-| **Press / investors** | Category creation | "Post-AI **signal infrastructure** for technical hiring." |
+| Audience | Tone | Example (v1) | Example (v1.1 add) |
+|----------|------|--------------|-------------------|
+| **Candidates (marketing)** | Sharp differentiation | "Recall gets you to the screen. Readiness gets you the offer." | "Prove you belong in the room where hard problems get solved." |
+| **Partners / employers** | Complementary | "The evaluation layer that **extends** your existing stack." | *(same — no mission posturing)* |
+| **Press / investors** | Category creation | "Post-AI **signal infrastructure** for technical hiring." | "Routing misallocated technical talent toward frontier science — with portable proof." |
 
 **Avoid in partner-facing contexts:** "LeetCode is dead," "replace HackerRank," competing on problem count, scraping their bank.
 
@@ -451,9 +556,16 @@ Link out when someone needs reps. Own the moment they need to **think out loud, 
 
 ### Phase 3 — B2B design partners (weeks 8–16)
 
+**Previous (v1):**
 - Target: **10 pilots → 3 paid** Interview Studio accounts.
 - ICP: startups hiring 1–5 eng/quarter (EU + remote-US).
 - Offer: free 60-day pilot, seeded candidates, custom Ship Test for one role.
+
+**Evolved (v1.1) — additive, not replacement:**
+- **Lead ICP:** frontier-science ML teams (drug discovery, climate, bio) + research-engineering startups hiring PhDs.
+- **Parallel ICP:** quant, AI labs, serious SaaS/fintech — same signal, money-first mission OK.
+- Same offer: free 60-day pilot, custom Ship Test, ranked shortlist in 72h.
+- **Founder network:** CERN peers, Apex-style contacts, physics → ML diaspora as warm intros.
 
 ### North-star metric
 
@@ -461,7 +573,9 @@ Link out when someone needs reps. Own the moment they need to **think out loud, 
 
 ---
 
-## Slide 14 — Traction & product status (June 2026)
+## Slide 14 — Traction & product status
+
+### June 2026 (v1 baseline)
 
 | Area | Status |
 |------|--------|
@@ -473,7 +587,18 @@ Link out when someone needs reps. Own the moment they need to **think out loud, 
 | Monetization UI | Free / Pro / Builder / Premium / Interview Season €149 |
 | Production gaps | Neon auth, Stripe live, distributed rate limits |
 
-**12-month targets (from business plan):**
+### July 2026 (v1.1 additions)
+
+| Area | Status |
+|------|--------|
+| Skill trees | 5 tracks incl. market-engineering; per-leaf progress |
+| Interview intel | Scraped field data → `/intel` (behavioral, recruiter, domain-knowledge) |
+| Interview loop | Full company-style loop: recruiter → technical → behavioral (`/loop`) |
+| Rapid-fire drill | 5-min screening sim from fundamentals + intel (`/drill`) |
+| Soft rounds | Behavioral + recruiter as first-class domains with dedicated rubrics |
+| Field-data learnings | Documented in `tasks/learnings-interview-intel.md` |
+
+**12-month targets (unchanged):**
 
 - 10k MAU · 500 paying B2C · 10 B2B pilots → 3 paid · NPS >40 on Ship completers
 
@@ -566,9 +691,13 @@ Link out when someone needs reps. Own the moment they need to **think out loud, 
 
 ### For investors
 
+**Previous (v1):**
 > **Pre-seed / angel SAFE** to fund auth, Stripe live, content scale (150+ prompts), and first B2B sales motion.
 
-**Use of funds (example €300k):**
+**Evolved (v1.1) — same ask, sharper story:**
+> **Pre-seed / angel SAFE (~€25–300k)** to build the readiness layer that routes technical talent toward frontier science and high-stakes industry — starting with researchers who already think like scientists but can't pass puzzle theater.
+
+**Use of funds (example €300k — unchanged):**
 
 - 40% — Engineering (auth, billing, Bedrock migration)  
 - 30% — Content + Ship Test catalog  
@@ -607,6 +736,8 @@ Link out when someone needs reps. Own the moment they need to **think out loud, 
 | Trial abuse | Neon user accounts + Stripe |
 | Content licensing | Original prompts only; link out to LeetCode/NeetCode for pattern reps — no scrape |
 | Incumbent hostility | Ecosystem positioning: supplement stack, integrations, honest outbound links (Slide 9b) |
+| **Mission vs revenue tension (v1.1)** | Three-bucket model: lead with mission, sell to full pipeline, don't moral-launder employers |
+| **Narrow wedge risk (v1.1)** | Frontier science is hero ICP, not exclusive filter; quant/SaaS remain valid Bucket 2 buyers |
 
 ---
 
@@ -617,9 +748,23 @@ When converting this deck:
 1. Use **dark background** (`#0a0b0d`) and **blue accent** (`#3b82f6`) per ChamiNext brand.
 2. One slide per `## Slide N` section.
 3. Prefer **tables and diagrams** over bullet walls.
-4. Emphasize slides **2–4** (problem + thesis), **4b** (strong signal + beachhead), **5–7** (solution), **9 + 9b** (competition + ecosystem), **12** (financials), **17–18** (AWS + CTA).
-5. Speaker notes: expand Slide 17 with Bedrock model choice (Claude 3.5 Sonnet for interviewer, Haiku for scoring).
+4. **v1.1:** For mission-driven audiences, lead with Slide 1 evolved tagline + Slide 4c + Track A v1.1 buyer table. For AWS/employers, use v1 lines only.
+5. Emphasize slides **2–4** (problem + thesis), **4b + 4c** (signal + mission), **5–7** (solution), **9 + 9b** (competition + ecosystem), **12** (financials), **17–18** (AWS + CTA).
+6. Speaker notes: expand Slide 17 with Bedrock model choice (Claude 3.5 Sonnet for interviewer, Haiku for scoring). Slide 4c speaker note: "Same product, three doors — don't apologize for Bucket 2 revenue."
 
 ---
 
-*End of deck. Source docs: `tasks/business-plan-chaminext.md`, `tasks/chaminext-discovery-gtm-strategy.md`, `tasks/chaminext-market-briefing.md`, `PRODUCT.md`, `tasks/production-readiness.md`.*
+## Slide 21 — Appendix: positioning evolution summary *(v1.1)*
+
+| Question | Answer |
+|----------|--------|
+| Did we pivot? | **No.** Positioning evolved. Product, rubric, pricing, financials unchanged. |
+| What's new? | Mission connector, frontier-science wedge, three-bucket employer model, copy split. |
+| Can we still sell to money-first companies? | **Yes.** Bucket 2. Neutral employer copy. Same signal. |
+| What do we lead with? | Bucket 1 for brand, friends, press. Bucket 2 for quarterly revenue. |
+| Founder proof? | Physics → ML → agentic scientific systems. Living proof of Track A. |
+| What ships next for v1.1? | "AI for Science" skill-tree track · mission-org intel sources · frontier-science landing copy |
+
+---
+
+*End of deck v1.1. Source docs: `tasks/business-plan-chaminext.md`, `tasks/chaminext-discovery-gtm-strategy.md`, `tasks/chaminext-market-briefing.md`, `tasks/learnings-interview-intel.md`, `PRODUCT.md`, `tasks/production-readiness.md`.*

@@ -33,6 +33,7 @@ import SkillTreesPage from './pages/SkillTreesPage';
 import InterviewIntelPage from './pages/InterviewIntelPage';
 import InterviewLoopPage from './pages/InterviewLoopPage';
 import RapidFireDrillPage from './pages/RapidFireDrillPage';
+import JobsPage from './pages/JobsPage';
 import LearnPage from './pages/LearnPage';
 import DemoBanner from './components/demo/DemoBanner';
 import TrialBanner from './components/layout/TrialBanner';
@@ -58,6 +59,7 @@ function App() {
             <Route path="/intel" element={<InterviewIntelPage />} />
             <Route path="/loop" element={<InterviewLoopPage />} />
             <Route path="/drill" element={<RapidFireDrillPage />} />
+            <Route path="/jobs" element={<JobsPage />} />
             <Route path="/learn" element={<LearnPage />} />
             <Route path="/practice" element={<JobSeekersPage />} />
             <Route path="/jobseekers" element={<Navigate to="/practice" replace />} />

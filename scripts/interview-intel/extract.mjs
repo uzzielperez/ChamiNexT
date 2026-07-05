@@ -12,7 +12,7 @@
  * Usage: GROQ_API_KEY=... node scripts/interview-intel/extract.mjs [--limit N]
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { dirname, join } from 'node:path';
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -25,12 +25,6 @@ const GROQ_KEY = process.env.GROQ_API_KEY;
 const limitArg = process.argv.includes('--limit')
   ? Number(process.argv[process.argv.indexOf('--limit') + 1])
   : 120;
-
-if (!existsSync(rawPath)) {
-  console.error('No raw docs. Run scrape.mjs first.');
-  process.exit(1);
-}
-const rawDocs = JSON.parse(readFileSync(rawPath, 'utf8'));
 
 /* ── Shared vocab ───────────────────────────────────────────────── */
 const KINDS = ['coding', 'system-design', 'behavioral', 'recruiter', 'take-home', 'domain-knowledge'];
@@ -238,6 +232,11 @@ RULES:
 const slug = (s) => normalize(s).replace(/ /g, '-');
 
 async function main() {
+  if (!existsSync(rawPath)) {
+    console.error('No raw docs. Run scrape.mjs first.');
+    process.exit(1);
+  }
+  const rawDocs = JSON.parse(readFileSync(rawPath, 'utf8'));
   const relevant = rawDocs.filter((d) => relevanceRe.test(`${d.title} ${d.text}`)).slice(0, limitArg);
   console.log(`${rawDocs.length} raw docs, ${relevant.length} relevant (limit ${limitArg})`);
   console.log(GROQ_KEY ? 'Using Groq LLM extraction.' : 'No GROQ_API_KEY: heuristic extraction.');
@@ -338,7 +337,14 @@ async function main() {
   );
 }
 
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+// Exported for research/eval-extract.mjs (Scout loop harness).
+export { heuristicExtract, classifyKind, inferStage, inferTrack };
+
+// Only run the pipeline when invoked directly, so the eval harness can
+// import the extractor without side effects.
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
+}

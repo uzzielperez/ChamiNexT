@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { ArrowRight, RefreshCw, SkipForward, Timer, Zap } from 'lucide-react';
 import PremiumButton from '../components/ui/PremiumButton';
 import {
@@ -38,9 +38,15 @@ const scoreTone = (n: number) =>
 const formatClock = (s: number) =>
   `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
 
+const TRACK_IDS = TRACKS.map((t) => t.id);
+
 const RapidFireDrillPage: React.FC = () => {
+  const [searchParams] = useSearchParams();
+  const trackParam = searchParams.get('track') as SkillTreeTrackId | null;
   const [phase, setPhase] = useState<Phase>('intro');
-  const [track, setTrack] = useState<SkillTreeTrackId>('software');
+  const [track, setTrack] = useState<SkillTreeTrackId>(
+    trackParam && TRACK_IDS.includes(trackParam) ? trackParam : 'software'
+  );
   const [questions, setQuestions] = useState<DrillQuestion[]>([]);
   const [index, setIndex] = useState(0);
   const [answer, setAnswer] = useState('');
