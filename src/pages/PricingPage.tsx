@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import PremiumButton from '../components/ui/PremiumButton';
-import { Check, ArrowLeft, Calendar } from 'lucide-react';
+import { Check, ArrowLeft, Building2, Calendar, User } from 'lucide-react';
 import {
   canStartFreeTrial,
   saveSubscription,
@@ -77,10 +77,80 @@ const monthlyTiers: {
   },
 ];
 
+const businessTiers: {
+  id: string;
+  name: string;
+  size: string;
+  price: string;
+  priceDetail: string;
+  desc: string;
+  features: string[];
+  recommended?: boolean;
+  cta: string;
+}[] = [
+  {
+    id: 'biz-small',
+    name: 'Small Business',
+    size: 'Up to 50 employees',
+    price: '€250/mo',
+    priceDetail: 'or €2,400/yr (2 months free)',
+    desc: 'For startups hiring their first engineers — priced for a small team, not an enterprise.',
+    features: [
+      '2 open roles at a time',
+      '25 assessments / month',
+      'AI interviews + one custom Ship Test',
+      'Ranked shortlists with rubric notes',
+      'Email support',
+    ],
+    cta: 'Start 60-day free pilot',
+  },
+  {
+    id: 'biz-growth',
+    name: 'Growth',
+    size: '50–500 employees',
+    price: '€900/mo',
+    priceDetail: 'or €9,000/yr (2 months free)',
+    desc: 'For scale-ups hiring every quarter across multiple teams.',
+    features: [
+      '10 open roles at a time',
+      '150 assessments / month',
+      'Custom Ship Tests per role',
+      'Team seats + shared candidate notes',
+      'ATS export (CSV) + priority support',
+    ],
+    recommended: true,
+    cta: 'Start 60-day free pilot',
+  },
+  {
+    id: 'biz-enterprise',
+    name: 'Enterprise',
+    size: '500+ employees',
+    price: 'Custom',
+    priceDetail: 'annual contract',
+    desc: 'For companies that need governance, integrations, and volume.',
+    features: [
+      'Unlimited roles + volume assessment pricing',
+      'SSO / SAML',
+      'API + ATS integrations (Greenhouse, Lever)',
+      'Custom rubrics calibrated to your bar',
+      'Dedicated support + security review',
+    ],
+    cta: 'Talk to us',
+  },
+];
+
+const CONTACT_EMAIL = 'hello@chaminext.com';
+
 const PricingPage: React.FC = () => {
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const audience = searchParams.get('for') === 'companies' ? 'companies' : 'individuals';
   const [loading, setLoading] = useState<string | null>(null);
   const trialAvailable = canStartFreeTrial();
+
+  const setAudience = (a: 'individuals' | 'companies') => {
+    setSearchParams(a === 'companies' ? { for: 'companies' } : {}, { replace: true });
+  };
 
   const startTrial = () => {
     if (startFreeTrial()) {
@@ -126,23 +196,116 @@ const PricingPage: React.FC = () => {
           <ArrowLeft className="w-4 h-4 mr-2" />
           Home
         </PremiumButton>
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <h1 className="text-hero-headline font-bold mb-4">Pricing</h1>
           <p className="text-subheadline text-text-secondary max-w-xl mx-auto">
-            Built for engineers targeting six-figure roles.
-          </p>
-          <p className="text-sm text-text-secondary mt-4">
-            Hiring?{' '}
-            <Link to="/employers" className="text-accent-blue font-medium hover:underline">
-              Interview Studio starts at €500/mo
-            </Link>{' '}
-            →{' '}
-            <Link to="/employers" className="text-accent-blue font-medium hover:underline">
-              View company plans
-            </Link>
+            {audience === 'companies'
+              ? 'Priced by company size — a five-person startup should not pay enterprise rates.'
+              : 'Built for engineers targeting six-figure roles.'}
           </p>
         </div>
 
+        <div className="flex justify-center mb-12">
+          <div className="inline-flex rounded-lg border border-[var(--border-color)] bg-[var(--bg-secondary)] p-1">
+            <button
+              type="button"
+              onClick={() => setAudience('individuals')}
+              className={`flex items-center gap-2 px-5 py-2 rounded-md text-sm font-medium transition-colors ${
+                audience === 'individuals'
+                  ? 'bg-[var(--accent-primary)] text-white'
+                  : 'text-text-secondary hover:text-text-primary'
+              }`}
+            >
+              <User className="w-4 h-4" />
+              For individuals
+            </button>
+            <button
+              type="button"
+              onClick={() => setAudience('companies')}
+              className={`flex items-center gap-2 px-5 py-2 rounded-md text-sm font-medium transition-colors ${
+                audience === 'companies'
+                  ? 'bg-[var(--accent-primary)] text-white'
+                  : 'text-text-secondary hover:text-text-primary'
+              }`}
+            >
+              <Building2 className="w-4 h-4" />
+              For companies
+            </button>
+          </div>
+        </div>
+
+        {audience === 'companies' ? (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              {businessTiers.map((t) => (
+                <div
+                  key={t.id}
+                  className={`card p-6 flex flex-col ${t.recommended ? 'plan-builder-recommended' : ''}`}
+                >
+                  {t.recommended && (
+                    <span className="text-xs font-semibold text-accent-blue mb-2">
+                      Most common
+                    </span>
+                  )}
+                  <h2 className="text-xl font-bold">{t.name}</h2>
+                  <p className="text-xs text-text-secondary mt-0.5 mb-2">{t.size}</p>
+                  <p className="text-2xl font-bold" style={{ color: 'var(--accent-bright)' }}>
+                    {t.price}
+                  </p>
+                  <p className="text-xs text-text-secondary mb-3">{t.priceDetail}</p>
+                  <p className="text-text-secondary text-sm mb-4">{t.desc}</p>
+                  <ul className="space-y-2 mb-6 flex-grow">
+                    {t.features.map((f) => (
+                      <li key={f} className="text-sm text-text-secondary flex gap-2">
+                        <Check className="w-4 h-4 text-accent-blue shrink-0" />
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <a
+                    href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+                      `ChamiNext ${t.name} — pilot request`
+                    )}`}
+                  >
+                    <PremiumButton
+                      variant={t.recommended ? 'primary' : 'secondary'}
+                      size="md"
+                      fullWidth
+                    >
+                      {t.cta}
+                    </PremiumButton>
+                  </a>
+                </div>
+              ))}
+            </div>
+
+            <div className="card p-6 mb-8 text-center">
+              <p className="text-sm text-text-secondary max-w-2xl mx-auto">
+                <span className="font-semibold text-text-primary">Every plan starts with a free
+                60-day pilot</span>{' '}
+                on one open role: we configure a Ship Test, seed your pipeline, and deliver a
+                ranked shortlist in 72 hours. No setup fees. Nonprofits and research labs:{' '}
+                <a
+                  href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+                    'ChamiNext mission pricing'
+                  )}`}
+                  className="text-accent-blue hover:underline"
+                >
+                  ask about mission pricing
+                </a>
+                .
+              </p>
+            </div>
+
+            <p className="text-center text-sm text-text-secondary mb-4">
+              Want to see the employer product first?{' '}
+              <Link to="/employers" className="text-accent-blue font-medium hover:underline">
+                Tour the Interview Studio →
+              </Link>
+            </p>
+          </>
+        ) : (
+          <>
         {trialAvailable && (
           <div className="card p-6 md:p-8 mb-6 border-[var(--border-color)] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
             <div>
@@ -261,6 +424,19 @@ const PricingPage: React.FC = () => {
           Without Stripe keys, checkout activates plans locally for your demo. Add STRIPE_SECRET_KEY
           in Netlify for live payments.
         </p>
+
+        <p className="text-center text-sm text-text-secondary mt-4">
+          Hiring engineers?{' '}
+          <button
+            type="button"
+            onClick={() => setAudience('companies')}
+            className="text-accent-blue font-medium hover:underline"
+          >
+            See company plans from €250/mo →
+          </button>
+        </p>
+          </>
+        )}
       </div>
     </div>
   );

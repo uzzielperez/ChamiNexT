@@ -464,11 +464,24 @@ Link out when someone needs reps. Own the moment they need to **think out loud, 
 
 ### B2B (primary revenue at scale)
 
+**Previous (v1):**
+
 | Plan | Price | Role |
 |------|-------|------|
 | Starter | €500–1k/mo | 3 roles, ~50 assessments/mo |
 | Growth | €2–5k/mo | Custom assessments, team seats |
 | Enterprise | Custom | SSO, API, ATS integrations |
+
+**Evolved (v1.1) — size-based pricing, live on /pricing:**
+
+| Plan | Company size | Price | Role |
+|------|--------------|-------|------|
+| Small Business | ≤50 employees | **€250/mo** (€2.4k/yr) | 2 roles, 25 assessments/mo — lowers the entry bar for the design-partner ICP |
+| Growth | 50–500 | **€900/mo** (€9k/yr) | 10 roles, 150 assessments/mo, team seats, ATS export |
+| Enterprise | 500+ | Custom | SSO, API, ATS integrations, calibrated rubrics |
+
+All plans start with a free 60-day pilot on one role. Mission pricing available
+for nonprofits/research labs (Bucket 3 halo, see Slide 4c).
 
 **Gross margin target:** >80% (SaaS + LLM API; content is original).
 

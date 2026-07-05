@@ -17,6 +17,7 @@ ChamiNext is the evaluation layer for engineering in the AI era. Engineers pract
 
 - **Free tier** to taste the loop; **30-day Builder trial** (one per device until accounts are server-backed).
 - Paid: Pro / Builder / Premium monthly, **Interview Season** (90-day bundle), B2B Interview Studio.
+- **B2B priced by company size** (`/pricing?for=companies`): Small Business €250/mo (≤50 employees), Growth €900/mo (50–500), Enterprise custom (500+). Free 60-day pilot on all; mission pricing for nonprofits/research labs.
 
 ## Strategic Principles
 

@@ -241,10 +241,10 @@ const EmployersPage: React.FC = () => {
             <div>
               <h3 className="text-xl font-bold mb-2">Ready to hire on real output?</h3>
               <p className="text-text-secondary text-sm">
-                Starter from €500/mo · No setup fees
+                Priced by company size — small business from €250/mo · Free 60-day pilot · No setup fees
               </p>
             </div>
-            <Link to="/pricing" className="shrink-0">
+            <Link to="/pricing?for=companies" className="shrink-0">
               <PremiumButton variant="primary" size="md" icon={<ArrowRight className="w-4 h-4" />}>
                 View pricing
               </PremiumButton>
