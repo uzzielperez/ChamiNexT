@@ -1,5 +1,25 @@
 [
   {
+    "id": "work-ticket-rate-limiter",
+    "title": "Work Ticket: Rate Limiter API",
+    "format": "ticket",
+    "submitMode": "pr",
+    "starterRepoUrl": "https://github.com/chaminext-templates/work-ticket-rate-limiter",
+    "description": "Day-to-day engineering ticket: add a rate-limited endpoint to a small service. AI tools allowed. Submit a PR.",
+    "pmBrief": "Platform needs per-IP rate limiting on the public API before we open beta traffic. Ship a reviewed PR, not a whiteboard puzzle.",
+    "ticketBrief": "## Ticket PLAT-1842\n\nIn the starter repo, add token-bucket rate limiting for `POST /api/echo`:\n\n- 10 requests per minute per client IP\n- Return `429` with `Retry-After` header when limited\n- Unit tests for limiter logic\n- Update README with run + test instructions\n\n**AI assistants allowed** — note what you used in the PR description.\n\n**Submit:** open a PR against `main`. Codespaces, local, or devcontainer (Java/Kotlin variants use the same ticket via language-specific starter branches).",
+    "constraints": [
+      "AI assistants allowed — disclose in PR description",
+      "PR must include tests",
+      "No secrets or API keys in repo"
+    ],
+    "exampleDeliverables": [
+      "GitHub PR URL",
+      "PR description with trade-offs",
+      "Optional preview deploy URL"
+    ]
+  },
+  {
     "id": "habit-tracker-24h",
     "title": "Habit Tracker",
     "format": "24h",

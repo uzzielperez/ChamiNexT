@@ -22,11 +22,16 @@ exports.handler = async (event) => {
   if (!rl.allowed) return rateLimitResponse(rl.retryAfterSec, corsHeaders);
 
   try {
-    const { challenge, deploymentUrl, events = [], enrolledAt, endsAt } = JSON.parse(event.body || '{}');
+    const { challenge, deploymentUrl, prUrl, events = [], enrolledAt, endsAt } = JSON.parse(event.body || '{}');
+
+    const isWorkTicket = challenge?.format === 'ticket' || challenge?.submitMode === 'pr';
+    const submitLabel = isWorkTicket
+      ? `PR URL: ${prUrl || 'none'}\nDEPLOY (optional): ${deploymentUrl || 'none'}`
+      : `DEPLOY URL: ${deploymentUrl || 'none'}`;
 
     const fallback = {
       scores: {
-        shipping: deploymentUrl ? 82 : 45,
+        shipping: (isWorkTicket ? prUrl : deploymentUrl) ? 82 : 45,
         productThinking: 78,
         engineeringQuality: 75,
         executionSpeed: 80,
@@ -47,12 +52,16 @@ exports.handler = async (event) => {
       messages: [
         {
           role: 'system',
-          content: `You evaluate ChamiNext Ship Tests. Score 0-100 on: shipping, productThinking, engineeringQuality, executionSpeed, tradeoffAwareness. overall = average. Return ONLY JSON:
+          content: `You evaluate ChamiNext Ship Tests. Score 0-100 on: shipping, productThinking, engineeringQuality, executionSpeed, tradeoffAwareness. overall = average.${
+            isWorkTicket
+              ? ' This is a Work Ticket (VERVE-style): evaluate PR quality, test coverage, scope discipline, README clarity, and trade-off notes in the PR description. AI tool use is allowed if disclosed.'
+              : ''
+          } Return ONLY JSON:
 {"scores":{"shipping":N,"productThinking":N,"engineeringQuality":N,"executionSpeed":N,"tradeoffAwareness":N,"overall":N},"feedback":"2-4 sentences for the candidate"}`,
         },
         {
           role: 'user',
-          content: `CHALLENGE: ${challenge?.title}\n${challenge?.pmBrief}\nDEPLOY URL: ${deploymentUrl || 'none'}\nEVENTS:\n${events.map((e) => `${e.role}: ${e.message}`).join('\n')}\nTIME: ${enrolledAt} to ${endsAt}`,
+          content: `CHALLENGE: ${challenge?.title}\n${challenge?.pmBrief}\n${challenge?.ticketBrief || ''}\n${submitLabel}\nEVENTS:\n${events.map((e) => `${e.role}: ${e.message}`).join('\n')}\nTIME: ${enrolledAt} to ${endsAt}`,
         },
       ],
     });

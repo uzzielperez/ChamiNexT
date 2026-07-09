@@ -6,6 +6,7 @@ import type { ShipTestEnrollment, ShipTestEvent } from '../../types/interview';
 import { loadShipEnrollment, saveShipEnrollment } from '../../utils/interviewStorage';
 import { evaluateShipTest } from '../../utils/shipTestEvaluator';
 import { getShipDurationMs } from '../../utils/demoMode';
+import { ExternalLink, GitPullRequest } from 'lucide-react';
 
 interface ShipTestSessionProps {
   onExit: () => void;
@@ -14,10 +15,12 @@ interface ShipTestSessionProps {
 const ShipTestSession: React.FC<ShipTestSessionProps> = ({ onExit }) => {
   const [enrollment, setEnrollment] = useState<ShipTestEnrollment | null>(loadShipEnrollment);
   const [deploymentUrl, setDeploymentUrl] = useState(enrollment?.deploymentUrl ?? '');
+  const [prUrl, setPrUrl] = useState(enrollment?.prUrl ?? '');
   const [remaining, setRemaining] = useState('');
   const [evaluating, setEvaluating] = useState(false);
 
   const challenge = shipTestChallenges.find((c) => c.id === enrollment?.challengeId);
+  const isWorkTicket = challenge?.format === 'ticket' || challenge?.submitMode === 'pr';
 
   useEffect(() => {
     if (!enrollment) return;
@@ -50,14 +53,22 @@ const ShipTestSession: React.FC<ShipTestSessionProps> = ({ onExit }) => {
     saveShipEnrollment(next);
   };
 
+  const canSubmit = isWorkTicket ? prUrl.trim().length > 0 : deploymentUrl.trim().length > 0;
+
   const submitShip = async () => {
-    if (!enrollment || !challenge) return;
+    if (!enrollment || !challenge || !canSubmit) return;
     setEvaluating(true);
     try {
-      const { scores, feedback } = await evaluateShipTest(challenge, enrollment, deploymentUrl);
+      const { scores, feedback } = await evaluateShipTest(
+        challenge,
+        enrollment,
+        deploymentUrl,
+        prUrl || undefined
+      );
       const next: ShipTestEnrollment = {
         ...enrollment,
-        deploymentUrl,
+        deploymentUrl: deploymentUrl || undefined,
+        prUrl: prUrl || undefined,
         status: 'evaluated',
         scores,
         feedback,
@@ -87,11 +98,38 @@ const ShipTestSession: React.FC<ShipTestSessionProps> = ({ onExit }) => {
         <div>
           <h1 className="text-2xl font-bold text-text-primary">{challenge.title}</h1>
           <p className="text-accent-blue font-mono text-lg mt-1">{remaining}</p>
+          {isWorkTicket && (
+            <p className="text-xs text-text-secondary mt-1 uppercase tracking-wide">
+              Work Ticket · AI allowed · PR submit
+            </p>
+          )}
         </div>
         <PremiumButton variant="ghost" size="sm" onClick={onExit}>
           Exit
         </PremiumButton>
       </div>
+
+      {isWorkTicket && challenge.ticketBrief && (
+        <div className="card p-6 mb-6 border-accent-blue/30">
+          <h3 className="font-bold text-text-primary mb-2 flex items-center gap-2">
+            <GitPullRequest className="w-4 h-4 text-accent-blue" />
+            Engineering ticket
+          </h3>
+          <pre className="text-text-secondary text-sm whitespace-pre-wrap font-sans">
+            {challenge.ticketBrief}
+          </pre>
+          {challenge.starterRepoUrl && (
+            <a
+              href={challenge.starterRepoUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1 text-accent-blue text-sm mt-4 hover:underline"
+            >
+              Open starter repo <ExternalLink className="w-3 h-3" />
+            </a>
+          )}
+        </div>
+      )}
 
       <div className="card p-6 mb-6 border-accent-blue/20">
         <h3 className="font-bold text-text-primary mb-2">Product Manager</h3>
@@ -104,11 +142,33 @@ const ShipTestSession: React.FC<ShipTestSessionProps> = ({ onExit }) => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        <PremiumButton variant="secondary" size="sm" onClick={() => pushEvent('tech-lead', 'Checkpoint: share your architecture in 3 bullets before coding more.')}>
+        <PremiumButton
+          variant="secondary"
+          size="sm"
+          onClick={() =>
+            pushEvent(
+              'tech-lead',
+              isWorkTicket
+                ? 'Checkpoint: paste your PR link when ready — reviewer will check tests and scope.'
+                : 'Checkpoint: share your architecture in 3 bullets before coding more.'
+            )
+          }
+        >
           Tech Lead checkpoint
         </PremiumButton>
-        <PremiumButton variant="secondary" size="sm" onClick={() => pushEvent('user-simulator', 'User report: mobile layout breaks on small screens.')}>
-          User simulator event
+        <PremiumButton
+          variant="secondary"
+          size="sm"
+          onClick={() =>
+            pushEvent(
+              'user-simulator',
+              isWorkTicket
+                ? 'CI note: lint passed but integration test flaky — document in PR.'
+                : 'User report: mobile layout breaks on small screens.'
+            )
+          }
+        >
+          {isWorkTicket ? 'CI / reviewer event' : 'User simulator event'}
         </PremiumButton>
       </div>
 
@@ -125,17 +185,29 @@ const ShipTestSession: React.FC<ShipTestSessionProps> = ({ onExit }) => {
 
       {enrollment.status !== 'evaluated' ? (
         <div className="card p-6">
-          <h3 className="font-bold mb-3">Deploy & submit</h3>
+          <h3 className="font-bold mb-3">{isWorkTicket ? 'Submit PR' : 'Deploy & submit'}</h3>
+          {isWorkTicket && (
+            <input
+              value={prUrl}
+              onChange={(e) => setPrUrl(e.target.value)}
+              placeholder="https://github.com/org/repo/pull/42"
+              className="w-full px-4 py-3 rounded-lg bg-bg-secondary border border-gray-700 text-text-primary mb-4"
+            />
+          )}
           <input
             value={deploymentUrl}
             onChange={(e) => setDeploymentUrl(e.target.value)}
-            placeholder="https://your-deployed-app.vercel.app"
+            placeholder={
+              isWorkTicket
+                ? 'Optional preview URL (Vercel, Railway, …)'
+                : 'https://your-deployed-app.vercel.app'
+            }
             className="w-full px-4 py-3 rounded-lg bg-bg-secondary border border-gray-700 text-text-primary mb-4"
           />
           <PremiumButton
             variant="primary"
             onClick={submitShip}
-            disabled={!deploymentUrl.trim()}
+            disabled={!canSubmit}
             loading={evaluating}
           >
             Submit for AI evaluation
@@ -146,14 +218,26 @@ const ShipTestSession: React.FC<ShipTestSessionProps> = ({ onExit }) => {
           {enrollment.scores && (
             <ShipScoreBreakdown scores={enrollment.scores} feedback={enrollment.feedback} />
           )}
-          <a
-            href={deploymentUrl}
-            className="text-accent-blue text-sm mt-4 inline-block"
-            target="_blank"
-            rel="noreferrer"
-          >
-            View deployment →
-          </a>
+          {prUrl && (
+            <a
+              href={prUrl}
+              className="text-accent-blue text-sm mt-4 inline-block"
+              target="_blank"
+              rel="noreferrer"
+            >
+              View pull request →
+            </a>
+          )}
+          {deploymentUrl && (
+            <a
+              href={deploymentUrl}
+              className="text-accent-blue text-sm mt-4 ml-4 inline-block"
+              target="_blank"
+              rel="noreferrer"
+            >
+              View deployment →
+            </a>
+          )}
         </>
       )}
     </div>

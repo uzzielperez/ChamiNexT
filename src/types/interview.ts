@@ -96,7 +96,9 @@ export interface InterviewSession {
   scoreNotes?: string;
 }
 
-export type ShipTestFormat = '24h' | '72h' | '7d';
+export type ShipTestFormat = '24h' | '72h' | '7d' | 'ticket';
+
+export type ShipTestSubmitMode = 'url' | 'pr';
 
 export type ShipTestStatus = 'available' | 'active' | 'submitted' | 'evaluated';
 
@@ -108,6 +110,9 @@ export interface ShipTestChallenge {
   pmBrief: string;
   constraints: string[];
   exampleDeliverables: string[];
+  submitMode?: ShipTestSubmitMode;
+  starterRepoUrl?: string;
+  ticketBrief?: string;
 }
 
 export interface ShipTestScores {
@@ -124,6 +129,7 @@ export interface ShipTestEnrollment {
   enrolledAt: string;
   endsAt: string;
   deploymentUrl?: string;
+  prUrl?: string;
   status: ShipTestStatus;
   scores?: ShipTestScores;
   feedback?: string;

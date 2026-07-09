@@ -12,6 +12,7 @@ export function setDemoMode(on: boolean): void {
 export function getShipDurationMs(format: string): number {
   if (!isDemoMode()) {
     const map: Record<string, number> = {
+      ticket: 4 * 60 * 60 * 1000,
       '24h': 24 * 60 * 60 * 1000,
       '72h': 72 * 60 * 60 * 1000,
       '7d': 7 * 24 * 60 * 60 * 1000,
@@ -19,6 +20,7 @@ export function getShipDurationMs(format: string): number {
     return map[format] ?? map['24h'];
   }
   const demoMap: Record<string, number> = {
+    ticket: 20 * 60 * 1000,
     '24h': 30 * 60 * 1000,
     '72h': 45 * 60 * 1000,
     '7d': 60 * 60 * 1000,
@@ -27,6 +29,6 @@ export function getShipDurationMs(format: string): number {
 }
 
 export function isShipFormatUnlocked(format: string): boolean {
-  if (format === '24h') return true;
+  if (format === '24h' || format === 'ticket') return true;
   return isDemoMode();
 }

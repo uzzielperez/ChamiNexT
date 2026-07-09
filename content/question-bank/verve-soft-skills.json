@@ -1,0 +1,87 @@
+[
+  {
+    "id": "verve-ownership",
+    "title": "VERVE Phase 1: Ownership & big picture",
+    "domain": "behavioral",
+    "track": "software",
+    "difficulty": "medium",
+    "estimatedMinutes": 20,
+    "prompt": "Tell me about a time you took ownership of a project that was failing or at risk. What was the broader context, what did you do, and what was the outcome?",
+    "hints": [
+      "Use STAR: situation, your actions, measurable result.",
+      "Name what you owned vs what the team did."
+    ],
+    "starterCode": "",
+    "runLanguage": "none",
+    "source": "verve-pipeline:phase-1",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "verve-pushback",
+    "title": "VERVE Phase 2: Pushback on No",
+    "domain": "behavioral",
+    "track": "software",
+    "difficulty": "medium",
+    "estimatedMinutes": 20,
+    "prompt": "Describe a situation where you received a clear no from leadership on something you believed was important. How did you respond?",
+    "hints": [
+      "Show evidence-based advocacy, not argument for its own sake.",
+      "Explain how you committed after the decision."
+    ],
+    "starterCode": "",
+    "runLanguage": "none",
+    "source": "verve-pipeline:phase-2",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "verve-mentorship",
+    "title": "VERVE Phase 3: Force multiplier & mentorship",
+    "domain": "behavioral",
+    "track": "software",
+    "difficulty": "medium",
+    "estimatedMinutes": 20,
+    "prompt": "Tell me about a time you helped someone on your team level up — or unblocked others so the whole team shipped faster.",
+    "hints": [
+      "Focus on artifacts left behind: docs, pairing, reviews.",
+      "Quantify team outcome, not solo heroics."
+    ],
+    "starterCode": "",
+    "runLanguage": "none",
+    "source": "verve-pipeline:phase-3",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "verve-pragmatism",
+    "title": "VERVE Phase 4: Pragmatism vs perfectionism",
+    "domain": "behavioral",
+    "track": "software",
+    "difficulty": "medium",
+    "estimatedMinutes": 20,
+    "prompt": "Give an example where you deliberately shipped something imperfect to meet a deadline or learn faster. What did you cut and what did you protect?",
+    "hints": [
+      "Name trade-offs explicitly: safety, debt, scope.",
+      "Describe follow-up or monitoring after ship."
+    ],
+    "starterCode": "",
+    "runLanguage": "none",
+    "source": "verve-pipeline:phase-4",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "verve-candidate-questions",
+    "title": "VERVE Phase 5: Candidate questions",
+    "domain": "behavioral",
+    "track": "software",
+    "difficulty": "easy",
+    "estimatedMinutes": 15,
+    "prompt": "We're at the end — what questions do you have for me about the team, role, or how we build software here?",
+    "hints": [
+      "Ask about success at 30/90 days, code review culture, on-call.",
+      "Build on the interviewer's answers — show active listening."
+    ],
+    "starterCode": "",
+    "runLanguage": "none",
+    "source": "verve-pipeline:phase-5",
+    "license": "ChamiNext"
+  }
+]

@@ -1,6 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Twitter, Github, Linkedin, Instagram } from 'lucide-react';
 import ChamiNextLogo from '../brand/ChamiNextLogo';
+import { SEEKER_MORE } from '../../config/navigation';
 
 const Footer: React.FC = () => {
   return (
@@ -35,11 +37,29 @@ const Footer: React.FC = () => {
           {/* For Developers */}
           <div>
             <h3 className="text-sm font-semibold text-white uppercase tracking-wider">Practice</h3>
-                          <ul className="mt-4 space-y-3">
-                <li><a href="/practice" className="text-gray-400 hover:text-white text-sm transition-colors">AI Interviews</a></li>
-                <li><a href="/practice" className="text-gray-400 hover:text-white text-sm transition-colors">Ship Tests</a></li>
-              <li><a href="/practice" className="text-gray-400 hover:text-white text-sm transition-colors">Talent Profile</a></li>
-              <li><a href="/marketplace" className="text-gray-400 hover:text-white text-sm transition-colors">Courses</a></li>
+            <ul className="mt-4 space-y-3">
+              <li>
+                <Link to="/daily" className="text-gray-400 hover:text-white text-sm transition-colors">
+                  Daily loop
+                </Link>
+              </li>
+              <li>
+                <Link to="/practice" className="text-gray-400 hover:text-white text-sm transition-colors">
+                  AI Interviews &amp; Ship Tests
+                </Link>
+              </li>
+              <li>
+                <Link to="/jobs" className="text-gray-400 hover:text-white text-sm transition-colors">
+                  Jobs board
+                </Link>
+              </li>
+              {SEEKER_MORE.slice(0, 4).map((item) => (
+                <li key={item.href}>
+                  <Link to={item.href} className="text-gray-400 hover:text-white text-sm transition-colors">
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
           
@@ -60,7 +80,7 @@ const Footer: React.FC = () => {
               <li><a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">About Us</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Careers</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Blog</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Pricing</a></li>
+              <li><Link to="/pricing" className="text-gray-400 hover:text-white text-sm transition-colors">Pricing</Link></li>
               <li><a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Contact</a></li>
             </ul>
           </div>

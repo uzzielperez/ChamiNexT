@@ -3,7 +3,8 @@ import type { ShipTestChallenge, ShipTestEnrollment } from '../types/interview';
 export async function evaluateShipTest(
   challenge: ShipTestChallenge,
   enrollment: ShipTestEnrollment,
-  deploymentUrl: string
+  deploymentUrl: string,
+  prUrl?: string
 ): Promise<{ scores: ShipTestEnrollment['scores']; feedback: string }> {
   const res = await fetch('/.netlify/functions/ship-test-evaluator', {
     method: 'POST',
@@ -11,6 +12,7 @@ export async function evaluateShipTest(
     body: JSON.stringify({
       challenge,
       deploymentUrl,
+      prUrl,
       events: enrollment.events,
       enrolledAt: enrollment.enrolledAt,
       endsAt: enrollment.endsAt,

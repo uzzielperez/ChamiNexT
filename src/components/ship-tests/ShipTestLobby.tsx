@@ -36,7 +36,13 @@ const ShipTestLobby: React.FC<ShipTestLobbyProps> = ({ onEnroll, onBack, activeC
               <div>
                 {unlocked && (
                   <span className="text-xs font-semibold text-accent-blue uppercase mb-2 block">
-                    {c.format === '24h' ? 'Open now' : isDemoMode() ? 'Demo unlocked' : 'Preview'}
+                    {c.format === 'ticket'
+                      ? 'VERVE-style · Open now'
+                      : c.format === '24h'
+                        ? 'Open now'
+                        : isDemoMode()
+                          ? 'Demo unlocked'
+                          : 'Preview'}
                   </span>
                 )}
                 <h2 className="text-2xl font-bold text-text-primary flex items-center gap-2">
@@ -45,7 +51,13 @@ const ShipTestLobby: React.FC<ShipTestLobbyProps> = ({ onEnroll, onBack, activeC
                 </h2>
                 <p className="text-accent-blue text-sm font-medium mt-1 flex items-center gap-1">
                   <Clock className="w-4 h-4" />
-                  {c.format === '24h' ? '24h Sprint' : c.format === '72h' ? '72h Build' : '7-Day Sprint'}
+                  {c.format === 'ticket'
+                    ? '4h Work Ticket'
+                    : c.format === '24h'
+                      ? '24h Sprint'
+                      : c.format === '72h'
+                        ? '72h Build'
+                        : '7-Day Sprint'}
                 </p>
               </div>
               {unlocked ? (

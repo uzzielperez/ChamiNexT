@@ -1,0 +1,214 @@
+{
+  "pipeline": "verve",
+  "version": "1.0",
+  "description": "VERVE-style hiring pipeline rubrics for ChamiNexT behavioral interviews and employer assessments.",
+  "stages": [
+    {
+      "id": "cv-prescreen",
+      "name": "CV pre-screen",
+      "chaminextMapping": "Talent profile + mission rubric (future)",
+      "automated": false
+    },
+    {
+      "id": "hr-recruiter",
+      "name": "HR + high-level fit",
+      "chaminextMapping": "Recruiter mock interview",
+      "automated": true
+    },
+    {
+      "id": "work-ticket",
+      "name": "Online coding / Work Ticket",
+      "chaminextMapping": "Ship Test: small API endpoint, PR submit, AI allowed",
+      "automated": true
+    },
+    {
+      "id": "soft-skills",
+      "name": "Soft skills (5 phases)",
+      "chaminextMapping": "Behavioral rubric packs below",
+      "automated": true
+    },
+    {
+      "id": "personal-ide",
+      "name": "Personal IDE / pairing",
+      "chaminextMapping": "Repo + PR review + Codespaces / devcontainer",
+      "automated": false
+    }
+  ],
+  "phases": [
+    {
+      "id": "verve-ownership",
+      "phase": 1,
+      "title": "Ownership & big picture",
+      "prompt": "Tell me about a time you took ownership of a project that was failing or at risk. What was the broader context, what did you do, and what was the outcome?",
+      "focusAreas": [
+        "Connects work to business or user impact",
+        "Takes initiative without being asked",
+        "Communicates status and risks proactively",
+        "Balances detail work with strategic awareness"
+      ],
+      "strongSignals": [
+        "Names stakeholders, constraints, and timeline pressure",
+        "Describes specific decisions they owned (not we)",
+        "Quantifies outcome or cites measurable improvement",
+        "Acknowledges what they would do differently"
+      ],
+      "weakSignals": [
+        "Vague team credit without personal contribution",
+        "Blames others without reflection",
+        "No connection to why the work mattered",
+        "Purely technical answer with no product or user lens"
+      ],
+      "followUps": [
+        "What would you have done if you had half the time?",
+        "Who disagreed with your approach and how did you handle it?",
+        "How did you know the project was actually back on track?"
+      ],
+      "scoringDimensions": {
+        "thinking": "Judgment under ambiguity — did they see the real problem?",
+        "decomposition": "STAR structure — situation, stakes, actions, results",
+        "communication": "Clarity and concision without rambling",
+        "codeQuality": "Specificity — names, metrics, trade-offs vs generalities"
+      }
+    },
+    {
+      "id": "verve-pushback",
+      "phase": 2,
+      "title": "Pushback on No",
+      "prompt": "Describe a situation where you received a clear no from leadership or a stakeholder on something you believed was important. How did you respond?",
+      "focusAreas": [
+        "Respects hierarchy while advocating with evidence",
+        "Separates ego from the idea",
+        "Proposes alternatives or smaller experiments",
+        "Knows when to commit after a decision"
+      ],
+      "strongSignals": [
+        "Presents data or user evidence, not just opinion",
+        "Offers a phased or reversible approach",
+        "Accepts final decision and executes fully",
+        "Maintains relationship with the decider"
+      ],
+      "weakSignals": [
+        "Persistent arguing without new information",
+        "Passive acceptance with visible resentment",
+        "Going around the decider without transparency",
+        "Framing the story as winning an argument"
+      ],
+      "followUps": [
+        "What evidence would have changed the outcome?",
+        "How did you keep the team aligned after the no?",
+        "Have you ever been glad you were overruled?"
+      ],
+      "scoringDimensions": {
+        "thinking": "Picks battles wisely — impact vs politics",
+        "decomposition": "Clear sequence: ask, present, adapt, commit",
+        "communication": "Tone — collaborative, not adversarial",
+        "codeQuality": "Concrete examples of what was proposed and why"
+      }
+    },
+    {
+      "id": "verve-mentorship",
+      "phase": 3,
+      "title": "Force multiplier & mentorship",
+      "prompt": "Tell me about a time you helped someone on your team level up — or unblocked others so the whole team shipped faster.",
+      "focusAreas": [
+        "Invests in others without neglecting own delivery",
+        "Documents, pairs, or reviews constructively",
+        "Scales knowledge beyond one-off heroics",
+        "Measures team outcome, not solo brilliance"
+      ],
+      "strongSignals": [
+        "Specific mentoring actions (pairing, docs, runbooks)",
+        "Junior or peer grew measurable skill or autonomy",
+        "Reduced bus factor or repeat incidents",
+        "Balanced helping with personal deadlines"
+      ],
+      "weakSignals": [
+        "Only story is doing everyone's work yourself",
+        "Vague we helped each other with no personal role",
+        "Mentorship as performance theater",
+        "No outcome for the mentee or team"
+      ],
+      "followUps": [
+        "How did you decide what to teach vs delegate?",
+        "What did you learn from the person you mentored?",
+        "When is it wrong to invest time in mentorship?"
+      ],
+      "scoringDimensions": {
+        "thinking": "Systems view — team throughput over individual heroics",
+        "decomposition": "Before/after team capability",
+        "communication": "Explains technical concepts to varied audiences",
+        "codeQuality": "Artifacts left behind — docs, tests, patterns"
+      }
+    },
+    {
+      "id": "verve-pragmatism",
+      "phase": 4,
+      "title": "Pragmatism vs perfectionism",
+      "prompt": "Give an example where you deliberately shipped something imperfect to meet a deadline or learn faster. What did you cut and what did you protect?",
+      "focusAreas": [
+        "Explicit trade-off framing",
+        "Protects safety, correctness, or user trust where it matters",
+        "Plans follow-up debt paydown",
+        "Avoids both yak-shaving and reckless shortcuts"
+      ],
+      "strongSignals": [
+        "Names what was deferred and why it was safe",
+        "Uses milestones or flags for incremental release",
+        "Monitors post-ship and iterates",
+        "Aligns with PM/stakeholders on scope"
+      ],
+      "weakSignals": [
+        "Perfectionism — endless refactor with no ship",
+        "Reckless shortcuts in security or data integrity",
+        "No awareness of technical debt created",
+        "Cannot articulate what good enough meant"
+      ],
+      "followUps": [
+        "What would you not cut even under pressure?",
+        "How did you communicate scope cuts to stakeholders?",
+        "Did the shortcut ever come back to bite you?"
+      ],
+      "scoringDimensions": {
+        "thinking": "Prioritization — impact, risk, reversibility",
+        "decomposition": "MVP scope vs v2 plan",
+        "communication": "Sets expectations on quality bar",
+        "codeQuality": "Technical choices that limited blast radius"
+      }
+    },
+    {
+      "id": "verve-candidate-questions",
+      "phase": 5,
+      "title": "Candidate questions",
+      "prompt": "We're at the end — what questions do you have for me about the team, role, or how we build software here?",
+      "focusAreas": [
+        "Questions show research and genuine interest",
+        "Probes team dynamics, expectations, and growth",
+        "Asks about trade-offs and how decisions get made",
+        "Avoids only comp/benefits in first pass"
+      ],
+      "strongSignals": [
+        "Asks about on-call, code review culture, or definition of done",
+        "Connects questions to their past experience",
+        "Asks what success looks like at 30/90 days",
+        "Follows up on interviewer answers thoughtfully"
+      ],
+      "weakSignals": [
+        "No questions prepared",
+        "Only generic what's-the-culture-like",
+        "Questions easily answered by the job post",
+        "Adversarial or entitlement tone"
+      ],
+      "followUps": [
+        "Given what you've heard so far, what concerns would you want to validate in a follow-up?",
+        "What would make you decline an offer?",
+        "What kind of manager helps you do your best work?"
+      ],
+      "scoringDimensions": {
+        "thinking": "Curiosity and role fit — do they evaluate us too?",
+        "decomposition": "Structured questions across team, product, process",
+        "communication": "Active listening and building on answers",
+        "codeQuality": "Depth — senior candidates ask about architecture and risks"
+      }
+    }
+  ]
+}
