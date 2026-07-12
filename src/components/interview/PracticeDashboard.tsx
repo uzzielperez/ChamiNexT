@@ -1,32 +1,21 @@
 import React, { useMemo, useState } from 'react';
-import { ArrowRight, Brain, Briefcase, Check, Rocket, Radio, GitBranch, Radar, Repeat, Zap, FlaskConical, Gift } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Brain, Check } from 'lucide-react';
+import CoverCard from '../spotify/CoverCard';
+import HorizontalShelf from '../spotify/HorizontalShelf';
 import PremiumButton from '../ui/PremiumButton';
+import { allPracticeProblems, getProblemsByTrack } from '../../data/loadQuestionBank';
 import {
-  allPracticeProblems,
-  getProblemsByTrack,
-} from '../../data/loadQuestionBank';
+  getPracticeProblemCover,
+  PRACTICE_MODE_CARDS,
+  problemTagline,
+  TRACK_LABELS,
+} from '../../data/practiceCovers';
 import { loadSessions } from '../../utils/interviewStorage';
 import type { PracticeProblem, PracticeTrack } from '../../types/interview';
 
 const PROFILE_MILESTONE = 10;
 
 type FilterMode = 'all' | PracticeTrack | 'daily';
-
-const TRACK_LABELS: Record<PracticeTrack, string> = {
-  software: 'Software',
-  'ai-engineer': 'AI Engineer',
-  quant: 'Quant',
-  cybersecurity: 'Cybersecurity',
-  'market-engineering': 'Market Engineering',
-  'ai-for-science': 'AI for Science',
-};
-
-const DIFFICULTY_DOT: Record<PracticeProblem['difficulty'], string> = {
-  easy: 'skill-difficulty-easy',
-  medium: 'skill-difficulty-medium',
-  hard: 'skill-difficulty-hard',
-};
 
 interface PracticeDashboardProps {
   onStartInterview: (problem: PracticeProblem) => void;
@@ -53,7 +42,6 @@ const PracticeDashboard: React.FC<PracticeDashboardProps> = ({
     return getProblemsByTrack(filter);
   }, [filter]);
 
-  // Best overall score per practiced problem, plus per-domain averages.
   const bestScoreByProblem: Record<string, number> = {};
   const domainScores: Record<string, number[]> = {};
   sessions.forEach((s) => {
@@ -66,8 +54,6 @@ const PracticeDashboard: React.FC<PracticeDashboardProps> = ({
     if (p) (domainScores[p.domain] ??= []).push(s.scores.overall);
   });
 
-  // Recommend un-practiced work in your weakest scored domain first, then any
-  // un-practiced problem, then anything that isn't the last session.
   const { recommended, recommendReason } = useMemo(() => {
     const unpracticed = filtered.filter((p) => bestScoreByProblem[p.id] === undefined);
     const domainAvgs = Object.entries(domainScores)
@@ -78,25 +64,27 @@ const PracticeDashboard: React.FC<PracticeDashboardProps> = ({
       if (hit) {
         return {
           recommended: hit,
-          recommendReason: `Your weakest domain so far (avg ${Math.round(avg)}). Reps here move your profile most.`,
+          recommendReason: `Weakest domain (avg ${Math.round(avg)}). Reps here move your profile most.`,
         };
       }
     }
     if (unpracticed.length > 0) {
       return {
         recommended: unpracticed[0],
-        recommendReason: 'New territory: no scored attempt in this domain yet.',
+        recommendReason: 'New territory — no scored attempt in this domain yet.',
       };
     }
     const fallback = filtered.find((p) => p.id !== lastSession?.problemId) ?? filtered[0];
     return {
       recommended: fallback,
-      recommendReason: 'Everything practiced once. Retry to push your best scores up.',
+      recommendReason: 'Retry to push your best scores up.',
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filtered, lastSession?.problemId]);
 
-  const tabs: { id: FilterMode; label: string }[] = [
+  const recommendedCover = recommended ? getPracticeProblemCover(recommended) : null;
+
+  const filterTabs: { id: FilterMode; label: string }[] = [
     { id: 'all', label: 'All' },
     { id: 'software', label: 'Software' },
     { id: 'ai-engineer', label: 'AI Engineer' },
@@ -104,165 +92,138 @@ const PracticeDashboard: React.FC<PracticeDashboardProps> = ({
     { id: 'cybersecurity', label: 'Cybersecurity' },
     { id: 'market-engineering', label: 'Market Eng' },
     { id: 'ai-for-science', label: 'AI for Science' },
-    { id: 'daily', label: 'Daily 10 min' },
+    { id: 'daily', label: 'Quick ≤15m' },
   ];
 
   return (
-    <div className="container mx-auto px-4 py-12 max-w-6xl pb-24 md:pb-12">
-      <div className="text-center mb-10">
-        <h1 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">Practice</h1>
-        <p className="text-subheadline text-text-secondary max-w-2xl mx-auto">
-          AI interviews, adaptive problems, and Ship Tests — built for how you&apos;ll work with
-          AI on the job.
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-        <Link
-          to="/loop"
-          className="flex items-center justify-between gap-3 p-4 rounded-[var(--radius-card)] border border-accent-blue/30 bg-accent-blue/5 hover:bg-accent-blue/10 transition-colors"
-        >
-          <div className="flex items-center gap-3 min-w-0">
-            <Repeat className="w-5 h-5 text-accent-blue shrink-0" />
-            <p className="text-sm text-text-secondary min-w-0">
-              <span className="font-semibold text-text-primary">Interview Loop</span> — full
-              company-style loop, scored stage by stage.
-            </p>
-          </div>
-          <ArrowRight className="w-4 h-4 text-accent-blue shrink-0" />
-        </Link>
-
-        <Link
-          to="/drill"
-          className="flex items-center justify-between gap-3 p-4 rounded-[var(--radius-card)] border border-accent-blue/30 bg-accent-blue/5 hover:bg-accent-blue/10 transition-colors"
-        >
-          <div className="flex items-center gap-3 min-w-0">
-            <Zap className="w-5 h-5 text-accent-blue shrink-0" />
-            <p className="text-sm text-text-secondary min-w-0">
-              <span className="font-semibold text-text-primary">Rapid-fire drill</span> — 5
-              minutes, 8 screening questions, graded answers.
-            </p>
-          </div>
-          <ArrowRight className="w-4 h-4 text-accent-blue shrink-0" />
-        </Link>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-        <Link
-          to="/skills"
-          className="flex items-center justify-between gap-3 p-4 rounded-[var(--radius-card)] border border-[var(--border-color)] bg-[var(--bg-secondary)] hover:border-accent-blue/40 transition-colors"
-        >
-          <div className="flex items-center gap-3 min-w-0">
-            <GitBranch className="w-5 h-5 text-accent-blue shrink-0" />
-            <p className="text-sm text-text-secondary min-w-0">
-              <span className="font-semibold text-text-primary">Skill trees</span> — fundamentals
-              for all six tracks, every bank problem mapped.
-            </p>
-          </div>
-          <ArrowRight className="w-4 h-4 text-accent-blue shrink-0" />
-        </Link>
-
-        <Link
-          to="/intel"
-          className="flex items-center justify-between gap-3 p-4 rounded-[var(--radius-card)] border border-[var(--border-color)] bg-[var(--bg-secondary)] hover:border-accent-blue/40 transition-colors"
-        >
-          <div className="flex items-center gap-3 min-w-0">
-            <Radar className="w-5 h-5 text-accent-blue shrink-0" />
-            <p className="text-sm text-text-secondary min-w-0">
-              <span className="font-semibold text-text-primary">Interview intel</span> — real
-              processes and exact questions from the field.
-            </p>
-          </div>
-          <ArrowRight className="w-4 h-4 text-accent-blue shrink-0" />
-        </Link>
-
-        <Link
-          to="/referrals"
-          className="flex items-center justify-between gap-3 p-4 rounded-[var(--radius-card)] border border-[var(--border-color)] bg-[var(--bg-secondary)] hover:border-emerald-400/40 transition-colors"
-        >
-          <div className="flex items-center gap-3 min-w-0">
-            <Gift className="w-5 h-5 text-emerald-400 shrink-0" />
-            <p className="text-sm text-text-secondary min-w-0">
-              <span className="font-semibold text-text-primary">Refer a friend</span> — they get
-              bonus practice; you earn +7 days when they finish an interview.
-            </p>
-          </div>
-          <ArrowRight className="w-4 h-4 text-emerald-400 shrink-0" />
-        </Link>
-
-        <Link
-          to="/frontier"
-          className="flex items-center justify-between gap-3 p-4 rounded-[var(--radius-card)] border border-emerald-400/30 bg-[var(--bg-secondary)] hover:border-emerald-400/50 transition-colors"
-        >
-          <div className="flex items-center gap-3 min-w-0">
-            <FlaskConical className="w-5 h-5 text-emerald-400 shrink-0" />
-            <p className="text-sm text-text-secondary min-w-0">
-              <span className="font-semibold text-text-primary">Frontier problem tests</span> —
-              climate, health, poverty, ethics — DeepMind / Anthropic-style deep screens.
-            </p>
-          </div>
-          <ArrowRight className="w-4 h-4 text-emerald-400 shrink-0" />
-        </Link>
-
-        <Link
-          to="/jobs"
-          className="flex items-center justify-between gap-3 p-4 rounded-[var(--radius-card)] border border-[var(--border-color)] bg-[var(--bg-secondary)] hover:border-accent-blue/40 transition-colors"
-        >
-          <div className="flex items-center gap-3 min-w-0">
-            <Briefcase className="w-5 h-5 text-accent-blue shrink-0" />
-            <p className="text-sm text-text-secondary min-w-0">
-              <span className="font-semibold text-text-primary">Find jobs</span> — live roles
-              mapped to practice tracks, mission-driven orgs flagged.
-            </p>
-          </div>
-          <ArrowRight className="w-4 h-4 text-accent-blue shrink-0" />
-        </Link>
-      </div>
-
-      <Link
-        to="/field-reports"
-        className="flex items-center justify-between gap-3 p-4 mb-8 rounded-[var(--radius-card)] border border-[var(--border-color)] bg-[var(--bg-secondary)] hover:border-accent-blue/40 transition-colors"
+    <div className="min-h-screen pb-28 md:pb-12">
+      <div
+        className="px-4 pt-8 pb-6 md:px-8"
+        style={{ background: 'linear-gradient(180deg, rgba(59,130,246,0.12) 0%, transparent 100%)' }}
       >
-        <div className="flex items-center gap-3 min-w-0">
-          <Radio className="w-5 h-5 text-accent-blue shrink-0" />
-          <p className="text-sm text-text-secondary min-w-0">
-            <span className="font-semibold text-text-primary">Had a real interview?</span> Log the
-            questions — we turn them into fresh practice and sharpen prep for everyone.
+        <div className="container mx-auto max-w-5xl">
+          <p className="text-sm font-medium text-accent-bright uppercase tracking-widest flex items-center gap-2 mb-2">
+            <Brain className="w-4 h-4" /> Practice
+          </p>
+          <h1 className="text-3xl md:text-4xl font-bold text-text-primary tracking-tight mb-2">
+            What are you preparing for?
+          </h1>
+          <p className="text-text-secondary text-sm md:text-base max-w-2xl">
+            Each card shows the interview problem it solves — pick a mode or jump into the bank.
           </p>
         </div>
-        <ArrowRight className="w-4 h-4 text-accent-blue shrink-0" />
-      </Link>
+      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-        <div className="p-6 rounded-[var(--radius-card)] card-recommended bg-[var(--bg-secondary)] md:scale-[1.02] md:-translate-y-0.5">
-          <Brain className="w-8 h-8 text-accent-blue mb-4" />
-          <h3 className="text-lg font-bold mb-1">Recommended next</h3>
-          <p className="text-text-primary text-sm font-medium mb-1">{recommended?.title}</p>
-          <p className="text-text-secondary text-xs mb-4">{recommendReason}</p>
-          <PremiumButton
-            variant="primary"
-            size="md"
-            className="w-full"
-            onClick={() => recommended && onStartInterview(recommended)}
-          >
-            Start interview
-          </PremiumButton>
-        </div>
-        <div className="p-6 rounded-[var(--radius-card)] border border-[var(--border-color)] bg-[var(--bg-secondary)]">
-          <Rocket className="w-8 h-8 text-accent-blue mb-4" />
-          <h3 className="text-lg font-bold mb-2">Ship Tests</h3>
-          <p className="text-text-secondary text-sm mb-4">8 challenges: 24h, 72h, and 7-day sprints.</p>
-          <PremiumButton variant="secondary" size="md" className="w-full" onClick={onOpenShipTests}>
-            View challenges
-          </PremiumButton>
-        </div>
-        <div className="p-6 rounded-[var(--radius-card)] border border-[var(--border-color)] bg-[var(--bg-secondary)]">
-          <h3 className="text-lg font-bold mb-2">Your signal</h3>
-          <p className="text-sm text-text-secondary mb-2">
-            {completed} / {PROFILE_MILESTONE} interviews
-          </p>
+      <div className="container mx-auto max-w-5xl px-4 md:px-8">
+        {/* Recommended — hero card */}
+        {recommended && recommendedCover && (
+          <section className="mb-10">
+            <h2 className="text-xl font-bold text-text-primary mb-1">Recommended next</h2>
+            <p className="text-sm text-text-secondary mb-4">{recommendReason}</p>
+            <div className="grid grid-cols-1 sm:grid-cols-[200px_1fr] gap-6 p-5 rounded-2xl border border-accent-blue/30 bg-accent-blue/5">
+              <CoverCard
+                size="md"
+                title={recommended.title}
+                tagline={recommendedCover.problemYouSolve}
+                gradient={recommendedCover.gradient}
+                icon={recommendedCover.icon}
+                badge={
+                  bestScoreByProblem[recommended.id] !== undefined
+                    ? `Best ${bestScoreByProblem[recommended.id]}`
+                    : 'New'
+                }
+                onClick={() => onStartInterview(recommended)}
+              />
+              <div className="flex flex-col justify-center min-w-0">
+                <p className="text-xs text-accent-blue capitalize mb-2">
+                  {recommended.domain} · {TRACK_LABELS[recommended.track]} · ~{recommended.estimatedMinutes}m
+                </p>
+                <p className="text-sm text-text-secondary line-clamp-3 mb-4">{recommended.prompt}</p>
+                <PremiumButton variant="primary" size="md" className="w-fit" onClick={() => onStartInterview(recommended)}>
+                  {bestScoreByProblem[recommended.id] !== undefined ? 'Retry interview' : 'Run AI interview'}
+                </PremiumButton>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Practice modes grid */}
+        <section className="mb-10">
+          <h2 className="text-xl font-bold text-text-primary mb-1">Practice modes</h2>
+          <p className="text-sm text-text-secondary mb-4">Loops, drills, ship tests, and coaching</p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {PRACTICE_MODE_CARDS.map((mode) =>
+              mode.id === 'ship' ? (
+                <CoverCard
+                  key={mode.id}
+                  size="sm"
+                  title={mode.title}
+                  tagline={mode.tagline}
+                  gradient={mode.cover.gradient}
+                  icon={mode.cover.icon}
+                  badge={mode.badge}
+                  onClick={onOpenShipTests}
+                />
+              ) : (
+                <CoverCard
+                  key={mode.id}
+                  size="sm"
+                  title={mode.title}
+                  tagline={mode.tagline}
+                  gradient={mode.cover.gradient}
+                  icon={mode.cover.icon}
+                  badge={mode.badge}
+                  href={mode.href}
+                />
+              )
+            )}
+          </div>
+        </section>
+
+        <HorizontalShelf title="More prep" subtitle="Swipe for intel, frontier, jobs, referrals">
+          {PRACTICE_MODE_CARDS.filter((m) => ['intel', 'frontier', 'journey', 'skills'].includes(m.id)).map(
+            (mode) => (
+              <CoverCard
+                key={mode.id}
+                title={mode.title}
+                tagline={mode.tagline}
+                gradient={mode.cover.gradient}
+                icon={mode.cover.icon}
+                href={mode.href}
+              />
+            )
+          )}
+          <CoverCard
+            title="Field reports"
+            tagline="Log real interview questions — we turn them into practice"
+            gradient="linear-gradient(135deg, #262a31 0%, #3b82f6 100%)"
+            icon="target"
+            href="/field-reports"
+          />
+          <CoverCard
+            title="Find jobs"
+            tagline="Roles mapped to your practice tracks"
+            gradient="linear-gradient(135deg, #1e3a5f 0%, #0f766e 100%)"
+            icon="users"
+            href="/jobs"
+          />
+        </HorizontalShelf>
+
+        {/* Profile signal */}
+        <section className="mb-10 p-5 rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)]">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <h3 className="font-bold text-text-primary">Your signal</h3>
+              <p className="text-sm text-text-secondary">
+                {completed} / {PROFILE_MILESTONE} interviews scored
+              </p>
+            </div>
+            <button type="button" onClick={onOpenProfile} className="text-accent-blue text-sm font-medium">
+              View profile →
+            </button>
+          </div>
           <div
-            className="h-2 rounded-full bg-[var(--bg-tertiary)] mb-2 overflow-hidden"
+            className="h-2 rounded-full bg-[var(--bg-tertiary)] mt-3 overflow-hidden"
             role="progressbar"
             aria-valuenow={completed}
             aria-valuemin={0}
@@ -273,72 +234,84 @@ const PracticeDashboard: React.FC<PracticeDashboardProps> = ({
               style={{ width: `${progressPct}%` }}
             />
           </div>
-          <p className="text-text-secondary text-xs mb-4">
-            {completed >= PROFILE_MILESTONE
-              ? 'Full talent profile visibility unlocked'
-              : `Complete ${PROFILE_MILESTONE - completed} more to unlock full profile visibility`}
-          </p>
-          <button
-            type="button"
-            onClick={onOpenProfile}
-            className="text-accent-blue text-sm font-medium inline-flex items-center gap-1"
-          >
-            View profile <ArrowRight className="w-4 h-4" />
-          </button>
-        </div>
-      </div>
+        </section>
 
-      <div className="flex flex-wrap gap-2 mb-6 overflow-x-auto pb-1">
-        {tabs.map((t) => (
-          <button
-            key={t.id}
-            type="button"
-            onClick={() => setFilter(t.id)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors filter-pill ${
-              filter === t.id ? 'filter-pill-active' : ''
-            }`}
-          >
-            {t.label}
-          </button>
-        ))}
-      </div>
-
-      <h2 className="text-xl font-bold mb-4">
-        Problem bank <span className="count-badge">{filtered.length}</span>
-      </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {filtered.map((problem) => {
-          const bestScore = bestScoreByProblem[problem.id];
-          return (
-            <div
-              key={problem.id}
-              className="problem-card p-5 flex flex-col rounded-[var(--radius-card)] border border-[var(--border-color)] bg-[var(--bg-secondary)]"
+        {/* Problem bank */}
+        <div className="flex flex-wrap gap-2 mb-6 overflow-x-auto pb-1 scrollbar-hide">
+          {filterTabs.map((t) => (
+            <button
+              key={t.id}
+              type="button"
+              onClick={() => setFilter(t.id)}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors filter-pill shrink-0 ${
+                filter === t.id ? 'filter-pill-active' : ''
+              }`}
             >
-              <div className="flex justify-between items-start mb-2 gap-2">
-                <h3 className="font-bold text-text-primary min-w-0">{problem.title}</h3>
-                <span className="flex items-center gap-1.5 text-xs px-2 py-1 rounded-full bg-[var(--bg-tertiary)] text-text-secondary capitalize shrink-0">
-                  <span className={`skill-difficulty-dot ${DIFFICULTY_DOT[problem.difficulty]}`} aria-hidden />
-                  {problem.difficulty}
-                </span>
-              </div>
-              <p className="text-xs text-accent-blue capitalize mb-1">
-                {problem.domain} · {TRACK_LABELS[problem.track]} · ~{problem.estimatedMinutes}m
-              </p>
-              <p className="text-text-secondary text-sm flex-grow mb-4 line-clamp-2">{problem.prompt}</p>
-              {bestScore !== undefined && (
-                <p className="text-xs text-text-secondary mb-2 flex items-center gap-1.5">
-                  <Check className="w-3.5 h-3.5 text-emerald-400" aria-hidden />
-                  Practiced · best score {bestScore}
-                </p>
-              )}
-              <div className="problem-cta">
-                <PremiumButton variant="outline" size="sm" className="w-full" onClick={() => onStartInterview(problem)}>
-                  {bestScore !== undefined ? 'Retry interview' : 'Run AI interview'}
-                </PremiumButton>
-              </div>
-            </div>
-          );
-        })}
+              {t.label}
+            </button>
+          ))}
+        </div>
+
+        <h2 className="text-xl font-bold mb-4">
+          Problem bank <span className="count-badge">{filtered.length}</span>
+        </h2>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
+          {filtered.map((problem) => {
+            const cover = getPracticeProblemCover(problem);
+            const bestScore = bestScoreByProblem[problem.id];
+            return (
+              <CoverCard
+                key={problem.id}
+                size="sm"
+                title={problem.title}
+                tagline={cover.problemYouSolve}
+                subtitle={`${TRACK_LABELS[problem.track]} · ~${problem.estimatedMinutes}m`}
+                gradient={cover.gradient}
+                icon={cover.icon}
+                badge={
+                  bestScore !== undefined
+                    ? `${bestScore}`
+                    : problem.difficulty === 'hard'
+                      ? 'Hard'
+                      : undefined
+                }
+                onClick={() => onStartInterview(problem)}
+              />
+            );
+          })}
+        </div>
+
+        {/* Expanded list for context + prompt preview */}
+        <section className="space-y-3">
+          <h3 className="text-sm font-bold uppercase tracking-wide text-text-secondary">Quick preview</h3>
+          {filtered.slice(0, 6).map((problem) => {
+            const bestScore = bestScoreByProblem[problem.id];
+            const cover = getPracticeProblemCover(problem);
+            return (
+              <button
+                key={`row-${problem.id}`}
+                type="button"
+                onClick={() => onStartInterview(problem)}
+                className="w-full flex items-center gap-4 p-4 rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)] hover:border-accent-blue/40 text-left transition-colors"
+              >
+                <div
+                  className="w-12 h-12 rounded-lg shrink-0 ring-1 ring-white/10"
+                  style={{ background: cover.gradient }}
+                />
+                <div className="min-w-0 flex-1">
+                  <p className="font-semibold text-text-primary text-sm truncate">{problem.title}</p>
+                  <p className="text-xs text-accent-bright truncate">{problemTagline(problem)}</p>
+                </div>
+                {bestScore !== undefined && (
+                  <span className="text-xs text-emerald-400 flex items-center gap-1 shrink-0">
+                    <Check className="w-3.5 h-3.5" /> {bestScore}
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </section>
       </div>
     </div>
   );

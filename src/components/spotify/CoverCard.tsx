@@ -106,7 +106,7 @@ const CoverCard: React.FC<CoverCardProps> = ({
       }}
     >
       <div
-        className={`relative ${s.art} rounded-lg shadow-[var(--shadow-card)] overflow-hidden mb-3`}
+        className={`relative ${s.art} rounded-lg shadow-[var(--shadow-card)] overflow-hidden mb-3 ring-1 ring-white/10`}
         style={{ background: gradient }}
       >
         <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors" />
@@ -134,12 +134,15 @@ const CoverCard: React.FC<CoverCardProps> = ({
 
   if (href) {
     return (
-      <Link to={href} className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue rounded-xl">
+      <Link
+        to={href}
+        className={`block shrink-0 w-fit focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue rounded-xl`}
+      >
         {inner}
       </Link>
     );
   }
-  return inner;
+  return <div className="shrink-0 w-fit">{inner}</div>;
 };
 
 export default CoverCard;

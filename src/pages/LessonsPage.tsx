@@ -111,8 +111,32 @@ const LessonsPage: React.FC = () => {
           </HorizontalShelf>
         )}
 
-        <HorizontalShelf title="White belt · Fundamentals" subtitle="Complete in order on your hiring journey">
-          {fundamentals.map((lesson) => {
+        <section className="mb-12">
+          <h2 className="text-xl font-bold text-text-primary mb-1">White belt · Fundamentals</h2>
+          <p className="text-sm text-text-secondary mb-4">Complete in order on your hiring journey</p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+            {fundamentals.map((lesson) => {
+              const cover = getLessonCover(lesson.leafId, lesson.track);
+              return (
+                <CoverCard
+                  key={lesson.leafId}
+                  size="sm"
+                  title={lesson.title}
+                  tagline={cover.problemYouSolve}
+                  gradient={cover.gradient}
+                  icon={cover.icon}
+                  badge={dailyLeaf?.leafId === lesson.leafId ? 'Current' : completed.has(lesson.leafId) ? 'Done' : undefined}
+                  onClick={() =>
+                    document.getElementById(`lesson-${lesson.leafId}`)?.scrollIntoView({ behavior: 'smooth' })
+                  }
+                />
+              );
+            })}
+          </div>
+        </section>
+
+        <HorizontalShelf title="All tracks" subtitle="Swipe for role-specific skills">
+          {[...byTrack.entries()].flatMap(([, lessons]) => lessons).map((lesson) => {
             const cover = getLessonCover(lesson.leafId, lesson.track);
             return (
               <CoverCard
@@ -121,30 +145,13 @@ const LessonsPage: React.FC = () => {
                 tagline={cover.problemYouSolve}
                 gradient={cover.gradient}
                 icon={cover.icon}
-                href={`#lesson-${lesson.leafId}`}
-                badge={dailyLeaf?.leafId === lesson.leafId ? 'Current' : completed.has(lesson.leafId) ? 'Done' : undefined}
+                onClick={() =>
+                  document.getElementById(`lesson-${lesson.leafId}`)?.scrollIntoView({ behavior: 'smooth' })
+                }
               />
             );
           })}
         </HorizontalShelf>
-
-        {[...byTrack.entries()].map(([trackId, lessons]) => (
-          <HorizontalShelf key={trackId} title={TRACK_LABELS[trackId] ?? trackId}>
-            {lessons.map((lesson) => {
-              const cover = getLessonCover(lesson.leafId, lesson.track);
-              return (
-                <CoverCard
-                  key={lesson.leafId}
-                  title={lesson.title}
-                  tagline={cover.problemYouSolve}
-                  gradient={cover.gradient}
-                  icon={cover.icon}
-                  href={`#lesson-${lesson.leafId}`}
-                />
-              );
-            })}
-          </HorizontalShelf>
-        ))}
 
         <section className="mt-12 mb-8">
           <h2 className="text-xl font-bold text-text-primary mb-2">Play & practice</h2>

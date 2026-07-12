@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Map, Play, ChevronRight } from 'lucide-react';
-import CoverCard from '../components/spotify/CoverCard';
+import CoverCard, { CoverIcon } from '../components/spotify/CoverCard';
 import HorizontalShelf from '../components/spotify/HorizontalShelf';
 import PremiumButton from '../components/ui/PremiumButton';
 import { getCoachingPlaylists } from '../data/loadCoachingPlaylists';
@@ -60,44 +60,72 @@ const HiringJourneyPage: React.FC = () => {
       </div>
 
       <div className="container max-w-5xl mx-auto px-4 md:px-8">
-        {/* Pipeline map — full end-to-end picture */}
-        <HorizontalShelf
-          title="The hiring loop"
-          subtitle="Tap a stage — see what they're testing and where to practice"
-        >
-          {pipeline.stages.map((stage) => (
-            <CoverCard
-              key={stage.id}
-              size="lg"
-              title={stage.title}
-              tagline={stage.problemYouSolve}
-              subtitle={stage.duration}
-              gradient={stage.cover.gradient}
-              icon={stage.cover.icon}
-              badge={`Step ${stage.order}`}
-              href={`/journey/${stage.id}`}
-            />
-          ))}
-        </HorizontalShelf>
+        {/* Pipeline grid — always visible, no sideways scroll required */}
+        <section className="mb-12">
+          <h2 className="text-xl font-bold text-text-primary tracking-tight mb-1">The hiring loop</h2>
+          <p className="text-sm text-text-secondary mb-6">
+            Tap a stage — see what they&apos;re testing and where to practice
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+            {pipeline.stages.map((stage) => (
+              <Link
+                key={stage.id}
+                to={`/journey/${stage.id}`}
+                className="group block rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue"
+              >
+                <div
+                  className="aspect-square rounded-xl shadow-[var(--shadow-card)] overflow-hidden mb-3 ring-1 ring-white/10 relative flex items-center justify-center transition-transform group-hover:scale-[1.02]"
+                  style={{ background: stage.cover.gradient }}
+                >
+                  <span className="absolute top-2 left-2 text-[10px] font-bold uppercase tracking-wide bg-black/50 text-white px-2 py-0.5 rounded-full">
+                    Step {stage.order}
+                  </span>
+                  <CoverIcon name={stage.cover.icon} className="w-10 h-10 sm:w-12 sm:h-12 text-white/90 drop-shadow-md" />
+                </div>
+                <h3 className="font-bold text-text-primary text-sm leading-snug">{stage.title}</h3>
+                <p className="text-xs text-accent-bright mt-1 line-clamp-2 font-medium">{stage.problemYouSolve}</p>
+                <p className="text-[10px] text-text-secondary mt-1">{stage.duration}</p>
+              </Link>
+            ))}
+          </div>
+        </section>
 
         {/* Soft skills spotlight */}
         {softSkillsPlaylist && (
-          <HorizontalShelf
-            title={softSkillsPlaylist.title}
-            subtitle={softSkillsPlaylist.tagline}
-          >
-            {softSkillsPlaylist.episodes.map((ep) => (
-              <CoverCard
-                key={ep.id}
-                title={ep.title}
-                tagline={ep.problemYouSolve}
-                duration={ep.duration}
-                gradient={ep.cover.gradient}
-                icon={ep.cover.icon}
-                href={`/coaching/ethics-soft-skills#${ep.id}`}
-              />
-            ))}
-          </HorizontalShelf>
+          <>
+            <HorizontalShelf
+              title={softSkillsPlaylist.title}
+              subtitle={softSkillsPlaylist.tagline}
+            >
+              {softSkillsPlaylist.episodes.map((ep) => (
+                <CoverCard
+                  key={ep.id}
+                  title={ep.title}
+                  tagline={ep.problemYouSolve}
+                  duration={ep.duration}
+                  gradient={ep.cover.gradient}
+                  icon={ep.cover.icon}
+                  href={`/coaching/ethics-soft-skills#${ep.id}`}
+                />
+              ))}
+            </HorizontalShelf>
+            <section className="mb-12 md:hidden">
+              <h2 className="text-lg font-bold text-text-primary mb-4">{softSkillsPlaylist.title}</h2>
+              <div className="grid grid-cols-2 gap-3">
+                {softSkillsPlaylist.episodes.map((ep) => (
+                  <Link key={ep.id} to={`/coaching/ethics-soft-skills#${ep.id}`} className="block">
+                    <CoverCard
+                      size="sm"
+                      title={ep.title}
+                      tagline={ep.problemYouSolve}
+                      gradient={ep.cover.gradient}
+                      icon={ep.cover.icon}
+                    />
+                  </Link>
+                ))}
+              </div>
+            </section>
+          </>
         )}
 
         {/* Voice lessons shelf */}
@@ -111,7 +139,7 @@ const HiringJourneyPage: React.FC = () => {
                 tagline={cover.problemYouSolve}
                 gradient={cover.gradient}
                 icon={cover.icon}
-                href={`/lessons#${lesson.leafId}`}
+                href={`/lessons#lesson-${lesson.leafId}`}
               />
             );
           })}
@@ -124,8 +152,28 @@ const HiringJourneyPage: React.FC = () => {
           />
         </HorizontalShelf>
 
-        {/* Vertical detail cards for mobile scrollers */}
-        <section className="mt-4 space-y-3 md:hidden">
+        <section className="mb-12 md:hidden">
+          <h2 className="text-lg font-bold text-text-primary mb-4">Coach voice lessons</h2>
+          <div className="grid grid-cols-2 gap-3">
+            {featuredLessons.slice(0, 6).map((lesson) => {
+              const cover = getLessonCover(lesson.leafId, lesson.track);
+              return (
+                <Link key={lesson.leafId} to={`/lessons#lesson-${lesson.leafId}`}>
+                  <CoverCard
+                    size="sm"
+                    title={lesson.title}
+                    tagline={cover.problemYouSolve}
+                    gradient={cover.gradient}
+                    icon={cover.icon}
+                  />
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* Vertical detail cards for mobile scrollers — backup list */}
+        <section className="mt-8 space-y-3 lg:hidden">
           <h2 className="text-lg font-bold text-text-primary px-1">Quick start by stage</h2>
           {pipeline.stages.map((stage) => (
             <Link
