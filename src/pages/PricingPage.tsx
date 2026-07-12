@@ -156,7 +156,7 @@ const PricingPage: React.FC = () => {
 
   const startTrial = () => {
     if (startFreeTrial()) {
-      navigate('/daily');
+      navigate('/journey');
       return;
     }
     navigate('/pricing');
@@ -165,7 +165,7 @@ const PricingPage: React.FC = () => {
   const checkout = async (plan: SubscriptionPlan) => {
     if (plan === 'free') {
       saveSubscription('free');
-      navigate('/daily');
+      navigate('/journey');
       return;
     }
     setLoading(plan);

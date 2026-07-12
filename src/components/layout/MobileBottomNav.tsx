@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Calendar, Brain, Briefcase, User } from 'lucide-react';
+import { Map, Brain, Briefcase, User } from 'lucide-react';
 
 const tabs = [
-  { to: '/daily', label: 'Daily', icon: Calendar },
+  { to: '/journey', label: 'Journey', icon: Map },
   { to: '/practice', label: 'Practice', icon: Brain },
   { to: '/jobs', label: 'Jobs', icon: Briefcase },
   { to: '/practice', label: 'Profile', icon: User, state: { view: 'profile' } },

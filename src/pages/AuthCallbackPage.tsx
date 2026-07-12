@@ -18,7 +18,7 @@ const AuthCallbackPage: React.FC = () => {
       .then(async () => {
         await fetchCoachProfileFromServer();
         const profile = loadCoachProfile();
-        if (profile?.onboardingComplete) navigate('/daily', { replace: true });
+        if (profile?.onboardingComplete) navigate('/journey', { replace: true });
         else navigate('/coach', { replace: true });
       })
       .catch(() => setError('Link expired or invalid. Request a new one from /login.'));

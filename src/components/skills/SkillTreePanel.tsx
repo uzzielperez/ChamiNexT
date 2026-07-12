@@ -98,9 +98,8 @@ const SkillTreeLeafCard: React.FC<{
       <button
         type="button"
         className="skill-tree-leaf-btn"
-        onClick={() => !locked && onToggle()}
-        aria-expanded={open && !locked}
-        disabled={locked}
+        onClick={onToggle}
+        aria-expanded={open}
       >
         <LeafStatusDot leaf={leaf} />
         <span className="flex-1 min-w-0 text-left">
@@ -110,7 +109,7 @@ const SkillTreeLeafCard: React.FC<{
               <span className="text-[10px] uppercase text-emerald-400 font-semibold">Done</span>
             )}
             {locked && (
-              <span className="text-[10px] uppercase text-text-secondary">Locked</span>
+              <span className="text-[10px] uppercase text-text-secondary">Listen · practice locked</span>
             )}
           </span>
           <span className="text-xs text-text-secondary capitalize">{leaf.domains.join(' · ')}</span>
@@ -123,7 +122,7 @@ const SkillTreeLeafCard: React.FC<{
           aria-hidden
         />
       </button>
-      {open && !locked && (
+      {open && (
         <div className="skill-tree-leaf-body">
           <div className="mb-4">
             <LessonAudioPlayer
@@ -132,6 +131,15 @@ const SkillTreeLeafCard: React.FC<{
               voicePreference={voicePreference}
             />
           </div>
+          {locked && (
+            <p className="text-xs text-text-secondary mb-3 border-l-2 border-amber-500/50 pl-3">
+              Listen anytime. Complete prior fundamentals on the{' '}
+              <a href="/lessons" className="text-accent-blue hover:underline">
+                lesson library
+              </a>{' '}
+              to unlock practice problems.
+            </p>
+          )}
           <p className="skill-fundamentals-title">What interviewers look for</p>
           <ul className="skill-fundamentals mb-4">
             {leaf.fundamentals.map((f) => (
@@ -155,6 +163,8 @@ const SkillTreeLeafCard: React.FC<{
             <p className="text-xs text-text-secondary italic">
               No problems yet on this branch. Log a real interview in field reports to grow it.
             </p>
+          ) : locked ? (
+            <p className="text-xs text-text-secondary italic">Practice problems unlock when this leaf is available.</p>
           ) : (
             <div>
               {leaf.problems.map((p) => (

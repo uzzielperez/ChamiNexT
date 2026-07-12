@@ -4,7 +4,7 @@ import { CheckCircle, Circle, Flame, BookOpen, Code2, Rocket } from 'lucide-reac
 import PremiumButton from '../components/ui/PremiumButton';
 import LessonAudioPlayer from '../components/skills/LessonAudioPlayer';
 import { getDailyProblem } from '../data/loadQuestionBank';
-import { getLessonByLeafId } from '../data/loadLessons';
+import { getLessonByLeafId, getUniqueLessonCount } from '../data/loadLessons';
 import { shipTestChallenges } from '../data/shipTests';
 import { loadCoachProfile } from '../utils/coachStorage';
 import { getCurrentDailyLeaf } from '../utils/skillProgress';
@@ -20,6 +20,7 @@ const DailyPracticePage: React.FC = () => {
   const [state, setState] = useState(loadDailyState);
   const profile = loadCoachProfile();
   const voice = profile?.voicePreference ?? 'male';
+  const lessonCount = getUniqueLessonCount();
   const dailyLeaf = useMemo(() => getCurrentDailyLeaf(), [state.steps.warm]);
   const lesson = dailyLeaf ? getLessonByLeafId(dailyLeaf.leafId) : null;
   const problem = useMemo(() => getDailyProblem(), []);
@@ -114,11 +115,18 @@ const DailyPracticePage: React.FC = () => {
           onComplete={() => mark('warm')}
           cta={
             dailyLeaf && lesson ? (
-              <Link to="/skills">
-                <PremiumButton variant="secondary" size="sm">
-                  Full skill tree
-                </PremiumButton>
-              </Link>
+              <>
+                <Link to="/lessons">
+                  <PremiumButton variant="secondary" size="sm">
+                    All voice lessons
+                  </PremiumButton>
+                </Link>
+                <Link to="/skills">
+                  <PremiumButton variant="ghost" size="sm">
+                    Skill tree
+                  </PremiumButton>
+                </Link>
+              </>
             ) : (
               <Link to="/coach">
                 <PremiumButton variant="secondary" size="sm">
@@ -190,8 +198,9 @@ const DailyPracticePage: React.FC = () => {
       </div>
 
       <p className="text-center text-xs text-text-secondary mt-8">
-        Run <code className="text-accent-blue">npm run lessons:generate</code> with ELEVENLABS_API_KEY to
-        batch voice audio for all leaves.
+        <Link to="/lessons" className="text-accent-blue hover:underline">
+          Browse all {lessonCount} Coach voice lessons →
+        </Link>
       </p>
     </div>
   );

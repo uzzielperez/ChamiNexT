@@ -17,7 +17,7 @@ export default defineConfig({
         theme_color: '#3b82f6',
         background_color: '#0a0a0f',
         display: 'standalone',
-        start_url: '/daily',
+        start_url: '/journey',
         icons: [
           { src: '/chaminext-mark.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any' },
         ],

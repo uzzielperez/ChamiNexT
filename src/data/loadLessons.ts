@@ -31,6 +31,10 @@ export function getAllLessons(): LeafLesson[] {
   return lessons;
 }
 
+export function getUniqueLessonCount(): number {
+  return new Set(lessons.map((l) => l.leafId)).size;
+}
+
 export function getLessonByLeafId(leafId: string): LeafLesson | undefined {
   return lessons.find((l) => l.leafId === leafId);
 }

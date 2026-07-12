@@ -7,7 +7,7 @@ import {
   Rocket,
   MessageSquare,
   Package,
-  Calendar,
+  Map,
   Briefcase,
 } from 'lucide-react';
 import HeroCodeBackground from '../components/landing/HeroCodeBackground';
@@ -23,11 +23,11 @@ const PRINCIPLES = [
 
 const FEATURES = [
   {
-    icon: Calendar,
-    title: 'Daily loop',
-    line: 'One bite, one problem, one micro-ship — free every day. Build the habit before the hunt.',
-    cta: 'Start Daily',
-    href: '/daily',
+    icon: Map,
+    title: 'Hiring journey',
+    line: 'Choose your adventure — CV screen → technical → ship test → soft skills. See the full loop.',
+    cta: 'Start journey',
+    href: '/journey',
   },
   {
     icon: MessageSquare,
@@ -65,8 +65,7 @@ const HomePage: React.FC = () => {
           <h1 className="hero-display">Stop memorizing. Start shipping.</h1>
 
           <p className="hero-subheadline mt-5 max-w-xl mx-auto text-[var(--text-secondary)]">
-            Daily practice for job seekers. Ship Tests and Interview Studio for teams hiring on
-            real output — not trick questions.
+            Interview prep for the AI era — see the full hiring loop before you&apos;re in it.
           </p>
 
           <div className="grid sm:grid-cols-2 gap-4 mt-10 max-w-2xl mx-auto text-left">
@@ -85,7 +84,7 @@ const HomePage: React.FC = () => {
               </div>
               <h2 className="text-lg font-bold text-text-primary mb-1">I&apos;m job hunting</h2>
               <p className="text-sm text-text-secondary mb-4">
-                Free Daily loop → Sprint or Season when you&apos;re in active search.
+                Free journey → Sprint or Season when you&apos;re in active search.
               </p>
               <span className="text-accent-blue text-sm font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
                 {isAuthenticated() ? 'Continue with Coach' : 'Sign in & meet Coach'}{' '}
@@ -271,8 +270,8 @@ const HomePage: React.FC = () => {
           </table>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12">
-            <button type="button" className="btn-primary" onClick={() => navigate('/daily')}>
-              Start Daily free
+            <button type="button" className="btn-primary" onClick={() => navigate('/journey')}>
+              Start your journey free
               <ArrowRight className="w-5 h-5" />
             </button>
             <button type="button" className="btn-secondary" onClick={() => navigate('/pricing')}>

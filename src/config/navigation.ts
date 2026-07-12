@@ -1,6 +1,6 @@
-/** Primary nav — job seeker journey (Duolingo-style daily first). */
+/** Primary nav — job seeker journey (choose-your-adventure first). */
 export const SEEKER_NAV = [
-  { name: 'Daily', href: '/daily' },
+  { name: 'Journey', href: '/journey' },
   { name: 'Practice', href: '/practice' },
   { name: 'Jobs', href: '/jobs' },
   { name: 'Pricing', href: '/pricing' },
@@ -8,6 +8,7 @@ export const SEEKER_NAV = [
 
 /** Secondary links — footer & overflow, not top nav. */
 export const SEEKER_MORE = [
+  { name: 'Voice lessons', href: '/lessons' },
   { name: 'Skill trees', href: '/skills' },
   { name: 'Interview loop', href: '/loop' },
   { name: '5-min drill', href: '/drill' },

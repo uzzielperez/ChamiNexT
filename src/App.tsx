@@ -27,7 +27,6 @@ import DevOpsPage from './pages/DevOpsPage';
 import PricingPage from './pages/PricingPage';
 import PublicProfilePage from './pages/PublicProfilePage';
 import ApplyPage from './pages/ApplyPage';
-import DailyPracticePage from './pages/DailyPracticePage';
 import FieldReportsPage from './pages/FieldReportsPage';
 import SkillTreesPage from './pages/SkillTreesPage';
 import InterviewIntelPage from './pages/InterviewIntelPage';
@@ -44,6 +43,10 @@ import LoginPage from './pages/LoginPage';
 import AuthCallbackPage from './pages/AuthCallbackPage';
 import CoachPage from './pages/CoachPage';
 import SettingsPage from './pages/SettingsPage';
+import LessonsPage from './pages/LessonsPage';
+import HiringJourneyPage from './pages/HiringJourneyPage';
+import JourneyStagePage from './pages/JourneyStagePage';
+import CoachingPlaylistPage from './pages/CoachingPlaylistPage';
 import MobileBottomNav from './components/layout/MobileBottomNav';
 
 // Import premium design system styles
@@ -65,7 +68,11 @@ function App() {
             <Route path="/auth/callback" element={<AuthCallbackPage />} />
             <Route path="/coach" element={<CoachPage />} />
             <Route path="/settings" element={<SettingsPage />} />
-            <Route path="/daily" element={<DailyPracticePage />} />
+            <Route path="/lessons" element={<LessonsPage />} />
+            <Route path="/journey" element={<HiringJourneyPage />} />
+            <Route path="/journey/:stageId" element={<JourneyStagePage />} />
+            <Route path="/coaching/:playlistId" element={<CoachingPlaylistPage />} />
+            <Route path="/daily" element={<Navigate to="/journey" replace />} />
             <Route path="/field-reports" element={<FieldReportsPage />} />
             <Route path="/skills" element={<SkillTreesPage />} />
             <Route path="/intel" element={<InterviewIntelPage />} />

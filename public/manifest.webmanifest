@@ -2,7 +2,7 @@
   "name": "ChamiNext Practice",
   "short_name": "ChamiNext",
   "description": "10–20 min daily AI-era engineering practice",
-  "start_url": "/daily",
+  "start_url": "/journey",
   "display": "standalone",
   "background_color": "#0a0a0f",
   "theme_color": "#3b82f6",

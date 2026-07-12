@@ -1,0 +1,205 @@
+{
+  "version": 1,
+  "playlists": [
+    {
+      "id": "ethics-soft-skills",
+      "title": "Ethics & Soft Skills Interview",
+      "tagline": "The questions that decide offers — with frameworks, not scripts",
+      "description": "Deep coaching on behavioral rounds (VERVE-style) and ethics probes at mission-driven companies. Each episode: what they're testing, sample questions, strong vs weak answers, and a live mock.",
+      "cover": {
+        "gradient": "linear-gradient(135deg, #581c87 0%, #db2777 55%, #f97316 100%)",
+        "icon": "shield-heart"
+      },
+      "notebookLmSources": [
+        "content/employers/verve-soft-skills.json",
+        "content/question-bank/verve-soft-skills.json",
+        "content/frontier-problems/tests.json",
+        "tasks/brief-verve-pipeline.md"
+      ],
+      "episodes": [
+        {
+          "id": "verve-ownership",
+          "phase": 1,
+          "title": "Ownership & big picture",
+          "problemYouSolve": "Prove you own outcomes — not tickets — and connect work to impact.",
+          "duration": "20 min",
+          "cover": { "gradient": "linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)", "icon": "target" },
+          "sampleQuestions": [
+            "Tell me about a time you took ownership of a project that was failing or at risk.",
+            "What was the broader context, what did you do, and what was the outcome?",
+            "What would you have done if you had half the time?"
+          ],
+          "strongAnswerFramework": "STAR in 90 seconds: Situation (stakes + stakeholders) → your specific actions (I, not we) → measurable result → one thing you'd do differently.",
+          "strongSignals": [
+            "Names stakeholders, constraints, and timeline pressure",
+            "Quantifies outcome or cites measurable improvement",
+            "Acknowledges what they would do differently"
+          ],
+          "weakPatterns": [
+            "Vague team credit without personal contribution",
+            "Blames others without reflection",
+            "Purely technical answer with no product or user lens"
+          ],
+          "coachTip": "Interviewers listen for judgment under ambiguity. The real problem is often organizational, not technical.",
+          "practiceProblemId": "verve-ownership"
+        },
+        {
+          "id": "verve-pushback",
+          "phase": 2,
+          "title": "Pushback on No",
+          "problemYouSolve": "Show you advocate with evidence — then commit fully after a decision.",
+          "duration": "20 min",
+          "cover": { "gradient": "linear-gradient(135deg, #7c2d12 0%, #dc2626 100%)", "icon": "message-square-warning" },
+          "sampleQuestions": [
+            "Describe a situation where leadership said no to something you believed was important.",
+            "How did you respond?",
+            "What evidence would have changed the outcome?"
+          ],
+          "strongAnswerFramework": "Sequence: understand the no → present data or user evidence (not opinion) → propose phased/reversible alternative → accept decision → execute with full commitment.",
+          "strongSignals": [
+            "Presents data or user evidence, not just opinion",
+            "Accepts final decision and executes fully",
+            "Maintains relationship with the decider"
+          ],
+          "weakPatterns": [
+            "Persistent arguing without new information",
+            "Passive acceptance with visible resentment",
+            "Framing the story as winning an argument"
+          ],
+          "coachTip": "Senior signal: knowing when to stop advocating and when to escalate with new information.",
+          "practiceProblemId": "verve-pushback"
+        },
+        {
+          "id": "verve-mentorship",
+          "phase": 3,
+          "title": "Force multiplier & mentorship",
+          "problemYouSolve": "Demonstrate you make the team faster — not just yourself.",
+          "duration": "20 min",
+          "cover": { "gradient": "linear-gradient(135deg, #134e4a 0%, #14b8a6 100%)", "icon": "users-round" },
+          "sampleQuestions": [
+            "Tell me about a time you helped someone on your team level up.",
+            "How did you decide what to teach vs delegate?",
+            "What artifacts did you leave behind?"
+          ],
+          "strongAnswerFramework": "Before/after team capability: specific mentoring actions (pairing, docs, reviews) → mentee or team outcome → what you learned from them.",
+          "strongSignals": [
+            "Specific mentoring actions (pairing, docs, runbooks)",
+            "Junior or peer grew measurable skill or autonomy",
+            "Balanced helping with personal deadlines"
+          ],
+          "weakPatterns": [
+            "Only story is doing everyone's work yourself",
+            "Mentorship as performance theater",
+            "No outcome for the mentee or team"
+          ],
+          "coachTip": "They want systems thinking: reduced bus factor, not heroics.",
+          "practiceProblemId": "verve-mentorship"
+        },
+        {
+          "id": "verve-pragmatism",
+          "phase": 4,
+          "title": "Pragmatism vs perfectionism",
+          "problemYouSolve": "Show you ship with explicit trade-offs — and protect what must not break.",
+          "duration": "20 min",
+          "cover": { "gradient": "linear-gradient(135deg, #713f12 0%, #eab308 100%)", "icon": "scale" },
+          "sampleQuestions": [
+            "Give an example where you deliberately shipped something imperfect.",
+            "What did you cut and what did you protect?",
+            "What would you not cut even under pressure?"
+          ],
+          "strongAnswerFramework": "MVP scope vs v2 plan: name what was deferred and why it was safe → flags/monitoring post-ship → stakeholder alignment on scope.",
+          "strongSignals": [
+            "Names what was deferred and why it was safe",
+            "Monitors post-ship and iterates",
+            "Aligns with PM/stakeholders on scope"
+          ],
+          "weakPatterns": [
+            "Perfectionism — endless refactor with no ship",
+            "Reckless shortcuts in security or data integrity",
+            "Cannot articulate what good enough meant"
+          ],
+          "coachTip": "The trap is sounding reckless OR sounding like you never ship. Name the quality bar explicitly.",
+          "practiceProblemId": "verve-pragmatism"
+        },
+        {
+          "id": "verve-candidate-questions",
+          "phase": 5,
+          "title": "Your questions for them",
+          "problemYouSolve": "Turn the end of the interview into proof you're evaluating them too.",
+          "duration": "15 min",
+          "cover": { "gradient": "linear-gradient(135deg, #312e81 0%, #6366f1 100%)", "icon": "help-circle" },
+          "sampleQuestions": [
+            "We're at the end — what questions do you have for me?",
+            "What does success look like at 30 and 90 days?",
+            "How do code review and on-call work on this team?"
+          ],
+          "strongAnswerFramework": "Prepare 5 questions across: team dynamics, product trade-offs, definition of done, growth, and risks. Build on their answers — show active listening.",
+          "strongSignals": [
+            "Asks about on-call, code review culture, or definition of done",
+            "Connects questions to their past experience",
+            "Follows up on interviewer answers thoughtfully"
+          ],
+          "weakPatterns": [
+            "No questions prepared",
+            "Only generic what's-the-culture-like",
+            "Adversarial or entitlement tone"
+          ],
+          "coachTip": "Senior candidates ask about architecture risks and how decisions get made — not just perks.",
+          "practiceProblemId": "verve-candidate-questions"
+        },
+        {
+          "id": "ethics-dual-use",
+          "phase": 6,
+          "title": "Ethics & dual-use (frontier labs)",
+          "problemYouSolve": "Answer ethics probes at DeepMind, Anthropic, and mission orgs without sounding naive or evasive.",
+          "duration": "25 min",
+          "cover": { "gradient": "linear-gradient(135deg, #064e3b 0%, #10b981 100%)", "icon": "shield" },
+          "sampleQuestions": [
+            "How would you handle a feature that could be misused if deployed broadly?",
+            "Tell me about a time you raised an ethical concern on a technical decision.",
+            "Where do you draw the line between moving fast and responsible deployment?"
+          ],
+          "strongAnswerFramework": "Name stakeholders affected → concrete harm scenario → mitigation (gates, monitoring, rollback) → who you escalated to → outcome. Avoid both 'I'd refuse everything' and 'ship and pray'.",
+          "strongSignals": [
+            "Specific harm scenario, not abstract ethics",
+            "Proposes technical and process mitigations",
+            "Escalated through proper channels with documentation"
+          ],
+          "weakPatterns": [
+            "Dismisses ethics as 'not my job'",
+            "Moralizing without technical depth",
+            "No example from real work or credible hypothetical"
+          ],
+          "coachTip": "Frontier interviews probe whether you'll flag risks before they're external. Show you think in blast radius.",
+          "practiceProblemId": "sci-ethics-dual-use"
+        },
+        {
+          "id": "ethics-team-fit",
+          "phase": 7,
+          "title": "Team fit under pressure",
+          "problemYouSolve": "Show you disagree well, recover from conflict, and keep shipping as a teammate.",
+          "duration": "20 min",
+          "cover": { "gradient": "linear-gradient(135deg, #831843 0%, #ec4899 100%)", "icon": "heart-handshake" },
+          "sampleQuestions": [
+            "Tell me about a time you disagreed with a teammate on a technical decision.",
+            "Describe a conflict that didn't resolve cleanly — what happened?",
+            "How do you give hard feedback to someone more senior than you?"
+          ],
+          "strongAnswerFramework": "Conflict → your role → how you separated ego from idea → resolution or learned compromise → relationship after. Never make the other person the villain.",
+          "strongSignals": [
+            "Acknowledges valid points on both sides",
+            "Describes specific communication tactics",
+            "Team still shipped; relationship intact"
+          ],
+          "weakPatterns": [
+            "Never had conflict (unbelievable)",
+            "Other person painted as incompetent",
+            "Conflict avoided at cost of product quality"
+          ],
+          "coachTip": "Team fit is not 'everyone likes me' — it's 'I make hard calls without breaking trust'.",
+          "practiceProblemId": "verve-ownership"
+        }
+      ]
+    }
+  ]
+}

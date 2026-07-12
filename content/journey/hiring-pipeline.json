@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "title": "Your hiring adventure",
+  "subtitle": "See the full loop before you're in it. Pick a stage, practice with Coach, ship when you're ready.",
+  "stages": [
+    {
+      "id": "cv-screen",
+      "order": 1,
+      "title": "CV & pre-screen",
+      "tagline": "Get past the 30-second scan",
+      "problemYouSolve": "Recruiters decide in seconds whether your story matches the role — before anyone reads your code.",
+      "description": "Mission fit, impact bullets, and the narrative that survives an ATS + human skim.",
+      "duration": "~5 min read · profile setup",
+      "cover": {
+        "gradient": "linear-gradient(135deg, #1e3a5f 0%, #0f766e 100%)",
+        "icon": "file-text"
+      },
+      "actions": [
+        { "label": "Set up with Coach", "href": "/coach", "primary": true },
+        { "label": "Build talent profile", "href": "/practice", "state": { "view": "profile" } }
+      ]
+    },
+    {
+      "id": "technical-screen",
+      "order": 2,
+      "title": "Technical screen",
+      "tagline": "Reason out loud on fundamentals",
+      "problemYouSolve": "They want to know you can think through a problem — not memorize 200 LeetCode patterns.",
+      "description": "High-level coding: arrays, decomposition, debugging under pressure. One problem, clear communication.",
+      "duration": "~20 min mock",
+      "cover": {
+        "gradient": "linear-gradient(135deg, #312e81 0%, #1d4ed8 100%)",
+        "icon": "code-2"
+      },
+      "actions": [
+        { "label": "Start mock interview", "href": "/practice", "primary": true },
+        { "label": "Skill tree drills", "href": "/skills" }
+      ]
+    },
+    {
+      "id": "ship-test",
+      "order": 3,
+      "title": "Ship test / Work Ticket",
+      "tagline": "Build something real — AI allowed",
+      "problemYouSolve": "Companies like VERVE replace whiteboard puzzles with a scoped ticket: fork, implement, open a PR.",
+      "description": "Format varies by company: 4-hour API ticket, 24h micro-ship, or take-home. Output is the signal.",
+      "duration": "4h · 24h · 72h",
+      "cover": {
+        "gradient": "linear-gradient(135deg, #7c2d12 0%, #ea580c 100%)",
+        "icon": "rocket"
+      },
+      "actions": [
+        { "label": "Work Ticket lobby", "href": "/practice", "state": { "view": "ship-lobby" }, "primary": true },
+        { "label": "Rate limiter ticket", "href": "/practice", "state": { "view": "ship-lobby" } }
+      ]
+    },
+    {
+      "id": "soft-skills",
+      "order": 4,
+      "title": "Soft skills & team fit",
+      "tagline": "The round that decides the offer",
+      "problemYouSolve": "STAR stories, pushback, mentorship, pragmatism — and the ethics probes at mission-driven companies.",
+      "description": "VERVE-style five phases plus ethics & team-fit coaching with sample questions and answer frameworks.",
+      "duration": "~5 × 20 min phases",
+      "cover": {
+        "gradient": "linear-gradient(135deg, #581c87 0%, #db2777 100%)",
+        "icon": "heart-handshake"
+      },
+      "actions": [
+        { "label": "Ethics & soft skills playlist", "href": "/coaching/ethics-soft-skills", "primary": true },
+        { "label": "Run behavioral mock", "href": "/practice", "state": { "problemId": "verve-ownership" } }
+      ]
+    },
+    {
+      "id": "team-pairing",
+      "order": 5,
+      "title": "Pairing & final loop",
+      "tagline": "Code with the team you'll join",
+      "problemYouSolve": "Live pairing, repo review, or architecture discussion — they watch how you work, not just what you say.",
+      "description": "Personal IDE session, PR review, or system design. Often the last gate before the offer.",
+      "duration": "~60–90 min",
+      "cover": {
+        "gradient": "linear-gradient(135deg, #134e4a 0%, #059669 100%)",
+        "icon": "users"
+      },
+      "actions": [
+        { "label": "Full interview loop", "href": "/loop", "primary": true },
+        { "label": "Voice lessons", "href": "/lessons" }
+      ]
+    }
+  ]
+}

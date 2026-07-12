@@ -39,8 +39,8 @@ const Footer: React.FC = () => {
             <h3 className="text-sm font-semibold text-white uppercase tracking-wider">Practice</h3>
             <ul className="mt-4 space-y-3">
               <li>
-                <Link to="/daily" className="text-gray-400 hover:text-white text-sm transition-colors">
-                  Daily loop
+                <Link to="/journey" className="text-gray-400 hover:text-white text-sm transition-colors">
+                  Hiring journey
                 </Link>
               </li>
               <li>

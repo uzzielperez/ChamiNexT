@@ -50,7 +50,7 @@ const PremiumHeader: React.FC = () => {
     ? { label: 'Request pilot', href: '/pricing?for=companies' }
     : authed && !coachDone
       ? { label: 'Meet Coach', href: '/coach' }
-      : { label: 'Start Daily', href: '/daily' };
+      : { label: 'Start journey', href: '/journey' };
 
   return (
     <header
