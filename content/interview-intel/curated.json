@@ -1,0 +1,125 @@
+{
+  "companies": [
+    {
+      "id": "quant-prop-anonymous-01",
+      "company": "Top-tier options market maker",
+      "anonymous": true,
+      "tracks": ["quant"],
+      "roles": ["Quant Researcher (PhD track)", "Quant Trading Intern"],
+      "stages": [
+        {
+          "stage": "recruiter-screen",
+          "notes": "Often relationship-driven: campus recruiting, seminars, or CV posted online. PhD-level quant roles; rolling hires through the year."
+        },
+        {
+          "stage": "technical-screen",
+          "notes": "Three separate phone rounds (~45–60 min each). Probability, statistics, calculus, linear algebra, and programming. Communication is scored; asking for hints is normal and expected."
+        },
+        {
+          "stage": "take-home",
+          "notes": "Multi-day data exercise (typically a few days to a week). Python/pandas on trading or market-style datasets. You finish on your own timeline — not a live timed test."
+        },
+        {
+          "stage": "onsite",
+          "notes": "~5 hours: advanced math, computing, logic puzzles, and culture fit. Intern loop mirrors full-time; internship adds a project with presentations toward return offers."
+        }
+      ],
+      "processNotes": [
+        "Finance background is not required upfront — math and probability strength matters more.",
+        "Public prep narratives cite Ross (Introduction to Probability Models), Bailey (Probability & Statistical Models — problem-solving focus), and introductory derivatives pricing texts.",
+        "Phone rounds assess how you think out loud; partial progress with good hints beats silent perfection."
+      ],
+      "questions": [
+        {
+          "id": "curated-quant-anon-phone-1",
+          "text": "Walk through a classic conditional-probability puzzle (e.g. Monty Hall or a variant with changing information). Explain your reasoning step by step.",
+          "kind": "domain-knowledge",
+          "stage": "technical-screen",
+          "track": "quant",
+          "sourceUrl": "https://sites.lsa.umich.edu/math-graduates/2020/09/15/moving-from-academic-to-industry-career-plans-a-personal-story/",
+          "sourceType": "blog"
+        },
+        {
+          "id": "curated-quant-anon-phone-2",
+          "text": "Solve a probability or expectation problem involving dice, cards, or urns. The interviewer may give hints — practice narrating your thought process while you work.",
+          "kind": "domain-knowledge",
+          "stage": "technical-screen",
+          "track": "quant",
+          "sourceUrl": "https://sites.lsa.umich.edu/math-graduates/2020/09/15/moving-from-academic-to-industry-career-plans-a-personal-story/",
+          "sourceType": "blog"
+        },
+        {
+          "id": "curated-quant-anon-phone-3",
+          "text": "Linear algebra or calculus question at the level of eigenvalues, matrix intuition, or optimization — explain concepts, not just compute.",
+          "kind": "domain-knowledge",
+          "stage": "technical-screen",
+          "track": "quant",
+          "sourceUrl": "https://sites.lsa.umich.edu/math-graduates/2020/09/15/moving-from-academic-to-industry-career-plans-a-personal-story/",
+          "sourceType": "blog"
+        },
+        {
+          "id": "curated-quant-anon-phone-4",
+          "text": "Short programming exercise or live coding: implement a small algorithm or data structure and talk through complexity and edge cases.",
+          "kind": "coding",
+          "stage": "technical-screen",
+          "track": "quant",
+          "sourceUrl": "https://sites.lsa.umich.edu/math-graduates/2020/09/15/moving-from-academic-to-industry-career-plans-a-personal-story/",
+          "sourceType": "blog"
+        },
+        {
+          "id": "curated-quant-anon-takehome-1",
+          "text": "Take-home: load a trading or market-style dataset with Python/pandas, clean anomalies, and compute summary statistics or signals the prompt specifies. Document assumptions.",
+          "kind": "take-home",
+          "stage": "take-home",
+          "track": "quant",
+          "sourceUrl": "https://sites.lsa.umich.edu/math-graduates/2020/09/15/moving-from-academic-to-industry-career-plans-a-personal-story/",
+          "sourceType": "blog"
+        },
+        {
+          "id": "curated-quant-anon-onsite-1",
+          "text": "Onsite logic puzzle or brainteaser — often unrelated to finance. Show structured reasoning and sanity checks.",
+          "kind": "domain-knowledge",
+          "stage": "onsite",
+          "track": "quant",
+          "sourceUrl": "https://sites.lsa.umich.edu/math-graduates/2020/09/15/moving-from-academic-to-industry-career-plans-a-personal-story/",
+          "sourceType": "blog"
+        },
+        {
+          "id": "curated-quant-anon-onsite-2",
+          "text": "Deeper math or computing problem under time pressure — may combine probability with implementation sketch.",
+          "kind": "coding",
+          "stage": "onsite",
+          "track": "quant",
+          "sourceUrl": "https://sites.lsa.umich.edu/math-graduates/2020/09/15/moving-from-academic-to-industry-career-plans-a-personal-story/",
+          "sourceType": "blog"
+        },
+        {
+          "id": "curated-quant-anon-behavioral-1",
+          "text": "Culture fit: how you collaborate on hard problems, handle ambiguity, and communicate technical work to non-specialists.",
+          "kind": "behavioral",
+          "stage": "onsite",
+          "track": "quant",
+          "sourceUrl": "https://sites.lsa.umich.edu/math-graduates/2020/09/15/moving-from-academic-to-industry-career-plans-a-personal-story/",
+          "sourceType": "blog"
+        },
+        {
+          "id": "curated-quant-anon-recruiter-1",
+          "text": "Recruiter screen: walk through your PhD or research background and why you are moving from academia to a trading desk.",
+          "kind": "recruiter",
+          "stage": "recruiter-screen",
+          "track": "quant",
+          "sourceUrl": "https://sites.lsa.umich.edu/math-graduates/2020/09/15/moving-from-academic-to-industry-career-plans-a-personal-story/",
+          "sourceType": "blog"
+        }
+      ],
+      "sources": [
+        {
+          "type": "blog",
+          "title": "Public PhD → prop-shop career narrative (firm anonymized here)",
+          "url": "https://sites.lsa.umich.edu/math-graduates/2020/09/15/moving-from-academic-to-industry-career-plans-a-personal-story/"
+        }
+      ]
+    }
+  ],
+  "generalQuestions": []
+}

@@ -54,6 +54,14 @@ Questions are deduplicated globally; companies aggregate stages, notes,
 questions, and source links. Questions with no named company land in
 `generalQuestions` (most behavioral questions are company-agnostic anyway).
 
+## Curated intel (manual, survives re-extract)
+
+`content/interview-intel/curated.json` holds hand-authored entries merged at
+app load time (prepended to scraped `intel.json`). Use this for sensitive or
+partner-shared process intel where the firm name should stay private in the
+product — set `"anonymous": true` on the company entry. Re-running
+`extract.mjs` does **not** overwrite curated data.
+
 ## Ethics / ToS notes
 
 - Public, read-only endpoints only; no login-gated content (no Glassdoor/Blind).

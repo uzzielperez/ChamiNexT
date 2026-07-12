@@ -231,6 +231,8 @@ export interface IntelSourceRef {
 export interface CompanyIntel {
   id: string;
   company: string;
+  /** When true, the firm name is intentionally withheld in product copy. */
+  anonymous?: boolean;
   tracks: PracticeTrack[];
   roles: string[];
   stages: IntelStage[];

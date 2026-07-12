@@ -4,6 +4,7 @@ import {
   Building2,
   ChevronDown,
   ExternalLink,
+  EyeOff,
   MessageCircle,
   Radar,
   Radio,
@@ -102,7 +103,15 @@ const CompanyCard: React.FC<{
       >
         <Building2 className="w-5 h-5 text-accent-blue shrink-0" aria-hidden />
         <div className="min-w-0 flex-1">
-          <h3 className="font-bold text-text-primary">{company.company}</h3>
+          <div className="flex flex-wrap items-center gap-2">
+            <h3 className="font-bold text-text-primary">{company.company}</h3>
+            {company.anonymous && (
+              <span className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wide px-2 py-0.5 rounded-full bg-white/5 text-text-secondary">
+                <EyeOff className="w-3 h-3" aria-hidden />
+                Name withheld
+              </span>
+            )}
+          </div>
           <p className="text-xs text-text-secondary">
             {company.roles.length > 0 && `${company.roles.slice(0, 2).join(', ')} · `}
             {visibleQuestions.length} question{visibleQuestions.length === 1 ? '' : 's'}
@@ -137,9 +146,11 @@ const CompanyCard: React.FC<{
                 ))}
               </ol>
               {company.processNotes.length > 0 && (
-                <p className="text-xs text-text-secondary mt-2 italic">
-                  {company.processNotes[0]}
-                </p>
+                <ul className="text-xs text-text-secondary mt-2 space-y-1 list-disc list-inside italic">
+                  {company.processNotes.map((note) => (
+                    <li key={note}>{note}</li>
+                  ))}
+                </ul>
               )}
             </div>
           )}

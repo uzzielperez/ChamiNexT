@@ -7,9 +7,20 @@ import type {
   PracticeTrack,
 } from '../types/interview';
 import intelData from '../../content/interview-intel/intel.json';
+import curatedIntel from '../../content/interview-intel/curated.json';
 import { inferDomain } from '../utils/fieldReportStorage';
 
-export const interviewIntel = intelData as InterviewIntelData;
+function mergeInterviewIntel(): InterviewIntelData {
+  const scraped = intelData as InterviewIntelData;
+  const curated = curatedIntel as Pick<InterviewIntelData, 'companies' | 'generalQuestions'>;
+  return {
+    ...scraped,
+    companies: [...curated.companies, ...scraped.companies],
+    generalQuestions: [...(curated.generalQuestions ?? []), ...scraped.generalQuestions],
+  };
+}
+
+export const interviewIntel = mergeInterviewIntel();
 
 export const intelQuestionKinds: IntelQuestionKind[] = [
   'coding',
