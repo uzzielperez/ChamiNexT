@@ -2,9 +2,12 @@ import React, { useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { CheckCircle, Circle, Flame, BookOpen, Code2, Rocket } from 'lucide-react';
 import PremiumButton from '../components/ui/PremiumButton';
+import LessonAudioPlayer from '../components/skills/LessonAudioPlayer';
 import { getDailyProblem } from '../data/loadQuestionBank';
-import { getDailyBite, projectStartersList } from '../data/loadCourseContent';
+import { getLessonByLeafId } from '../data/loadLessons';
 import { shipTestChallenges } from '../data/shipTests';
+import { loadCoachProfile } from '../utils/coachStorage';
+import { getCurrentDailyLeaf } from '../utils/skillProgress';
 import {
   completeDailyStep,
   dailyProgressPercent,
@@ -15,13 +18,15 @@ import {
 const DailyPracticePage: React.FC = () => {
   const navigate = useNavigate();
   const [state, setState] = useState(loadDailyState);
-  const bite = useMemo(() => getDailyBite(), []);
+  const profile = loadCoachProfile();
+  const voice = profile?.voicePreference ?? 'male';
+  const dailyLeaf = useMemo(() => getCurrentDailyLeaf(), [state.steps.warm]);
+  const lesson = dailyLeaf ? getLessonByLeafId(dailyLeaf.leafId) : null;
   const problem = useMemo(() => getDailyProblem(), []);
   const microShip = useMemo(
     () => shipTestChallenges.find((c) => c.format === '24h') ?? shipTestChallenges[0],
     []
   );
-  const starter = projectStartersList.find((p) => p.shipTestId === microShip?.id);
 
   const progress = dailyProgressPercent(state.steps);
 
@@ -96,7 +101,7 @@ const DailyPracticePage: React.FC = () => {
               <Flame className="w-5 h-5 text-orange-400" />
               {state.streak} day streak
             </p>
-            <p className="text-sm text-text-secondary">Warm → Problem → Ship micro</p>
+            <p className="text-sm text-text-secondary">Listen → Problem → Ship micro</p>
           </div>
         </div>
       </div>
@@ -105,18 +110,41 @@ const DailyPracticePage: React.FC = () => {
         <StepRow
           done={state.steps.warm}
           icon={<BookOpen className="w-4 h-4" />}
-          title="Lesson bite"
+          title="Coach lesson"
           onComplete={() => mark('warm')}
           cta={
-            <Link to={bite.lessonLink}>
-              <PremiumButton variant="secondary" size="sm">
-                Open course
-              </PremiumButton>
-            </Link>
+            dailyLeaf && lesson ? (
+              <Link to="/skills">
+                <PremiumButton variant="secondary" size="sm">
+                  Full skill tree
+                </PremiumButton>
+              </Link>
+            ) : (
+              <Link to="/coach">
+                <PremiumButton variant="secondary" size="sm">
+                  Set up with Coach
+                </PremiumButton>
+              </Link>
+            )
           }
         >
-          <p className="font-medium text-text-primary">{bite.title}</p>
-          <p className="mt-1">{bite.excerpt}</p>
+          {dailyLeaf && lesson ? (
+            <>
+              <p className="font-medium text-text-primary mb-3">{lesson.title}</p>
+              <LessonAudioPlayer
+                leafId={dailyLeaf.leafId}
+                title={lesson.title}
+                voicePreference={voice}
+                compact
+                onListenComplete={() => !state.steps.warm && mark('warm')}
+              />
+            </>
+          ) : (
+            <>
+              <p className="font-medium text-text-primary">No skill path yet</p>
+              <p className="mt-1">Talk to Coach to unlock your daily voice lesson.</p>
+            </>
+          )}
         </StepRow>
 
         <StepRow
@@ -147,22 +175,13 @@ const DailyPracticePage: React.FC = () => {
           title="Ship micro-task"
           onComplete={() => mark('ship')}
           cta={
-            <>
-              <PremiumButton
-                variant="secondary"
-                size="sm"
-                onClick={() => navigate('/practice', { state: { view: 'ship-lobby' } })}
-              >
-                Ship Tests
-              </PremiumButton>
-              {starter && (
-                <a href={starter.githubUrl} target="_blank" rel="noreferrer">
-                  <PremiumButton variant="outline" size="sm">
-                    Open starter
-                  </PremiumButton>
-                </a>
-              )}
-            </>
+            <PremiumButton
+              variant="secondary"
+              size="sm"
+              onClick={() => navigate('/practice', { state: { view: 'ship-lobby' } })}
+            >
+              Ship Tests
+            </PremiumButton>
           }
         >
           <p className="font-medium text-text-primary">{microShip?.title}</p>
@@ -171,7 +190,8 @@ const DailyPracticePage: React.FC = () => {
       </div>
 
       <p className="text-center text-xs text-text-secondary mt-8">
-        Install from browser menu → Add to Home Screen for offline-friendly daily access.
+        Run <code className="text-accent-blue">npm run lessons:generate</code> with ELEVENLABS_API_KEY to
+        batch voice audio for all leaves.
       </p>
     </div>
   );

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { isAuthenticated } from '../utils/authSession';
 import {
   ArrowRight,
   Building2,
@@ -72,7 +73,7 @@ const HomePage: React.FC = () => {
             <button
               type="button"
               className="card p-6 border-accent-blue/30 hover:border-accent-blue/60 transition-colors text-left group"
-              onClick={() => navigate('/daily')}
+              onClick={() => navigate(isAuthenticated() ? '/coach' : '/login')}
             >
               <div className="flex items-center gap-3 mb-3">
                 <div className="p-2 rounded-lg bg-accent-blue/10">
@@ -87,7 +88,8 @@ const HomePage: React.FC = () => {
                 Free Daily loop → Sprint or Season when you&apos;re in active search.
               </p>
               <span className="text-accent-blue text-sm font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
-                Start Daily <ArrowRight className="w-4 h-4" />
+                {isAuthenticated() ? 'Continue with Coach' : 'Sign in & meet Coach'}{' '}
+                <ArrowRight className="w-4 h-4" />
               </span>
             </button>
 

@@ -11,6 +11,10 @@ import {
   type SkillTreeLeaf,
   type SkillTreeTrackId,
 } from '../../data/loadSkillTree';
+import { completeLeaf, fundamentalsProgress, isFundamentalsComplete, leafUnlockState } from '../../utils/skillProgress';
+import { loadCoachProfile } from '../../utils/coachStorage';
+import LessonAudioPlayer from './LessonAudioPlayer';
+import type { VoicePreference } from '../../types/coach';
 
 interface SkillTreePanelProps {
   trackId: SkillTreeTrackId;
@@ -76,17 +80,39 @@ const LeafStatusDot: React.FC<{ leaf: SkillTreeLeaf }> = ({ leaf }) => {
 
 const SkillTreeLeafCard: React.FC<{
   leaf: SkillTreeLeaf;
+  trackId: SkillTreeTrackId;
   open: boolean;
   onToggle: () => void;
   onStart: (p: PracticeProblem) => void;
-}> = ({ leaf, open, onToggle, onStart }) => {
+  onLessonComplete: () => void;
+  refreshKey: number;
+  voicePreference: VoicePreference;
+}> = ({ leaf, trackId, open, onToggle, onStart, onLessonComplete, refreshKey, voicePreference }) => {
+  void refreshKey;
   const { practicedCount, totalCount, practicedIds } = leaf.progress;
+  const unlock = leafUnlockState(leaf.id, trackId);
+  const locked = unlock === 'locked';
+
   return (
-    <li className="skill-tree-leaf">
-      <button type="button" className="skill-tree-leaf-btn" onClick={onToggle} aria-expanded={open}>
+    <li className={`skill-tree-leaf ${locked ? 'opacity-60' : ''}`}>
+      <button
+        type="button"
+        className="skill-tree-leaf-btn"
+        onClick={() => !locked && onToggle()}
+        aria-expanded={open && !locked}
+        disabled={locked}
+      >
         <LeafStatusDot leaf={leaf} />
         <span className="flex-1 min-w-0 text-left">
-          <span className="font-semibold text-text-primary text-sm block">{leaf.label}</span>
+          <span className="font-semibold text-text-primary text-sm block flex items-center gap-2">
+            {leaf.label}
+            {unlock === 'complete' && (
+              <span className="text-[10px] uppercase text-emerald-400 font-semibold">Done</span>
+            )}
+            {locked && (
+              <span className="text-[10px] uppercase text-text-secondary">Locked</span>
+            )}
+          </span>
           <span className="text-xs text-text-secondary capitalize">{leaf.domains.join(' · ')}</span>
         </span>
         <span className={`skill-tree-count ${practicedCount > 0 ? 'has-progress' : ''}`}>
@@ -97,14 +123,34 @@ const SkillTreeLeafCard: React.FC<{
           aria-hidden
         />
       </button>
-      {open && (
+      {open && !locked && (
         <div className="skill-tree-leaf-body">
+          <div className="mb-4">
+            <LessonAudioPlayer
+              leafId={leaf.id}
+              title={leaf.label}
+              voicePreference={voicePreference}
+            />
+          </div>
           <p className="skill-fundamentals-title">What interviewers look for</p>
           <ul className="skill-fundamentals mb-4">
             {leaf.fundamentals.map((f) => (
               <li key={f}>{f}</li>
             ))}
           </ul>
+          {unlock === 'available' && (
+            <PremiumButton
+              variant="ghost"
+              size="sm"
+              className="mb-3"
+              onClick={() => {
+                completeLeaf(leaf.id);
+                onLessonComplete();
+              }}
+            >
+              Mark lesson complete
+            </PremiumButton>
+          )}
           {totalCount === 0 ? (
             <p className="text-xs text-text-secondary italic">
               No problems yet on this branch. Log a real interview in field reports to grow it.
@@ -141,6 +187,8 @@ const SkillTreePanel: React.FC<SkillTreePanelProps> = ({ trackId }) => {
   const [openLeaves, setOpenLeaves] = useState<Set<string>>(
     () => new Set([tree.branches[0]?.leaves[0]?.id].filter(Boolean) as string[])
   );
+  const [progressTick, setProgressTick] = useState(0);
+  const voicePreference = loadCoachProfile()?.voicePreference ?? 'male';
 
   const toggleLeaf = (id: string) => {
     setOpenLeaves((prev) => {
@@ -162,9 +210,15 @@ const SkillTreePanel: React.FC<SkillTreePanelProps> = ({ trackId }) => {
 
   const pct =
     tree.totalProblems > 0 ? Math.round((tree.practicedProblems / tree.totalProblems) * 100) : 0;
+  const fund = fundamentalsProgress();
 
   return (
     <div className="skill-tree-canvas">
+      {!isFundamentalsComplete() && (
+        <p className="text-xs text-center text-accent-blue mb-4">
+          White belt: {fund.done}/{fund.total} fundamentals — complete in order to unlock your role branch
+        </p>
+      )}
       {/* Root */}
       <div className="skill-tree-root-wrap">
         <div className="skill-tree-root">
@@ -210,9 +264,13 @@ const SkillTreePanel: React.FC<SkillTreePanelProps> = ({ trackId }) => {
                   <SkillTreeLeafCard
                     key={leaf.id}
                     leaf={leaf}
+                    trackId={trackId}
                     open={openLeaves.has(leaf.id)}
                     onToggle={() => toggleLeaf(leaf.id)}
                     onStart={startProblem}
+                    onLessonComplete={() => setProgressTick((t) => t + 1)}
+                    refreshKey={progressTick}
+                    voicePreference={voicePreference}
                   />
                 ))}
               </ul>

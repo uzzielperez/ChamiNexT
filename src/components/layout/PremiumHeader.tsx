@@ -4,6 +4,8 @@ import { Menu, X, ArrowRight } from 'lucide-react';
 import PremiumButton from '../ui/PremiumButton';
 import ChamiNextLogo from '../brand/ChamiNextLogo';
 import { SEEKER_NAV, EMPLOYER_NAV, isEmployerPath } from '../../config/navigation';
+import { isAuthenticated, loadAuthUser } from '../../utils/authSession';
+import { loadCoachProfile } from '../../utils/coachStorage';
 
 const PremiumHeader: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -41,9 +43,14 @@ const PremiumHeader: React.FC = () => {
   };
 
   const headerSolid = !isLanding || isScrolled;
+  const authed = isAuthenticated();
+  const user = loadAuthUser();
+  const coachDone = loadCoachProfile()?.onboardingComplete;
   const primaryCta = employerMode
     ? { label: 'Request pilot', href: '/pricing?for=companies' }
-    : { label: 'Start Daily', href: '/daily' };
+    : authed && !coachDone
+      ? { label: 'Meet Coach', href: '/coach' }
+      : { label: 'Start Daily', href: '/daily' };
 
   return (
     <header
@@ -76,9 +83,20 @@ const PremiumHeader: React.FC = () => {
           </div>
 
           <div className="hidden md:flex items-center space-x-3">
-            <Link to="/login">
-              <button className="btn-secondary px-4 py-2 text-sm">Sign In</button>
-            </Link>
+            {authed ? (
+              <>
+                <Link to="/coach" className={navLinkClass('/coach')}>
+                  Coach
+                </Link>
+                <Link to="/settings" className="text-sm text-text-secondary hover:text-text-primary px-2 truncate max-w-[140px]">
+                  {user?.email}
+                </Link>
+              </>
+            ) : (
+              <Link to="/login">
+                <button className="btn-secondary px-4 py-2 text-sm">Sign In</button>
+              </Link>
+            )}
             <Link to={primaryCta.href}>
               <button className="btn-primary px-4 py-2 text-sm">
                 <ArrowRight className="w-4 h-4" />

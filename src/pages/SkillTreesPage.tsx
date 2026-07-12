@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { GitBranch, Radio, Zap } from 'lucide-react';
+import { GitBranch, Radio, Zap, Sparkles } from 'lucide-react';
 import SkillTreePanel, { SkillTreeTabs } from '../components/skills/SkillTreePanel';
 import type { SkillTreeTrackId } from '../data/loadSkillTree';
 import { getAllSkillTrees } from '../data/loadSkillTree';
+import { loadCoachProfile } from '../utils/coachStorage';
+import { fundamentalsProgress } from '../utils/skillProgress';
 
 const SkillTreesPage: React.FC = () => {
-  const [track, setTrack] = useState<SkillTreeTrackId>('software');
+  const profile = loadCoachProfile();
+  const [track, setTrack] = useState<SkillTreeTrackId>(
+    () => (profile?.targetTrack as SkillTreeTrackId) || 'software'
+  );
+  const fund = fundamentalsProgress();
   const summary = getAllSkillTrees();
 
   const totals = summary.reduce(
@@ -42,6 +48,24 @@ const SkillTreesPage: React.FC = () => {
           {totals.practiced > 0 && ` · ${totals.practiced} practiced`}
         </p>
       </div>
+
+      {profile?.onboardingComplete ? (
+        <div className="card p-4 mb-6 border-accent-blue/30 flex flex-wrap items-center gap-3">
+          <Sparkles className="w-5 h-5 text-accent-blue shrink-0" />
+          <p className="text-sm text-text-secondary flex-1">
+            <span className="font-semibold text-text-primary">Coach picked your path:</span>{' '}
+            {profile.targetTrack.replace('-', ' ')} · White belt {fund.done}/{fund.total}
+            {fund.done < fund.total && ' — complete fundamentals on the Software tree first'}
+          </p>
+        </div>
+      ) : (
+        <Link
+          to="/coach"
+          className="block card p-4 mb-6 border-accent-blue/30 text-sm text-accent-blue hover:bg-accent-blue/5"
+        >
+          Talk to Coach first to unlock your role branch →
+        </Link>
+      )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
         <Link

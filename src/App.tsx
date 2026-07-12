@@ -40,6 +40,10 @@ import ReferralCapture from './components/referral/ReferralCapture';
 import LearnPage from './pages/LearnPage';
 import DemoBanner from './components/demo/DemoBanner';
 import TrialBanner from './components/layout/TrialBanner';
+import LoginPage from './pages/LoginPage';
+import AuthCallbackPage from './pages/AuthCallbackPage';
+import CoachPage from './pages/CoachPage';
+import SettingsPage from './pages/SettingsPage';
 import MobileBottomNav from './components/layout/MobileBottomNav';
 
 // Import premium design system styles
@@ -57,6 +61,10 @@ function App() {
         <main className="flex-grow pt-16">
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/auth/callback" element={<AuthCallbackPage />} />
+            <Route path="/coach" element={<CoachPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
             <Route path="/daily" element={<DailyPracticePage />} />
             <Route path="/field-reports" element={<FieldReportsPage />} />
             <Route path="/skills" element={<SkillTreesPage />} />

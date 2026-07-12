@@ -1,0 +1,270 @@
+{
+  "version": 1,
+  "updatedAt": "2026-07-12T21:21:05.769Z",
+  "previews": {
+    "male": {
+      "url": "/audio/coach/preview-male.mp3",
+      "script": "Hi, I'm Coach. I'll learn how you think and help you land the right role.",
+      "generatedAt": "2026-07-12T21:17:37.982Z"
+    },
+    "female": {
+      "url": "/audio/coach/preview-female.mp3",
+      "script": "Hi, I'm Coach. I'll learn how you think and help you land the right role.",
+      "generatedAt": "2026-07-12T21:17:37.983Z"
+    }
+  },
+  "leaves": {
+    "decomposition": {
+      "scriptVersion": 1,
+      "title": "Problem decomposition",
+      "audioUrlMale": "/audio/lessons/decomposition-male.mp3",
+      "generatedAt": "2026-07-12T21:17:46.244Z",
+      "audioUrlFemale": "/audio/lessons/decomposition-female.mp3"
+    },
+    "arrays": {
+      "scriptVersion": 1,
+      "title": "Arrays & two pointers",
+      "audioUrlMale": "/audio/lessons/arrays-male.mp3",
+      "generatedAt": "2026-07-12T21:17:51.266Z",
+      "audioUrlFemale": "/audio/lessons/arrays-female.mp3"
+    },
+    "trees": {
+      "scriptVersion": 1,
+      "title": "Trees & graphs",
+      "audioUrlMale": "/audio/lessons/trees-male.mp3",
+      "generatedAt": "2026-07-12T21:17:56.145Z",
+      "audioUrlFemale": "/audio/lessons/trees-female.mp3"
+    },
+    "strings": {
+      "scriptVersion": 1,
+      "title": "Strings & parsing",
+      "audioUrlMale": "/audio/lessons/strings-male.mp3",
+      "generatedAt": "2026-07-12T21:18:01.183Z",
+      "audioUrlFemale": "/audio/lessons/strings-female.mp3"
+    },
+    "debugging": {
+      "scriptVersion": 1,
+      "title": "Debugging under pressure",
+      "audioUrlMale": "/audio/lessons/debugging-male.mp3",
+      "generatedAt": "2026-07-12T21:18:05.775Z",
+      "audioUrlFemale": "/audio/lessons/debugging-female.mp3"
+    },
+    "system-design-swe": {
+      "scriptVersion": 1,
+      "title": "System design",
+      "audioUrlMale": "/audio/lessons/system-design-swe-male.mp3",
+      "generatedAt": "2026-07-12T21:18:11.030Z",
+      "audioUrlFemale": "/audio/lessons/system-design-swe-female.mp3"
+    },
+    "ai-collaboration-swe": {
+      "scriptVersion": 1,
+      "title": "AI-assisted delivery",
+      "audioUrlMale": "/audio/lessons/ai-collaboration-swe-male.mp3",
+      "generatedAt": "2026-07-12T21:18:17.265Z",
+      "audioUrlFemale": "/audio/lessons/ai-collaboration-swe-female.mp3"
+    },
+    "rag-fundamentals": {
+      "scriptVersion": 1,
+      "title": "RAG & retrieval",
+      "audioUrlMale": "/audio/lessons/rag-fundamentals-male.mp3",
+      "generatedAt": "2026-07-12T21:18:22.408Z",
+      "audioUrlFemale": "/audio/lessons/rag-fundamentals-female.mp3"
+    },
+    "prompting": {
+      "scriptVersion": 1,
+      "title": "Prompting & few-shot",
+      "audioUrlMale": "/audio/lessons/prompting-male.mp3",
+      "generatedAt": "2026-07-12T21:18:27.512Z",
+      "audioUrlFemale": "/audio/lessons/prompting-female.mp3"
+    },
+    "agents-orchestration": {
+      "scriptVersion": 1,
+      "title": "Agents & orchestration",
+      "audioUrlMale": "/audio/lessons/agents-orchestration-male.mp3",
+      "generatedAt": "2026-07-12T21:18:31.925Z",
+      "audioUrlFemale": "/audio/lessons/agents-orchestration-female.mp3"
+    },
+    "eval-discipline": {
+      "scriptVersion": 1,
+      "title": "Eval discipline",
+      "audioUrlMale": "/audio/lessons/eval-discipline-male.mp3",
+      "generatedAt": "2026-07-12T21:18:36.842Z",
+      "audioUrlFemale": "/audio/lessons/eval-discipline-female.mp3"
+    },
+    "from-scratch-ml": {
+      "scriptVersion": 1,
+      "title": "ML from first principles",
+      "audioUrlMale": "/audio/lessons/from-scratch-ml-male.mp3",
+      "generatedAt": "2026-07-12T21:18:43.064Z",
+      "audioUrlFemale": "/audio/lessons/from-scratch-ml-female.mp3"
+    },
+    "ai-systems": {
+      "scriptVersion": 1,
+      "title": "ML systems & serving",
+      "audioUrlMale": "/audio/lessons/ai-systems-male.mp3",
+      "generatedAt": "2026-07-12T21:18:47.992Z",
+      "audioUrlFemale": "/audio/lessons/ai-systems-female.mp3"
+    },
+    "safety-guardrails": {
+      "scriptVersion": 1,
+      "title": "Safety & guardrails",
+      "audioUrlMale": "/audio/lessons/safety-guardrails-male.mp3",
+      "generatedAt": "2026-07-12T21:18:52.588Z",
+      "audioUrlFemale": "/audio/lessons/safety-guardrails-female.mp3"
+    },
+    "probability-stats": {
+      "scriptVersion": 1,
+      "title": "Probability & statistics",
+      "audioUrlMale": "/audio/lessons/probability-stats-male.mp3",
+      "generatedAt": "2026-07-12T21:18:58.439Z",
+      "audioUrlFemale": "/audio/lessons/probability-stats-female.mp3"
+    },
+    "quant-coding": {
+      "scriptVersion": 1,
+      "title": "Quant coding",
+      "audioUrlMale": "/audio/lessons/quant-coding-male.mp3",
+      "generatedAt": "2026-07-12T21:19:04.271Z",
+      "audioUrlFemale": "/audio/lessons/quant-coding-female.mp3"
+    },
+    "research-hygiene": {
+      "scriptVersion": 1,
+      "title": "Research hygiene",
+      "audioUrlMale": "/audio/lessons/research-hygiene-male.mp3",
+      "generatedAt": "2026-07-12T21:20:33.230Z",
+      "audioUrlFemale": "/audio/lessons/research-hygiene-female.mp3"
+    },
+    "adversarial-defense": {
+      "scriptVersion": 1,
+      "title": "Adversarial reasoning",
+      "audioUrlMale": "/audio/lessons/adversarial-defense-male.mp3",
+      "generatedAt": "2026-07-12T21:19:15.321Z",
+      "audioUrlFemale": "/audio/lessons/adversarial-defense-female.mp3"
+    },
+    "signal-to-production": {
+      "scriptVersion": 1,
+      "title": "Signal to production",
+      "audioUrlMale": "/audio/lessons/signal-to-production-male.mp3",
+      "generatedAt": "2026-07-12T21:19:20.226Z",
+      "audioUrlFemale": "/audio/lessons/signal-to-production-female.mp3"
+    },
+    "threat-modeling": {
+      "scriptVersion": 1,
+      "title": "Threat modeling",
+      "audioUrlMale": "/audio/lessons/threat-modeling-male.mp3",
+      "generatedAt": "2026-07-12T21:19:26.275Z",
+      "audioUrlFemale": "/audio/lessons/threat-modeling-female.mp3"
+    },
+    "web-vulns": {
+      "scriptVersion": 1,
+      "title": "Web vulnerabilities",
+      "audioUrlMale": "/audio/lessons/web-vulns-male.mp3",
+      "generatedAt": "2026-07-12T21:19:32.532Z",
+      "audioUrlFemale": "/audio/lessons/web-vulns-female.mp3"
+    },
+    "auth-identity": {
+      "scriptVersion": 1,
+      "title": "Auth & identity",
+      "audioUrlMale": "/audio/lessons/auth-identity-male.mp3",
+      "generatedAt": "2026-07-12T21:19:38.702Z",
+      "audioUrlFemale": "/audio/lessons/auth-identity-female.mp3"
+    },
+    "secure-design": {
+      "scriptVersion": 1,
+      "title": "Secure by design",
+      "audioUrlMale": "/audio/lessons/secure-design-male.mp3",
+      "generatedAt": "2026-07-12T21:19:44.927Z",
+      "audioUrlFemale": "/audio/lessons/secure-design-female.mp3"
+    },
+    "crypto-basics": {
+      "scriptVersion": 1,
+      "title": "Cryptography in practice",
+      "audioUrlMale": "/audio/lessons/crypto-basics-male.mp3",
+      "generatedAt": "2026-07-12T21:19:50.990Z",
+      "audioUrlFemale": "/audio/lessons/crypto-basics-female.mp3"
+    },
+    "incident-response": {
+      "scriptVersion": 1,
+      "title": "Incident response",
+      "audioUrlMale": "/audio/lessons/incident-response-male.mp3",
+      "generatedAt": "2026-07-12T21:19:57.170Z",
+      "audioUrlFemale": "/audio/lessons/incident-response-female.mp3"
+    },
+    "experiment-design": {
+      "scriptVersion": 1,
+      "title": "Experiment design",
+      "audioUrlMale": "/audio/lessons/experiment-design-male.mp3",
+      "generatedAt": "2026-07-12T21:20:33.230Z",
+      "audioUrlFemale": "/audio/lessons/experiment-design-female.mp3"
+    },
+    "funnel-analytics": {
+      "scriptVersion": 1,
+      "title": "Funnel analytics",
+      "audioUrlMale": "/audio/lessons/funnel-analytics-male.mp3",
+      "generatedAt": "2026-07-12T21:20:07.966Z",
+      "audioUrlFemale": "/audio/lessons/funnel-analytics-female.mp3"
+    },
+    "growth-loops": {
+      "scriptVersion": 1,
+      "title": "Growth loops",
+      "audioUrlMale": "/audio/lessons/growth-loops-male.mp3",
+      "generatedAt": "2026-07-12T21:20:14.004Z",
+      "audioUrlFemale": "/audio/lessons/growth-loops-female.mp3"
+    },
+    "attribution": {
+      "scriptVersion": 1,
+      "title": "Attribution honesty",
+      "audioUrlMale": "/audio/lessons/attribution-male.mp3",
+      "generatedAt": "2026-07-12T21:20:20.239Z",
+      "audioUrlFemale": "/audio/lessons/attribution-female.mp3"
+    },
+    "martech-architecture": {
+      "scriptVersion": 1,
+      "title": "Martech architecture",
+      "audioUrlMale": "/audio/lessons/martech-architecture-male.mp3",
+      "generatedAt": "2026-07-12T21:20:26.829Z",
+      "audioUrlFemale": "/audio/lessons/martech-architecture-female.mp3"
+    },
+    "gtm-strategy": {
+      "scriptVersion": 1,
+      "title": "GTM strategy",
+      "audioUrlMale": "/audio/lessons/gtm-strategy-male.mp3",
+      "generatedAt": "2026-07-12T21:20:33.230Z",
+      "audioUrlFemale": "/audio/lessons/gtm-strategy-female.mp3"
+    },
+    "research-ethics": {
+      "scriptVersion": 1,
+      "title": "Research ethics",
+      "audioUrlMale": "/audio/lessons/research-ethics-male.mp3",
+      "generatedAt": "2026-07-12T21:20:39.511Z",
+      "audioUrlFemale": "/audio/lessons/research-ethics-female.mp3"
+    },
+    "ai-safety-labs": {
+      "scriptVersion": 1,
+      "title": "AI safety judgment",
+      "audioUrlMale": "/audio/lessons/ai-safety-labs-male.mp3",
+      "generatedAt": "2026-07-12T21:20:46.153Z",
+      "audioUrlFemale": "/audio/lessons/ai-safety-labs-female.mp3"
+    },
+    "climate-ai": {
+      "scriptVersion": 1,
+      "title": "Climate & earth systems",
+      "audioUrlMale": "/audio/lessons/climate-ai-male.mp3",
+      "generatedAt": "2026-07-12T21:20:52.995Z",
+      "audioUrlFemale": "/audio/lessons/climate-ai-female.mp3"
+    },
+    "health-ai": {
+      "scriptVersion": 1,
+      "title": "Health & drug discovery",
+      "audioUrlMale": "/audio/lessons/health-ai-male.mp3",
+      "generatedAt": "2026-07-12T21:20:59.562Z",
+      "audioUrlFemale": "/audio/lessons/health-ai-female.mp3"
+    },
+    "poverty-impact": {
+      "scriptVersion": 1,
+      "title": "Poverty & impact",
+      "audioUrlMale": "/audio/lessons/poverty-impact-male.mp3",
+      "generatedAt": "2026-07-12T21:21:05.769Z",
+      "audioUrlFemale": "/audio/lessons/poverty-impact-female.mp3"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "fundamentalsBelt": "white",
+  "description": "Linear fundamentals for all users before role branch unlocks.",
+  "fundamentals": [
+    {
+      "leafId": "decomposition",
+      "track": "software",
+      "prerequisites": []
+    },
+    {
+      "leafId": "arrays",
+      "track": "software",
+      "prerequisites": ["decomposition"]
+    },
+    {
+      "leafId": "strings",
+      "track": "software",
+      "prerequisites": ["arrays"]
+    },
+    {
+      "leafId": "trees",
+      "track": "software",
+      "prerequisites": ["strings"]
+    },
+    {
+      "leafId": "debugging",
+      "track": "software",
+      "prerequisites": ["trees"]
+    }
+  ]
+}

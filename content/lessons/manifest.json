@@ -1,0 +1,273 @@
+{
+  "version": 1,
+  "generatedAt": "2026-07-12T21:13:23.336Z",
+  "lessonCount": 38,
+  "lessons": [
+    {
+      "leafId": "decomposition",
+      "track": "software",
+      "title": "Problem decomposition",
+      "scriptVersion": 1,
+      "script": "Today's skill: Problem decomposition. Here's what interviewers look for. clarify constraints before coding. break ambiguous problems into subproblems. name edge cases explicitly Practice this on the tree, then run a mock or drill on arrays and strings and trees problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "arrays",
+      "track": "software",
+      "title": "Arrays & two pointers",
+      "scriptVersion": 1,
+      "script": "Today's skill: Arrays & two pointers. Here's what interviewers look for. invariants for sliding windows. trade memory for time deliberately. state complexity before optimizing Practice this on the tree, then run a mock or drill on arrays problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "trees",
+      "track": "software",
+      "title": "Trees & graphs",
+      "scriptVersion": 1,
+      "script": "Today's skill: Trees & graphs. Here's what interviewers look for. pick traversal for the question. handle null and empty base cases. recursive vs iterative trade-offs Practice this on the tree, then run a mock or drill on trees problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "strings",
+      "track": "software",
+      "title": "Strings & parsing",
+      "scriptVersion": 1,
+      "script": "Today's skill: Strings & parsing. Here's what interviewers look for. character-level vs substring reasoning. hash maps for frequency and grouping. watch off-by-one on indices Practice this on the tree, then run a mock or drill on strings problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "debugging",
+      "track": "software",
+      "title": "Debugging under pressure",
+      "scriptVersion": 1,
+      "script": "Today's skill: Debugging under pressure. Here's what interviewers look for. reproduce before fixing. isolate failure scope. explain root cause not symptom Practice this on the tree, then run a mock or drill on debugging problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "system-design-swe",
+      "track": "software",
+      "title": "System design",
+      "scriptVersion": 1,
+      "script": "Today's skill: System design. Here's what interviewers look for. capacity and latency estimates. bottleneck identification. consistency vs availability trade-offs Practice this on the tree, then run a mock or drill on system-design problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "ai-collaboration-swe",
+      "track": "software",
+      "title": "AI-assisted delivery",
+      "scriptVersion": 1,
+      "script": "Today's skill: AI-assisted delivery. Here's what interviewers look for. verify AI output instead of trusting it. explain decisions AI did not make for you. recover when AI output is wrong Practice this on the tree, then run a mock or drill on debugging and system-design problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "rag-fundamentals",
+      "track": "ai-engineer",
+      "title": "RAG & retrieval",
+      "scriptVersion": 1,
+      "script": "Today's skill: RAG & retrieval. Here's what interviewers look for. chunking and retrieval trade-offs. citation and grounding. failure modes: hallucination, stale index Practice this on the tree, then run a mock or drill on rag problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "prompting",
+      "track": "ai-engineer",
+      "title": "Prompting & few-shot",
+      "scriptVersion": 1,
+      "script": "Today's skill: Prompting & few-shot. Here's what interviewers look for. system vs user message roles. when few-shot helps vs hurts. eval prompts like you eval models Practice this on the tree, then run a mock or drill on prompting problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "agents-orchestration",
+      "track": "ai-engineer",
+      "title": "Agents & orchestration",
+      "scriptVersion": 1,
+      "script": "Today's skill: Agents & orchestration. Here's what interviewers look for. tool use vs prompt-only. state and failure recovery. cost and latency budgets Practice this on the tree, then run a mock or drill on agents problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "eval-discipline",
+      "track": "ai-engineer",
+      "title": "Eval discipline",
+      "scriptVersion": 1,
+      "script": "Today's skill: Eval discipline. Here's what interviewers look for. define ground truth before scoring. offline vs online metrics. regression when model changes Practice this on the tree, then run a mock or drill on evals problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "from-scratch-ml",
+      "track": "ai-engineer",
+      "title": "ML from first principles",
+      "scriptVersion": 1,
+      "script": "Today's skill: ML from first principles. Here's what interviewers look for. implement core blocks without hiding libraries. debug training failures (loss spikes). explain what the model is learning Practice this on the tree, then run a mock or drill on ai-system-design and evals problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "ai-systems",
+      "track": "ai-engineer",
+      "title": "ML systems & serving",
+      "scriptVersion": 1,
+      "script": "Today's skill: ML systems & serving. Here's what interviewers look for. inference serving and batching. feature and vector store patterns. deployment and monitoring Practice this on the tree, then run a mock or drill on ai-system-design problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "safety-guardrails",
+      "track": "ai-engineer",
+      "title": "Safety & guardrails",
+      "scriptVersion": 1,
+      "script": "Today's skill: Safety & guardrails. Here's what interviewers look for. prompt injection awareness. PII and logging boundaries. human-in-the-loop when needed Practice this on the tree, then run a mock or drill on safety problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "probability-stats",
+      "track": "quant",
+      "title": "Probability & statistics",
+      "scriptVersion": 1,
+      "script": "Today's skill: Probability & statistics. Here's what interviewers look for. conditional expectation and Bayes. hypothesis testing discipline. explain assumptions behind a claim Practice this on the tree, then run a mock or drill on arrays problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "quant-coding",
+      "track": "quant",
+      "title": "Quant coding",
+      "scriptVersion": 1,
+      "script": "Today's skill: Quant coding. Here's what interviewers look for. correct efficient Python for research. pandas/numpy fluency. simulation to sanity-check math Practice this on the tree, then run a mock or drill on arrays and strings and debugging problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "research-hygiene",
+      "track": "quant",
+      "title": "Research hygiene",
+      "scriptVersion": 1,
+      "script": "Today's skill: Research hygiene. Here's what interviewers look for. look-ahead bias and data leakage. train/test split honesty. multiple-testing and overfitting Practice this on the tree, then run a mock or drill on evals problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "adversarial-defense",
+      "track": "quant",
+      "title": "Adversarial reasoning",
+      "scriptVersion": 1,
+      "script": "Today's skill: Adversarial reasoning. Here's what interviewers look for. defend sample size and methodology. answer follow-ups on failure modes. intellectual humility under pushback Practice this on the tree, then run a mock or drill on evals and debugging problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "signal-to-production",
+      "track": "quant",
+      "title": "Signal to production",
+      "scriptVersion": 1,
+      "script": "Today's skill: Signal to production. Here's what interviewers look for. backtest vs live gap. transaction costs and capacity. n to N scaling argument Practice this on the tree, then run a mock or drill on ai-system-design problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "threat-modeling",
+      "track": "cybersecurity",
+      "title": "Threat modeling",
+      "scriptVersion": 1,
+      "script": "Today's skill: Threat modeling. Here's what interviewers look for. name assets and trust boundaries first. prioritize threats by likelihood and impact. tie controls to specific failure modes Practice this on the tree, then run a mock or drill on threat-modeling problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "web-vulns",
+      "track": "cybersecurity",
+      "title": "Web vulnerabilities",
+      "scriptVersion": 1,
+      "script": "Today's skill: Web vulnerabilities. Here's what interviewers look for. root cause over symptom patching. output encoding and parameterized queries. secure defaults in frameworks Practice this on the tree, then run a mock or drill on web-security problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "auth-identity",
+      "track": "cybersecurity",
+      "title": "Auth & identity",
+      "scriptVersion": 1,
+      "script": "Today's skill: Auth & identity. Here's what interviewers look for. OAuth/OIDC flows and failure modes. session binding and token storage. least privilege for humans and services Practice this on the tree, then run a mock or drill on auth-identity problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "secure-design",
+      "track": "cybersecurity",
+      "title": "Secure by design",
+      "scriptVersion": 1,
+      "script": "Today's skill: Secure by design. Here's what interviewers look for. zero trust over perimeter-only models. blast-radius limits between environments. pragmatic rollout without blocking shipping Practice this on the tree, then run a mock or drill on secure-design problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "crypto-basics",
+      "track": "cybersecurity",
+      "title": "Cryptography in practice",
+      "scriptVersion": 1,
+      "script": "Today's skill: Cryptography in practice. Here's what interviewers look for. what each control actually protects. key lifecycle and access boundaries. TLS and secrets hygiene in production Practice this on the tree, then run a mock or drill on crypto problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "incident-response",
+      "track": "cybersecurity",
+      "title": "Incident response",
+      "scriptVersion": 1,
+      "script": "Today's skill: Incident response. Here's what interviewers look for. contain without destroying evidence. scope lateral movement and credential exposure. communicate with legal and leadership early Practice this on the tree, then run a mock or drill on incident-response problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "experiment-design",
+      "track": "market-engineering",
+      "title": "Experiment design",
+      "scriptVersion": 1,
+      "script": "Today's skill: Experiment design. Here's what interviewers look for. define the decision before the test. power, sample size, and stopping rules. guardrail metrics against local optimization Practice this on the tree, then run a mock or drill on experimentation problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "funnel-analytics",
+      "track": "market-engineering",
+      "title": "Funnel analytics",
+      "scriptVersion": 1,
+      "script": "Today's skill: Funnel analytics. Here's what interviewers look for. event taxonomy before dashboards. cohort vs snapshot views. segment before averaging Practice this on the tree, then run a mock or drill on funnel-analytics problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "growth-loops",
+      "track": "market-engineering",
+      "title": "Growth loops",
+      "scriptVersion": 1,
+      "script": "Today's skill: Growth loops. Here's what interviewers look for. loops over funnels for compounding channels. quantify loop constants and bottlenecks. payback period over raw CAC Practice this on the tree, then run a mock or drill on growth-systems problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "attribution",
+      "track": "market-engineering",
+      "title": "Attribution honesty",
+      "scriptVersion": 1,
+      "script": "Today's skill: Attribution honesty. Here's what interviewers look for. incrementality over last-click. holdouts and geo tests when possible. state what attribution cannot tell you Practice this on the tree, then run a mock or drill on attribution problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "martech-architecture",
+      "track": "market-engineering",
+      "title": "Martech architecture",
+      "scriptVersion": 1,
+      "script": "Today's skill: Martech architecture. Here's what interviewers look for. CDP as source of truth, tools as consumers. identity resolution across systems. consent and data quality at ingestion Practice this on the tree, then run a mock or drill on martech-integrations problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "gtm-strategy",
+      "track": "market-engineering",
+      "title": "GTM strategy",
+      "scriptVersion": 1,
+      "script": "Today's skill: GTM strategy. Here's what interviewers look for. sequence channels by learning speed. position against the alternative, not competitors. instrument the launch before shipping it Practice this on the tree, then run a mock or drill on gtm-strategy problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "research-hygiene",
+      "track": "ai-for-science",
+      "title": "Research hygiene",
+      "scriptVersion": 1,
+      "script": "Today's skill: Research hygiene. Here's what interviewers look for. look-ahead bias and data leakage in scientific ML. pre-registration vs exploratory analysis honesty. when a benchmark does not transfer to deployment Practice this on the tree, then run a mock or drill on scientific-methods and evals problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "experiment-design",
+      "track": "ai-for-science",
+      "title": "Experiment design",
+      "scriptVersion": 1,
+      "script": "Today's skill: Experiment design. Here's what interviewers look for. define the causal question before picking a model. power, sample size, and negative controls. ablation that isolates one claim Practice this on the tree, then run a mock or drill on scientific-methods and experimentation problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "research-ethics",
+      "track": "ai-for-science",
+      "title": "Research ethics",
+      "scriptVersion": 1,
+      "script": "Today's skill: Research ethics. Here's what interviewers look for. dual-use: when a capability should not ship. consent, privacy, and vulnerable populations in data. who bears harm when the model is wrong Practice this on the tree, then run a mock or drill on research-ethics and safety problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "ai-safety-labs",
+      "track": "ai-for-science",
+      "title": "AI safety judgment",
+      "scriptVersion": 1,
+      "script": "Today's skill: AI safety judgment. Here's what interviewers look for. alignment vs capability trade-offs in plain language. red-teaming and failure-mode imagination. when to escalate vs ship with guardrails Practice this on the tree, then run a mock or drill on research-ethics and safety problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "climate-ai",
+      "track": "ai-for-science",
+      "title": "Climate & earth systems",
+      "scriptVersion": 1,
+      "script": "Today's skill: Climate & earth systems. Here's what interviewers look for. uncertainty quantification in physical forecasts. measurement vs intervention — what ML can and cannot fix. equity when climate impacts are uneven Practice this on the tree, then run a mock or drill on mission-problems problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "health-ai",
+      "track": "ai-for-science",
+      "title": "Health & drug discovery",
+      "scriptVersion": 1,
+      "script": "Today's skill: Health & drug discovery. Here's what interviewers look for. biological plausibility vs correlation in omics. clinical validation path from model to patient. reproducibility across cohorts and sites Practice this on the tree, then run a mock or drill on mission-problems problems. Reflect: where did you last use this in real work?"
+    },
+    {
+      "leafId": "poverty-impact",
+      "track": "ai-for-science",
+      "title": "Poverty & impact",
+      "scriptVersion": 1,
+      "script": "Today's skill: Poverty & impact. Here's what interviewers look for. RCT discipline vs observational claims. goodharting when the metric becomes the target. implementation constraints in the real world Practice this on the tree, then run a mock or drill on mission-problems problems. Reflect: where did you last use this in real work?"
+    }
+  ]
+}

@@ -12,7 +12,10 @@
     "intel:extract": "node scripts/interview-intel/extract.mjs",
     "intel": "node scripts/interview-intel/scrape.mjs && node scripts/interview-intel/extract.mjs",
     "intel:frontier": "node scripts/interview-intel/scrape.mjs --profile frontier && node scripts/interview-intel/extract.mjs",
-    "jobs:scrape": "node scripts/jobs/scrape-jobs.mjs"
+    "jobs:scrape": "node scripts/jobs/scrape-jobs.mjs",
+    "lessons:manifest": "node scripts/voice-lessons/build-lesson-manifest.mjs",
+    "lessons:generate": "node scripts/voice-lessons/generate.mjs",
+    "lessons": "npm run lessons:manifest && npm run lessons:generate"
   },
   "dependencies": {
     "@netlify/blobs": "^10.7.9",
