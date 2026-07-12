@@ -113,6 +113,8 @@ export interface ShipTestChallenge {
   submitMode?: ShipTestSubmitMode;
   starterRepoUrl?: string;
   ticketBrief?: string;
+  /** Practice track tag for lobby filtering (e.g. quant work tickets). */
+  track?: PracticeTrack;
 }
 
 export interface ShipTestScores {

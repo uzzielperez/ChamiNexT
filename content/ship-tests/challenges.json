@@ -20,6 +20,85 @@
     ]
   },
   {
+    "id": "work-ticket-backtest-pit",
+    "title": "Work Ticket: Point-in-Time Backtest Linter",
+    "format": "ticket",
+    "track": "quant",
+    "submitMode": "pr",
+    "starterRepoUrl": "https://github.com/chaminext-templates/work-ticket-backtest-pit",
+    "description": "Quant research engineering ticket: build a linter that flags look-ahead bias patterns in a toy feature pipeline. SIG / prop-shop style — tests matter more than slides.",
+    "pmBrief": "Research keeps shipping features with accidental future data. We need an automated linter on the standard pipeline template before any backtest runs.",
+    "ticketBrief": "## Ticket QUANT-771\n\nIn the starter repo (Python), implement `pit_linter.py`:\n\n- Load sample feature parquet + price series with intentional leakage examples\n- Flag rows where feature timestamp > decision timestamp (as-of violation)\n- Flag merge keys that don't respect point-in-time joins\n- Emit JSON report: `{violations: [...], rows_checked, pass}`\n- Unit tests covering at least 3 violation types\n- README: how to run linter in CI before backtest\n\n**AI allowed** — disclose in PR.\n\n**Submit:** PR against `main` with tests green.",
+    "constraints": [
+      "Must include pytest suite",
+      "No live market data APIs required — use bundled samples",
+      "Document false-positive trade-offs in PR"
+    ],
+    "exampleDeliverables": [
+      "GitHub PR URL",
+      "Sample linter JSON output in PR",
+      "Short note on production integration"
+    ]
+  },
+  {
+    "id": "work-ticket-vwap-sim",
+    "title": "Work Ticket: VWAP Execution Simulator",
+    "format": "ticket",
+    "track": "quant",
+    "submitMode": "pr",
+    "starterRepoUrl": "https://github.com/chaminext-templates/work-ticket-vwap-sim",
+    "description": "Implement a minimal VWAP execution simulator: given intraday volume curve + order size, output expected slippage vs naive market order.",
+    "pmBrief": "Execution desk wants a quick what-if tool before committing size. MVP CLI or notebook is fine — correctness and tests over UI polish.",
+    "ticketBrief": "## Ticket EXEC-204\n\n- Input: minute bars (volume, vwap, close) + parent order size\n- Output: simulated fill path, avg price, slippage vs arrival\n- Support linear participation rate cap (e.g. max 5% of bar volume)\n- Tests: deterministic fixture, edge case empty volume bar\n- README with example run\n\n**Submit:** PR with tests.",
+    "constraints": [
+      "Deterministic tests (no random without seed)",
+      "Handle zero-volume minutes gracefully",
+      "AI allowed — disclose"
+    ],
+    "exampleDeliverables": [
+      "GitHub PR URL",
+      "Example slippage report in PR description"
+    ]
+  },
+  {
+    "id": "work-ticket-orderbook-stats",
+    "title": "Work Ticket: Order Book Snapshot Stats",
+    "format": "ticket",
+    "track": "quant",
+    "submitMode": "pr",
+    "starterRepoUrl": "https://github.com/chaminext-templates/work-ticket-orderbook-stats",
+    "description": "Parse L2 snapshot CSVs and compute spread, mid, imbalance, and microprice — typical quant dev screen follow-up.",
+    "pmBrief": "Market data team needs a standard stats bundle on every snapshot file before it enters research sandboxes.",
+    "ticketBrief": "## Ticket MD-88\n\n- Parse bundled CSV snapshots (bid/ask price/size columns)\n- Compute per row: spread, mid, volume imbalance, microprice\n- Flag crossed books (bid > ask) into a reject file\n- Summary stats JSON: median spread, % crossed, sample count\n- pytest on bundled fixtures\n\n**Submit:** PR against main.",
+    "constraints": [
+      "Pandas or polars OK",
+      "Must not silently drop >1% rows without logging",
+      "AI allowed — disclose"
+    ],
+    "exampleDeliverables": [
+      "GitHub PR URL",
+      "summary.json example attached in PR"
+    ]
+  },
+  {
+    "id": "quant-pairs-monitor-24h",
+    "title": "Pairs Spread Monitor",
+    "format": "24h",
+    "track": "quant",
+    "description": "Build a pairs trading monitor: ingest two price series, compute spread/z-score, alert when |z|>2. Deployable dashboard or CLI with chart export.",
+    "pmBrief": "Research wants a dead-simple monitor for a candidate pair before we commit capital. Historical CSV in, signals out.",
+    "constraints": [
+      "Use bundled sample CSVs — no paid data feeds",
+      "Document stationarity caveats in README",
+      "Must run locally in <2 min setup"
+    ],
+    "exampleDeliverables": [
+      "GitHub repo URL or live demo",
+      "Screenshot of z-score chart",
+      "README with false-positive discussion"
+    ]
+  },
+  {
     "id": "habit-tracker-24h",
     "title": "Habit Tracker",
     "format": "24h",

@@ -11,6 +11,8 @@ import {
   TRACK_LABELS,
 } from '../../data/practiceCovers';
 import { loadSessions } from '../../utils/interviewStorage';
+import { shipTestChallenges } from '../../data/shipTests';
+import { getShipFormatLabel, getShipTestCover } from '../../data/practiceCovers';
 import type { PracticeProblem, PracticeTrack } from '../../types/interview';
 
 const PROFILE_MILESTONE = 10;
@@ -83,6 +85,7 @@ const PracticeDashboard: React.FC<PracticeDashboardProps> = ({
   }, [filtered, lastSession?.problemId]);
 
   const recommendedCover = recommended ? getPracticeProblemCover(recommended) : null;
+  const quantShipTests = useMemo(() => shipTestChallenges.filter((c) => c.track === 'quant'), []);
 
   const filterTabs: { id: FilterMode; label: string }[] = [
     { id: 'all', label: 'All' },
@@ -237,6 +240,36 @@ const PracticeDashboard: React.FC<PracticeDashboardProps> = ({
         </section>
 
         {/* Problem bank */}
+        {(filter === 'quant' || filter === 'all') && quantShipTests.length > 0 && (
+          <section className="mb-10">
+            <h2 className="text-xl font-bold text-text-primary mb-1">Quant work tickets</h2>
+            <p className="text-sm text-text-secondary mb-4">
+              SIG-style tickets — backtest linter, VWAP sim, order book stats, pairs monitor
+            </p>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-4">
+              {quantShipTests.map((c) => {
+                const cover = getShipTestCover(c);
+                return (
+                  <CoverCard
+                    key={c.id}
+                    size="sm"
+                    title={c.title}
+                    tagline={cover.problemYouSolve}
+                    subtitle={getShipFormatLabel(c.format)}
+                    gradient={cover.gradient}
+                    icon={cover.icon}
+                    badge="Quant"
+                    onClick={onOpenShipTests}
+                  />
+                );
+              })}
+            </div>
+            <PremiumButton variant="secondary" size="sm" onClick={onOpenShipTests}>
+              Open Ship Test lobby →
+            </PremiumButton>
+          </section>
+        )}
+
         <div className="flex flex-wrap gap-2 mb-6 overflow-x-auto pb-1 scrollbar-hide">
           {filterTabs.map((t) => (
             <button

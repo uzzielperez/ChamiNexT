@@ -1,4 +1,5 @@
-import playlistsData from '../../content/coaching/soft-skills-playlists.json';
+import softSkillsData from '../../content/coaching/soft-skills-playlists.json';
+import quantHmData from '../../content/coaching/quant-hm-playlists.json';
 
 export interface CoachingEpisode {
   id: string;
@@ -25,7 +26,12 @@ export interface CoachingPlaylist {
   episodes: CoachingEpisode[];
 }
 
-const data = playlistsData as { version: number; playlists: CoachingPlaylist[] };
+const data = {
+  playlists: [
+    ...(softSkillsData as { playlists: CoachingPlaylist[] }).playlists,
+    ...(quantHmData as { playlists: CoachingPlaylist[] }).playlists,
+  ],
+};
 
 export function getCoachingPlaylists(): CoachingPlaylist[] {
   return data.playlists;

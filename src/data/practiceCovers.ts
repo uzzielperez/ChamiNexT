@@ -182,6 +182,18 @@ export const PRACTICE_MODE_CARDS: PracticeModeCard[] = [
     },
   },
   {
+    id: 'quant-hm',
+    title: 'Quant HM prep',
+    tagline: 'Research hygiene + production — SIG / systematic fund style',
+    href: '/coaching/quant-hm-prep',
+    cover: {
+      gradient: 'linear-gradient(135deg, #134e4a 0%, #0891b2 100%)',
+      icon: 'line-chart',
+      problemYouSolve: 'Pass the hiring manager judgment filter',
+    },
+    badge: '4 episodes',
+  },
+  {
     id: 'journey',
     title: 'Hiring journey',
     tagline: 'Choose your adventure — CV → ship → soft skills',
@@ -231,6 +243,14 @@ export function getPracticeProblemCover(problem: PracticeProblem): LessonCover {
 }
 
 export function getShipTestCover(challenge: ShipTestChallenge): LessonCover {
+  if (challenge.track === 'quant') {
+    return {
+      gradient: 'linear-gradient(135deg, #134e4a 0%, #0891b2 100%)',
+      icon: 'line-chart',
+      problemYouSolve:
+        challenge.description.slice(0, 90) + (challenge.description.length > 90 ? '…' : ''),
+    };
+  }
   const base = SHIP_FORMAT_COVERS[challenge.format] ?? SHIP_FORMAT_COVERS['24h'];
   return {
     ...base,

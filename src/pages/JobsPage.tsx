@@ -3,7 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { Briefcase, ExternalLink, Leaf, MapPin, Search, Sparkles, Zap } from 'lucide-react';
 import PremiumButton from '../components/ui/PremiumButton';
 import IntroDraftModal from '../components/coach/IntroDraftModal';
-import { getJobs, getJobsStats, JOB_SOURCE_LABELS, type JobPosting } from '../data/loadJobs';
+import { getJobs, getJobsStats, getQuantCuratedCount, JOB_SOURCE_LABELS, type JobPosting } from '../data/loadJobs';
 import type { PracticeTrack } from '../types/interview';
 import type { JobMatchResult } from '../types/coach';
 import { loadCoachProfile, canCreateIntroDraft, toggleSavedJob, loadSavedJobIds } from '../utils/coachStorage';
@@ -213,6 +213,33 @@ const JobsPage: React.FC = () => {
           </Link>
         )}
       </div>
+
+      {tab === 'all' && track === 'quant' && (
+        <div className="mb-8 p-5 rounded-2xl border border-cyan-500/30 bg-cyan-500/5">
+          <h2 className="font-bold text-text-primary mb-1">Quant finance board</h2>
+          <p className="text-sm text-text-secondary mb-4">
+            {getQuantCuratedCount()} curated roles at SIG, Jane Street, Citadel, Two Sigma, Jump, IMC, Optiver, and
+            more — {stats.quant} total quant-tagged listings.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            <Link to="/practice">
+              <PremiumButton variant="primary" size="sm">
+                Quant practice mocks
+              </PremiumButton>
+            </Link>
+            <Link to="/coaching/quant-hm-prep">
+              <PremiumButton variant="secondary" size="sm">
+                HM interview prep
+              </PremiumButton>
+            </Link>
+            <Link to="/practice" state={{ view: 'ship-lobby' }}>
+              <PremiumButton variant="ghost" size="sm">
+                Work tickets
+              </PremiumButton>
+            </Link>
+          </div>
+        </div>
+      )}
 
       {tab === 'all' && (
         <div className="mb-6 space-y-3">

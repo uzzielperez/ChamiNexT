@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "playlists": [
+    {
+      "id": "quant-hm-prep",
+      "title": "Quant HM Interview Prep",
+      "tagline": "What Susquehanna-style hiring managers actually test",
+      "description": "Research hygiene, adversarial stats, production thinking, and HM behavioral rounds — the signal prop shops and systematic funds hire on (not LeetCode trivia).",
+      "cover": {
+        "gradient": "linear-gradient(135deg, #134e4a 0%, #0891b2 100%)",
+        "icon": "line-chart"
+      },
+      "episodes": [
+        {
+          "id": "quant-research-hygiene",
+          "phase": 1,
+          "title": "Research hygiene",
+          "problemYouSolve": "Prove you won't ship look-ahead bias into production",
+          "duration": "20 min",
+          "cover": { "gradient": "linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%)", "icon": "shield" },
+          "sampleQuestions": [
+            "Walk me through auditing a backtest for look-ahead bias.",
+            "What failure modes do you check before trusting Sharpe 2?",
+            "How do you design point-in-time feature pipelines?"
+          ],
+          "strongAnswerFramework": "Hypotheses → data lineage → as-of joins → train/test honesty → paper-trading gates. Name specific red flags (survivorship, corporate actions, snooping).",
+          "strongSignals": ["Point-in-time vocabulary", "Kill criteria before live", "Humility about overfitting"],
+          "weakPatterns": ["Hand-wavy 'we checked the data'", "Trusting in-sample Sharpe", "No live monitoring plan"],
+          "coachTip": "SIG-style interviewers push on *process*, not gotcha math.",
+          "practiceProblemId": "quant-lookahead-bias"
+        },
+        {
+          "id": "quant-probability",
+          "phase": 2,
+          "title": "Probability from first principles",
+          "problemYouSolve": "Show you derive claims — not quote formulas",
+          "duration": "15 min",
+          "cover": { "gradient": "linear-gradient(135deg, #312e81 0%, #6366f1 100%)", "icon": "line-chart" },
+          "sampleQuestions": [
+            "Expected rolls until a six — derive it.",
+            "Conditional expectation puzzle under follow-up.",
+            "When do you distrust Monte Carlo?"
+          ],
+          "strongAnswerFramework": "Define random variable → compute expectation step-by-step → sanity-check with simulation → state variance of estimator.",
+          "strongSignals": ["Clean derivation", "Simulation as verification not proof", "Sample size awareness"],
+          "weakPatterns": ["Memorized answer with no derivation", "MC without confidence interval", "Confusing mean and median"],
+          "coachTip": "They care whether you think clearly when stuck — talk through structure.",
+          "practiceProblemId": "quant-conditional-expectation"
+        },
+        {
+          "id": "quant-production",
+          "phase": 3,
+          "title": "Backtest → live production",
+          "problemYouSolve": "Answer 'will this work at size?' not just 'did it backtest?'",
+          "duration": "20 min",
+          "cover": { "gradient": "linear-gradient(135deg, #7c2d12 0%, #ea580c 100%)", "icon": "rocket" },
+          "sampleQuestions": [
+            "Signal works at $10M — how do you scale to $500M?",
+            "Live PnL diverges from backtest — first hour checklist?",
+            "What makes you kill a strategy after launch?"
+          ],
+          "strongAnswerFramework": "Capacity model → cost/impact → crowding → monitoring → pre-defined kill rules. Separate bug from alpha decay.",
+          "strongSignals": ["Transaction costs explicit", "Monitoring on day one", "Emotional detachment from 'your' signal"],
+          "weakPatterns": ["Linear extrapolation of backtest", "No kill criteria", "Blame market 'regime' without tests"],
+          "coachTip": "Theorem/ex-SIG HMs often owned PnL — speak their language on risk.",
+          "practiceProblemId": "quant-signal-capacity"
+        },
+        {
+          "id": "quant-hm-behavioral",
+          "phase": 4,
+          "title": "HM behavioral: intellectual honesty",
+          "problemYouSolve": "Pass the 'would I trust this person with capital?' filter",
+          "duration": "20 min",
+          "cover": { "gradient": "linear-gradient(135deg, #581c87 0%, #db2777 100%)", "icon": "heart-handshake" },
+          "sampleQuestions": [
+            "Tell me about a time you were wrong in research.",
+            "Disagreement with a senior researcher — how did it play out?",
+            "What questions do you have for me about how we evaluate researchers?"
+          ],
+          "strongAnswerFramework": "STAR with a real mistake → what metric broke → process fix left behind. Questions show you evaluate *their* research culture.",
+          "strongSignals": ["Own the error without drama", "Process artifact after failure", "Smart questions on review culture"],
+          "weakPatterns": ["No failures ever", "Blame others", "Only comp/culture questions"],
+          "coachTip": "At HM stage they already like your skills — they're buying judgment and temperament.",
+          "practiceProblemId": "quant-hm-behavioral"
+        }
+      ]
+    }
+  ]
+}
