@@ -138,6 +138,18 @@ export const PRACTICE_MODE_CARDS: PracticeModeCard[] = [
     badge: '7 episodes',
   },
   {
+    id: 'project-walkthrough',
+    title: 'Project walkthrough',
+    tagline: 'Deployment, tests, PRs — defend your decisions',
+    href: '/coaching/project-walkthrough',
+    cover: {
+      gradient: 'linear-gradient(135deg, #1e3a5f 0%, #6366f1 100%)',
+      icon: 'layers',
+      problemYouSolve: 'The onsite story that replaces feature tours',
+    },
+    badge: '6 episodes',
+  },
+  {
     id: 'ship',
     title: 'Ship Tests',
     tagline: 'Work Tickets & sprints — build real output, AI allowed',

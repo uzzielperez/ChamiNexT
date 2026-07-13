@@ -1,0 +1,180 @@
+{
+  "version": 1,
+  "playlists": [
+    {
+      "id": "project-walkthrough",
+      "title": "Project Walkthrough",
+      "tagline": "Defend your decisions — deployment, tests, and PRs included",
+      "description": "The onsite question that replaces 'reverse a binary tree': walk through a real project end-to-end. Six episodes on the 10-minute spine, platform choice, test strategy, PR evidence, failures, and Reflection — aligned with ChamiNexT Ship Tests.",
+      "cover": {
+        "gradient": "linear-gradient(135deg, #1e3a5f 0%, #6366f1 55%, #0891b2 100%)",
+        "icon": "layers"
+      },
+      "notebookLmSources": [
+        "content/coaching/notebooklm-sources/project-walkthrough-master-guide.md",
+        "content/coaching/project-walkthrough-playlists.json",
+        "content/ship-tests/challenges.json",
+        "PRODUCT.md",
+        "tasks/brief-notebooklm-project-walkthrough.md"
+      ],
+      "episodes": [
+        {
+          "id": "project-spine",
+          "phase": 1,
+          "title": "The 10-minute spine",
+          "problemYouSolve": "Stop feature-dumping — tell a decision story with a hook, stakes, and a clear ending.",
+          "duration": "15 min",
+          "cover": { "gradient": "linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)", "icon": "layout-list" },
+          "sampleQuestions": [
+            "Walk me through the most impactful project you've worked on recently.",
+            "Pick one project — what was the problem, what did you build, and what was the outcome?",
+            "You have 10 minutes — how do you structure your answer?"
+          ],
+          "strongAnswerFramework": "Hook (user + metric + constraint) → context + non-goals → 2–3 decisions (not features) → execution snapshot → one failure → results vs baseline → Reflection. Use 'I decided' not 'we built.'",
+          "strongSignals": [
+            "One-sentence hook with measurable stakes",
+            "Names non-goals (what you deliberately did not build)",
+            "Ends with a specific Reflection, not generic 'more testing'"
+          ],
+          "weakPatterns": [
+            "Chronological feature tour for 8+ minutes",
+            "No baseline metric — impact is unmeasurable",
+            "Team credit without personal decisions"
+          ],
+          "coachTip": "Interviewers interrupt early if you're boring. Front-load the hook — they decide in 90 seconds if they'll dig deeper.",
+          "practiceProblemId": "project-walkthrough-core"
+        },
+        {
+          "id": "project-decisions",
+          "phase": 2,
+          "title": "Key decisions & trade-offs",
+          "problemYouSolve": "Prove you chose under constraints — and can name what you rejected.",
+          "duration": "15 min",
+          "cover": { "gradient": "linear-gradient(135deg, #312e81 0%, #8b5cf6 100%)", "icon": "git-compare" },
+          "sampleQuestions": [
+            "What were the main architectural decisions, and what alternatives did you consider?",
+            "Why did you choose this approach over [obvious alternative]?",
+            "If you had half the time, what would you cut from scope?"
+          ],
+          "strongAnswerFramework": "DTS per decision: Option A vs B → criteria (latency, ops, team, deadline) → choice → downside accepted → mitigation. Musk lens: what did you delete before optimizing?",
+          "strongSignals": [
+            "Names rejected alternative with honest trade-off",
+            "Ties decision to constraint (team size, deadline, scale)",
+            "Admits downside without defensiveness"
+          ],
+          "weakPatterns": [
+            "Only one option ever considered",
+            "Buzzword architecture with no criteria",
+            "Optimizing a component that shouldn't exist"
+          ],
+          "coachTip": "Staff interviewers listen for delete-before-optimize. Say what you cut from v1.",
+          "practiceProblemId": "project-walkthrough-decisions"
+        },
+        {
+          "id": "project-deployment",
+          "phase": 3,
+          "title": "Deployment & platform choice",
+          "problemYouSolve": "Answer 'how did this run in prod?' — not just 'how did it compile locally.'",
+          "duration": "15 min",
+          "cover": { "gradient": "linear-gradient(135deg, #134e4a 0%, #14b8a6 100%)", "icon": "cloud-upload" },
+          "sampleQuestions": [
+            "Where did you deploy this, and why that platform?",
+            "How did you roll out changes safely?",
+            "What was your rollback plan when something went wrong?"
+          ],
+          "strongAnswerFramework": "Platform + why (latency, cost, compliance, time-to-ship) → rollout (canary, flags, CI/CD) → observability (golden signals, dashboards) → rollback trigger → why NOT [K8s/serverless/monolith] at your scale.",
+          "strongSignals": [
+            "Explains platform fit to constraints, not resume keywords",
+            "Names rollout phases and rollback criteria",
+            "Observability before or with launch — not after incident"
+          ],
+          "weakPatterns": [
+            "Deployment as one-line footnote",
+            "No rollback story",
+            "Picked trendy stack without scale justification"
+          ],
+          "coachTip": "ChamiNexT ships Netlify + serverless functions — a valid exemplar for learners. Ship Tests accept optional preview deploy URLs.",
+          "practiceProblemId": "project-walkthrough-deployment"
+        },
+        {
+          "id": "project-tests",
+          "phase": 4,
+          "title": "Unit tests & quality gates",
+          "problemYouSolve": "Show tests protect real failure modes — not checkbox coverage.",
+          "duration": "15 min",
+          "cover": { "gradient": "linear-gradient(135deg, #7c2d12 0%, #ea580c 100%)", "icon": "shield-check" },
+          "sampleQuestions": [
+            "How did you test this before production?",
+            "What would break if you removed your unit tests?",
+            "Walk me through a bug your tests caught."
+          ],
+          "strongAnswerFramework": "Test pyramid: unit (pure logic) → integration (contracts) → load/chaos/evals (ML) → what each layer caught. Name one test tied to a real incident or near-miss.",
+          "strongSignals": [
+            "Specific test classes, not 'we had coverage'",
+            "Load or chaos before canary when scale matters",
+            "ML: eval harness with regression threshold"
+          ],
+          "weakPatterns": [
+            "Manual testing only",
+            "Coverage % without failure stories",
+            "Tests added after production incident with no lesson"
+          ],
+          "coachTip": "Ship Test tickets require pytest/unit tests — practice the same language in the interview.",
+          "practiceProblemId": "project-walkthrough-tests"
+        },
+        {
+          "id": "project-prs",
+          "phase": 5,
+          "title": "PRs as evidence",
+          "problemYouSolve": "Use pull requests to show how you think — not how busy you were.",
+          "duration": "15 min",
+          "cover": { "gradient": "linear-gradient(135deg, #581c87 0%, #db2777 100%)", "icon": "git-pull-request" },
+          "sampleQuestions": [
+            "Walk me through a PR you're proud of.",
+            "How did you break a large change into reviewable pieces?",
+            "What review feedback changed your approach?"
+          ],
+          "strongAnswerFramework": "PR arc: RFC/design → vertical slice → hardening → rollout. Per anchor PR: problem, key diff philosophy, review comment that improved it, test evidence in CI. Never lead with PR count.",
+          "strongSignals": [
+            "Describes review dialogue, not solo genius",
+            "Small PRs with clear scope",
+            "PR description documents trade-offs and AI/tool disclosure when relevant"
+          ],
+          "weakPatterns": [
+            "Bragging about PR volume",
+            "Cannot explain one PR in detail",
+            "Giant unreviewable diff"
+          ],
+          "coachTip": "VERVE-style hiring uses Work Tickets — your Ship Test PR *is* interview practice for this round.",
+          "practiceProblemId": "project-walkthrough-prs"
+        },
+        {
+          "id": "project-reflection",
+          "phase": 6,
+          "title": "Failures & Reflection",
+          "problemYouSolve": "Pass the seniority filter — learn in public, not perform perfection.",
+          "duration": "12 min",
+          "cover": { "gradient": "linear-gradient(135deg, #1e3a5f 0%, #0f766e 100%)", "icon": "lightbulb" },
+          "sampleQuestions": [
+            "Tell me about something that went wrong after launch.",
+            "What would you do differently if you started this project today?",
+            "What did you learn that changed how you work on the next project?"
+          ],
+          "strongAnswerFramework": "STAR+R on failure: detect → diagnose → fix → metric impact → Reflection (specific process/tech change, not 'communicate more'). One honest v2 improvement.",
+          "strongSignals": [
+            "Owns mistake without blaming",
+            "Quantifies impact of failure and fix",
+            "Reflection changes future behavior (observability week 1, idempotency day 1, etc.)"
+          ],
+          "weakPatterns": [
+            "Claims nothing went wrong",
+            "Failure with no lesson",
+            "Generic Reflection"
+          ],
+          "coachTip": "Reflection is the +R in STAR+R (career-ops). One sentence can raise the hire bar.",
+          "practiceProblemId": "project-walkthrough-reflection"
+        }
+      ]
+    }
+  ]
+}

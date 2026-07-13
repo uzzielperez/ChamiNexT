@@ -1,0 +1,111 @@
+[
+  {
+    "id": "project-walkthrough-core",
+    "title": "Project walkthrough: 10-minute spine",
+    "domain": "behavioral",
+    "track": "software",
+    "difficulty": "medium",
+    "estimatedMinutes": 20,
+    "prompt": "Walk me through the most impactful project you've worked on recently. You have about 10 minutes — structure your answer with a clear hook, 2–3 key decisions, how you shipped it (including deployment and tests), one thing that went wrong, measurable results, and what you'd do differently.",
+    "hints": [
+      "Open with user + metric + constraint in one sentence.",
+      "Say 'I decided' for ownership; name 2–3 decisions, not 10 features.",
+      "Include deployment platform and one test strategy point before results.",
+      "End with one specific Reflection — not generic 'more testing'."
+    ],
+    "starterCode": "",
+    "runLanguage": null,
+    "source": "coaching:project-walkthrough:spine",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "project-walkthrough-decisions",
+    "title": "Project walkthrough: architectural decisions",
+    "domain": "behavioral",
+    "track": "software",
+    "difficulty": "medium",
+    "estimatedMinutes": 20,
+    "prompt": "Pick a project and walk me through the main architectural decisions. For each: what alternatives did you consider, what criteria mattered, what did you choose, and what downside did you accept? What would you delete from scope if you had half the time?",
+    "hints": [
+      "Use DTS: Decision, Tradeoff, Signal.",
+      "Musk lens: delete before optimize — name what you cut from v1.",
+      "Tie every choice to a constraint: deadline, team size, scale, compliance."
+    ],
+    "starterCode": "",
+    "runLanguage": null,
+    "source": "coaching:project-walkthrough:decisions",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "project-walkthrough-deployment",
+    "title": "Project walkthrough: deployment & rollout",
+    "domain": "behavioral",
+    "track": "software",
+    "difficulty": "medium",
+    "estimatedMinutes": 20,
+    "prompt": "For a project you shipped: where did you deploy it, why that platform over alternatives, how did you roll out changes (canary, flags, CI/CD), what observability did you have, and what was your rollback plan? What broke in prod and how did you detect it?",
+    "hints": [
+      "Explain why NOT the obvious platform at your scale.",
+      "Name rollout phases (e.g. 10% → 50% → 100%) if applicable.",
+      "Golden signals: latency, errors, saturation — plus one dashboard or alert."
+    ],
+    "starterCode": "",
+    "runLanguage": null,
+    "source": "coaching:project-walkthrough:deployment",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "project-walkthrough-tests",
+    "title": "Project walkthrough: testing strategy",
+    "domain": "behavioral",
+    "track": "software",
+    "difficulty": "medium",
+    "estimatedMinutes": 20,
+    "prompt": "How did you test your project before production? Walk me through unit vs integration vs load/chaos (or evals for ML). Name a specific test that caught a real bug or near-miss. What would have broken if you skipped that layer?",
+    "hints": [
+      "Test pyramid — what each layer protects.",
+      "One concrete test → one concrete failure prevented.",
+      "For ML: golden set, regression threshold, cost/latency eval."
+    ],
+    "starterCode": "",
+    "runLanguage": null,
+    "source": "coaching:project-walkthrough:tests",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "project-walkthrough-prs",
+    "title": "Project walkthrough: PR deep-dive",
+    "domain": "behavioral",
+    "track": "software",
+    "difficulty": "hard",
+    "estimatedMinutes": 20,
+    "prompt": "Walk me through a pull request you're proud of on a real project. What problem did it solve, how did you scope the diff, what review feedback changed your approach, and what test evidence was in the PR? How did you split work across multiple PRs if the change was large?",
+    "hints": [
+      "PR arc: design → vertical slice → hardening → rollout.",
+      "Never lead with PR count — lead with one PR story.",
+      "Disclose AI/tool use if relevant (Ship Test style)."
+    ],
+    "starterCode": "",
+    "runLanguage": null,
+    "source": "coaching:project-walkthrough:prs",
+    "license": "ChamiNext"
+  },
+  {
+    "id": "project-walkthrough-reflection",
+    "title": "Project walkthrough: failure & Reflection",
+    "domain": "behavioral",
+    "track": "software",
+    "difficulty": "medium",
+    "estimatedMinutes": 20,
+    "prompt": "Tell me about something that went wrong on a project you owned — after launch or late in delivery. How did you detect it, fix it, and measure the impact? What would you do differently on the next project (STAR+R Reflection — be specific)?",
+    "hints": [
+      "STAR on the failure; +R must be one specific redo.",
+      "Weak: 'communicate more.' Strong: 'observability in week 1, not week 4.'",
+      "Own the mistake; show process fix left behind."
+    ],
+    "starterCode": "",
+    "runLanguage": null,
+    "source": "coaching:project-walkthrough:reflection",
+    "license": "ChamiNext"
+  }
+]

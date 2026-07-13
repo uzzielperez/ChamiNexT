@@ -6,6 +6,7 @@ import cyberBank from '../../content/question-bank/cybersecurity.json';
 import marketBank from '../../content/question-bank/market-engineering.json';
 import scienceBank from '../../content/question-bank/ai-for-science.json';
 import verveBank from '../../content/question-bank/verve-soft-skills.json';
+import projectWalkthroughBank from '../../content/question-bank/project-walkthrough.json';
 
 const software = softwareBank as PracticeProblem[];
 const aiEngineer = aiBank as PracticeProblem[];
@@ -14,6 +15,7 @@ const cybersecurity = cyberBank as PracticeProblem[];
 const marketEngineering = marketBank as PracticeProblem[];
 const aiForScience = scienceBank as PracticeProblem[];
 const verveSoftSkills = verveBank as PracticeProblem[];
+const projectWalkthrough = projectWalkthroughBank as PracticeProblem[];
 
 export const allPracticeProblems: PracticeProblem[] = [
   ...software,
@@ -23,6 +25,7 @@ export const allPracticeProblems: PracticeProblem[] = [
   ...marketEngineering,
   ...aiForScience,
   ...verveSoftSkills,
+  ...projectWalkthrough,
 ];
 
 export function getProblemsByTrack(track: PracticeTrack | 'all'): PracticeProblem[] {

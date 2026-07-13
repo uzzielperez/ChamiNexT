@@ -1,5 +1,6 @@
 import softSkillsData from '../../content/coaching/soft-skills-playlists.json';
 import quantHmData from '../../content/coaching/quant-hm-playlists.json';
+import projectWalkthroughData from '../../content/coaching/project-walkthrough-playlists.json';
 
 export interface CoachingEpisode {
   id: string;
@@ -30,6 +31,7 @@ const data = {
   playlists: [
     ...(softSkillsData as { playlists: CoachingPlaylist[] }).playlists,
     ...(quantHmData as { playlists: CoachingPlaylist[] }).playlists,
+    ...(projectWalkthroughData as { playlists: CoachingPlaylist[] }).playlists,
   ],
 };
 

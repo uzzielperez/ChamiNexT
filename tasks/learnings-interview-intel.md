@@ -42,10 +42,11 @@ Reddit, Hacker News, blogs, and YouTube transcripts; heuristic extraction into
 ## Roadmap (priority order)
 
 1. ~~Full-loop simulation~~ — shipped at `/loop`.
-2. ~~Rapid-fire drill mode~~ — shipped at `/drill`: 5-minute, 8-question
-   screening sim from skill-tree fundamentals + domain-knowledge intel,
-   batch-graded by `drill-agent` (self-review fallback without API key).
-3. **Behavioral signal in the talent profile**: communication-under-pressure as
+2. ~~Rapid-fire drill mode~~ — shipped at `/drill`.
+3. ~~Project walkthrough coaching~~ — shipped at `/coaching/project-walkthrough`
+   (deployment, tests, PR defense; NotebookLM brief in
+   `tasks/brief-notebooklm-project-walkthrough.md`).
+4. **Behavioral signal in the talent profile**: communication-under-pressure as
    a third axis for the Interview Studio (employers see thinking + shipping;
    add behavioral).
 4. **Automate the pipeline**: weekly scheduled run (GitHub Action) with

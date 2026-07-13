@@ -85,6 +85,7 @@
       },
       "actions": [
         { "label": "Full interview loop", "href": "/loop", "primary": true },
+        { "label": "Project walkthrough coaching", "href": "/coaching/project-walkthrough" },
         { "label": "Voice lessons", "href": "/lessons" }
       ]
     }
