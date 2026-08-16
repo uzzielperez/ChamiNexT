@@ -14,6 +14,7 @@ import HeroCodeBackground from '../components/landing/HeroCodeBackground';
 import HeroProductPreview from '../components/landing/HeroProductPreview';
 import CompanyLoopsShowcase from '../components/landing/CompanyLoopsShowcase';
 import DemoVideoEmbed from '../components/landing/DemoVideoEmbed';
+import InterviewLoopAnimation from '../components/landing/InterviewLoopAnimation';
 
 const PRINCIPLES = [
   'Shipping > Solving',
@@ -145,6 +146,25 @@ const HomePage: React.FC = () => {
       </section>
 
       <CompanyLoopsShowcase />
+
+      <section id="loop-visualization" className="py-20 md:py-24">
+        <div className="container max-w-5xl px-4">
+          <div className="text-center mb-10 max-w-2xl mx-auto">
+            <p className="text-xs font-semibold uppercase tracking-wide text-accent-blue mb-2">
+              The loop, animated
+            </p>
+            <h2 className="text-2xl md:text-3xl font-bold text-text-primary">
+              Candidate works the ticket. Employer sees the thinking.
+            </h2>
+            <p className="text-text-secondary text-sm mt-2 leading-relaxed">
+              A Cursor-style studio logs every agent prompt while the candidate ships — then
+              Interview Studio turns the trail into a graded package and a clear hire
+              recommendation.
+            </p>
+          </div>
+          <InterviewLoopAnimation />
+        </div>
+      </section>
 
       <section
         id="how-it-works"
