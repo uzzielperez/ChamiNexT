@@ -13,6 +13,7 @@ import {
 import HeroCodeBackground from '../components/landing/HeroCodeBackground';
 import HeroProductPreview from '../components/landing/HeroProductPreview';
 import CompanyLoopsShowcase from '../components/landing/CompanyLoopsShowcase';
+import DemoVideoEmbed from '../components/landing/DemoVideoEmbed';
 
 const PRINCIPLES = [
   'Shipping > Solving',
@@ -127,6 +128,19 @@ const HomePage: React.FC = () => {
 
         <div className="absolute bottom-0 left-0 right-0 z-10 pointer-events-none">
           <HeroProductPreview />
+        </div>
+      </section>
+
+      <section
+        className="py-16 md:py-20 border-t border-[var(--border-color)]"
+        style={{ backgroundColor: 'var(--bg-primary)' }}
+        id="demo-video"
+      >
+        <div className="container max-w-5xl px-4">
+          <DemoVideoEmbed
+            title="Stop memorizing. Start shipping."
+            description="A quick walkthrough: why output beats whiteboard theater, how Ship Tests work, and how AI interview practice adapts to you."
+          />
         </div>
       </section>
 

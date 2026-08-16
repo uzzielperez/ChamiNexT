@@ -8,6 +8,7 @@ import {
 import { loadRoles, saveRoles } from '../utils/employerStorage';
 import { seedDemoAssessmentSubmission } from '../utils/seedDemoAssessment';
 import { getLatestSubmissionForRole } from '../utils/studioSubmissionStorage';
+import DemoVideoEmbed from '../components/landing/DemoVideoEmbed';
 
 function ensureDemoRole() {
   const roles = loadRoles();
@@ -30,12 +31,18 @@ export default function DemoLoopPage() {
         <h1 className="text-3xl font-bold text-text-primary mb-3">
           Company task → studio → graded prompts
         </h1>
-        <p className="text-text-secondary mb-8 leading-relaxed">
+        <p className="text-text-secondary mb-6 leading-relaxed">
           <strong className="text-text-primary">Nebula Analytics</strong> assigns a Work Ticket. The
           candidate codes in-browser with an AI agent. On submit, ChamiNexT packages code + terminal +
           <strong className="text-text-primary"> every prompt</strong>. Employers see raw prompts and
           per-prompt grades in Interview Studio.
         </p>
+
+        <DemoVideoEmbed
+          variant="compact"
+          className="mb-8"
+          description="Platform overview — then run the interactive loop below."
+        />
 
         <ol className="space-y-4 mb-10 text-sm text-text-secondary">
           <li className="flex gap-3">

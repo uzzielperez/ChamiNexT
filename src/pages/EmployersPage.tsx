@@ -32,6 +32,7 @@ import {
 import type { CandidateApplication } from '../types/employer';
 import { FOUNDING } from '../data/foundingOffer';
 import { getCompanyLoops, formatSalaryRange } from '../data/loadCompanyLoops';
+import DemoVideoEmbed from '../components/landing/DemoVideoEmbed';
 
 type ViewMode = 'roles' | 'assessments' | 'candidates';
 
@@ -140,26 +141,31 @@ const EmployersPage: React.FC = () => {
     <div className="app-shell text-text-primary">
       <div>
         <div className="container mx-auto px-4 pt-8 max-w-6xl">
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
+          <div className="grid lg:grid-cols-2 gap-8 items-start mb-6">
             <div>
               <p className="text-sm text-accent-blue font-medium mb-1">Company Interview Studio</p>
               <h1 className="text-2xl md:text-3xl font-bold text-text-primary">
                 Hire on output. Skip the whiteboard theater.
               </h1>
-              <p className="text-text-secondary text-sm mt-2 max-w-2xl">
+              <p className="text-text-secondary text-sm mt-2">
                 Load demo data, then open <strong className="text-text-primary">Candidates</strong> or{' '}
                 <strong className="text-text-primary">Assessments</strong> to review hiring recommendations.
               </p>
+              <PremiumButton
+                variant="primary"
+                size="md"
+                loading={demoLoading}
+                onClick={loadDemoData}
+                className="mt-5"
+              >
+                Load employer demo data
+              </PremiumButton>
             </div>
-            <PremiumButton
-              variant="primary"
-              size="md"
-              loading={demoLoading}
-              onClick={loadDemoData}
-              className="shrink-0"
-            >
-              Load employer demo data
-            </PremiumButton>
+            <DemoVideoEmbed
+              variant="compact"
+              title="Platform demo"
+              description="Share with your team — company loops, Work Tickets, and prompt-trail review in under half a minute."
+            />
           </div>
 
           {demoSeedResult && (
