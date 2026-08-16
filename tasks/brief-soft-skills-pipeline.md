@@ -1,10 +1,10 @@
-# VERVE Pipeline Brief
+# Soft-Skills / Work-Ticket Pipeline Brief
 
-Design-partner mapping: how a VERVE-style engineering hiring pipeline maps onto ChamiNexT surfaces, with soft-skill rubrics wired into the interview agent.
+Design-partner mapping: how a growth-stage engineering hiring pipeline maps onto ChamiNexT surfaces, with soft-skill rubrics wired into the interview agent.
 
 ## Context
 
-VERVE (and similar growth-stage companies) hire on **day-to-day work**, not LeetCode speed:
+Growth-stage companies hire on **day-to-day work**, not LeetCode speed:
 
 1. CV / profile pre-screen  
 2. HR + high-level fit (recruiter screen)  
@@ -18,12 +18,12 @@ ChamiNexT should let employers configure this pipeline in Interview Studio and l
 
 ## Pipeline stages → ChamiNexT mapping
 
-| VERVE stage | ChamiNexT surface | Status |
-|-------------|-------------------|--------|
+| Pipeline stage | ChamiNexT surface | Status |
+|----------------|-------------------|--------|
 | CV pre-screen | Talent profile + mission rubric | Planned |
 | HR + high-level | Recruiter mock (`domain: recruiter`) | Live |
 | Online coding / Work Ticket | Ship Test `format: ticket`, PR submit | **Live** (template) |
-| Soft skills (5 phases) | Behavioral mocks + VERVE rubrics | **Live** (rubrics + agent) |
+| Soft skills (5 phases) | Behavioral mocks + soft-skill rubrics | **Live** (rubrics + agent) |
 | Personal IDE | Repo + PR review, Codespaces / devcontainer | Planned (employer UI) |
 
 ---
@@ -65,26 +65,26 @@ ChamiNexT should let employers configure this pipeline in Interview Studio and l
 Canonical rubrics live in:
 
 ```
-content/employers/verve-soft-skills.json
+content/employers/soft-skills-pipeline.json
 ```
 
 Practice problems (question bank):
 
 ```
-content/question-bank/verve-soft-skills.json
+content/question-bank/soft-skills-pipeline.json
 ```
 
-Interview agent loads rubrics when `problem.id` matches a phase id (e.g. `verve-ownership`) or `source` contains `verve-pipeline:phase-N`.
+Interview agent loads rubrics when `problem.id` matches a phase id (e.g. `soft-ownership`) or `source` contains `soft-pipeline:phase-N`.
 
 ### Phase summary
 
 | Phase | ID | Title |
 |-------|-----|-------|
-| 1 | `verve-ownership` | Ownership & big picture |
-| 2 | `verve-pushback` | Pushback on "No" |
-| 3 | `verve-mentorship` | Force multiplier & mentorship |
-| 4 | `verve-pragmatism` | Pragmatism vs perfectionism |
-| 5 | `verve-candidate-questions` | Candidate questions |
+| 1 | `soft-ownership` | Ownership & big picture |
+| 2 | `soft-pushback` | Pushback on "No" |
+| 3 | `soft-mentorship` | Force multiplier & mentorship |
+| 4 | `soft-pragmatism` | Pragmatism vs perfectionism |
+| 5 | `soft-candidate-questions` | Candidate questions |
 
 Each phase JSON includes:
 
@@ -93,11 +93,11 @@ Each phase JSON includes:
 - `followUps` — suggested interviewer probes  
 - `scoringDimensions` — maps to ChamiNexT scores (thinking, decomposition, communication, codeQuality)  
 
-**Agent wiring:** `netlify/functions/interview-agent.js` requires the JSON and appends `VERVE SOFT-SKILL PHASE` protocol to behavioral rounds.
+**Agent wiring:** `netlify/functions/interview-agent.js` requires the JSON and appends `SOFT-SKILL PIPELINE PHASE` protocol to behavioral rounds.
 
 **How to practice**
 
-1. `/practice` → pick behavioral track or search VERVE problems.  
+1. `/practice` → pick behavioral track or search soft-skills problems.  
 2. Or run full loop at `/loop` (recruiter → technical → behavioral).  
 3. Employer pilots: assign phase pack per role in Interview Studio (UI TBD).  
 
@@ -108,7 +108,7 @@ Each phase JSON includes:
 Align with pricing **Growth** tier (€900/mo):
 
 - Custom Work Ticket per open role  
-- VERVE soft-skill rubric pack pre-loaded  
+- Soft-skill rubric pack pre-loaded  
 - 60-day free pilot on one role → ranked shortlist in 72h  
 
 CTA: `hello@chaminext.com` with subject `ChamiNext Growth — pilot request`.
@@ -117,14 +117,14 @@ CTA: `hello@chaminext.com` with subject `ChamiNext Growth — pilot request`.
 
 ## Implementation checklist
 
-- [x] `content/employers/verve-soft-skills.json` — 5 phase rubrics  
-- [x] `content/question-bank/verve-soft-skills.json` — 5 practice problems  
+- [x] `content/employers/soft-skills-pipeline.json` — 5 phase rubrics  
+- [x] `content/question-bank/soft-skills-pipeline.json` — 5 practice problems  
 - [x] `netlify/functions/interview-agent.js` — rubric injection  
 - [x] Work Ticket challenge + PR submit in Ship Test session  
 - [ ] Starter GitHub template repo (external)  
 - [ ] Interview Studio: assign ticket + rubric pack per role  
 - [ ] Employer dashboard: PR diff viewer / Codespaces launch  
-- [ ] Talent profile: aggregate VERVE stage scores  
+- [ ] Talent profile: aggregate soft-skill stage scores  
 
 ---
 
@@ -132,7 +132,7 @@ CTA: `hello@chaminext.com` with subject `ChamiNext Growth — pilot request`.
 
 ```json
 {
-  "id": "verve-ownership",
+  "id": "soft-ownership",
   "phase": 1,
   "title": "Ownership & big picture",
   "prompt": "...",
@@ -149,7 +149,7 @@ CTA: `hello@chaminext.com` with subject `ChamiNext Growth — pilot request`.
 }
 ```
 
-Full file: `content/employers/verve-soft-skills.json`.
+Full file: `content/employers/soft-skills-pipeline.json`.
 
 ---
 

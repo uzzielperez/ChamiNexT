@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import PremiumButton from '../components/ui/PremiumButton';
 import { Check, ArrowLeft, Building2, Calendar, User, Zap, TreePine } from 'lucide-react';
@@ -8,12 +8,19 @@ import {
   startFreeTrial,
 } from '../utils/subscriptionStorage';
 import type { SubscriptionPlan } from '../types/employer';
+import {
+  FOUNDING,
+  LIST_PRICES,
+  discountedCents,
+  formatEurFromCents,
+  type FoundingOfferResponse,
+} from '../data/foundingOffer';
 
 type JourneyTier = {
   id: SubscriptionPlan | 'daily';
   name: string;
   tagline: string;
-  price: string;
+  priceCents: number;
   priceDetail: string;
   duration: string;
   desc: string;
@@ -28,7 +35,7 @@ const JOURNEY_TIERS: JourneyTier[] = [
     id: 'free',
     name: 'Daily',
     tagline: 'Build the habit',
-    price: '€0',
+    priceCents: 0,
     priceDetail: 'forever',
     duration: 'Every day',
     desc: 'Duolingo-style loop: one bite, one problem, one micro-ship. Your free front door.',
@@ -45,7 +52,7 @@ const JOURNEY_TIERS: JourneyTier[] = [
     id: 'interview-season',
     name: 'Sprint',
     tagline: 'Active job hunt',
-    price: '€149',
+    priceCents: LIST_PRICES['interview-season'],
     priceDetail: 'one payment',
     duration: '2–3 weeks intense · 90-day access',
     desc: 'When interviews are scheduled. Unlimited mocks, all Ship formats, portfolio export.',
@@ -64,7 +71,7 @@ const JOURNEY_TIERS: JourneyTier[] = [
     id: 'builder',
     name: 'Season',
     tagline: 'Long runway',
-    price: '€49/mo',
+    priceCents: LIST_PRICES.builder,
     priceDetail: 'cancel anytime',
     duration: '3–4 months typical',
     desc: 'Skill trees, ships, and profile depth when you have time to compound — not just cram.',
@@ -80,54 +87,58 @@ const JOURNEY_TIERS: JourneyTier[] = [
 ];
 
 const businessTiers: {
-  id: string;
+  id: 'biz-small' | 'biz-growth' | 'biz-enterprise';
   name: string;
   size: string;
-  price: string;
+  priceCents: number | null;
   priceDetail: string;
   desc: string;
   features: string[];
   recommended?: boolean;
   cta: string;
+  checkout?: boolean;
 }[] = [
   {
     id: 'biz-small',
     name: 'Small Business',
     size: 'Up to 50 employees',
-    price: '€250/mo',
-    priceDetail: 'or €2,400/yr (2 months free)',
+    priceCents: LIST_PRICES['biz-small'],
+    priceDetail: 'or annual (2 months free) · 60-day free trial',
     desc: 'For startups hiring their first engineers — priced for a small team, not an enterprise.',
     features: [
       '2 open roles at a time',
       '25 assessments / month',
       'AI interviews + one custom Ship Test',
-      'Ranked shortlists with rubric notes',
+      'Soft-skills rubric pack in Studio',
+      'Ranked shortlists + CSV export',
       'Email support',
     ],
     cta: 'Start 60-day free pilot',
+    checkout: true,
   },
   {
     id: 'biz-growth',
     name: 'Growth',
     size: '50–500 employees',
-    price: '€900/mo',
-    priceDetail: 'or €9,000/yr (2 months free)',
+    priceCents: LIST_PRICES['biz-growth'],
+    priceDetail: 'or annual (2 months free) · 60-day free trial',
     desc: 'For scale-ups hiring every quarter across multiple teams.',
     features: [
       '10 open roles at a time',
       '150 assessments / month',
       'Custom Ship Tests + Work Tickets per role',
-      'VERVE-style soft-skill rubric packs',
+      'Soft-skills rubric packs',
       'ATS export (CSV) + priority support',
     ],
     recommended: true,
     cta: 'Start 60-day free pilot',
+    checkout: true,
   },
   {
     id: 'biz-enterprise',
     name: 'Enterprise',
     size: '500+ employees',
-    price: 'Custom',
+    priceCents: null,
     priceDetail: 'annual contract',
     desc: 'For companies that need governance, integrations, and volume.',
     features: [
@@ -148,7 +159,26 @@ const PricingPage: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const audience = searchParams.get('for') === 'companies' ? 'companies' : 'individuals';
   const [loading, setLoading] = useState<string | null>(null);
+  const [foundingOpen, setFoundingOpen] = useState(true);
+  const [foundingRemaining, setFoundingRemaining] = useState(FOUNDING.maxRedemptions);
   const trialAvailable = canStartFreeTrial();
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch('/.netlify/functions/founding-offer')
+      .then((r) => r.json())
+      .then((data: FoundingOfferResponse) => {
+        if (cancelled || !data?.founding) return;
+        setFoundingOpen(data.founding.open);
+        setFoundingRemaining(data.founding.remaining);
+      })
+      .catch(() => {
+        /* offline / demo — keep defaults */
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const setAudience = (a: 'individuals' | 'companies') => {
     setSearchParams(a === 'companies' ? { for: 'companies' } : {}, { replace: true });
@@ -170,13 +200,15 @@ const PricingPage: React.FC = () => {
     }
     setLoading(plan);
     try {
+      const isCompany = plan === 'biz-small' || plan === 'biz-growth';
       const res = await fetch('/.netlify/functions/create-checkout-session', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           plan,
-          successUrl: `${window.location.origin}/success?plan=${plan}`,
-          cancelUrl: `${window.location.origin}/pricing`,
+          applyFoundingDiscount: foundingOpen,
+          successUrl: `${window.location.origin}/success?plan=${plan}&session_id={CHECKOUT_SESSION_ID}`,
+          cancelUrl: `${window.location.origin}/pricing${isCompany ? '?for=companies' : ''}`,
         }),
       });
       const data = await res.json();
@@ -186,9 +218,44 @@ const PricingPage: React.FC = () => {
         return;
       }
       if (data.url) window.location.href = data.url;
+      else if (data.error) alert(data.error);
     } finally {
       setLoading(null);
     }
+  };
+
+  const priceBlock = (cents: number, monthly?: boolean) => {
+    if (cents === 0) {
+      return (
+        <>
+          <p className="text-2xl font-bold" style={{ color: 'var(--accent-bright)' }}>
+            €0
+          </p>
+        </>
+      );
+    }
+    const list = formatEurFromCents(cents);
+    const founding = formatEurFromCents(discountedCents(cents));
+    if (foundingOpen) {
+      return (
+        <>
+          <p className="text-2xl font-bold" style={{ color: 'var(--accent-bright)' }}>
+            {founding}
+            {monthly ? '/mo' : ''}
+          </p>
+          <p className="text-xs text-text-secondary line-through">{list}{monthly ? '/mo' : ''}</p>
+          <p className="text-xs text-accent-blue font-medium mt-0.5">
+            {FOUNDING.code} · {FOUNDING.percentOff}% off founding
+          </p>
+        </>
+      );
+    }
+    return (
+      <p className="text-2xl font-bold" style={{ color: 'var(--accent-bright)' }}>
+        {list}
+        {monthly ? '/mo' : ''}
+      </p>
+    );
   };
 
   return (
@@ -208,6 +275,19 @@ const PricingPage: React.FC = () => {
               : 'Start free with Daily. Upgrade when your job hunt intensifies or you need a longer runway.'}
           </p>
         </div>
+
+        {foundingOpen && (
+          <div className="card p-4 md:p-5 mb-8 border-accent-blue/40 bg-[var(--bg-secondary)] text-center">
+            <p className="text-sm font-semibold text-text-primary">
+              Founding cohort: {FOUNDING.percentOff}% off with code{' '}
+              <span className="font-mono text-accent-blue">{FOUNDING.code}</span>
+            </p>
+            <p className="text-xs text-text-secondary mt-1">
+              First {FOUNDING.maxRedemptions} paying users · {foundingRemaining} spots left · auto-applied
+              at checkout when configured (or enter the code on Stripe Checkout)
+            </p>
+          </div>
+        )}
 
         <div className="flex justify-center mb-12">
           <div className="inline-flex rounded-lg border border-[var(--border-color)] bg-[var(--bg-secondary)] p-1">
@@ -251,9 +331,13 @@ const PricingPage: React.FC = () => {
                   )}
                   <h2 className="text-xl font-bold">{t.name}</h2>
                   <p className="text-xs text-text-secondary mt-0.5 mb-2">{t.size}</p>
-                  <p className="text-2xl font-bold" style={{ color: 'var(--accent-bright)' }}>
-                    {t.price}
-                  </p>
+                  {t.priceCents == null ? (
+                    <p className="text-2xl font-bold" style={{ color: 'var(--accent-bright)' }}>
+                      Custom
+                    </p>
+                  ) : (
+                    priceBlock(t.priceCents, true)
+                  )}
                   <p className="text-xs text-text-secondary mb-3">{t.priceDetail}</p>
                   <p className="text-text-secondary text-sm mb-4">{t.desc}</p>
                   <ul className="space-y-2 mb-6 flex-grow">
@@ -264,19 +348,27 @@ const PricingPage: React.FC = () => {
                       </li>
                     ))}
                   </ul>
-                  <a
-                    href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-                      `ChamiNext ${t.name} — pilot request`
-                    )}`}
-                  >
+                  {t.checkout ? (
                     <PremiumButton
                       variant={t.recommended ? 'primary' : 'secondary'}
                       size="md"
                       fullWidth
+                      loading={loading === t.id}
+                      onClick={() => checkout(t.id)}
                     >
                       {t.cta}
                     </PremiumButton>
-                  </a>
+                  ) : (
+                    <a
+                      href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+                        `ChamiNext ${t.name} — pilot request`
+                      )}`}
+                    >
+                      <PremiumButton variant="secondary" size="md" fullWidth>
+                        {t.cta}
+                      </PremiumButton>
+                    </a>
+                  )}
                 </div>
               ))}
             </div>
@@ -284,10 +376,10 @@ const PricingPage: React.FC = () => {
             <div className="card p-6 mb-8 text-center">
               <p className="text-sm text-text-secondary max-w-2xl mx-auto">
                 <span className="font-semibold text-text-primary">
-                  Every plan starts with a free 60-day pilot
+                  Every paid company plan includes a 60-day free trial
                 </span>{' '}
-                on one open role: we configure a Ship Test, seed your pipeline, and deliver a ranked
-                shortlist in 72 hours. No setup fees.
+                on Stripe Checkout. Soft-skills packs, invite links, and CSV export are live in
+                Interview Studio. No setup fees.
               </p>
             </div>
 
@@ -334,9 +426,7 @@ const PricingPage: React.FC = () => {
                       <h2 className="text-xl font-bold">{t.name}</h2>
                     </div>
                     <p className="text-xs text-accent-blue font-medium mb-1">{t.tagline}</p>
-                    <p className="text-2xl font-bold" style={{ color: 'var(--accent-bright)' }}>
-                      {t.price}
-                    </p>
+                    {priceBlock(t.priceCents, t.id === 'builder')}
                     <p className="text-xs text-text-secondary">{t.priceDetail}</p>
                     <p className="text-xs text-text-secondary mt-1 mb-3">{t.duration}</p>
                     <p className="text-text-secondary text-sm mb-4">{t.desc}</p>
@@ -363,8 +453,8 @@ const PricingPage: React.FC = () => {
             </div>
 
             <p className="text-center text-text-secondary text-sm max-w-lg mx-auto">
-              Without Stripe keys, checkout activates plans locally for your demo. Add STRIPE_SECRET_KEY
-              in Netlify for live payments.
+              Checkout opens Stripe with promotion codes enabled. Without{' '}
+              <code className="text-xs">STRIPE_SECRET_KEY</code>, plans activate locally for demos.
             </p>
 
             <p className="text-center text-sm text-text-secondary mt-6">
@@ -374,7 +464,11 @@ const PricingPage: React.FC = () => {
                 onClick={() => setAudience('companies')}
                 className="text-accent-blue font-medium hover:underline"
               >
-                See company plans from €250/mo →
+                See company plans from{' '}
+                {foundingOpen
+                  ? formatEurFromCents(discountedCents(LIST_PRICES['biz-small']))
+                  : formatEurFromCents(LIST_PRICES['biz-small'])}
+                /mo →
               </button>
             </p>
           </>

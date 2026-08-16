@@ -1,7 +1,9 @@
 # Coach Onboarding — Implementation Tasks
 
 **PRD:** `tasks/prd-coach-onboarding.md`  
-**Branch suggestion:** `feature/coach-onboarding`
+**IP / lineage:** `tasks/learnings-jack-and-jill.md`  
+**Last synced to `main`:** 2026-07-14  
+**Branch suggestion:** `feature/coach-onboarding` (work landed on `main`)
 
 ## Relevant Files
 
@@ -34,7 +36,7 @@
 - `netlify/functions/auth-magic-link.js` — Send magic link (new)
 - `netlify/functions/auth-verify.js` — Verify token, issue session JWT (new)
 - `netlify/functions/coach-profile.js` — CRUD coach profile + progress (new)
-- `netlify/functions/_shared/neon.js` — DB client helper (new)
+- `netlify/functions/_shared/coachStore.js` — **shipped** (Netlify Blobs + memory); `neon.js` still pending
 - `netlify/functions/_shared/auth.js` — JWT verify middleware (new)
 - `scripts/db/migrate-coach.sql` — Neon schema (new)
 - `scripts/voice-lessons/generate.mjs` — ElevenLabs batch (Phase 2)
@@ -49,8 +51,10 @@
 
 - Phase 1 ships **text Coach only**; voice picker is UI + persisted preference.
 - Require auth before saving `CoachProfile` (anonymous users can preview one message, then gate).
-- Default open questions until decided: fundamentals belt = **5 leaves**, match score = **qualitative + numeric**, intro drafts = **3/mo free, unlimited Sprint**.
-- Unit tests alongside new utils where non-trivial (`jobMatching.test.ts`, `skillProgress.test.ts`).
+- **Storage divergence:** PRD specified Neon; runtime uses `coachStore.js` (Blobs + memory). `migrate-coach.sql` ready for Neon cutover.
+- Fundamentals belt = **5 leaves** (`coach-progression.json`: decomposition → arrays → strings → trees → debugging).
+- Intro drafts = **3/mo free**, unlimited Sprint (`coachStorage.ts`).
+- Unit tests: `jobMatching.test.ts` still pending.
 - Run `npm run build` after each parent task milestone.
 
 ## Instructions for Completing Tasks
@@ -63,107 +67,107 @@ Update the file after completing each sub-task, not just after completing an ent
 
 ## Tasks
 
-- [ ] 0.0 Create feature branch
-  - [ ] 0.1 Create and checkout `feature/coach-onboarding`
-  - [ ] 0.2 Confirm `GROQ_API_KEY` in Netlify env; note Neon + `DATABASE_URL` needed for auth
+- [x] 0.0 Create feature branch
+  - [x] 0.1 Work merged to `main` (feature branch optional)
+  - [ ] 0.2 Confirm `GROQ_API_KEY` in Netlify env; **`DATABASE_URL` / Neon not wired in prod**
 
-- [ ] 1.0 Neon database & magic-link auth
-  - [ ] 1.1 Create `scripts/db/migrate-coach.sql` with tables: `users`, `coach_profiles`, `skill_progress`, `intro_drafts`, `job_saves`, `magic_link_tokens`
-  - [ ] 1.2 Add `netlify/functions/_shared/neon.js` — pooled Postgres client via `@neondatabase/serverless`
-  - [ ] 1.3 Add `netlify/functions/_shared/auth.js` — sign/verify JWT session cookie or Bearer token
-  - [ ] 1.4 Implement `netlify/functions/auth-magic-link.js` — validate email, store token (15 min TTL), send via Resend/SMTP (demo: log link to console)
-  - [ ] 1.5 Implement `netlify/functions/auth-verify.js` — exchange token for session, upsert `users` row
-  - [ ] 1.6 Build `src/pages/LoginPage.tsx` — email input, "Send magic link", success state
-  - [ ] 1.7 Add `/login` and `/auth/callback` routes in `src/App.tsx`
-  - [ ] 1.8 Add `src/utils/authSession.ts` — read/write session token, `useAuth()` hook
-  - [ ] 1.9 Wire header Sign In → `/login`; show avatar + email when authenticated
+- [x] 1.0 Magic-link auth (Neon schema drafted; Blobs runtime)
+  - [x] 1.1 `scripts/db/migrate-coach.sql`
+  - [ ] 1.2 `netlify/functions/_shared/neon.js` — **not implemented**; using `coachStore.js` (Blobs + memory)
+  - [x] 1.3 `netlify/functions/_shared/auth.js`
+  - [x] 1.4 `auth-magic-link.js` (demo: returns `verifyUrl` when email not configured)
+  - [x] 1.5 `auth-verify.js` (JWT session; user id from email hash)
+  - [x] 1.6 `LoginPage.tsx`
+  - [x] 1.7 `/login`, `/auth/callback` in `App.tsx`
+  - [x] 1.8 `authSession.ts` (no React hook — functions only)
+  - [x] 1.9 Header Sign In + Meet Coach when authed (`PremiumHeader.tsx`)
 
-- [ ] 2.0 Coach profile types & persistence
-  - [ ] 2.1 Add `src/types/coach.ts` — `CoachProfile`, `VoicePreference`, `CoachMessage`, `OnboardingAgentResponse`
-  - [ ] 2.2 Add `src/utils/coachStorage.ts` — load/save profile + chat transcript locally; `syncToServer()` when authed
-  - [ ] 2.3 Implement `netlify/functions/coach-profile.js` — GET/PUT profile JSON, merge strategy (server wins on conflict)
-  - [ ] 2.4 On first login: migrate `interviewStorage`, `dailyStorage`, skill progress from localStorage → Neon via coach-profile endpoint
-  - [ ] 2.5 Link `profileSlug.ts` to `user_id` when authenticated
+- [x] 2.0 Coach profile types & persistence (partial server sync)
+  - [x] 2.1 `src/types/coach.ts`
+  - [x] 2.2 `coachStorage.ts` — local + `syncCoachProfileToServer` / `fetchCoachProfileFromServer`
+  - [x] 2.3 `coach-profile.js` (Blobs-backed)
+  - [ ] 2.4 Full localStorage migration (`interviewStorage`, `dailyStorage`, skill progress) on login
+  - [ ] 2.5 `profileSlug.ts` linked to `user_id` (slug used in intros; not server-bound)
 
-- [ ] 3.0 Voice preference picker (Coach persona)
-  - [ ] 3.1 Add `src/components/coach/VoicePreferencePicker.tsx` — two cards: **Friendly guy** / **Friendly girl**
-  - [ ] 3.2 Copy: *"Pick how Coach will sound in your lessons"* + subtitle *"Deep, warm, mentor tone"*
-  - [ ] 3.3 Persist selection to `CoachProfile.voicePreference` before chat starts
-  - [ ] 3.4 Add Settings section (avatar menu or `/settings`) to change voice without re-onboarding
-  - [ ] 3.5 Optional accent styling on Coach avatar/header based on selection (subtle, not stereotyped)
+- [x] 3.0 Voice preference picker (Coach persona)
+  - [x] 3.1 `VoicePreferencePicker.tsx`
+  - [x] 3.2 Copy on CoachPage + Settings
+  - [x] 3.3 Persist `voicePreference` before chat
+  - [x] 3.4 `/settings` voice change
+  - [ ] 3.5 Optional accent styling on Coach avatar
 
-- [ ] 4.0 Onboarding agent (Groq)
-  - [ ] 4.1 Create `netlify/functions/onboarding-agent.js` — fork patterns from `interview-agent.js` (rate limit, CORS, demo fallback)
-  - [ ] 4.2 System prompt: Coach persona, fiduciary tone, slot-filling for role/target/timeline/stack/mission/weak areas
-  - [ ] 4.3 JSON output schema: `{ reply, topicsComplete, topicsTotal, profilePatch?, onboardingComplete? }`
-  - [ ] 4.4 When `onboardingComplete: true`, emit full `CoachProfile` including `recommendedLeafIds` from skill tree
-  - [ ] 4.5 Add `src/utils/coachAgent.ts` — `sendCoachMessage()`, offline demo replies for demo mode
-  - [ ] 4.6 Rate limit: 20 messages/session, 5 sessions/day (reuse `_shared/rateLimit.js`)
+- [x] 4.0 Onboarding agent (Groq)
+  - [x] 4.1 `onboarding-agent.js`
+  - [x] 4.2 Fiduciary Coach system prompt + topic slots
+  - [x] 4.3 JSON schema with `profilePatch`, `onboardingComplete`
+  - [x] 4.4 Full `CoachProfile` on complete + `recommendedLeafIds`
+  - [x] 4.5 `coachAgent.ts`
+  - [ ] 4.6 Dedicated rate limit (inherits shared patterns; not separately tuned)
 
-- [ ] 5.0 Coach chat UI & `/coach` route
-  - [ ] 5.1 Create `src/components/coach/CoachChat.tsx` — message list, input, typing indicator (no code editor)
-  - [ ] 5.2 Progress bar: "Getting to know you (N/7 topics)" from agent metadata
-  - [ ] 5.3 Create `src/pages/CoachPage.tsx` — voice picker → chat flow; header "Coach · Your career agent"
-  - [ ] 5.4 Gate save behind auth: preview allowed, prompt login to continue after ~2 exchanges
-  - [ ] 5.5 Add `src/components/coach/CoachCompletionCTA.tsx` — buttons: See your jobs · Start skill path · Run mock interview
-  - [ ] 5.6 Register `/coach` in `App.tsx`; redirect authenticated incomplete users here post-login
-  - [ ] 5.7 Persist transcript in coachStorage; restore on return visit
+- [x] 5.0 Coach chat UI & `/coach` route
+  - [x] 5.1 `CoachChat.tsx`
+  - [x] 5.2 Topics progress (N/7)
+  - [x] 5.3 `CoachPage.tsx`
+  - [x] 5.4 Auth gate after ~1 user message
+  - [x] 5.5 `CoachCompletionCTA.tsx`
+  - [x] 5.6 `/coach` + `AuthCallbackPage` → `/coach` or `/journey`
+  - [x] 5.7 Transcript persist/restore
 
-- [ ] 6.0 Job matching — "For you" tab
-  - [ ] 6.1 Add `src/utils/jobMatching.ts` — score jobs vs `CoachProfile` (track, remote, mission, keyword overlap on title/description)
-  - [ ] 6.2 Return `{ score, whyOneLine, prepTrack }` per job; sort descending
-  - [ ] 6.3 Optional: `netlify/functions/job-rerank.js` — Groq rerank top 20 for richer "why" copy
-  - [ ] 6.4 Update `src/pages/JobsPage.tsx` — tabs: **All** | **For you** (hidden if no profile)
-  - [ ] 6.5 Job card: match badge (e.g. "Strong fit · 87%"), expandable why, Save button
-  - [ ] 6.6 Log `job_view` / `job_save` to coach-profile or analytics endpoint
-  - [ ] 6.7 Add `src/utils/jobMatching.test.ts` — fixture profile + expected ordering
+- [x] 6.0 Job matching — "For you" tab (mostly)
+  - [x] 6.1 `jobMatching.ts`
+  - [x] 6.2 `score`, `whyOneLine`, `prepTrack`, `fitLabel`
+  - [ ] 6.3 `job-rerank.js` (optional Groq rerank)
+  - [x] 6.4 JobsPage **All** | **For you**
+  - [x] 6.5 Match badge + save
+  - [ ] 6.6 `job_view` / `job_save` analytics endpoint
+  - [ ] 6.7 `jobMatching.test.ts`
 
-- [ ] 7.0 Warm intro drafts (manual send)
-  - [ ] 7.1 Create `netlify/functions/intro-agent.js` — input: job, coachProfile, talentProfile; output: email + LinkedIn drafts JSON
-  - [ ] 7.2 Include talent profile slug, top thinking score, ship count in draft body when available
-  - [ ] 7.3 Add `src/components/coach/IntroDraftModal.tsx` — tabs Email | LinkedIn, Copy, mailto, Open LinkedIn
-  - [ ] 7.4 Wire "Draft intro" on saved/interested jobs in JobsPage
-  - [ ] 7.5 Persist drafts via `intro_drafts` table; show history per job
-  - [ ] 7.6 Enforce tier limits: 3 drafts/mo free, unlimited on Sprint/Season (read from `subscriptionStorage.ts`)
+- [x] 7.0 Warm intro drafts (manual send; local history)
+  - [x] 7.1 `intro-agent.js`
+  - [x] 7.2 Profile slug + talent summary in drafts
+  - [x] 7.3 `IntroDraftModal.tsx`
+  - [x] 7.4 Draft intro on JobsPage
+  - [ ] 7.5 Server `intro_drafts` table (local `chaminext_intro_history` only)
+  - [x] 7.6 Tier limits via `canCreateIntroDraft`
 
-- [ ] 8.0 Skill tree — hybrid progression (Model C)
-  - [ ] 8.1 Extend `content/fundamentals/skill-tree.json` — add `belt`, `prerequisites`, `segment` (`fundamentals` | `branch`), `lessonScriptId`
-  - [ ] 8.2 Define fundamentals chain (5 leaves): e.g. decomposition → arrays → strings → behavioral-basics → communication
-  - [ ] 8.3 Gate branch leaves until fundamentals complete; branch = `CoachProfile.targetTrack`
-  - [ ] 8.4 Add `src/utils/skillProgress.ts` — `isLeafUnlocked()`, `completeLeaf()`, sync to Neon
-  - [ ] 8.5 Update `src/data/loadSkillTree.ts` — expose ordered fundamentals + branch for track
-  - [ ] 8.6 Update `SkillTreePanel.tsx` — locked/available/complete states, belt stripe, pulse on next leaf
-  - [ ] 8.7 Banner on `SkillTreesPage`: "Coach picked this path" + link to `/coach` if incomplete
-  - [ ] 8.8 Add text lessons: `content/lessons/{leafId}.md` for each fundamentals + branch leaf (Phase 1 minimum: fundamentals only)
-  - [ ] 8.9 Leaf detail panel: read lesson → mark complete → CTA Practice (drill/mock)
+- [x] 8.0 Skill tree — hybrid progression (Model C)
+  - [x] 8.1 `coach-progression.json` + `skillProgress.ts` (belt via fundamentals chain)
+  - [x] 8.2 Five fundamentals: decomposition → arrays → strings → trees → debugging
+  - [x] 8.3 Branch gated until fundamentals complete
+  - [x] 8.4 `skillProgress.ts` — unlock/complete (**localStorage**; Neon sync pending)
+  - [x] 8.5 Fundamentals path exposed to Daily + SkillTrees
+  - [x] 8.6 `SkillTreePanel.tsx` unlock states
+  - [x] 8.7 `SkillTreesPage` Coach banner
+  - [ ] 8.8 Text lessons — only `decomposition.md`; scripts mostly in `audio-manifest` / manifest builder
+  - [x] 8.9 Lesson player + practice CTA on tree (`LessonAudioPlayer`, `/lessons`)
 
-- [ ] 9.0 Entry flow, navigation & homepage
-  - [ ] 9.1 Post-login router: incomplete onboarding → `/coach`; complete → `/daily` (or last visited)
-  - [ ] 9.2 Homepage "I'm job hunting" → `/login` (or `/coach` if authed)
-  - [ ] 9.3 Avatar dropdown: Coach · Settings · Sign out
-  - [ ] 9.4 Protect `/coach` profile save + `/jobs?tab=for-you` + intro drafts behind auth
-  - [ ] 9.5 Update `tasks/brief-verve-pipeline.md` cross-link if needed (optional)
+- [x] 9.0 Entry flow, navigation & homepage (partial)
+  - [x] 9.1 Post-login: incomplete → `/coach`; complete → `/journey` (not `/daily` — daily redirects to journey)
+  - [x] 9.2 Homepage CTA → `/login` or `/coach` if authed
+  - [x] 9.3 Header: Meet Coach, Settings (`/settings`)
+  - [x] 9.4 Auth gate on Coach save; intros tier-gated
+  - [ ] 9.5 `brief-soft-skills-pipeline.md` cross-link
 
-- [ ] 10.0 Phase 2 — ElevenLabs voice lessons (full skill tree)
-  - [ ] 10.1 Create `content/voice/coach-voices.json` — audition and document male + female ElevenLabs voice IDs
-  - [ ] 10.2 Generate 10s preview clips for voice picker ("Hi, I'm Coach…")
-  - [ ] 10.3 Write `lessonScript` in each leaf JSON or `content/lessons/{id}.md` (batch input for TTS)
-  - [ ] 10.4 Implement `scripts/voice-lessons/generate.mjs` — batch both variants per leaf via ElevenLabs API
-  - [ ] 10.5 Implement `scripts/voice-lessons/upload.mjs` — upload MP3s to Netlify Blobs or static `public/audio/lessons/`
-  - [ ] 10.6 Extend skill-tree leaf schema: `audioUrlMale`, `audioUrlFemale`, `durationSec`, `scriptVersion`
-  - [ ] 10.7 Add `src/components/skills/LessonAudioPlayer.tsx` — play/pause, transcript, respect `voicePreference`
-  - [ ] 10.8 Wire `DailyPracticePage` step 1 to current unlocked leaf lesson (audio if available, else text)
-  - [ ] 10.9 Voice picker: play preview clips on card tap (Phase 2)
+- [x] 10.0 Phase 2 — ElevenLabs voice lessons (substantial)
+  - [x] 10.1 `coach-voices.json`
+  - [x] 10.2 Preview clips (`public/audio/coach/`)
+  - [x] 10.3 Scripts via `build-lesson-manifest.mjs` + skill-tree fundamentals
+  - [x] 10.4 `scripts/voice-lessons/generate.mjs`
+  - [ ] 10.5 `upload.mjs` — MP3s committed under `public/audio/lessons/` (no separate upload script)
+  - [x] 10.6 `audio-manifest.json` — male/female URLs per leaf (~36 leaves)
+  - [x] 10.7 `LessonAudioPlayer.tsx`
+  - [x] 10.8 `DailyPracticePage` uses `getCurrentDailyLeaf`
+  - [x] 10.9 `VoicePreviewButton.tsx` on picker
 
 - [ ] 11.0 Phase 3 — Future (out of v1 scope; track only)
   - [ ] 11.1 Automated email send (Resend) with double opt-in
   - [ ] 11.2 LinkedIn intro queue / compliance review
-  - [ ] 11.3 Voice Coach onboarding (STT + ElevenLabs realtime)
+  - [ ] 11.3 Voice Coach onboarding (STT + ElevenLabs realtime) — **Jack & Jill pattern rejected for v1**
   - [ ] 11.4 Jill-side: employer match from Coach network
 
-- [ ] 12.0 Verification & documentation
-  - [ ] 12.1 Run `npm run build` — fix type errors
-  - [ ] 12.2 Manual test: login → voice pick → coach chat → profile saved → For you jobs → intro draft copy
-  - [ ] 12.3 Manual test: skill tree unlock flow after onboarding
-  - [ ] 12.4 Document env vars in `tasks/DEMO-WEEK.md` or README snippet: `DATABASE_URL`, `JWT_SECRET`, `RESEND_API_KEY`, `ELEVENLABS_API_KEY`
-  - [ ] 12.5 Remind deploy: hard refresh for PWA cache
+- [x] 12.0 Verification & documentation (partial)
+  - [x] 12.1 `npm run build` passes
+  - [ ] 12.2 Manual E2E test checklist run
+  - [ ] 12.3 Skill tree E2E verified
+  - [ ] 12.4 Env vars documented in README / DEMO-WEEK
+  - [x] 12.5 `tasks/learnings-jack-and-jill.md` + synced task list (this file)

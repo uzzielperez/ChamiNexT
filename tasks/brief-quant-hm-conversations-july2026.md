@@ -1,7 +1,8 @@
-# Quant HM Conversations — This Week (SIG + ex-Theorem)
+# Quant HM Conversations — This Week (options MM + systematic)
 
 > **Use:** Prep for hiring-manager interviews **and** optional ChamiNexT design-partner / angel conversations.  
-> **Platform:** `/practice` → Quant filter · `/coaching/quant-hm-prep` · `/loop` (quant track)
+> **Platform:** `/practice` → Quant filter · `/coaching/quant-hm-prep` · `/loop` (quant track)  
+> **Full options-MM loop (OA → fit → data report → fly-out):** see `tasks/brief-prop-mm-interview-loop.md` (firm anonymous)
 
 ---
 
@@ -17,7 +18,7 @@
 
 ---
 
-## 2. What SIG / systematic-fund HMs are testing (HM round ≠ puzzle round)
+## 2. What options-MM / systematic-fund HMs are testing (HM round ≠ puzzle round)
 
 They've likely already seen your technical screen. The HM round is:
 
@@ -39,7 +40,7 @@ Structure:
 
 > **Context** — physics/ML background, research that touched real data pipelines and validation  
 > **Proof** — one example where you *caught* a bad signal or fixed a methodology mistake before it cost money/time  
-> **Why quant** — you want adversarial, evidence-driven environments (SIG/Theorem fit)  
+> **Why quant** — you want adversarial, evidence-driven environments (options MM / systematic-fund fit)  
 > **Why now** — specific role/team angle if you know it  
 
 **HM question to prepare:** *"Tell me about a time you were wrong in research."*  

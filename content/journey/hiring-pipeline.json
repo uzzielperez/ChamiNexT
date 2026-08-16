@@ -42,7 +42,7 @@
       "order": 3,
       "title": "Ship test / Work Ticket",
       "tagline": "Build something real — AI allowed",
-      "problemYouSolve": "Companies like VERVE replace whiteboard puzzles with a scoped ticket: fork, implement, open a PR.",
+      "problemYouSolve": "Growth-stage companies replace whiteboard puzzles with a scoped ticket: fork, implement, open a PR.",
       "description": "Format varies by company: 4-hour API ticket, 24h micro-ship, or take-home. Output is the signal.",
       "duration": "4h · 24h · 72h",
       "cover": {
@@ -60,7 +60,7 @@
       "title": "Soft skills & team fit",
       "tagline": "The round that decides the offer",
       "problemYouSolve": "STAR stories, pushback, mentorship, pragmatism — and the ethics probes at mission-driven companies.",
-      "description": "VERVE-style five phases plus ethics & team-fit coaching with sample questions and answer frameworks.",
+      "description": "growth-stage five phases plus ethics & team-fit coaching with sample questions and answer frameworks.",
       "duration": "~5 × 20 min phases",
       "cover": {
         "gradient": "linear-gradient(135deg, #581c87 0%, #db2777 100%)",
@@ -68,7 +68,7 @@
       },
       "actions": [
         { "label": "Ethics & soft skills playlist", "href": "/coaching/ethics-soft-skills", "primary": true },
-        { "label": "Run behavioral mock", "href": "/practice", "state": { "problemId": "verve-ownership" } }
+        { "label": "Run behavioral mock", "href": "/practice", "state": { "problemId": "soft-ownership" } }
       ]
     },
     {

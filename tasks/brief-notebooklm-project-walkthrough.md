@@ -17,7 +17,7 @@ Produce **Spotify-style episodes** for `/coaching/project-walkthrough` with:
 - The 10-minute answer spine (hook → decisions → execution → failure → results → reflection)
 - Deep dives on **deployment platform**, **unit/integration tests**, and **PR artifacts**
 - Musk-style engineering judgment (question requirements → delete → simplify → accelerate → automate)
-- Follow-up probes interviewers actually use (from intel + VERVE-style loops)
+- Follow-up probes interviewers actually use (from intel + growth-stage loops)
 - Optional 12–15 min NotebookLM Audio Overview per episode → ElevenLabs Coach MP3
 
 ---

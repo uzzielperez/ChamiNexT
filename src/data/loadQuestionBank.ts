@@ -5,7 +5,7 @@ import quantBank from '../../content/question-bank/quant.json';
 import cyberBank from '../../content/question-bank/cybersecurity.json';
 import marketBank from '../../content/question-bank/market-engineering.json';
 import scienceBank from '../../content/question-bank/ai-for-science.json';
-import verveBank from '../../content/question-bank/verve-soft-skills.json';
+import softSkillsBank from '../../content/question-bank/soft-skills-pipeline.json';
 import projectWalkthroughBank from '../../content/question-bank/project-walkthrough.json';
 
 const software = softwareBank as PracticeProblem[];
@@ -14,7 +14,7 @@ const quant = quantBank as PracticeProblem[];
 const cybersecurity = cyberBank as PracticeProblem[];
 const marketEngineering = marketBank as PracticeProblem[];
 const aiForScience = scienceBank as PracticeProblem[];
-const verveSoftSkills = verveBank as PracticeProblem[];
+const softSkillsProblems = softSkillsBank as PracticeProblem[];
 const projectWalkthrough = projectWalkthroughBank as PracticeProblem[];
 
 export const allPracticeProblems: PracticeProblem[] = [
@@ -24,7 +24,7 @@ export const allPracticeProblems: PracticeProblem[] = [
   ...cybersecurity,
   ...marketEngineering,
   ...aiForScience,
-  ...verveSoftSkills,
+  ...softSkillsProblems,
   ...projectWalkthrough,
 ];
 

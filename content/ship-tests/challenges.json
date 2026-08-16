@@ -26,7 +26,7 @@
     "track": "quant",
     "submitMode": "pr",
     "starterRepoUrl": "https://github.com/chaminext-templates/work-ticket-backtest-pit",
-    "description": "Quant research engineering ticket: build a linter that flags look-ahead bias patterns in a toy feature pipeline. SIG / prop-shop style — tests matter more than slides.",
+    "description": "Quant research engineering ticket: build a linter that flags look-ahead bias patterns in a toy feature pipeline. Prop-shop style — tests matter more than slides.",
     "pmBrief": "Research keeps shipping features with accidental future data. We need an automated linter on the standard pipeline template before any backtest runs.",
     "ticketBrief": "## Ticket QUANT-771\n\nIn the starter repo (Python), implement `pit_linter.py`:\n\n- Load sample feature parquet + price series with intentional leakage examples\n- Flag rows where feature timestamp > decision timestamp (as-of violation)\n- Flag merge keys that don't respect point-in-time joins\n- Emit JSON report: `{violations: [...], rows_checked, pass}`\n- Unit tests covering at least 3 violation types\n- README: how to run linter in CI before backtest\n\n**AI allowed** — disclose in PR.\n\n**Submit:** PR against `main` with tests green.",
     "constraints": [

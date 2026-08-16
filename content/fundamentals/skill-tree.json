@@ -237,8 +237,11 @@
               "label": "Probability & statistics",
               "fundamentals": [
                 "conditional expectation and Bayes",
+                "dice / urn / cards toys under time pressure",
+                "distributions: expectation and variance from first principles",
                 "hypothesis testing discipline",
-                "explain assumptions behind a claim"
+                "explain assumptions behind a claim",
+                "stuck narration: smaller case → likelihoods → sanity check"
               ],
               "domains": ["arrays"]
             },

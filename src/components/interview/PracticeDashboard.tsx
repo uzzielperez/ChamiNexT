@@ -244,7 +244,7 @@ const PracticeDashboard: React.FC<PracticeDashboardProps> = ({
           <section className="mb-10">
             <h2 className="text-xl font-bold text-text-primary mb-1">Quant work tickets</h2>
             <p className="text-sm text-text-secondary mb-4">
-              SIG-style tickets — backtest linter, VWAP sim, order book stats, pairs monitor
+              Prop-shop tickets — backtest linter, VWAP sim, order book stats, pairs monitor
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-4">
               {quantShipTests.map((c) => {

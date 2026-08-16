@@ -145,7 +145,7 @@
             "Cannot explain one PR in detail",
             "Giant unreviewable diff"
           ],
-          "coachTip": "VERVE-style hiring uses Work Tickets — your Ship Test PR *is* interview practice for this round.",
+          "coachTip": "growth-stage hiring uses Work Tickets — your Ship Test PR *is* interview practice for this round.",
           "practiceProblemId": "project-walkthrough-prs"
         },
         {

@@ -21,11 +21,11 @@ Upload these from the ChamiNexT repo as a single notebook:
 
 | File | Why |
 |------|-----|
-| `content/employers/verve-soft-skills.json` | Canonical VERVE 5-phase rubrics |
-| `content/question-bank/verve-soft-skills.json` | Practice prompts |
+| `content/employers/soft-skills-pipeline.json` | Canonical 5-phase soft-skill rubrics |
+| `content/question-bank/soft-skills-pipeline.json` | Practice prompts |
 | `content/coaching/soft-skills-playlists.json` | Episode structure + frameworks |
 | `content/frontier-problems/tests.json` | Ethics probes (dual-use, mission) |
-| `tasks/brief-verve-pipeline.md` | Pipeline context |
+| `tasks/brief-soft-skills-pipeline.md` | Pipeline context |
 
 Optional: your own STAR stories, company-specific values docs, or exported Glassdoor/Blind threads (respect copyright — summarize in your own words).
 
@@ -41,10 +41,10 @@ Optional: your own STAR stories, company-specific values docs, or exported Glass
 
 ### 2. Generate study material per episode
 
-For each VERVE phase, run a prompt like:
+For each growth-stage phase, run a prompt like:
 
 ```text
-Using only the sources, create a 12-minute Coach script for "VERVE Phase 2: Pushback on No".
+Using only the sources, create a 12-minute Coach script for "Phase 2: Pushback on No".
 
 Include:
 1. What the interviewer is really testing (one paragraph)
@@ -73,14 +73,14 @@ Save each script as:
 content/coaching/scripts/{episode-id}.md
 ```
 
-Example: `content/coaching/scripts/verve-pushback.md`
+Example: `content/coaching/scripts/soft-pushback.md`
 
 Then extend `content/coaching/soft-skills-playlists.json`:
 
 ```json
 {
-  "id": "verve-pushback",
-  "coachScriptPath": "content/coaching/scripts/verve-pushback.md",
+  "id": "soft-pushback",
+  "coachScriptPath": "content/coaching/scripts/soft-pushback.md",
   "notebookLmGeneratedAt": "2026-07-12"
 }
 ```
@@ -105,7 +105,7 @@ To add real artwork:
 
 1. Generate 512×512 covers in NotebookLM / Midjourney / Figma — one visual metaphor per skill (e.g. scales for pragmatism, shield for ethics)
 2. Save to `public/images/coaching/{episode-id}.webp`
-3. Add `"coverImage": "/images/coaching/verve-pushback.webp"` to episode JSON
+3. Add `"coverImage": "/images/coaching/soft-pushback.webp"` to episode JSON
 4. Update `CoverCard.tsx` to prefer `coverImage` over gradient when present
 
 ---
@@ -119,7 +119,7 @@ To add real artwork:
 | Mock interview routing | Draft scripts for ElevenLabs |
 | Spotify card metadata | Brainstorm follow-up questions |
 
-Never paste NotebookLM output into rubrics without human review — behavioral scoring must stay aligned with `verve-soft-skills.json`.
+Never paste NotebookLM output into rubrics without human review — behavioral scoring must stay aligned with `soft-skills-pipeline.json`.
 
 ---
 

@@ -5,20 +5,20 @@
       "id": "ethics-soft-skills",
       "title": "Ethics & Soft Skills Interview",
       "tagline": "The questions that decide offers — with frameworks, not scripts",
-      "description": "Deep coaching on behavioral rounds (VERVE-style) and ethics probes at mission-driven companies. Each episode: what they're testing, sample questions, strong vs weak answers, and a live mock.",
+      "description": "Deep coaching on behavioral rounds (growth-stage) and ethics probes at mission-driven companies. Each episode: what they're testing, sample questions, strong vs weak answers, and a live mock.",
       "cover": {
         "gradient": "linear-gradient(135deg, #581c87 0%, #db2777 55%, #f97316 100%)",
         "icon": "shield-heart"
       },
       "notebookLmSources": [
-        "content/employers/verve-soft-skills.json",
-        "content/question-bank/verve-soft-skills.json",
+        "content/employers/soft-skills-pipeline.json",
+        "content/question-bank/soft-skills-pipeline.json",
         "content/frontier-problems/tests.json",
-        "tasks/brief-verve-pipeline.md"
+        "tasks/brief-soft-skills-pipeline.md"
       ],
       "episodes": [
         {
-          "id": "verve-ownership",
+          "id": "soft-ownership",
           "phase": 1,
           "title": "Ownership & big picture",
           "problemYouSolve": "Prove you own outcomes — not tickets — and connect work to impact.",
@@ -41,10 +41,10 @@
             "Purely technical answer with no product or user lens"
           ],
           "coachTip": "Interviewers listen for judgment under ambiguity. The real problem is often organizational, not technical.",
-          "practiceProblemId": "verve-ownership"
+          "practiceProblemId": "soft-ownership"
         },
         {
-          "id": "verve-pushback",
+          "id": "soft-pushback",
           "phase": 2,
           "title": "Pushback on No",
           "problemYouSolve": "Show you advocate with evidence — then commit fully after a decision.",
@@ -67,10 +67,10 @@
             "Framing the story as winning an argument"
           ],
           "coachTip": "Senior signal: knowing when to stop advocating and when to escalate with new information.",
-          "practiceProblemId": "verve-pushback"
+          "practiceProblemId": "soft-pushback"
         },
         {
-          "id": "verve-mentorship",
+          "id": "soft-mentorship",
           "phase": 3,
           "title": "Force multiplier & mentorship",
           "problemYouSolve": "Demonstrate you make the team faster — not just yourself.",
@@ -93,10 +93,10 @@
             "No outcome for the mentee or team"
           ],
           "coachTip": "They want systems thinking: reduced bus factor, not heroics.",
-          "practiceProblemId": "verve-mentorship"
+          "practiceProblemId": "soft-mentorship"
         },
         {
-          "id": "verve-pragmatism",
+          "id": "soft-pragmatism",
           "phase": 4,
           "title": "Pragmatism vs perfectionism",
           "problemYouSolve": "Show you ship with explicit trade-offs — and protect what must not break.",
@@ -119,10 +119,10 @@
             "Cannot articulate what good enough meant"
           ],
           "coachTip": "The trap is sounding reckless OR sounding like you never ship. Name the quality bar explicitly.",
-          "practiceProblemId": "verve-pragmatism"
+          "practiceProblemId": "soft-pragmatism"
         },
         {
-          "id": "verve-candidate-questions",
+          "id": "soft-candidate-questions",
           "phase": 5,
           "title": "Your questions for them",
           "problemYouSolve": "Turn the end of the interview into proof you're evaluating them too.",
@@ -145,7 +145,7 @@
             "Adversarial or entitlement tone"
           ],
           "coachTip": "Senior candidates ask about architecture risks and how decisions get made — not just perks.",
-          "practiceProblemId": "verve-candidate-questions"
+          "practiceProblemId": "soft-candidate-questions"
         },
         {
           "id": "ethics-dual-use",
@@ -197,7 +197,7 @@
             "Conflict avoided at cost of product quality"
           ],
           "coachTip": "Team fit is not 'everyone likes me' — it's 'I make hard calls without breaking trust'.",
-          "practiceProblemId": "verve-ownership"
+          "practiceProblemId": "soft-ownership"
         }
       ]
     }

@@ -128,7 +128,7 @@ export const PRACTICE_MODE_CARDS: PracticeModeCard[] = [
   {
     id: 'soft-skills',
     title: 'Ethics & soft skills',
-    tagline: 'Sample Q&A + behavioral mocks (VERVE-style)',
+    tagline: 'Sample Q&A + behavioral mocks (growth-stage)',
     href: '/coaching/ethics-soft-skills',
     cover: {
       gradient: 'linear-gradient(135deg, #581c87 0%, #db2777 100%)',
@@ -158,7 +158,7 @@ export const PRACTICE_MODE_CARDS: PracticeModeCard[] = [
       icon: 'rocket',
       problemYouSolve: 'Replace whiteboard puzzles with a scoped PR',
     },
-    badge: 'VERVE',
+    badge: 'Work Ticket',
   },
   {
     id: 'skills',
@@ -196,7 +196,7 @@ export const PRACTICE_MODE_CARDS: PracticeModeCard[] = [
   {
     id: 'quant-hm',
     title: 'Quant HM prep',
-    tagline: 'Research hygiene + production — SIG / systematic fund style',
+    tagline: 'Research hygiene + production — prop / systematic fund style',
     href: '/coaching/quant-hm-prep',
     cover: {
       gradient: 'linear-gradient(135deg, #134e4a 0%, #0891b2 100%)',

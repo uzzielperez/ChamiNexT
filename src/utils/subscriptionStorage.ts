@@ -12,13 +12,15 @@ export const PLAN_LIMITS: Record<
 > = {
   free: { interviewsPerDay: 2, shipTestsPerMonth: 1, label: 'Free' },
   pro: { interviewsPerDay: 999, shipTestsPerMonth: 0, label: 'Pro' },
-  builder: { interviewsPerDay: 999, shipTestsPerMonth: 999, label: 'Builder' },
+  builder: { interviewsPerDay: 999, shipTestsPerMonth: 999, label: 'Season' },
   premium: { interviewsPerDay: 999, shipTestsPerMonth: 999, label: 'Premium' },
   'interview-season': {
     interviewsPerDay: 999,
     shipTestsPerMonth: 999,
-    label: 'Interview Season',
+    label: 'Sprint',
   },
+  'biz-small': { interviewsPerDay: 999, shipTestsPerMonth: 999, label: 'Small Business' },
+  'biz-growth': { interviewsPerDay: 999, shipTestsPerMonth: 999, label: 'Growth' },
 };
 
 function addDaysIso(days: number): string {
@@ -47,6 +49,27 @@ export function saveSubscription(plan: SubscriptionPlan): void {
     payload.expiresAt = addDaysIso(INTERVIEW_SEASON_DAYS);
   }
   localStorage.setItem(SUB_KEY, JSON.stringify(payload));
+}
+
+export function saveVerifiedSubscription( partial: Partial<UserSubscription> & { plan: SubscriptionPlan }): void {
+  const existing = loadSubscription();
+  const payload: UserSubscription = {
+    ...existing,
+    ...partial,
+    plan: partial.plan,
+    since: partial.since || existing.since || new Date().toISOString(),
+    isTrial: false,
+    verified: true,
+  };
+  if (partial.plan === 'interview-season' && !payload.expiresAt) {
+    payload.expiresAt = addDaysIso(INTERVIEW_SEASON_DAYS);
+  }
+  saveSubscriptionPayload(payload);
+}
+
+export function hasCompanyAccess(): boolean {
+  const plan = getEffectivePlan();
+  return plan === 'biz-small' || plan === 'biz-growth' || Boolean(loadSubscription().workspaceId);
 }
 
 /** One 30-day Builder trial per browser (upgrade to server-side check with Neon later). */
@@ -98,7 +121,13 @@ export function getSubscriptionExpiry(): string | undefined {
 
 export function hasBuilderAccess(): boolean {
   const plan = getEffectivePlan();
-  return plan === 'builder' || plan === 'premium' || plan === 'interview-season';
+  return (
+    plan === 'builder' ||
+    plan === 'premium' ||
+    plan === 'interview-season' ||
+    plan === 'biz-small' ||
+    plan === 'biz-growth'
+  );
 }
 
 export function canStartInterview(): boolean {

@@ -54,7 +54,7 @@ exports.handler = async (event) => {
           role: 'system',
           content: `You evaluate ChamiNext Ship Tests. Score 0-100 on: shipping, productThinking, engineeringQuality, executionSpeed, tradeoffAwareness. overall = average.${
             isWorkTicket
-              ? ' This is a Work Ticket (VERVE-style): evaluate PR quality, test coverage, scope discipline, README clarity, and trade-off notes in the PR description. AI tool use is allowed if disclosed.'
+              ? ' This is a Work Ticket (growth-stage): evaluate PR quality, test coverage, scope discipline, README clarity, and trade-off notes in the PR description. AI tool use is allowed if disclosed.'
               : ''
           } Return ONLY JSON:
 {"scores":{"shipping":N,"productThinking":N,"engineeringQuality":N,"executionSpeed":N,"tradeoffAwareness":N,"overall":N},"feedback":"2-4 sentences for the candidate"}`,

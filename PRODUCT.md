@@ -74,3 +74,9 @@ Direct, confident, technical but not jargon-heavy. No hype stacks. Short sentenc
 - Candidates fail from stage unpreparedness, not just content: simulate the
   full loop (recruiter screen → technical → behavioral), not isolated problems.
 - Scraped intel seeds the question flywheel; user field reports are the moat.
+
+## Strategy docs (tasks/)
+
+- Coach / Jack & Jill lineage: `tasks/learnings-jack-and-jill.md`
+- career-ops integration (optional): `tasks/prd-career-ops-integration.md`
+- Coach implementation checklist: `tasks/tasks-coach-onboarding.md`

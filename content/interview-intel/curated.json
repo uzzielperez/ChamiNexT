@@ -5,31 +5,42 @@
       "company": "Top-tier options market maker",
       "anonymous": true,
       "tracks": ["quant"],
-      "roles": ["Quant Researcher (PhD track)", "Quant Trading Intern"],
+      "roles": ["Quant Researcher", "Quantitative Trader", "Quant Trading Intern"],
       "stages": [
         {
           "stage": "recruiter-screen",
-          "notes": "Often relationship-driven: campus recruiting, seminars, or CV posted online. PhD-level quant roles; rolling hires through the year."
+          "notes": "CV screen is harsh without elite pedigree (top-20 filter is real). Recruiter phone follows online OA: location/fit (East Coast trading hubs), current role, and why trading."
         },
         {
           "stage": "technical-screen",
-          "notes": "Three separate phone rounds (~45–60 min each). Probability, statistics, calculus, linear algebra, and programming. Communication is scored; asking for hints is normal and expected."
+          "notes": "Online math assessment first: expectation/distributions; ~10–20 MCQs covering probability & stats (dice, balls, cards), calculus, and linear algebra. Then quant phone: concept depth — explain yourself; when stuck, narrate how you get unstuck. Tech round still uses basic programming problems."
         },
         {
           "stage": "take-home",
-          "notes": "Multi-day data exercise (typically a few days to a week). Python/pandas on trading or market-style datasets. You finish on your own timeline — not a live timed test."
+          "notes": "Senior-quant data exercise: pretend trading dataset + prompt. Deliverable is a concise report — not a 200-graph notebook. Careful prioritization; explain method and results; anticipate 'why doesn't your analysis see X?'"
         },
         {
           "stage": "onsite",
-          "notes": "~5 hours: advanced math, computing, logic puzzles, and culture fit. Intern loop mirrors full-time; internship adds a project with presentations toward return offers."
+          "notes": "Open-ended probability & statistics and game-theory style thinking questions — decompose on the fly. Fly-out presentation of the data exercise: show something new and defend it to a math-PhD audience. Intern loop mirrors FT; internship is often an 8-week version of the same interview bar."
         }
       ],
       "processNotes": [
-        "Finance background is not required upfront — math and probability strength matters more.",
-        "Public prep narratives cite Ross (Introduction to Probability Models), Bailey (Probability & Statistical Models — problem-solving focus), and introductory derivatives pricing texts.",
-        "Phone rounds assess how you think out loud; partial progress with good hints beats silent perfection."
+        "Finance background not required up front — math, probability, and clear thinking matter more.",
+        "Brevity is highly valued on the data exercise: results first, method second, no chart spam.",
+        "Day-to-day signal to use in fit rounds: quoting into the market, retuning parameters, modelling/valuation, shipping systems with developers, urgency of live trading.",
+        "Phone and onsite score how you think out loud; partial progress with structured stuck-handling beats silent perfection.",
+        "Public prep narratives cite Ross (Introduction to Probability Models), Bailey (problem-solving probability), and introductory derivatives pricing texts."
       ],
       "questions": [
+        {
+          "id": "curated-quant-anon-oa-1",
+          "text": "Online assessment: expectation and distribution questions (geometric waiting times, conditional probability) plus calculus and linear algebra MCQs — dice, urns/balls, and cards are common toys.",
+          "kind": "domain-knowledge",
+          "stage": "technical-screen",
+          "track": "quant",
+          "sourceUrl": "field-notes:prop-mm-interview-loop-2026",
+          "sourceType": "blog"
+        },
         {
           "id": "curated-quant-anon-phone-1",
           "text": "Walk through a classic conditional-probability puzzle (e.g. Monty Hall or a variant with changing information). Explain your reasoning step by step.",
@@ -59,6 +70,15 @@
         },
         {
           "id": "curated-quant-anon-phone-4",
+          "text": "You're stuck mid-problem. Narrate how you get unstuck: smaller case, invariants, what you'd try next. Interviewers score the process, not silence.",
+          "kind": "domain-knowledge",
+          "stage": "technical-screen",
+          "track": "quant",
+          "sourceUrl": "field-notes:prop-mm-interview-loop-2026",
+          "sourceType": "blog"
+        },
+        {
+          "id": "curated-quant-anon-phone-5",
           "text": "Short programming exercise or live coding: implement a small algorithm or data structure and talk through complexity and edge cases.",
           "kind": "coding",
           "stage": "technical-screen",
@@ -67,34 +87,70 @@
           "sourceType": "blog"
         },
         {
+          "id": "curated-quant-anon-recruiter-1",
+          "text": "Recruiter screen: where do you live / work, and are you open to on-site collaboration at the firm's East Coast trading hubs?",
+          "kind": "recruiter",
+          "stage": "recruiter-screen",
+          "track": "quant",
+          "sourceUrl": "field-notes:prop-mm-interview-loop-2026",
+          "sourceType": "blog"
+        },
+        {
+          "id": "curated-quant-anon-recruiter-2",
+          "text": "Walk through your research or industry background and why you want a trading / options market-making desk.",
+          "kind": "recruiter",
+          "stage": "recruiter-screen",
+          "track": "quant",
+          "sourceUrl": "https://sites.lsa.umich.edu/math-graduates/2020/09/15/moving-from-academic-to-industry-career-plans-a-personal-story/",
+          "sourceType": "blog"
+        },
+        {
           "id": "curated-quant-anon-takehome-1",
-          "text": "Take-home: load a trading or market-style dataset with Python/pandas, clean anomalies, and compute summary statistics or signals the prompt specifies. Document assumptions.",
+          "text": "Take-home: load a trading or market-style dataset with Python/pandas, clean anomalies, and produce a concise report with a few decisive findings — not dozens of exploratory plots.",
           "kind": "take-home",
           "stage": "take-home",
           "track": "quant",
-          "sourceUrl": "https://sites.lsa.umich.edu/math-graduates/2020/09/15/moving-from-academic-to-industry-career-plans-a-personal-story/",
+          "sourceUrl": "field-notes:prop-mm-interview-loop-2026",
+          "sourceType": "blog"
+        },
+        {
+          "id": "curated-quant-anon-takehome-2",
+          "text": "In the data-exercise write-up: explain how you got each result and what it means. Anticipate a senior asking why your analysis does not see a particular effect.",
+          "kind": "take-home",
+          "stage": "take-home",
+          "track": "quant",
+          "sourceUrl": "field-notes:prop-mm-interview-loop-2026",
           "sourceType": "blog"
         },
         {
           "id": "curated-quant-anon-onsite-1",
-          "text": "Onsite logic puzzle or brainteaser — often unrelated to finance. Show structured reasoning and sanity checks.",
+          "text": "Open-ended probability / statistics question — decompose under time pressure; show structured reasoning and sanity checks.",
           "kind": "domain-knowledge",
           "stage": "onsite",
           "track": "quant",
-          "sourceUrl": "https://sites.lsa.umich.edu/math-graduates/2020/09/15/moving-from-academic-to-industry-career-plans-a-personal-story/",
+          "sourceUrl": "field-notes:prop-mm-interview-loop-2026",
           "sourceType": "blog"
         },
         {
           "id": "curated-quant-anon-onsite-2",
-          "text": "Deeper math or computing problem under time pressure — may combine probability with implementation sketch.",
-          "kind": "coding",
+          "text": "Game-theory / competitive-strategy style puzzle: invent a winning theory on the fly (payoffs, information, strategies) and bound or compute.",
+          "kind": "domain-knowledge",
           "stage": "onsite",
           "track": "quant",
-          "sourceUrl": "https://sites.lsa.umich.edu/math-graduates/2020/09/15/moving-from-academic-to-industry-career-plans-a-personal-story/",
+          "sourceUrl": "field-notes:prop-mm-interview-loop-2026",
           "sourceType": "blog"
         },
         {
-          "id": "curated-quant-anon-behavioral-1",
+          "id": "curated-quant-anon-onsite-3",
+          "text": "Present your data-exercise findings: prefer one novel, PhD-defendable insight over a tour of every chart.",
+          "kind": "behavioral",
+          "stage": "onsite",
+          "track": "quant",
+          "sourceUrl": "field-notes:prop-mm-interview-loop-2026",
+          "sourceType": "blog"
+        },
+        {
+          "id": "curated-quant-anon-onsite-4",
           "text": "Culture fit: how you collaborate on hard problems, handle ambiguity, and communicate technical work to non-specialists.",
           "kind": "behavioral",
           "stage": "onsite",
@@ -103,12 +159,12 @@
           "sourceType": "blog"
         },
         {
-          "id": "curated-quant-anon-recruiter-1",
-          "text": "Recruiter screen: walk through your PhD or research background and why you are moving from academia to a trading desk.",
-          "kind": "recruiter",
-          "stage": "recruiter-screen",
+          "id": "curated-quant-anon-tech-1",
+          "text": "Tech interview: basic programming problem — correct solution, edge cases, and complexity. AI-era tooling does not remove this round.",
+          "kind": "coding",
+          "stage": "technical-screen",
           "track": "quant",
-          "sourceUrl": "https://sites.lsa.umich.edu/math-graduates/2020/09/15/moving-from-academic-to-industry-career-plans-a-personal-story/",
+          "sourceUrl": "field-notes:prop-mm-interview-loop-2026",
           "sourceType": "blog"
         }
       ],
@@ -117,6 +173,11 @@
           "type": "blog",
           "title": "Public PhD → prop-shop career narrative (firm anonymized here)",
           "url": "https://sites.lsa.umich.edu/math-graduates/2020/09/15/moving-from-academic-to-industry-career-plans-a-personal-story/"
+        },
+        {
+          "type": "blog",
+          "title": "Field notes: options market-maker interview loop (Aug 2026) — stored as tasks/brief-prop-mm-interview-loop.md",
+          "url": "field-notes:prop-mm-interview-loop-2026"
         }
       ]
     }

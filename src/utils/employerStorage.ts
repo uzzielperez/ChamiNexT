@@ -54,3 +54,37 @@ export function updateApplicationStatus(id: string, status: CandidateApplication
     loadApplications().map((a) => (a.id === id ? { ...a, status } : a))
   );
 }
+
+export function applicationsToCsv(
+  apps: CandidateApplication[],
+  roles: EmployerRole[] = loadRoles()
+): string {
+  const roleTitle = (roleId: string) => roles.find((r) => r.id === roleId)?.title || roleId;
+  const header = [
+    'displayName',
+    'role',
+    'thinking',
+    'shipping',
+    'shipTestTitle',
+    'status',
+    'profileSlug',
+    'deploymentUrl',
+    'appliedAt',
+  ];
+  const rows = apps.map((a) =>
+    [
+      a.displayName,
+      roleTitle(a.roleId),
+      a.thinking,
+      a.shipping,
+      a.shipTestTitle,
+      a.status,
+      a.profileSlug,
+      a.deploymentUrl || '',
+      a.appliedAt,
+    ]
+      .map((cell) => `"${String(cell).replace(/"/g, '""')}"`)
+      .join(',')
+  );
+  return [header.join(','), ...rows].join('\n');
+}

@@ -1,14 +1,15 @@
 # PRD: Coach Onboarding, Skill Tree Progression & Job Matching
 
-> **Status:** Draft — ready for implementation planning  
+> **Status:** Draft — implementation ~85% Phase 1 on `main` (see `tasks/tasks-coach-onboarding.md`)  
 > **Author:** Product (from user decisions 2026-07-12)  
-> **Related:** `tasks/brief-verve-pipeline.md`, `tasks/fundraising-playbook.md`, `content/fundamentals/skill-tree.json`
+> **IP / lineage:** `tasks/learnings-jack-and-jill.md` (comparative study — not a clone)  
+> **Related:** `tasks/brief-soft-skills-pipeline.md`, `tasks/fundraising-playbook.md`, `tasks/prd-career-ops-integration.md`, `content/fundamentals/skill-tree.json`
 
 ---
 
 ## 1. Introduction / Overview
 
-ChamiNexT will adopt a **Jack & Jill–inspired job-seeker journey** with a key differentiation: candidates don't just get matched to jobs — they **prepare** through a personalized skill tree, AI mocks, and Ship Tests before warm intros go out.
+ChamiNexT will adopt a **Jack & Jill–inspired job-seeker journey** (see `tasks/learnings-jack-and-jill.md` for IP boundaries and what is ChamiNexT-original vs inspired) with a key differentiation: candidates don't just get matched to jobs — they **prepare** through a personalized skill tree, AI mocks, and Ship Tests before warm intros go out.
 
 **Problem:** Job seekers bounce between generic job boards, LeetCode grinds, and cold applications. Hiring teams drown in unvetted applicants. Jack & Jill solves matching with a voice-first AI coach ("Jack"); ChamiNexT solves **readiness + proof of output** on the same path.
 
@@ -167,7 +168,7 @@ ChamiNexT will adopt a **Jack & Jill–inspired job-seeker journey** with a key 
 - **Voice onboarding for Coach** in v1 (Jack's 20-min voice call — deferred)
 - **Automated email/LinkedIn send** in v1 (Phase 3)
 - **Jill employer agent** matching candidates to companies autonomously (existing Interview Studio remains manual/demo)
-- **Replacing** existing interview simulator, Ship Tests, or VERVE pipeline — Coach **routes into** them
+- **Replacing** existing interview simulator, Ship Tests, or soft-skills pipeline — Coach **routes into** them
 - **New job scraping sources** — use existing `jobs.json` pipeline
 - **Mobile native app** — responsive web only
 - **Real-time LinkedIn API** for profile import in v1 (optional: paste LinkedIn URL / upload CV as enhancement)
@@ -326,4 +327,4 @@ job_saves (user_id, job_id, match_score, saved_at)
 
 ---
 
-*Next step: generate `tasks-coach-onboarding.md` task list on user confirmation ("Go"). Do not implement until task list is approved.*
+*Next step: Phase B career-ops bridge per `tasks/prd-career-ops-integration.md` when approved. Task checklist: `tasks/tasks-coach-onboarding.md` (synced 2026-07-14).*

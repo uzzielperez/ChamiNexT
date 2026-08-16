@@ -44,7 +44,7 @@ function ChallengeGrid({
                 : c.track === 'quant'
                   ? 'Quant'
                   : c.format === 'ticket'
-                    ? 'VERVE'
+                    ? 'Work Ticket'
                     : unlocked
                       ? 'Open'
                       : 'Locked'

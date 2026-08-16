@@ -1,7 +1,7 @@
 [
   {
-    "id": "verve-ownership",
-    "title": "VERVE Phase 1: Ownership & big picture",
+    "id": "soft-ownership",
+    "title": "Soft skills Phase 1: Ownership & big picture",
     "domain": "behavioral",
     "track": "software",
     "difficulty": "medium",
@@ -13,12 +13,12 @@
     ],
     "starterCode": "",
     "runLanguage": "none",
-    "source": "verve-pipeline:phase-1",
+    "source": "soft-pipeline:phase-1",
     "license": "ChamiNext"
   },
   {
-    "id": "verve-pushback",
-    "title": "VERVE Phase 2: Pushback on No",
+    "id": "soft-pushback",
+    "title": "Soft skills Phase 2: Pushback on No",
     "domain": "behavioral",
     "track": "software",
     "difficulty": "medium",
@@ -30,29 +30,29 @@
     ],
     "starterCode": "",
     "runLanguage": "none",
-    "source": "verve-pipeline:phase-2",
+    "source": "soft-pipeline:phase-2",
     "license": "ChamiNext"
   },
   {
-    "id": "verve-mentorship",
-    "title": "VERVE Phase 3: Force multiplier & mentorship",
+    "id": "soft-mentorship",
+    "title": "Soft skills Phase 3: Force multiplier & mentorship",
     "domain": "behavioral",
     "track": "software",
     "difficulty": "medium",
     "estimatedMinutes": 20,
-    "prompt": "Tell me about a time you helped someone on your team level up — or unblocked others so the whole team shipped faster.",
+    "prompt": "Tell me about a time you helped someone on your team level up \u2014 or unblocked others so the whole team shipped faster.",
     "hints": [
       "Focus on artifacts left behind: docs, pairing, reviews.",
       "Quantify team outcome, not solo heroics."
     ],
     "starterCode": "",
     "runLanguage": "none",
-    "source": "verve-pipeline:phase-3",
+    "source": "soft-pipeline:phase-3",
     "license": "ChamiNext"
   },
   {
-    "id": "verve-pragmatism",
-    "title": "VERVE Phase 4: Pragmatism vs perfectionism",
+    "id": "soft-pragmatism",
+    "title": "Soft skills Phase 4: Pragmatism vs perfectionism",
     "domain": "behavioral",
     "track": "software",
     "difficulty": "medium",
@@ -64,24 +64,24 @@
     ],
     "starterCode": "",
     "runLanguage": "none",
-    "source": "verve-pipeline:phase-4",
+    "source": "soft-pipeline:phase-4",
     "license": "ChamiNext"
   },
   {
-    "id": "verve-candidate-questions",
-    "title": "VERVE Phase 5: Candidate questions",
+    "id": "soft-candidate-questions",
+    "title": "Soft skills Phase 5: Candidate questions",
     "domain": "behavioral",
     "track": "software",
     "difficulty": "easy",
     "estimatedMinutes": 15,
-    "prompt": "We're at the end — what questions do you have for me about the team, role, or how we build software here?",
+    "prompt": "We're at the end \u2014 what questions do you have for me about the team, role, or how we build software here?",
     "hints": [
       "Ask about success at 30/90 days, code review culture, on-call.",
-      "Build on the interviewer's answers — show active listening."
+      "Build on the interviewer's answers \u2014 show active listening."
     ],
     "starterCode": "",
     "runLanguage": "none",
-    "source": "verve-pipeline:phase-5",
+    "source": "soft-pipeline:phase-5",
     "license": "ChamiNext"
   }
 ]

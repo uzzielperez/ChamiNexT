@@ -1,7 +1,7 @@
 {
-  "pipeline": "verve",
+  "pipeline": "soft-skills",
   "version": "1.0",
-  "description": "VERVE-style hiring pipeline rubrics for ChamiNexT behavioral interviews and employer assessments.",
+  "description": "Growth-stage hiring pipeline rubrics for ChamiNexT behavioral interviews and employer assessments. Firm anonymized.",
   "stages": [
     {
       "id": "cv-prescreen",
@@ -36,7 +36,7 @@
   ],
   "phases": [
     {
-      "id": "verve-ownership",
+      "id": "soft-ownership",
       "phase": 1,
       "title": "Ownership & big picture",
       "prompt": "Tell me about a time you took ownership of a project that was failing or at risk. What was the broader context, what did you do, and what was the outcome?",
@@ -64,14 +64,14 @@
         "How did you know the project was actually back on track?"
       ],
       "scoringDimensions": {
-        "thinking": "Judgment under ambiguity — did they see the real problem?",
-        "decomposition": "STAR structure — situation, stakes, actions, results",
+        "thinking": "Judgment under ambiguity \u2014 did they see the real problem?",
+        "decomposition": "STAR structure \u2014 situation, stakes, actions, results",
         "communication": "Clarity and concision without rambling",
-        "codeQuality": "Specificity — names, metrics, trade-offs vs generalities"
+        "codeQuality": "Specificity \u2014 names, metrics, trade-offs vs generalities"
       }
     },
     {
-      "id": "verve-pushback",
+      "id": "soft-pushback",
       "phase": 2,
       "title": "Pushback on No",
       "prompt": "Describe a situation where you received a clear no from leadership or a stakeholder on something you believed was important. How did you respond?",
@@ -99,17 +99,17 @@
         "Have you ever been glad you were overruled?"
       ],
       "scoringDimensions": {
-        "thinking": "Picks battles wisely — impact vs politics",
+        "thinking": "Picks battles wisely \u2014 impact vs politics",
         "decomposition": "Clear sequence: ask, present, adapt, commit",
-        "communication": "Tone — collaborative, not adversarial",
+        "communication": "Tone \u2014 collaborative, not adversarial",
         "codeQuality": "Concrete examples of what was proposed and why"
       }
     },
     {
-      "id": "verve-mentorship",
+      "id": "soft-mentorship",
       "phase": 3,
       "title": "Force multiplier & mentorship",
-      "prompt": "Tell me about a time you helped someone on your team level up — or unblocked others so the whole team shipped faster.",
+      "prompt": "Tell me about a time you helped someone on your team level up \u2014 or unblocked others so the whole team shipped faster.",
       "focusAreas": [
         "Invests in others without neglecting own delivery",
         "Documents, pairs, or reviews constructively",
@@ -134,14 +134,14 @@
         "When is it wrong to invest time in mentorship?"
       ],
       "scoringDimensions": {
-        "thinking": "Systems view — team throughput over individual heroics",
+        "thinking": "Systems view \u2014 team throughput over individual heroics",
         "decomposition": "Before/after team capability",
         "communication": "Explains technical concepts to varied audiences",
-        "codeQuality": "Artifacts left behind — docs, tests, patterns"
+        "codeQuality": "Artifacts left behind \u2014 docs, tests, patterns"
       }
     },
     {
-      "id": "verve-pragmatism",
+      "id": "soft-pragmatism",
       "phase": 4,
       "title": "Pragmatism vs perfectionism",
       "prompt": "Give an example where you deliberately shipped something imperfect to meet a deadline or learn faster. What did you cut and what did you protect?",
@@ -158,7 +158,7 @@
         "Aligns with PM/stakeholders on scope"
       ],
       "weakSignals": [
-        "Perfectionism — endless refactor with no ship",
+        "Perfectionism \u2014 endless refactor with no ship",
         "Reckless shortcuts in security or data integrity",
         "No awareness of technical debt created",
         "Cannot articulate what good enough meant"
@@ -169,17 +169,17 @@
         "Did the shortcut ever come back to bite you?"
       ],
       "scoringDimensions": {
-        "thinking": "Prioritization — impact, risk, reversibility",
+        "thinking": "Prioritization \u2014 impact, risk, reversibility",
         "decomposition": "MVP scope vs v2 plan",
         "communication": "Sets expectations on quality bar",
         "codeQuality": "Technical choices that limited blast radius"
       }
     },
     {
-      "id": "verve-candidate-questions",
+      "id": "soft-candidate-questions",
       "phase": 5,
       "title": "Candidate questions",
-      "prompt": "We're at the end — what questions do you have for me about the team, role, or how we build software here?",
+      "prompt": "We're at the end \u2014 what questions do you have for me about the team, role, or how we build software here?",
       "focusAreas": [
         "Questions show research and genuine interest",
         "Probes team dynamics, expectations, and growth",
@@ -204,10 +204,10 @@
         "What kind of manager helps you do your best work?"
       ],
       "scoringDimensions": {
-        "thinking": "Curiosity and role fit — do they evaluate us too?",
+        "thinking": "Curiosity and role fit \u2014 do they evaluate us too?",
         "decomposition": "Structured questions across team, product, process",
         "communication": "Active listening and building on answers",
-        "codeQuality": "Depth — senior candidates ask about architecture and risks"
+        "codeQuality": "Depth \u2014 senior candidates ask about architecture and risks"
       }
     }
   ]

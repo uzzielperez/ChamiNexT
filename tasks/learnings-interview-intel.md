@@ -43,10 +43,10 @@ Reddit, Hacker News, blogs, and YouTube transcripts; heuristic extraction into
 
 1. ~~Full-loop simulation~~ — shipped at `/loop`.
 2. ~~Rapid-fire drill mode~~ — shipped at `/drill`.
-3. ~~Project walkthrough coaching~~ — shipped at `/coaching/project-walkthrough`
-   (deployment, tests, PR defense; NotebookLM brief in
-   `tasks/brief-notebooklm-project-walkthrough.md`).
-4. **Behavioral signal in the talent profile**: communication-under-pressure as
+3. ~~Project walkthrough coaching~~ — shipped at `/coaching/project-walkthrough`.
+4. **Jack & Jill lineage doc** — `tasks/learnings-jack-and-jill.md` (IP-safe comparative study).
+5. **career-ops bridge PRD** — `tasks/prd-career-ops-integration.md` (Phase A patterns shipped; Phase B import TBD).
+6. **Behavioral signal in the talent profile**: communication-under-pressure as
    a third axis for the Interview Studio (employers see thinking + shipping;
    add behavioral).
 4. **Automate the pipeline**: weekly scheduled run (GitHub Action) with

@@ -56,6 +56,12 @@ export async function verifyMagicToken(token: string): Promise<{ token: string; 
   return data;
 }
 
+/** Redirects to Google OAuth (Netlify function). Same session as magic link after callback. */
+export function startGoogleSignIn(): void {
+  const origin = encodeURIComponent(window.location.origin);
+  window.location.href = `/.netlify/functions/auth-google-start?origin=${origin}`;
+}
+
 export function authHeaders(): Record<string, string> {
   const token = loadSessionToken();
   return token ? { Authorization: `Bearer ${token}` } : {};

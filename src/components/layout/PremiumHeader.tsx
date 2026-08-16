@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ArrowRight } from 'lucide-react';
+import { Menu, X, ArrowRight, HelpCircle } from 'lucide-react';
 import PremiumButton from '../ui/PremiumButton';
 import ChamiNextLogo from '../brand/ChamiNextLogo';
 import { SEEKER_NAV, EMPLOYER_NAV, isEmployerPath } from '../../config/navigation';
@@ -83,6 +83,16 @@ const PremiumHeader: React.FC = () => {
           </div>
 
           <div className="hidden md:flex items-center space-x-3">
+            <Link
+              to="/faq"
+              title="Investor & partner FAQs"
+              aria-label="Investor and partner FAQs"
+              className={`inline-flex items-center justify-center w-9 h-9 rounded-lg transition-colors duration-200 hover:bg-white/5 active:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] ${
+                isActiveLink('/faq') ? 'text-[var(--accent-bright)] bg-[var(--accent-primary)]/15' : 'text-text-secondary hover:text-text-primary'
+              }`}
+            >
+              <HelpCircle className="w-5 h-5" aria-hidden />
+            </Link>
             {authed ? (
               <>
                 <Link to="/coach" className={navLinkClass('/coach')}>
@@ -141,6 +151,14 @@ const PremiumHeader: React.FC = () => {
                   For Companies
                 </Link>
               )}
+
+              <Link
+                to="/faq"
+                className={`block ${navLinkClass('/faq')}`}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                FAQs (investors)
+              </Link>
 
               <div className="pt-4 pb-2 space-y-2">
                 <Link to="/login" className="block">

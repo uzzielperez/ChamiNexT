@@ -1,6 +1,6 @@
 const { Groq } = require('groq-sdk');
 const { checkRateLimit, rateLimitResponse } = require('./_shared/rateLimit');
-const verveRubrics = require('../../content/employers/verve-soft-skills.json');
+const softSkillsRubrics = require('../../content/employers/soft-skills-pipeline.json');
 
 const groq = process.env.GROQ_API_KEY
   ? new Groq({ apiKey: process.env.GROQ_API_KEY })
@@ -154,24 +154,24 @@ INTERVIEW PROTOCOL:
 5. Stay in character as a real interviewer. No meta-commentary about the exercise.`;
 
     const soft = SOFT_FOCUS[problem.domain];
-    const vervePhase = verveRubrics.phases.find(
+    const softPhase = softSkillsRubrics.phases.find(
       (p) => p.id === problem.id || (problem.source && problem.source.includes(`phase-${p.phase}`))
     );
-    const verveProtocol = vervePhase
+    const softProtocol = softPhase
       ? `
-VERVE SOFT-SKILL PHASE ${vervePhase.phase}: ${vervePhase.title}
-Focus: ${vervePhase.focusAreas.join('; ')}
-Strong signals: ${vervePhase.strongSignals.join('; ')}
-Weak signals (probe if you hear them): ${vervePhase.weakSignals.join('; ')}
-Use these follow-ups when appropriate: ${vervePhase.followUps.join(' | ')}
-Scoring dimensions: ${JSON.stringify(vervePhase.scoringDimensions)}`
+SOFT-SKILL PIPELINE PHASE ${softPhase.phase}: ${softPhase.title}
+Focus: ${softPhase.focusAreas.join('; ')}
+Strong signals: ${softPhase.strongSignals.join('; ')}
+Weak signals (probe if you hear them): ${softPhase.weakSignals.join('; ')}
+Use these follow-ups when appropriate: ${softPhase.followUps.join(' | ')}
+Scoring dimensions: ${JSON.stringify(softPhase.scoringDimensions)}`
       : '';
     const focus = soft || TRACK_FOCUS[track] || TRACK_FOCUS.software;
     const missionDomain = ['research-ethics', 'mission-problems', 'scientific-methods'].includes(
       problem.domain
     );
-    const protocol = soft || vervePhase
-      ? `${SOFT_PROTOCOL}${verveProtocol}`
+    const protocol = soft || softPhase
+      ? `${SOFT_PROTOCOL}${softProtocol}`
       : missionDomain
         ? `${CHAT_PROTOCOL}\n${MISSION_PROTOCOL}`
         : CHAT_PROTOCOL;
@@ -184,7 +184,7 @@ Return ONLY JSON:
 
     const scoreSystem = `You are ${focus.role} writing a post-interview evaluation for ChamiNext.
 ${focus.score}
-${verveProtocol}
+${softProtocol}
 Score 0-100 on: thinking, decomposition, communication, codeQuality.
 ${SCORE_RUBRIC}
 Return ONLY JSON:

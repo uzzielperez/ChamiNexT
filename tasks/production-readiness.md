@@ -2,6 +2,14 @@
 
 Path from demo to a product practitioners pay for, and to survive traffic spikes.
 
+## Launch checklist — founding cohort (5–30 payers)
+
+**Follow the plain-English guide:** [`tasks/brief-founding-cohort.md`](brief-founding-cohort.md)
+
+One-line version: Stripe test keys → `npm run stripe:founding` → paste vars in Netlify → webhook → redeploy → fake pay with `4242…` → then live keys + invite with `FOUNDING40`.
+
+Target: take real money from a small founding cohort with **40% off** (`FOUNDING40`, max 30 redemptions) for consumers and company pilots.
+
 ## What “payworthy” means here
 
 Users pay when they get **outcome + proof**, not more questions:
