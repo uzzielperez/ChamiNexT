@@ -9,7 +9,7 @@ export const BRIEFING_META = {
   subtitle: 'Thinking-process evaluation for technical hiring in the AI era',
   version: 'v1.1 · August 2026',
   site: 'chaminext.com',
-  contact: 'hello@chaminext.com',
+  contact: 'chaminxt@gmail.com',
 } as const;
 
 export const THINKING_PROCESS = {

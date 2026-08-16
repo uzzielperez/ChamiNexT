@@ -152,7 +152,7 @@ const businessTiers: {
   },
 ];
 
-const CONTACT_EMAIL = 'hello@chaminext.com';
+const CONTACT_EMAIL = 'chaminxt@gmail.com';
 
 const PricingPage: React.FC = () => {
   const navigate = useNavigate();
