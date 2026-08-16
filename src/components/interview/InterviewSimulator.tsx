@@ -1,5 +1,7 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
-import { Send, Square, MessageSquare, Play, Clock, Lightbulb } from 'lucide-react';
+import { Send, Square, MessageSquare, Play, Clock, Lightbulb, Monitor } from 'lucide-react';
+import CodingWorkspace from '../workspace/CodingWorkspace';
+import { workspaceFromProblem } from '../../data/workspaceTemplates';
 import { runCode } from '../../utils/codeRunner';
 import PremiumButton from '../ui/PremiumButton';
 import ScoreBreakdown from './ScoreBreakdown';
@@ -53,6 +55,7 @@ const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({
   const hasStarted = useRef(false);
   const [runOutput, setRunOutput] = useState('');
   const [running, setRunning] = useState(false);
+  const [studioMode, setStudioMode] = useState(false);
 
   const budgetSeconds = problem.estimatedMinutes * 60;
   const overBudget = elapsed > budgetSeconds;
@@ -200,13 +203,23 @@ const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({
               {stage ? 'Finish stage' : 'End & score'}
             </PremiumButton>
           )}
+          {!softRound && problem.runLanguage && (
+            <PremiumButton
+              variant={studioMode ? 'primary' : 'ghost'}
+              size="sm"
+              onClick={() => setStudioMode((v) => !v)}
+            >
+              <Monitor className="w-4 h-4 mr-1" />
+              {studioMode ? 'Studio on' : 'Open studio'}
+            </PremiumButton>
+          )}
           <PremiumButton variant="ghost" size="sm" onClick={onExit}>
             {stage ? 'Exit loop' : 'Back'}
           </PremiumButton>
         </div>
       </div>
 
-      <div className={`grid grid-cols-1 gap-6 mb-6 ${softRound ? '' : 'lg:grid-cols-2'}`}>
+      <div className={`grid grid-cols-1 gap-6 mb-6 ${softRound || studioMode ? '' : 'lg:grid-cols-2'}`}>
         <div className="card p-4">
           <h3 className="font-semibold text-text-primary mb-3">
             {softRound ? 'The question' : 'Problem'}
@@ -215,35 +228,47 @@ const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({
             {problem.prompt}
           </p>
         </div>
-        {!softRound && (
-        <div className="card p-0 overflow-hidden flex flex-col min-h-[280px]">
-          <div className="px-4 py-2 border-b border-[var(--border-color)] flex justify-between items-center">
-            <span className="text-sm font-medium text-text-secondary">
-              Your code{problem.runLanguage ? ` · ${problem.runLanguage}` : ''}
-            </span>
-            {problem.runLanguage && (
-              <PremiumButton variant="ghost" size="sm" onClick={handleRunCode} loading={running}>
-                <Play className="w-3 h-3 mr-1" />
-                Run
-              </PremiumButton>
+        {!softRound && !studioMode && (
+          <div className="card p-0 overflow-hidden flex flex-col min-h-[280px]">
+            <div className="px-4 py-2 border-b border-[var(--border-color)] flex justify-between items-center">
+              <span className="text-sm font-medium text-text-secondary">
+                Your code{problem.runLanguage ? ` · ${problem.runLanguage}` : ''}
+              </span>
+              {problem.runLanguage && (
+                <PremiumButton variant="ghost" size="sm" onClick={handleRunCode} loading={running}>
+                  <Play className="w-3 h-3 mr-1" />
+                  Run
+                </PremiumButton>
+              )}
+            </div>
+            <textarea
+              value={code}
+              onChange={(e) => setCode(e.target.value)}
+              disabled={sessionEnded}
+              className="flex-1 w-full p-4 bg-[var(--bg-secondary)] text-text-primary font-mono text-sm resize-none focus:outline-none min-h-[200px] leading-relaxed"
+              spellCheck={false}
+              aria-label="Code editor"
+            />
+            {runOutput && (
+              <pre className="p-3 text-xs bg-black/40 border-t border-[var(--border-color)] text-green-400 overflow-auto max-h-24">
+                {runOutput}
+              </pre>
             )}
           </div>
-          <textarea
-            value={code}
-            onChange={(e) => setCode(e.target.value)}
-            disabled={sessionEnded}
-            className="flex-1 w-full p-4 bg-[var(--bg-secondary)] text-text-primary font-mono text-sm resize-none focus:outline-none min-h-[200px] leading-relaxed"
-            spellCheck={false}
-            aria-label="Code editor"
-          />
-          {runOutput && (
-            <pre className="p-3 text-xs bg-black/40 border-t border-[var(--border-color)] text-green-400 overflow-auto max-h-24">
-              {runOutput}
-            </pre>
-          )}
-        </div>
         )}
       </div>
+
+      {!softRound && studioMode && (
+        <div className="mb-6">
+          <CodingWorkspace
+            template={workspaceFromProblem(problem)}
+            onFilesChange={(files, activePath) => {
+              const main = files[activePath] ?? files[`src/solution.js`] ?? files['src/solution.py'];
+              if (main) setCode(main);
+            }}
+          />
+        </div>
+      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 card flex flex-col min-h-[360px] max-h-[480px]">

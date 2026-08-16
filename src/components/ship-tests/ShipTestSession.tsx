@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import PremiumButton from '../ui/PremiumButton';
 import ShipScoreBreakdown from './ShipScoreBreakdown';
+import CodingWorkspace from '../workspace/CodingWorkspace';
 import { shipTestChallenges } from '../../data/shipTests';
+import { workspaceForChallenge } from '../../data/workspaceTemplates';
 import type { ShipTestEnrollment, ShipTestEvent } from '../../types/interview';
 import { loadShipEnrollment, saveShipEnrollment } from '../../utils/interviewStorage';
 import { evaluateShipTest } from '../../utils/shipTestEvaluator';
@@ -92,15 +94,19 @@ const ShipTestSession: React.FC<ShipTestSessionProps> = ({ onExit }) => {
     );
   }
 
+  const workspaceTemplate = isWorkTicket ? workspaceForChallenge(challenge) : null;
+
   return (
-    <div className="container mx-auto px-4 py-8 max-w-4xl">
-      <div className="flex flex-wrap justify-between gap-4 mb-8">
+    <div className="container mx-auto px-4 py-8 max-w-7xl">
+      <div className="flex flex-wrap justify-between gap-4 mb-6">
         <div>
           <h1 className="text-2xl font-bold text-text-primary">{challenge.title}</h1>
-          <p className="text-accent-blue font-mono text-lg mt-1">{remaining}</p>
+          {!isWorkTicket && (
+            <p className="text-accent-blue font-mono text-lg mt-1">{remaining}</p>
+          )}
           {isWorkTicket && (
             <p className="text-xs text-text-secondary mt-1 uppercase tracking-wide">
-              Work Ticket · AI allowed · PR submit
+              Work Ticket · AI allowed · code in studio or external repo
             </p>
           )}
         </div>
@@ -109,7 +115,28 @@ const ShipTestSession: React.FC<ShipTestSessionProps> = ({ onExit }) => {
         </PremiumButton>
       </div>
 
-      {isWorkTicket && challenge.ticketBrief && (
+      {isWorkTicket && workspaceTemplate && enrollment.status !== 'evaluated' && (
+        <div className="mb-8">
+          <CodingWorkspace
+            template={workspaceTemplate}
+            headerExtra={
+              <span className="text-xs font-mono text-accent-bright tabular-nums">{remaining}</span>
+            }
+          />
+          {challenge.starterRepoUrl && (
+            <a
+              href={challenge.starterRepoUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1 text-accent-blue text-sm mt-3 hover:underline"
+            >
+              Or open full starter repo in GitHub <ExternalLink className="w-3 h-3" />
+            </a>
+          )}
+        </div>
+      )}
+
+      {isWorkTicket && challenge.ticketBrief && enrollment.status === 'evaluated' && (
         <div className="card p-6 mb-6 border-accent-blue/30">
           <h3 className="font-bold text-text-primary mb-2 flex items-center gap-2">
             <GitPullRequest className="w-4 h-4 text-accent-blue" />
@@ -118,28 +145,20 @@ const ShipTestSession: React.FC<ShipTestSessionProps> = ({ onExit }) => {
           <pre className="text-text-secondary text-sm whitespace-pre-wrap font-sans">
             {challenge.ticketBrief}
           </pre>
-          {challenge.starterRepoUrl && (
-            <a
-              href={challenge.starterRepoUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1 text-accent-blue text-sm mt-4 hover:underline"
-            >
-              Open starter repo <ExternalLink className="w-3 h-3" />
-            </a>
-          )}
         </div>
       )}
 
-      <div className="card p-6 mb-6 border-accent-blue/20">
-        <h3 className="font-bold text-text-primary mb-2">Product Manager</h3>
-        <p className="text-text-secondary text-sm">{challenge.pmBrief}</p>
-        <ul className="mt-4 text-sm text-text-secondary space-y-1">
-          {challenge.constraints.map((c) => (
-            <li key={c}>• {c}</li>
-          ))}
-        </ul>
-      </div>
+      {!isWorkTicket && (
+        <div className="card p-6 mb-6 border-accent-blue/20">
+          <h3 className="font-bold text-text-primary mb-2">Product Manager</h3>
+          <p className="text-text-secondary text-sm">{challenge.pmBrief}</p>
+          <ul className="mt-4 text-sm text-text-secondary space-y-1">
+            {challenge.constraints.map((c) => (
+              <li key={c}>• {c}</li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
         <PremiumButton

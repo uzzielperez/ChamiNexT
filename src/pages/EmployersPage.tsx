@@ -245,7 +245,21 @@ const EmployersPage: React.FC = () => {
           )}
 
           {currentView === 'assessments' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <>
+              <div className="card p-6 mb-6 border-accent-blue/30 md:col-span-2">
+                <h3 className="font-bold text-text-primary">Browser coding studio</h3>
+                <p className="text-text-secondary text-sm mt-2 mb-4">
+                  Preview what candidates see on Work Tickets: Monaco editor, terminal, and prompt-aware
+                  coding agent — the thinking-process trail employers rank on.
+                </p>
+                <Link to="/studio">
+                  <PremiumButton variant="primary" size="sm">
+                    Open studio demo
+                    <ArrowRight className="w-4 h-4 ml-1" />
+                  </PremiumButton>
+                </Link>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {shipTestChallenges.map((c) => (
                 <div key={c.id} className="card p-6">
                   <h3 className="font-bold">{c.title}</h3>
@@ -272,6 +286,7 @@ const EmployersPage: React.FC = () => {
                 </ul>
               </div>
             </div>
+            </>
           )}
 
           {currentView === 'candidates' && (
