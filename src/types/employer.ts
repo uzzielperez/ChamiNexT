@@ -48,4 +48,6 @@ export interface CandidateApplication {
   status: 'new' | 'review' | 'strong' | 'hold';
   /** Studio submission with prompt trail (Interview Studio demo). */
   submissionId?: string;
+  /** Company interview loop from landing showcase */
+  companyLoopId?: string;
 }

@@ -54,6 +54,7 @@ import AssessmentTakePage from './pages/AssessmentTakePage';
 import AssessmentSubmittedPage from './pages/AssessmentSubmittedPage';
 import CompanyLoopPage from './pages/CompanyLoopPage';
 import SubmissionReviewPage from './pages/SubmissionReviewPage';
+import EmployerCompanyLoopPage from './pages/EmployerCompanyLoopPage';
 
 // Import premium design system styles
 import './styles/design-system.css';
@@ -101,6 +102,7 @@ function App() {
             <Route path="/demo/submitted/:submissionId" element={<AssessmentSubmittedPage />} />
             <Route path="/assess/:roleId" element={<AssessmentTakePage />} />
             <Route path="/challenge/:loopId" element={<CompanyLoopPage />} />
+            <Route path="/employers/loops/:loopId" element={<EmployerCompanyLoopPage />} />
             <Route path="/employers/review/:submissionId" element={<SubmissionReviewPage />} />
             <Route path="/studio" element={<Navigate to="/demo" replace />} />
             <Route path="/profile/:slug" element={<PublicProfilePage />} />

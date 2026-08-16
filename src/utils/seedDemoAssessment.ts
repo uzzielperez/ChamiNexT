@@ -1,6 +1,6 @@
 import type { PromptRecord, StudioSubmission } from '../types/studioSubmission';
 import { saveSubmission } from './studioSubmissionStorage';
-import { gradeSubmissionPackage } from './submissionGrader';
+import { gradeSubmissionPackage, enrichSubmissionWithAssessment } from './submissionGrader';
 import { DEMO_ASSESSMENT_ROLE_ID } from '../data/companyAssessments';
 import { addApplication } from './employerStorage';
 import { filesToMap, RATE_LIMITER_WORKSPACE } from '../data/workspaceTemplates';
@@ -76,7 +76,7 @@ export function recordRequest(key, opts) {
     filesChanged: 1,
   });
 
-  const submission: StudioSubmission = {
+  const submission = enrichSubmissionWithAssessment({
     id: 'sub-demo-nebula',
     roleId: DEMO_ASSESSMENT_ROLE_ID,
     companyName: 'Nebula Analytics',
@@ -93,7 +93,7 @@ export function recordRequest(key, opts) {
     overallScores,
     gradedPrompts,
     summary,
-  };
+  });
 
   saveSubmission(submission);
 

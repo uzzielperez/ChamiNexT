@@ -26,3 +26,9 @@ export function getSubmission(id: string): StudioSubmission | undefined {
 export function getLatestSubmissionForRole(roleId: string): StudioSubmission | undefined {
   return loadSubmissions().find((s) => s.roleId === roleId);
 }
+
+export function getSubmissionsForCompanyLoop(loopId: string): StudioSubmission[] {
+  return loadSubmissions()
+    .filter((s) => s.companyLoopId === loopId)
+    .sort((a, b) => new Date(b.submittedAt).getTime() - new Date(a.submittedAt).getTime());
+}

@@ -1,11 +1,21 @@
 import { saveSession, saveShipEnrollment, saveProfileName } from './interviewStorage';
-import { saveRoles, saveApplications } from './employerStorage';
+import { loadApplications, loadRoles, saveApplications, saveRoles } from './employerStorage';
 import { saveSubscription } from './subscriptionStorage';
 import { setDemoMode } from './demoMode';
 import { getOrCreateProfileSlug, exportPublicProfile } from './profileSlug';
+import { seedDemoCompanyLoopSubmissions } from './seedDemoCompanyLoopSubmissions';
+import { seedDemoAssessmentSubmission } from './seedDemoAssessment';
+import { loadSubmissions } from './studioSubmissionStorage';
 import type { InterviewSession } from '../types/interview';
 
-export function seedDemoPresentation(): void {
+export type EmployerDemoSeedResult = {
+  roles: number;
+  applications: number;
+  submissions: number;
+  loopCandidates: number;
+};
+
+export function seedEmployerDemoData(): EmployerDemoSeedResult {
   setDemoMode(true);
   saveProfileName('Demo Engineer');
   saveSubscription('builder');
@@ -105,4 +115,19 @@ export function seedDemoPresentation(): void {
       status: 'hold',
     },
   ]);
+
+  const loopSubmissions = seedDemoCompanyLoopSubmissions();
+  seedDemoAssessmentSubmission();
+
+  return {
+    roles: loadRoles().length,
+    applications: loadApplications().length,
+    submissions: loadSubmissions().length,
+    loopCandidates: loopSubmissions.length,
+  };
+}
+
+/** @deprecated use seedEmployerDemoData */
+export function seedDemoPresentation(): void {
+  seedEmployerDemoData();
 }

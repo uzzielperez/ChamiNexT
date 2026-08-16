@@ -24,9 +24,28 @@ export type GradedPrompt = {
   flags: string[];
 };
 
+export type EmployerRecommendation =
+  | 'strong_yes'
+  | 'proceed'
+  | 'mixed'
+  | 'no'
+  | 'insufficient';
+
+export type EmployerAssessment = {
+  recommendation: EmployerRecommendation;
+  headline: string;
+  summaryParagraph: string;
+  strengths: string[];
+  weaknesses: string[];
+  probeInInterview: string[];
+  confidence: 'high' | 'medium' | 'low';
+};
+
 export type StudioSubmission = {
   id: string;
   roleId: string;
+  /** Landing showcase loop id (e.g. loop-pulse) when submitted via /challenge/:loopId */
+  companyLoopId?: string;
   companyName: string;
   taskTitle: string;
   taskBrief: string;
@@ -46,4 +65,10 @@ export type StudioSubmission = {
   };
   gradedPrompts: GradedPrompt[];
   summary: string;
+  /** Narrative hire recommendation — computed at grade time or on read */
+  employerAssessment?: EmployerAssessment;
+  /** Loop-only metadata for employer loop dashboard */
+  loopQuizScore?: number;
+  cvSummary?: string;
+  loopStagesCompleted?: number;
 };

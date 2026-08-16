@@ -8,14 +8,16 @@ import {
   Terminal,
 } from 'lucide-react';
 import PremiumButton from '../components/ui/PremiumButton';
+import EmployerAssessmentCard from '../components/employers/EmployerAssessmentCard';
 import { getSubmission } from '../utils/studioSubmissionStorage';
+import { buildEmployerAssessment } from '../utils/employerAssessment';
 
-type Tab = 'package' | 'raw' | 'graded' | 'summary';
+type Tab = 'assessment' | 'raw' | 'graded' | 'package';
 
 export default function SubmissionReviewPage() {
   const { submissionId } = useParams<{ submissionId: string }>();
   const submission = submissionId ? getSubmission(submissionId) : undefined;
-  const [tab, setTab] = useState<Tab>('summary');
+  const [tab, setTab] = useState<Tab>('assessment');
 
   if (!submission) {
     return (
@@ -26,11 +28,14 @@ export default function SubmissionReviewPage() {
     );
   }
 
+  const employerAssessment =
+    submission.employerAssessment ?? buildEmployerAssessment(submission);
+
   const tabs: { id: Tab; label: string; icon: React.ReactNode }[] = [
-    { id: 'summary', label: 'Scores', icon: <Sparkles className="w-4 h-4" /> },
+    { id: 'assessment', label: 'Recommendation', icon: <Sparkles className="w-4 h-4" /> },
     { id: 'raw', label: 'Raw prompts', icon: <MessageSquareText className="w-4 h-4" /> },
-    { id: 'graded', label: 'Graded prompts', icon: <Sparkles className="w-4 h-4" /> },
-    { id: 'package', label: 'Submission package', icon: <FileCode2 className="w-4 h-4" /> },
+    { id: 'graded', label: 'Rubric detail', icon: <Sparkles className="w-4 h-4" /> },
+    { id: 'package', label: 'Code & tests', icon: <FileCode2 className="w-4 h-4" /> },
   ];
 
   return (
@@ -40,7 +45,7 @@ export default function SubmissionReviewPage() {
           <div>
             <p className="text-xs uppercase tracking-wide text-accent-blue flex items-center gap-2">
               <Building2 className="w-4 h-4" />
-              Interview Studio · submission review
+              Interview Studio · hiring recommendation
             </p>
             <h1 className="text-2xl font-bold text-text-primary mt-1">{submission.candidateName}</h1>
             <p className="text-text-secondary text-sm">
@@ -48,12 +53,22 @@ export default function SubmissionReviewPage() {
               {new Date(submission.submittedAt).toLocaleString()}
             </p>
           </div>
-          <Link to="/employers">
-            <PremiumButton variant="secondary" size="sm">Back to Studio</PremiumButton>
+          <Link
+            to={
+              submission.companyLoopId
+                ? `/employers/loops/${submission.companyLoopId}`
+                : '/employers'
+            }
+          >
+            <PremiumButton variant="secondary" size="sm">
+              {submission.companyLoopId ? 'Back to loop' : 'Back to Studio'}
+            </PremiumButton>
           </Link>
         </div>
 
-        <div className="flex flex-wrap gap-2 mb-6">
+        <EmployerAssessmentCard assessment={employerAssessment} variant="banner" />
+
+        <div className="flex flex-wrap gap-2 mb-6 mt-6">
           {tabs.map((t) => (
             <button
               key={t.id}
@@ -71,37 +86,20 @@ export default function SubmissionReviewPage() {
           ))}
         </div>
 
-        {tab === 'summary' && (
-          <div className="space-y-4">
-            <div className="card p-6">
-              <h2 className="font-bold text-text-primary mb-4">Auto-grade summary</h2>
-              <p className="text-text-secondary text-sm mb-6">{submission.summary}</p>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                {[
-                  { label: 'Thinking', value: submission.overallScores.thinking },
-                  { label: 'Prompt trail', value: submission.overallScores.promptTrail },
-                  { label: 'Shipping', value: submission.overallScores.shipping },
-                  { label: 'Overall', value: submission.overallScores.overall },
-                ].map((s) => (
-                  <div key={s.label} className="p-4 rounded-lg bg-[var(--bg-secondary)]">
-                    <p className="text-xs text-text-secondary">{s.label}</p>
-                    <p className="text-2xl font-bold text-text-primary">{s.value}</p>
-                  </div>
-                ))}
-              </div>
-              <p className="text-xs text-text-secondary mt-4">
-                Tests: {submission.testPassed ? 'passed sandbox' : 'did not pass'} ·{' '}
-                {submission.promptTrail.length} prompts in trail
-              </p>
-            </div>
-          </div>
+        {tab === 'assessment' && (
+          <EmployerAssessmentCard
+            assessment={employerAssessment}
+            scores={submission.overallScores}
+            variant="sections"
+          />
         )}
 
         {tab === 'raw' && (
           <div className="card p-6 space-y-4">
             <h2 className="font-bold text-text-primary">Raw prompt trail</h2>
             <p className="text-sm text-text-secondary">
-              Exactly what the candidate typed to the coding agent — unedited.
+              Exactly what the candidate typed to the coding agent — unedited evidence behind the
+              recommendation.
             </p>
             {submission.promptTrail.length === 0 ? (
               <p className="text-text-secondary text-sm">No prompts recorded.</p>
@@ -126,9 +124,10 @@ export default function SubmissionReviewPage() {
 
         {tab === 'graded' && (
           <div className="card p-6 space-y-4">
-            <h2 className="font-bold text-text-primary">Graded prompts</h2>
+            <h2 className="font-bold text-text-primary">Per-prompt rubric</h2>
             <p className="text-sm text-text-secondary">
-              Per-prompt rubric: decomposition, verification, iteration, AI disclosure.
+              Supporting detail — decomposition, verification, iteration, AI disclosure. Use this
+              if you disagree with the headline recommendation.
             </p>
             {submission.gradedPrompts.map((g) => (
               <div

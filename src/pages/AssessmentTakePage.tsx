@@ -9,10 +9,10 @@ import { assessmentForRole } from '../data/companyAssessments';
 import { loadRoles } from '../utils/employerStorage';
 import { loadProfileName } from '../utils/interviewStorage';
 import { saveSubmission } from '../utils/studioSubmissionStorage';
-import { gradeSubmissionPackage } from '../utils/submissionGrader';
+import { gradeSubmissionPackage, enrichSubmissionWithAssessment } from '../utils/submissionGrader';
 import { addApplication } from '../utils/employerStorage';
 import { getOrCreateProfileSlug } from '../utils/profileSlug';
-import type { PromptRecord, StudioSubmission } from '../types/studioSubmission';
+import type { PromptRecord } from '../types/studioSubmission';
 
 function countChangedFiles(
   starter: Record<string, string>,
@@ -62,7 +62,7 @@ export default function AssessmentTakePage() {
       });
 
       const submissionId = `sub-${Date.now()}`;
-      const submission: StudioSubmission = {
+      const submission = enrichSubmissionWithAssessment({
         id: submissionId,
         roleId: role.id,
         companyName: assessment.companyName,
@@ -79,7 +79,7 @@ export default function AssessmentTakePage() {
         overallScores,
         gradedPrompts,
         summary,
-      };
+      });
 
       saveSubmission(submission);
 

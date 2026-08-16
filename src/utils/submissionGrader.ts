@@ -1,4 +1,5 @@
 import type { GradedPrompt, PromptRecord, StudioSubmission } from '../types/studioSubmission';
+import { buildEmployerAssessment } from './employerAssessment';
 
 function clamp(n: number): number {
   return Math.max(0, Math.min(100, Math.round(n)));
@@ -101,5 +102,12 @@ export function gradeSubmissionPackage(input: {
       overall,
     },
     summary,
+  };
+}
+
+export function enrichSubmissionWithAssessment(submission: StudioSubmission): StudioSubmission {
+  return {
+    ...submission,
+    employerAssessment: buildEmployerAssessment(submission),
   };
 }

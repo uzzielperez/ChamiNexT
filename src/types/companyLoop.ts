@@ -38,5 +38,6 @@ export type CompanyLoopProgress = {
   completedStages: CompanyLoopStageId[];
   cvSummary?: string;
   quizScore?: number;
+  submissionId?: string;
   updatedAt: string;
 };

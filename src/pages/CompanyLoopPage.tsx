@@ -6,12 +6,14 @@ import CodingWorkspace, { type CodingWorkspaceHandle } from '../components/works
 import { getCompanyLoop, formatSalaryRange } from '../data/loadCompanyLoops';
 import { shipTestChallenges } from '../data/shipTests';
 import { workspaceForChallenge } from '../data/workspaceTemplates';
-import type { CompanyLoopStageId, CompanyLoopQuizQuestion } from '../types/companyLoop';
+import type { CompanyLoopStageId, CompanyLoopQuizQuestion, CompanyLoopProgress } from '../types/companyLoop';
+import type { PromptRecord } from '../types/studioSubmission';
 import {
   loadLoopProgress,
   markStageComplete,
   saveLoopProgress,
 } from '../utils/companyLoopProgress';
+import { packageCompanyLoopSubmission } from '../utils/companyLoopSubmission';
 
 const STAGE_ORDER: CompanyLoopStageId[] = ['cv', 'quiz', 'work-ticket', 'ethics'];
 
@@ -145,6 +147,7 @@ export default function CompanyLoopPage() {
   const [progress, setProgress] = useState(() =>
     loop ? loadLoopProgress(loop.id) : loadLoopProgress('')
   );
+  const [promptTrail, setPromptTrail] = useState<PromptRecord[]>([]);
   const workspaceRef = useRef<CodingWorkspaceHandle>(null);
 
   const currentStageId = useMemo(() => {
@@ -172,16 +175,21 @@ export default function CompanyLoopPage() {
     : undefined;
   const workspaceTemplate = shipChallenge ? workspaceForChallenge(shipChallenge) : null;
 
+  const maybeFinalizeLoopSubmission = (merged: CompanyLoopProgress) => {
+    if (merged.completedStages.length < 4 || merged.submissionId) return;
+    const snap = workspaceRef.current?.getSnapshot() ?? null;
+    const submission = packageCompanyLoopSubmission(loop, merged, snap, promptTrail);
+    const withSubmission = { ...merged, submissionId: submission.id };
+    saveLoopProgress(withSubmission);
+    setProgress(withSubmission);
+  };
+
   const completeStage = (stageId: CompanyLoopStageId, extra?: Partial<typeof progress>) => {
     const next = markStageComplete(loop.id, stageId);
     const merged = { ...next, ...extra };
     saveLoopProgress(merged);
     setProgress(merged);
-    const nextId = STAGE_ORDER.find((id) => !merged.completedStages.includes(id));
-    if (!nextId) return;
-    if (stageId !== nextId) {
-      /* state updates — user stays on page, currentStageId derived */
-    }
+    maybeFinalizeLoopSubmission(merged);
   };
 
   const behavioralProblemId =
@@ -250,9 +258,8 @@ export default function CompanyLoopPage() {
         {currentStageId === 'work-ticket' && workspaceTemplate && (
           <div>
             <p className="text-sm text-text-secondary mb-4 max-w-2xl">
-              Complete the ticket in studio. Use the coding agent — prompts are collected. When done,
-              mark complete (or submit full package from the{' '}
-              <Link to="/demo" className="text-accent-blue hover:underline">assessment demo</Link>).
+              Complete the ticket in studio. Use the coding agent — prompts are collected and sent to{' '}
+              {loop.placeholderName} when you finish the loop.
             </p>
             <CodingWorkspace
               ref={workspaceRef}
@@ -261,6 +268,7 @@ export default function CompanyLoopPage() {
                 title: `${loop.placeholderName}: ${workspaceTemplate.title}`,
               }}
               hideBriefFooter
+              onPromptRecorded={(r) => setPromptTrail((prev) => [...prev, r])}
             />
             <PremiumButton
               variant="primary"
@@ -301,6 +309,12 @@ export default function CompanyLoopPage() {
             <p className="text-sm text-text-secondary mb-4">
               You finished all four stages for {loop.placeholderName}. Quiz score:{' '}
               {progress.quizScore ?? '—'}%
+              {progress.submissionId && (
+                <>
+                  {' '}
+                  · Work Ticket package submitted ({promptTrail.length} prompts logged)
+                </>
+              )}
             </p>
             <Link to="/#company-loops">
               <PremiumButton variant="secondary" size="sm">Pick another loop</PremiumButton>
