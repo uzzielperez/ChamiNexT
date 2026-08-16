@@ -1,0 +1,404 @@
+{
+  "version": 1,
+  "description": "Canonical company interview loops for landing showcase and /challenge/:id runner. Display names are placeholders — internalRef is for product docs only (never shown in UI).",
+  "loops": [
+    {
+      "id": "loop-pulse",
+      "placeholderName": "Pulse",
+      "logoAbbr": "PL",
+      "logoGradient": "linear-gradient(135deg, #1d4ed8 0%, #3b82f6 50%, #06b6d4 100%)",
+      "roleTitle": "Backend Engineer",
+      "track": "software",
+      "salaryMin": 180000,
+      "salaryMax": 220000,
+      "salaryLabel": "Est. total comp",
+      "region": "SF · NYC · Remote",
+      "internalRef": "verve-style-ai-infra",
+      "tagline": "Series B AI infra — ship tickets, not whiteboard puzzles.",
+      "stages": [
+        {
+          "id": "cv",
+          "title": "CV submission",
+          "summary": "Talent profile + mission-fit narrative survives the 30-second scan."
+        },
+        {
+          "id": "quiz",
+          "title": "Technical foundations",
+          "summary": "Short async gate: rate limiting, APIs, and debugging instincts."
+        },
+        {
+          "id": "work-ticket",
+          "title": "Work Ticket",
+          "summary": "4h scoped ticket in browser studio — AI allowed, prompts logged.",
+          "shipTestId": "work-ticket-rate-limiter"
+        },
+        {
+          "id": "ethics",
+          "title": "Ethics & behavioral",
+          "summary": "Values + ownership under pushback — the round that decides the offer.",
+          "behavioralKind": "ownership"
+        }
+      ],
+      "quizQuestions": [
+        {
+          "id": "q1",
+          "prompt": "What is the main purpose of a rate limiter on a public API?",
+          "options": [
+            "Encrypt traffic between clients and servers",
+            "Cap request volume per client to protect capacity and fairness",
+            "Replace authentication for anonymous users",
+            "Cache responses to reduce database load"
+          ],
+          "correctIndex": 1,
+          "explain": "Rate limiters bound abuse and noisy neighbors — especially before beta traffic."
+        },
+        {
+          "id": "q2",
+          "prompt": "A client receives HTTP 429. What should the response include?",
+          "options": [
+            "Only a generic error string",
+            "Retry-After (or equivalent) so clients know when to retry",
+            "A redirect to the marketing site",
+            "The server's full stack trace"
+          ],
+          "correctIndex": 1,
+          "explain": "Well-behaved clients need a time hint — standard for token-bucket APIs."
+        },
+        {
+          "id": "q3",
+          "prompt": "Token bucket vs fixed window — which is usually smoother for bursts?",
+          "options": [
+            "Fixed window only",
+            "Token bucket allows controlled bursts within the refill rate",
+            "Neither supports bursts",
+            "Both are identical for APIs"
+          ],
+          "correctIndex": 1,
+          "explain": "Token buckets are the usual choice for per-IP API limits."
+        }
+      ]
+    },
+    {
+      "id": "loop-meridian",
+      "placeholderName": "Meridian",
+      "logoAbbr": "MD",
+      "logoGradient": "linear-gradient(135deg, #78350f 0%, #d97706 50%, #fbbf24 100%)",
+      "roleTitle": "Quant Research Engineer",
+      "track": "quant",
+      "salaryMin": 250000,
+      "salaryMax": 400000,
+      "salaryLabel": "Est. total comp",
+      "region": "NYC · Chicago · Philly corridor",
+      "internalRef": "sig-style-options-mm",
+      "tagline": "Prop-style loop — math OA, research hygiene, data report.",
+      "stages": [
+        {
+          "id": "cv",
+          "title": "CV submission",
+          "summary": "Lead with probability depth and research judgment — not buzzwords."
+        },
+        {
+          "id": "quiz",
+          "title": "Math & stats OA",
+          "summary": "Expectation, distributions, and quick sanity checks."
+        },
+        {
+          "id": "work-ticket",
+          "title": "Work Ticket",
+          "summary": "Point-in-time linter on a toy feature pipeline — tests matter more than slides.",
+          "shipTestId": "work-ticket-backtest-pit"
+        },
+        {
+          "id": "ethics",
+          "title": "Ethics & behavioral",
+          "summary": "Judgment under pressure, conflict, and research integrity.",
+          "behavioralKind": "research-integrity"
+        }
+      ],
+      "quizQuestions": [
+        {
+          "id": "q1",
+          "prompt": "You flip a fair coin until you get heads. Expected number of flips?",
+          "options": ["1", "2", "3", "0.5"],
+          "correctIndex": 1,
+          "explain": "Geometric with p=½ → E[X] = 1/p = 2."
+        },
+        {
+          "id": "q2",
+          "prompt": "Look-ahead bias in a backtest usually means…",
+          "options": [
+            "Using future information when making past decisions",
+            "Running the backtest on too little data",
+            "Using too many CPU cores",
+            "Publishing results without charts"
+          ],
+          "correctIndex": 0,
+          "explain": "Future data leaking into features or labels invalidates the simulation."
+        },
+        {
+          "id": "q3",
+          "prompt": "A report with 200 charts for a trading prompt most likely signals…",
+          "options": [
+            "Deep mastery of the dataset",
+            "You don't know what matters yet",
+            "Perfect research hygiene",
+            "The backtest is necessarily valid"
+          ],
+          "correctIndex": 1,
+          "explain": "Brevity + decisive views beat chart dumps in quant research screens."
+        }
+      ]
+    },
+    {
+      "id": "loop-searchco",
+      "placeholderName": "SearchCo",
+      "logoAbbr": "SC",
+      "logoGradient": "linear-gradient(135deg, #4285f4 0%, #34a853 33%, #fbbc05 66%, #ea4335 100%)",
+      "roleTitle": "Software Engineer L4",
+      "track": "software",
+      "salaryMin": 200000,
+      "salaryMax": 280000,
+      "salaryLabel": "Est. total comp",
+      "region": "Mountain View · NYC · Remote",
+      "internalRef": "google-style-swe",
+      "tagline": "Coding + systems thinking — reasoning scored live.",
+      "stages": [
+        {
+          "id": "cv",
+          "title": "CV submission",
+          "summary": "Impact bullets aligned to level rubric (scope, complexity, leadership)."
+        },
+        {
+          "id": "quiz",
+          "title": "Technical foundations",
+          "summary": "Algorithms instincts without memorization walls."
+        },
+        {
+          "id": "work-ticket",
+          "title": "Work Ticket",
+          "summary": "Scoped feature with tests — ship in studio, defend in walkthrough.",
+          "shipTestId": "work-ticket-rate-limiter"
+        },
+        {
+          "id": "ethics",
+          "title": "Ethics & behavioral",
+          "summary": "Googleyness-style: ambiguity, collaboration, and trade-offs.",
+          "behavioralKind": "collaboration"
+        }
+      ],
+      "quizQuestions": [
+        {
+          "id": "q1",
+          "prompt": "Hash map average-case lookup time?",
+          "options": ["O(1)", "O(log n)", "O(n)", "O(n log n)"],
+          "correctIndex": 0,
+          "explain": "Average O(1) with a good hash — know collision caveats."
+        },
+        {
+          "id": "q2",
+          "prompt": "Best first step when latency spikes in production?",
+          "options": [
+            "Rewrite the service in another language",
+            "Measure: trace the request path and find the bottleneck",
+            "Add more servers immediately",
+            "Disable logging"
+          ],
+          "correctIndex": 1,
+          "explain": "Data before refactor — classic systems interview signal."
+        }
+      ]
+    },
+    {
+      "id": "loop-socialgraph",
+      "placeholderName": "SocialGraph",
+      "logoAbbr": "SG",
+      "logoGradient": "linear-gradient(135deg, #1877f2 0%, #0668e1 100%)",
+      "roleTitle": "Production Engineer",
+      "track": "software",
+      "salaryMin": 190000,
+      "salaryMax": 270000,
+      "salaryLabel": "Est. total comp",
+      "region": "Menlo Park · NYC · London",
+      "internalRef": "meta-style-pe",
+      "tagline": "Move fast on real systems — outages, scale, and ownership.",
+      "stages": [
+        {
+          "id": "cv",
+          "title": "CV submission",
+          "summary": "Show production impact: incidents, scale, and cross-team work."
+        },
+        {
+          "id": "quiz",
+          "title": "Technical foundations",
+          "summary": "Debugging, distributed basics, and API design."
+        },
+        {
+          "id": "work-ticket",
+          "title": "Work Ticket",
+          "summary": "Ship a small service change with CI-minded tests.",
+          "shipTestId": "work-ticket-rate-limiter"
+        },
+        {
+          "id": "ethics",
+          "title": "Ethics & behavioral",
+          "summary": "Ownership when things break at scale.",
+          "behavioralKind": "ownership"
+        }
+      ],
+      "quizQuestions": [
+        {
+          "id": "q1",
+          "prompt": "CAP theorem — during a network partition you typically choose between…",
+          "options": [
+            "Consistency and availability",
+            "Latency and throughput only",
+            "CPU and memory",
+            "JSON and protobuf"
+          ],
+          "correctIndex": 0,
+          "explain": "Partition tolerance is assumed — C vs A is the trade-off."
+        },
+        {
+          "id": "q2",
+          "prompt": "A post-deploy error budget is mostly about…",
+          "options": [
+            "How many PRs you can merge per day",
+            "Acceptable unreliability before slowing feature work",
+            "Engineer vacation policy",
+            "Code review turnaround"
+          ],
+          "correctIndex": 1,
+          "explain": "SRE framing — reliability vs velocity."
+        }
+      ]
+    },
+    {
+      "id": "loop-constellation",
+      "placeholderName": "Constellation",
+      "logoAbbr": "CA",
+      "logoGradient": "linear-gradient(135deg, #c2410c 0%, #f97316 50%, #fdba74 100%)",
+      "roleTitle": "Research Engineer",
+      "track": "ai-engineer",
+      "salaryMin": 220000,
+      "salaryMax": 350000,
+      "salaryLabel": "Est. total comp",
+      "region": "SF · NYC",
+      "internalRef": "anthropic-style-re",
+      "tagline": "Progressive coding + heavily weighted values round.",
+      "stages": [
+        {
+          "id": "cv",
+          "title": "CV submission",
+          "summary": "Research judgment, safety awareness, and shipped ML systems."
+        },
+        {
+          "id": "quiz",
+          "title": "Technical foundations",
+          "summary": "ML systems, eval design, and debugging model pipelines."
+        },
+        {
+          "id": "work-ticket",
+          "title": "Work Ticket",
+          "summary": "Build with AI tools disclosed — prompt trail is part of the signal.",
+          "shipTestId": "work-ticket-rate-limiter"
+        },
+        {
+          "id": "ethics",
+          "title": "Ethics & behavioral",
+          "summary": "Values-heavy: harm, honesty, and disagreement with leadership.",
+          "behavioralKind": "ethics-values"
+        }
+      ],
+      "quizQuestions": [
+        {
+          "id": "q1",
+          "prompt": "Train/validation leakage most often means…",
+          "options": [
+            "GPU overheating",
+            "Future or label information in training features",
+            "Using too small a batch size",
+            "Deploying without Docker"
+          ],
+          "correctIndex": 1,
+          "explain": "Leakage inflates offline metrics — core research hygiene."
+        },
+        {
+          "id": "q2",
+          "prompt": "Before coding an ML feature, a strong interview move is to…",
+          "options": [
+            "Pick the largest model available",
+            "Define success metrics and failure modes first",
+            "Skip baselines",
+            "Avoid documenting data sources"
+          ],
+          "correctIndex": 1,
+          "explain": "Eval design before implementation — Anthropic-style signal."
+        }
+      ]
+    },
+    {
+      "id": "loop-frontier",
+      "placeholderName": "Frontier",
+      "logoAbbr": "FR",
+      "logoGradient": "linear-gradient(135deg, #0f766e 0%, #10b981 50%, #34d399 100%)",
+      "roleTitle": "Member of Technical Staff",
+      "track": "ai-engineer",
+      "salaryMin": 230000,
+      "salaryMax": 380000,
+      "salaryLabel": "Est. total comp",
+      "region": "SF",
+      "internalRef": "openai-style-mts",
+      "tagline": "Work-trial culture — trusted signal is shipped work + defense.",
+      "stages": [
+        {
+          "id": "cv",
+          "title": "CV submission",
+          "summary": "Evidence of end-to-end ownership on hard technical problems."
+        },
+        {
+          "id": "quiz",
+          "title": "Technical foundations",
+          "summary": "Systems + ML fluency — how you wield AI, not whether you used it."
+        },
+        {
+          "id": "work-ticket",
+          "title": "Work Ticket",
+          "summary": "Mini work-trial in studio — submit package with prompt disclosure.",
+          "shipTestId": "work-ticket-rate-limiter"
+        },
+        {
+          "id": "ethics",
+          "title": "Ethics & behavioral",
+          "summary": "Judgment on deployment, safety, and team conflict.",
+          "behavioralKind": "ethics-values"
+        }
+      ],
+      "quizQuestions": [
+        {
+          "id": "q1",
+          "prompt": "Why do many AI labs prefer work trials over take-homes?",
+          "options": [
+            "Take-homes are cheaper to grade",
+            "Live context shows how candidates actually build and defend work",
+            "Take-homes have no cheating risk",
+            "Work trials avoid all interviews"
+          ],
+          "correctIndex": 1,
+          "explain": "OpenAI-style: embedded work samples beat async puzzles."
+        },
+        {
+          "id": "q2",
+          "prompt": "When using AI on an interview task, the strongest signal is…",
+          "options": [
+            "Never mentioning AI",
+            "Disclosing use and showing verification of outputs",
+            "Copying the model answer verbatim",
+            "Using the largest context window only"
+          ],
+          "correctIndex": 1,
+          "explain": "AI fluency + verification — core ChamiNexT thesis."
+        }
+      ]
+    }
+  ]
+}

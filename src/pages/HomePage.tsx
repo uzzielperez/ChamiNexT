@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import HeroCodeBackground from '../components/landing/HeroCodeBackground';
 import HeroProductPreview from '../components/landing/HeroProductPreview';
+import CompanyLoopsShowcase from '../components/landing/CompanyLoopsShowcase';
 
 const PRINCIPLES = [
   'Shipping > Solving',
@@ -128,6 +129,8 @@ const HomePage: React.FC = () => {
           <HeroProductPreview />
         </div>
       </section>
+
+      <CompanyLoopsShowcase />
 
       <section
         id="how-it-works"
