@@ -8,6 +8,7 @@ type WorkspaceAgentPanelProps = {
   messages: InterviewMessage[];
   loading: boolean;
   onSend: (text: string) => void;
+  onQuickSend: (text: string) => void;
   subtitle?: string;
 };
 
@@ -15,7 +16,8 @@ export default function WorkspaceAgentPanel({
   messages,
   loading,
   onSend,
-  subtitle = 'Prompt-aware pair programmer — sees your files and terminal',
+  onQuickSend,
+  subtitle = 'Prompt-aware pair programmer — every prompt is logged for employers',
 }: WorkspaceAgentPanelProps) {
   const [input, setInput] = useState('');
   const endRef = useRef<HTMLDivElement>(null);
@@ -77,7 +79,7 @@ export default function WorkspaceAgentPanel({
             <button
               key={q}
               type="button"
-              onClick={() => onSend(q)}
+              onClick={() => onQuickSend(q)}
               disabled={loading}
               className="text-[10px] px-2 py-1 rounded-md border border-[var(--border-color)] text-text-secondary hover:border-accent-blue/50 hover:text-accent-bright transition-colors"
             >

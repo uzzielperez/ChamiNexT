@@ -246,15 +246,15 @@ const EmployersPage: React.FC = () => {
 
           {currentView === 'assessments' && (
             <>
-              <div className="card p-6 mb-6 border-accent-blue/30 md:col-span-2">
-                <h3 className="font-bold text-text-primary">Browser coding studio</h3>
+              <div className="card p-6 mb-6 border-accent-blue/30">
+                <h3 className="font-bold text-text-primary">Prompt trail demo</h3>
                 <p className="text-text-secondary text-sm mt-2 mb-4">
-                  Preview what candidates see on Work Tickets: Monaco editor, terminal, and prompt-aware
-                  coding agent — the thinking-process trail employers rank on.
+                  Full loop: company task → candidate studio → auto submission package → raw + graded
+                  prompts in Studio.
                 </p>
-                <Link to="/studio">
+                <Link to="/demo">
                   <PremiumButton variant="primary" size="sm">
-                    Open studio demo
+                    Run end-to-end demo
                     <ArrowRight className="w-4 h-4 ml-1" />
                   </PremiumButton>
                 </Link>
@@ -344,14 +344,24 @@ const EmployersPage: React.FC = () => {
                           </select>
                         </td>
                         <td className="p-4">
-                          <a
-                            href={`/profile/${c.profileSlug}`}
-                            className="text-accent-blue hover:underline"
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            Profile
-                          </a>
+                          <div className="flex flex-wrap gap-3">
+                            {c.submissionId && (
+                              <Link
+                                to={`/employers/review/${c.submissionId}`}
+                                className="text-accent-bright hover:underline font-medium"
+                              >
+                                Review prompts
+                              </Link>
+                            )}
+                            <a
+                              href={`/profile/${c.profileSlug}`}
+                              className="text-accent-blue hover:underline"
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              Profile
+                            </a>
+                          </div>
                         </td>
                       </tr>
                     ))}

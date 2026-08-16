@@ -46,4 +46,6 @@ export interface CandidateApplication {
   deploymentUrl?: string;
   appliedAt: string;
   status: 'new' | 'review' | 'strong' | 'hold';
+  /** Studio submission with prompt trail (Interview Studio demo). */
+  submissionId?: string;
 }

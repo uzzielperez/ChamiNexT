@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState, forwardRef, useImperativeHandle } from 'react';
 import Editor from '@monaco-editor/react';
 import {
   Files,
@@ -10,6 +10,7 @@ import {
   X,
 } from 'lucide-react';
 import type { WorkspaceTemplate } from './workspaceTypes';
+import type { PromptRecord, PromptSource } from '../../types/studioSubmission';
 import WorkspaceTerminal from './WorkspaceTerminal';
 import WorkspaceAgentPanel from './WorkspaceAgentPanel';
 import PremiumButton from '../ui/PremiumButton';
@@ -23,9 +24,24 @@ type CodingWorkspaceProps = {
   headerExtra?: React.ReactNode;
   className?: string;
   onFilesChange?: (files: Record<string, string>, activePath: string) => void;
+  onPromptRecorded?: (record: PromptRecord) => void;
+  hideBriefFooter?: boolean;
 };
 
 type SidebarTab = 'files' | 'agent';
+
+export type WorkspaceSnapshot = {
+  files: Record<string, string>;
+  starterFiles: Record<string, string>;
+  terminalLog: string;
+  testOutput?: string;
+  testPassed?: boolean;
+};
+
+export type CodingWorkspaceHandle = {
+  getSnapshot: () => WorkspaceSnapshot;
+  runTests: () => Promise<{ output: string; passed: boolean }>;
+};
 
 const MONACO_LANG: Record<string, string> = {
   typescript: 'typescript',
@@ -36,13 +52,19 @@ const MONACO_LANG: Record<string, string> = {
   plaintext: 'plaintext',
 };
 
-export default function CodingWorkspace({
+export default forwardRef<CodingWorkspaceHandle, CodingWorkspaceProps>(function CodingWorkspace({
   template,
   onExit,
   headerExtra,
   className = '',
   onFilesChange,
-}: CodingWorkspaceProps) {
+  onPromptRecorded,
+  hideBriefFooter = false,
+}, ref) {
+  const starterFiles = useMemo(
+    () => Object.fromEntries(template.files.map((f) => [f.path, f.content])),
+    [template.files]
+  );
   const languageByPath = useMemo(
     () => Object.fromEntries(template.files.map((f) => [f.path, f.language])),
     [template.files]
@@ -58,6 +80,8 @@ export default function CodingWorkspace({
   const [agentLoading, setAgentLoading] = useState(false);
   const [terminalLog, setTerminalLog] = useState('');
   const [running, setRunning] = useState(false);
+  const [lastTestOutput, setLastTestOutput] = useState<string | undefined>();
+  const [lastTestPassed, setLastTestPassed] = useState<boolean | undefined>();
 
   const appendLog = (line: string) => {
     setTerminalLog((prev) => `${prev}\n${line}`.slice(-4000));
@@ -105,8 +129,38 @@ export default function CodingWorkspace({
     [files, template]
   );
 
+  useImperativeHandle(
+    ref,
+    () => ({
+      getSnapshot: () => ({
+        files,
+        starterFiles,
+        terminalLog,
+        testOutput: lastTestOutput,
+        testPassed: lastTestPassed,
+      }),
+      runTests: async () => {
+        const out = (await runBundled('npm test')) ?? '';
+        const passed = /PASS:|passed/i.test(out) && !/FAIL:/i.test(out);
+        setLastTestOutput(out);
+        setLastTestPassed(passed);
+        return { output: out, passed };
+      },
+    }),
+    [files, lastTestOutput, lastTestPassed, runBundled, starterFiles, terminalLog]
+  );
+
   const handleAgentSend = useCallback(
-    async (text: string) => {
+    async (text: string, source: PromptSource = 'panel') => {
+      const promptId = `p-${Date.now()}`;
+      onPromptRecorded?.({
+        id: promptId,
+        at: new Date().toISOString(),
+        source,
+        text,
+        activeFile: activePath,
+      });
+
       const userMsg: InterviewMessage = {
         id: `u-${Date.now()}`,
         role: 'candidate',
@@ -133,7 +187,7 @@ export default function CodingWorkspace({
         setAgentLoading(false);
       }
     },
-    [activePath, agentMessages, files, template, terminalLog]
+    [activePath, agentMessages, files, onPromptRecorded, template, terminalLog]
   );
 
   const handleTerminalCommand = useCallback(
@@ -176,7 +230,7 @@ export default function CodingWorkspace({
 
       if (cmd === 'agent') {
         if (!arg) return 'Usage: agent <your question>';
-        await handleAgentSend(arg);
+        await handleAgentSend(arg, 'terminal');
         return 'Agent replied in the side panel →';
       }
 
@@ -327,7 +381,8 @@ export default function CodingWorkspace({
           <WorkspaceAgentPanel
             messages={agentMessages}
             loading={agentLoading}
-            onSend={handleAgentSend}
+            onSend={(text) => handleAgentSend(text, 'panel')}
+            onQuickSend={(text) => handleAgentSend(text, 'quick')}
           />
         </div>
         {sidebar === 'agent' && (
@@ -341,7 +396,7 @@ export default function CodingWorkspace({
         )}
       </div>
 
-      {(template.ticketBrief || template.pmBrief) && (
+      {(template.ticketBrief || template.pmBrief) && !hideBriefFooter && (
         <div className="px-4 py-3 border-t border-[var(--border-color)] bg-[var(--bg-primary)] text-xs text-text-secondary max-h-24 overflow-y-auto">
           {template.pmBrief && <p className="mb-1"><span className="text-accent-blue font-semibold">PM:</span> {template.pmBrief}</p>}
           {template.ticketBrief && <p><span className="text-accent-blue font-semibold">Ticket:</span> {template.ticketBrief}</p>}
@@ -349,4 +404,4 @@ export default function CodingWorkspace({
       )}
     </div>
   );
-}
+});

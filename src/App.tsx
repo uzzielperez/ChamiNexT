@@ -49,7 +49,10 @@ import JourneyStagePage from './pages/JourneyStagePage';
 import CoachingPlaylistPage from './pages/CoachingPlaylistPage';
 import MobileBottomNav from './components/layout/MobileBottomNav';
 import FAQPage from './pages/FAQPage';
-import StudioPage from './pages/StudioPage';
+import DemoLoopPage from './pages/DemoLoopPage';
+import AssessmentTakePage from './pages/AssessmentTakePage';
+import AssessmentSubmittedPage from './pages/AssessmentSubmittedPage';
+import SubmissionReviewPage from './pages/SubmissionReviewPage';
 
 // Import premium design system styles
 import './styles/design-system.css';
@@ -93,7 +96,11 @@ function App() {
             <Route path="/employers" element={<EmployersPage />} />
             <Route path="/pricing" element={<PricingPage />} />
             <Route path="/faq" element={<FAQPage />} />
-            <Route path="/studio" element={<StudioPage />} />
+            <Route path="/demo" element={<DemoLoopPage />} />
+            <Route path="/demo/submitted/:submissionId" element={<AssessmentSubmittedPage />} />
+            <Route path="/assess/:roleId" element={<AssessmentTakePage />} />
+            <Route path="/employers/review/:submissionId" element={<SubmissionReviewPage />} />
+            <Route path="/studio" element={<Navigate to="/demo" replace />} />
             <Route path="/profile/:slug" element={<PublicProfilePage />} />
             <Route path="/apply" element={<ApplyPage />} />
             <Route path="/marketplace" element={<MarketplacePage />} />
