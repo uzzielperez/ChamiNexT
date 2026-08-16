@@ -18,7 +18,8 @@
     "lessons": "npm run lessons:manifest && npm run lessons:generate",
     "test": "node --test tests/*.test.mjs",
     "stripe:founding": "node scripts/stripe-setup-founding.mjs",
-    "briefing:pdf": "tsx scripts/generate-investor-briefing-pdf.ts"
+    "briefing:pdf": "tsx scripts/generate-investor-briefing-pdf.ts",
+    "deck:pdf": "tsx scripts/generate-pitch-deck-pdf.ts"
   },
   "dependencies": {
     "@monaco-editor/react": "^4.7.0",

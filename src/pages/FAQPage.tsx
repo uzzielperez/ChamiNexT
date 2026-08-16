@@ -697,6 +697,14 @@ const FAQPage: React.FC = () => {
               >
                 Static PDF
               </a>
+              <a
+                href="/ChamiNexT-pitch-deck.pdf"
+                download
+                className="inline-flex items-center gap-2 text-sm font-medium text-accent-bright hover:text-text-primary px-3 py-2 rounded-lg border border-accent-blue/40 hover:border-accent-blue transition-colors"
+              >
+                <Download className="w-4 h-4" aria-hidden />
+                Pitch deck (12 slides)
+              </a>
             </div>
           </div>
         </div>
