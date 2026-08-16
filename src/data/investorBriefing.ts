@@ -237,6 +237,32 @@ export const PRICING_NOTES = {
   ],
 } as const;
 
+export const MARKET_INTEL = {
+  headline: 'Early conversations & field intel',
+  note: 'Interview-loop intel from real processes powers the practice loops; employer conversations validate the category.',
+  entries: [
+    {
+      company: 'Susquehanna (SIG)',
+      status: 'intel',
+      detail: 'Quant interview-loop intel gathered — powers the quant practice track',
+    },
+    {
+      company: 'Verve',
+      status: 'intel',
+      detail: 'Interview-loop intel gathered from their hiring process',
+    },
+    {
+      company: 'AICrowd',
+      status: 'talks',
+      detail: 'In talks — exploring building their own evaluation product',
+    },
+    { company: 'Revolut', status: 'pending', detail: 'Conversation pending' },
+    { company: 'Google', status: 'pending', detail: 'Conversation pending' },
+  ],
+} as const;
+
+export type MarketIntelStatus = (typeof MARKET_INTEL.entries)[number]['status'];
+
 export const COMPETITIVE_ONE_LINERS = {
   leetcode: 'Grades final answer only — no thinking-process trail; signal dead under AI',
   hackerrank: 'Async pass/fail on output — no prompt trail or mandatory walkthrough',

@@ -9,6 +9,8 @@ import {
   MOAT,
   PRICING_NOTES,
   COMPETITIVE_ONE_LINERS,
+  MARKET_INTEL,
+  type MarketIntelStatus,
 } from '../data/investorBriefing';
 import { FOUNDING } from '../data/foundingOffer';
 
@@ -481,6 +483,33 @@ export function buildPitchDeckPdf(): jsPDF {
     108,
     { size: 9.5, gap: 3.5 }
   );
+
+  // Pipeline band — early conversations & field intel
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(9);
+  tx(doc, C.accentBright);
+  doc.text(MARKET_INTEL.headline.toUpperCase(), M, 112);
+  const intelStyles: Record<MarketIntelStatus, { label: string; color: RGB }> = {
+    intel: { label: 'INTEL GATHERED', color: C.emerald },
+    talks: { label: 'IN TALKS', color: C.amber },
+    pending: { label: 'PENDING', color: C.accentBright },
+  };
+  MARKET_INTEL.entries.forEach((entry, i) => {
+    const x = M + i * 52.5;
+    card(doc, x, 116, 47.5, 32);
+    const style = intelStyles[entry.status];
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(6.5);
+    tx(doc, style.color);
+    doc.text(style.label, x + 4.5, 122);
+    doc.setFontSize(8.5);
+    tx(doc, C.text);
+    doc.text(doc.splitTextToSize(entry.company, 39), x + 4.5, 128);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(6.8);
+    tx(doc, C.muted);
+    doc.text(doc.splitTextToSize(clean(entry.detail), 39), x + 4.5, 133.5);
+  });
 
   /* ---------- 12 · Ask ---------- */
   newSlide(doc, 'The ask');
