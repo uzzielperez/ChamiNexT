@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import JobSeekersPage from './pages/JobSeekersPage';
 import VibeCoursePage from './pages/VibeCoursePage';
@@ -55,20 +55,26 @@ import AssessmentSubmittedPage from './pages/AssessmentSubmittedPage';
 import CompanyLoopPage from './pages/CompanyLoopPage';
 import SubmissionReviewPage from './pages/SubmissionReviewPage';
 import EmployerCompanyLoopPage from './pages/EmployerCompanyLoopPage';
+import StudioPage from './pages/StudioPage';
+import EmbedAssessmentPage from './pages/EmbedAssessmentPage';
+import { isStudioPath } from './utils/studioRoutes';
 
 // Import premium design system styles
 import './styles/design-system.css';
 import './styles/animations.css';
 import './styles/alfred.css';
 
-function App() {
+function AppShell() {
+  const location = useLocation();
+  const studioMode = isStudioPath(location.pathname);
+
   return (
-    <Router>
+    <>
       <ReferralCapture />
       <div className="flex flex-col min-h-screen" style={{ backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
-        <PremiumHeader />
-        <TrialBanner />
-        <main className="flex-grow pt-16">
+        {!studioMode && <PremiumHeader />}
+        {!studioMode && <TrialBanner />}
+        <main className={studioMode ? 'flex-grow' : 'flex-grow pt-16'}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
@@ -104,7 +110,8 @@ function App() {
             <Route path="/challenge/:loopId" element={<CompanyLoopPage />} />
             <Route path="/employers/loops/:loopId" element={<EmployerCompanyLoopPage />} />
             <Route path="/employers/review/:submissionId" element={<SubmissionReviewPage />} />
-            <Route path="/studio" element={<Navigate to="/demo" replace />} />
+            <Route path="/studio" element={<StudioPage />} />
+            <Route path="/embed/assess/:roleId" element={<EmbedAssessmentPage />} />
             <Route path="/profile/:slug" element={<PublicProfilePage />} />
             <Route path="/apply" element={<ApplyPage />} />
             <Route path="/marketplace" element={<MarketplacePage />} />
@@ -124,12 +131,22 @@ function App() {
             <Route path="/success" element={<SuccessPage />} />
           </Routes>
         </main>
-        <div className="hidden md:block">
-          <Footer />
-        </div>
-        <MobileBottomNav />
-        <DemoBanner />
+        {!studioMode && (
+          <div className="hidden md:block">
+            <Footer />
+          </div>
+        )}
+        {!studioMode && <MobileBottomNav />}
+        {!studioMode && <DemoBanner />}
       </div>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppShell />
     </Router>
   );
 }

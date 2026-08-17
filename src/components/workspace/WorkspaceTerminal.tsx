@@ -8,11 +8,12 @@ export type TerminalRunner = (command: string) => Promise<string | void>;
 type WorkspaceTerminalProps = {
   onRun: TerminalRunner;
   className?: string;
+  height?: number;
 };
 
 const PROMPT = '\r\n$ ';
 
-export default function WorkspaceTerminal({ onRun, className = '' }: WorkspaceTerminalProps) {
+export default function WorkspaceTerminal({ onRun, className = '', height = 140 }: WorkspaceTerminalProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const termRef = useRef<Terminal | null>(null);
   const fitRef = useRef<FitAddon | null>(null);
@@ -126,6 +127,14 @@ export default function WorkspaceTerminal({ onRun, className = '' }: WorkspaceTe
     };
   }, [processCommand]);
 
+  useEffect(() => {
+    try {
+      fitRef.current?.fit();
+    } catch {
+      /* ignore fit before layout */
+    }
+  }, [height]);
+
   return (
     <div
       className={`border-t border-[var(--border-color)] bg-[#0d1117] ${className}`}
@@ -135,7 +144,7 @@ export default function WorkspaceTerminal({ onRun, className = '' }: WorkspaceTe
         <span className="font-mono">terminal</span>
         <span className="text-text-secondary/60">zsh · sandbox</span>
       </div>
-      <div ref={containerRef} className="h-[140px] px-1 py-1" />
+      <div ref={containerRef} className="px-1 py-1" style={{ height }} />
     </div>
   );
 }

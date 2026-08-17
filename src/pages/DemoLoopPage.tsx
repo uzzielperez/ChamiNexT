@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Building2, Play, Sparkles, User } from 'lucide-react';
+import { ArrowRight, Building2, Monitor, Play, Sparkles, User } from 'lucide-react';
 import PremiumButton from '../components/ui/PremiumButton';
 import {
   DEMO_ASSESSMENT_ROLE_ID,
@@ -64,6 +64,17 @@ export default function DemoLoopPage() {
         </ol>
 
         <div className="grid sm:grid-cols-2 gap-4 mb-8">
+          <Link to="/studio" className="card p-6 border-accent-bright/30 hover:border-accent-bright transition-colors group sm:col-span-2">
+            <Monitor className="w-8 h-8 text-accent-bright mb-3" />
+            <h2 className="font-bold text-text-primary group-hover:text-accent-bright">Open coding studio</h2>
+            <p className="text-sm text-text-secondary mt-2 mb-4">
+              Cursor-style editor, terminal, and coding agent in the browser — try a Work Ticket without the assessment wrapper.
+            </p>
+            <span className="text-accent-blue text-sm font-medium flex items-center">
+              Launch studio <Play className="w-4 h-4 ml-1" />
+            </span>
+          </Link>
+
           <Link to={`/assess/${DEMO_ASSESSMENT_ROLE_ID}`} className="card p-6 border-accent-blue/40 hover:border-accent-blue transition-colors group">
             <User className="w-8 h-8 text-accent-blue mb-3" />
             <h2 className="font-bold text-text-primary group-hover:text-accent-bright">I'm the candidate</h2>

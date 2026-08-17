@@ -121,6 +121,14 @@ const EmployersPage: React.FC = () => {
     setTimeout(() => setCopiedId(null), 2000);
   };
 
+  const copyEmbedStudio = (roleId: string) => {
+    const url = `${window.location.origin}/embed/assess/${roleId}`;
+    const snippet = `<iframe src="${url}" width="100%" height="720" style="border:0;border-radius:12px" allow="clipboard-write" title="ChamiNexT Work Ticket"></iframe>`;
+    navigator.clipboard.writeText(snippet);
+    setCopiedId(`embed-${roleId}`);
+    setTimeout(() => setCopiedId(null), 2000);
+  };
+
   const exportCsv = () => {
     const csv = applicationsToCsv(loadApplications(), loadRoles());
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
@@ -307,10 +315,16 @@ const EmployersPage: React.FC = () => {
                         {role.softSkillsPack ? ' · soft-skills pack' : ''}
                       </p>
                     </div>
-                    <PremiumButton variant="outline" size="sm" onClick={() => copyInvite(role.id)}>
-                      <Link2 className="w-4 h-4 mr-1" />
-                      {copiedId === role.id ? 'Copied!' : 'Copy invite link'}
-                    </PremiumButton>
+                    <div className="flex flex-wrap gap-2">
+                      <PremiumButton variant="outline" size="sm" onClick={() => copyInvite(role.id)}>
+                        <Link2 className="w-4 h-4 mr-1" />
+                        {copiedId === role.id ? 'Copied!' : 'Copy apply link'}
+                      </PremiumButton>
+                      <PremiumButton variant="ghost" size="sm" onClick={() => copyEmbedStudio(role.id)}>
+                        <Link2 className="w-4 h-4 mr-1" />
+                        {copiedId === `embed-${role.id}` ? 'Copied!' : 'Copy studio embed'}
+                      </PremiumButton>
+                    </div>
                   </div>
                 ))
               )}

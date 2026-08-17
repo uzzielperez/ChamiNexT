@@ -14,6 +14,14 @@
 [functions."ship-test-evaluator"]
   timeout = 26
 
+[functions."studio-workspace"]
+  timeout = 10
+
+[[headers]]
+  for = "/embed/*"
+  [headers.values]
+    Content-Security-Policy = "frame-ancestors *"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"

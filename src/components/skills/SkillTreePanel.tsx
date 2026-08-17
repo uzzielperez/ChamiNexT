@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Check, ChevronDown, Sparkles } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Check, ChevronDown, Monitor, Sparkles } from 'lucide-react';
 import PremiumButton from '../ui/PremiumButton';
 import type { PracticeProblem } from '../../types/interview';
 import type { FieldSourcedProblem } from '../../types/interview';
@@ -15,6 +15,7 @@ import { completeLeaf, fundamentalsProgress, isFundamentalsComplete, leafUnlockS
 import { loadCoachProfile } from '../../utils/coachStorage';
 import LessonAudioPlayer from './LessonAudioPlayer';
 import type { VoicePreference } from '../../types/coach';
+import { studioProblemUrl } from '../../utils/studioLinks';
 
 interface SkillTreePanelProps {
   trackId: SkillTreeTrackId;
@@ -55,6 +56,14 @@ const ProblemRow: React.FC<{
     <PremiumButton variant="outline" size="sm" onClick={() => onStart(problem)}>
       {practiced ? 'Retry' : 'Start'}
     </PremiumButton>
+    <Link
+      to={studioProblemUrl(problem.id)}
+      className="inline-flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs text-accent-blue border border-[var(--border-color)] hover:border-accent-blue/50 shrink-0"
+      title="Open in coding studio"
+    >
+      <Monitor className="w-3.5 h-3.5" />
+      Studio
+    </Link>
   </div>
 );
 

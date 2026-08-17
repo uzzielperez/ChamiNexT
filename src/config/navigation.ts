@@ -8,6 +8,7 @@ export const SEEKER_NAV = [
 
 /** Secondary links — footer & overflow, not top nav. */
 export const SEEKER_MORE = [
+  { name: 'Studio', href: '/studio' },
   { name: 'Voice lessons', href: '/lessons' },
   { name: 'Skill trees', href: '/skills' },
   { name: 'Interview loop', href: '/loop' },

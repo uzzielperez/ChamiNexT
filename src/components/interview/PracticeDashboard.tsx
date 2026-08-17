@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
-import { Brain, Check } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Brain, Check, Monitor } from 'lucide-react';
 import CoverCard from '../spotify/CoverCard';
 import HorizontalShelf from '../spotify/HorizontalShelf';
 import PremiumButton from '../ui/PremiumButton';
@@ -14,6 +15,7 @@ import { loadSessions } from '../../utils/interviewStorage';
 import { shipTestChallenges } from '../../data/shipTests';
 import { getShipFormatLabel, getShipTestCover } from '../../data/practiceCovers';
 import type { PracticeProblem, PracticeTrack } from '../../types/interview';
+import { studioProblemUrl, studioTicketUrl } from '../../utils/studioLinks';
 
 const PROFILE_MILESTONE = 10;
 
@@ -145,6 +147,13 @@ const PracticeDashboard: React.FC<PracticeDashboardProps> = ({
                 <PremiumButton variant="primary" size="md" className="w-fit" onClick={() => onStartInterview(recommended)}>
                   {bestScoreByProblem[recommended.id] !== undefined ? 'Retry interview' : 'Run AI interview'}
                 </PremiumButton>
+                <Link
+                  to={studioProblemUrl(recommended.id)}
+                  className="inline-flex items-center gap-1.5 mt-3 text-sm text-accent-bright hover:underline w-fit"
+                >
+                  <Monitor className="w-4 h-4" />
+                  Open in Studio
+                </Link>
               </div>
             </div>
           </section>
@@ -259,7 +268,7 @@ const PracticeDashboard: React.FC<PracticeDashboardProps> = ({
                     gradient={cover.gradient}
                     icon={cover.icon}
                     badge="Quant"
-                    onClick={onOpenShipTests}
+                    href={studioTicketUrl(c.id)}
                   />
                 );
               })}
@@ -294,23 +303,31 @@ const PracticeDashboard: React.FC<PracticeDashboardProps> = ({
             const cover = getPracticeProblemCover(problem);
             const bestScore = bestScoreByProblem[problem.id];
             return (
-              <CoverCard
-                key={problem.id}
-                size="sm"
-                title={problem.title}
-                tagline={cover.problemYouSolve}
-                subtitle={`${TRACK_LABELS[problem.track]} · ~${problem.estimatedMinutes}m`}
-                gradient={cover.gradient}
-                icon={cover.icon}
-                badge={
-                  bestScore !== undefined
-                    ? `${bestScore}`
-                    : problem.difficulty === 'hard'
-                      ? 'Hard'
-                      : undefined
-                }
-                onClick={() => onStartInterview(problem)}
-              />
+              <div key={problem.id} className="relative group">
+                <CoverCard
+                  size="sm"
+                  title={problem.title}
+                  tagline={cover.problemYouSolve}
+                  subtitle={`${TRACK_LABELS[problem.track]} · ~${problem.estimatedMinutes}m`}
+                  gradient={cover.gradient}
+                  icon={cover.icon}
+                  badge={
+                    bestScore !== undefined
+                      ? `${bestScore}`
+                      : problem.difficulty === 'hard'
+                        ? 'Hard'
+                        : undefined
+                  }
+                  onClick={() => onStartInterview(problem)}
+                />
+                <Link
+                  to={studioProblemUrl(problem.id)}
+                  className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 focus:opacity-100 px-2 py-1 rounded-md bg-black/70 text-[10px] text-accent-bright border border-accent-blue/40 hover:bg-black/90 transition-opacity"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  Studio
+                </Link>
+              </div>
             );
           })}
         </div>
@@ -336,6 +353,13 @@ const PracticeDashboard: React.FC<PracticeDashboardProps> = ({
                   <p className="font-semibold text-text-primary text-sm truncate">{problem.title}</p>
                   <p className="text-xs text-accent-bright truncate">{problemTagline(problem)}</p>
                 </div>
+                <Link
+                  to={studioProblemUrl(problem.id)}
+                  onClick={(e) => e.stopPropagation()}
+                  className="text-[10px] px-2 py-1 rounded border border-[var(--border-color)] text-accent-blue hover:border-accent-blue/50 shrink-0"
+                >
+                  Studio
+                </Link>
                 {bestScore !== undefined && (
                   <span className="text-xs text-emerald-400 flex items-center gap-1 shrink-0">
                     <Check className="w-3.5 h-3.5" /> {bestScore}

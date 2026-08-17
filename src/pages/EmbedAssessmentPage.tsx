@@ -5,6 +5,8 @@ import CodingWorkspace, {
   type CodingWorkspaceHandle,
 } from '../components/workspace/CodingWorkspace';
 import PremiumButton from '../components/ui/PremiumButton';
+import StudioShell from '../components/studio/StudioShell';
+import ChamiNextLogo from '../components/brand/ChamiNextLogo';
 import { assessmentForRole } from '../data/companyAssessments';
 import { loadRoles } from '../utils/employerStorage';
 import { loadProfileName } from '../utils/interviewStorage';
@@ -21,7 +23,12 @@ function countChangedFiles(
   return Object.keys(current).filter((k) => starter[k] !== current[k]).length;
 }
 
-export default function AssessmentTakePage() {
+function postEmbedMessage(type: string, payload: Record<string, unknown>) {
+  if (window.parent === window) return;
+  window.parent.postMessage({ source: 'chaminext-studio', type, ...payload }, '*');
+}
+
+export default function EmbedAssessmentPage() {
   const { roleId } = useParams<{ roleId: string }>();
   const navigate = useNavigate();
   const workspaceRef = useRef<CodingWorkspaceHandle>(null);
@@ -34,13 +41,17 @@ export default function AssessmentTakePage() {
 
   if (!role || !assessment) {
     return (
-      <div className="container mx-auto px-4 py-16 text-center max-w-lg">
-        <h1 className="text-2xl font-bold text-text-primary mb-3">Assessment not found</h1>
-        <p className="text-text-secondary mb-6">
-          Ask your recruiter for a valid assessment link, or start the guided demo.
-        </p>
-        <Link to="/demo" className="text-accent-blue hover:underline">Go to demo →</Link>
-      </div>
+      <StudioShell>
+        <div className="flex-1 flex items-center justify-center p-8 text-center">
+          <div>
+            <h1 className="text-xl font-bold text-text-primary mb-2">Assessment not found</h1>
+            <p className="text-text-secondary text-sm mb-4">Invalid embed link — check the role id.</p>
+            <Link to="/demo" className="text-accent-blue hover:underline text-sm">
+              Go to demo →
+            </Link>
+          </div>
+        </div>
+      </StudioShell>
     );
   }
 
@@ -95,68 +106,69 @@ export default function AssessmentTakePage() {
         submissionId,
       });
 
+      postEmbedMessage('assessment_submitted', {
+        submissionId,
+        roleId: role.id,
+        overall: overallScores.overall,
+        testPassed: passed,
+      });
+
       navigate(`/demo/submitted/${submissionId}`);
     } catch (e) {
-      setError(e instanceof Error ? e.message : 'Submit failed');
+      const msg = e instanceof Error ? e.message : 'Submit failed';
+      setError(msg);
+      postEmbedMessage('assessment_error', { message: msg });
     } finally {
       setSubmitting(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-[var(--bg-primary)]">
-      <div className="container mx-auto px-4 py-8 max-w-7xl">
-        <div className="card p-6 mb-6 border-accent-blue/30">
-          <div className="flex flex-wrap items-start justify-between gap-4">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wide text-accent-blue flex items-center gap-2">
-                <Building2 className="w-4 h-4" />
-                {assessment.companyName} assigned you a task
-              </p>
-              <h1 className="text-2xl font-bold text-text-primary mt-2">{assessment.roleTitle}</h1>
-              <p className="text-text-secondary mt-1">{assessment.taskTitle}</p>
-            </div>
-            <div className="text-right text-sm text-text-secondary">
-              <p className="flex items-center gap-1 justify-end">
-                <ClipboardList className="w-4 h-4 text-accent-blue" />
-                {promptTrail.length} prompts logged
-              </p>
-              <p className="text-xs mt-1">AI use allowed — prompts are part of your trail</p>
-            </div>
-          </div>
-
-          <div className="mt-4 p-4 rounded-lg bg-[var(--bg-secondary)] border border-[var(--border-color)]">
-            <p className="text-sm text-text-secondary">
-              <span className="font-semibold text-text-primary">PM brief:</span> {assessment.pmBrief}
-            </p>
-            {assessment.ticketMarkdown && (
-              <pre className="mt-3 text-xs text-text-secondary whitespace-pre-wrap font-sans border-t border-[var(--border-color)] pt-3">
-                {assessment.ticketMarkdown}
-              </pre>
-            )}
-          </div>
+    <StudioShell>
+      <header className="shrink-0 flex items-center gap-3 px-3 py-2 border-b border-[var(--border-color)] bg-[#0d1117]">
+        <ChamiNextLogo size="sm" showWordmark={false} />
+        <div className="min-w-0 flex-1">
+          <p className="text-[10px] uppercase tracking-wide text-accent-blue flex items-center gap-1">
+            <Building2 className="w-3 h-3" />
+            {assessment.companyName}
+          </p>
+          <h1 className="text-sm font-bold text-text-primary truncate">{assessment.taskTitle}</h1>
         </div>
-
-        <div className="flex flex-wrap items-center gap-3 mb-4">
-          <PremiumButton variant="primary" loading={submitting} onClick={() => void submitAssessment()}>
-            <Send className="w-4 h-4 mr-1" />
-            Submit assessment package
-          </PremiumButton>
-          <p className="text-xs text-text-secondary flex items-center gap-1">
-            <Sparkles className="w-3.5 h-3.5 text-accent-bright" />
-            Auto-packages code, terminal log, and every agent prompt for grading
+        <div className="text-right text-xs text-text-secondary shrink-0">
+          <p className="flex items-center gap-1 justify-end">
+            <ClipboardList className="w-3.5 h-3.5 text-accent-blue" />
+            {promptTrail.length} prompts
           </p>
         </div>
-        {error && <p className="text-red-400 text-sm mb-4">{error}</p>}
+      </header>
 
+      <div className="shrink-0 px-3 py-2 border-b border-[var(--border-color)] bg-[var(--bg-secondary)] text-xs text-text-secondary max-h-20 overflow-y-auto">
+        <span className="font-semibold text-text-primary">Brief:</span> {assessment.pmBrief}
+      </div>
+
+      <div className="shrink-0 flex flex-wrap items-center gap-3 px-3 py-2 border-b border-[var(--border-color)]">
+        <PremiumButton variant="primary" size="sm" loading={submitting} onClick={() => void submitAssessment()}>
+          <Send className="w-4 h-4 mr-1" />
+          Submit package
+        </PremiumButton>
+        <p className="text-[11px] text-text-secondary flex items-center gap-1">
+          <Sparkles className="w-3 h-3 text-accent-bright" />
+          AI allowed — prompts logged
+        </p>
+        {error && <p className="text-red-400 text-xs">{error}</p>}
+      </div>
+
+      <div className="flex-1 min-h-0">
         <CodingWorkspace
           ref={workspaceRef}
           template={assessment.workspace}
+          immersive
           persistKey={`assess-${role.id}`}
           hideBriefFooter
           onPromptRecorded={(r) => setPromptTrail((prev) => [...prev, r])}
+          className="h-full rounded-none border-0 shadow-none"
         />
       </div>
-    </div>
+    </StudioShell>
   );
 }
