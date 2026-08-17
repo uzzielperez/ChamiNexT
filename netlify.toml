@@ -17,6 +17,9 @@
 [functions."studio-workspace"]
   timeout = 10
 
+[functions."workspace-agent"]
+  timeout = 26
+
 [[headers]]
   for = "/embed/*"
   [headers.values]

@@ -18,7 +18,7 @@ import WorkspaceCommandPalette, { paletteIcons, type CommandPaletteAction } from
 import PremiumButton from '../ui/PremiumButton';
 import { runCode } from '../../utils/codeRunner';
 import type { InterviewMessage } from '../../types/interview';
-import { callWorkspaceAgent, WORKSPACE_QUICK_PROMPTS, type WorkspaceAgentContext } from '../../utils/workspaceAgent';
+import { callWorkspaceAgent, WORKSPACE_QUICK_PROMPTS, loadStudioModelId, type WorkspaceAgentContext } from '../../utils/workspaceAgent';
 import { runWorkspaceTests } from '../../utils/workspaceTestRunner';
 import {
   loadWorkspace,
@@ -92,6 +92,7 @@ export default forwardRef<CodingWorkspaceHandle, CodingWorkspaceProps>(function 
   const [sidebar, setSidebar] = useState<SidebarTab>('files');
   const [agentMessages, setAgentMessages] = useState<InterviewMessage[]>([]);
   const [agentLoading, setAgentLoading] = useState(false);
+  const [agentModelId, setAgentModelId] = useState(loadStudioModelId);
   const [terminalLog, setTerminalLog] = useState('');
   const [running, setRunning] = useState(false);
   const [lastTestOutput, setLastTestOutput] = useState<string | undefined>();
@@ -219,14 +220,14 @@ export default forwardRef<CodingWorkspaceHandle, CodingWorkspaceProps>(function 
       };
 
       try {
-        const res = await callWorkspaceAgent(ctx, agentMessages, text);
+        const res = await callWorkspaceAgent(ctx, agentMessages, text, agentModelId);
         setAgentMessages(res.messages);
         appendLog(`agent: ${res.reply.slice(0, 120)}…`);
       } finally {
         setAgentLoading(false);
       }
     },
-    [activePath, agentMessages, files, onPromptRecorded, template, terminalLog]
+    [activePath, agentMessages, agentModelId, files, onPromptRecorded, template, terminalLog]
   );
 
   const handleTerminalCommand = useCallback(
@@ -579,6 +580,8 @@ export default forwardRef<CodingWorkspaceHandle, CodingWorkspaceProps>(function 
           <WorkspaceAgentPanel
             messages={agentMessages}
             loading={agentLoading}
+            modelId={agentModelId}
+            onModelChange={setAgentModelId}
             onSend={(text) => handleAgentSend(text, 'panel')}
             onQuickSend={(text) => handleAgentSend(text, 'quick')}
           />
@@ -588,6 +591,8 @@ export default forwardRef<CodingWorkspaceHandle, CodingWorkspaceProps>(function 
             <WorkspaceAgentPanel
               messages={agentMessages}
               loading={agentLoading}
+              modelId={agentModelId}
+              onModelChange={setAgentModelId}
               onSend={handleAgentSend}
             />
           </div>
