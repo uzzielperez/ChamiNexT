@@ -30,3 +30,6 @@ dist-ssr
 # Interview intel scrape cache
 scripts/interview-intel/.cache/
 scripts/jobs/.cache/
+
+# Local Netlify folder
+.netlify
