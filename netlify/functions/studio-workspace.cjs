@@ -1,5 +1,5 @@
 const { requireUser } = require('./_shared/auth');
-const { getWorkspace, saveWorkspace } = require('./_shared/studioStore');
+const { getWorkspace, saveWorkspace } = require('./_shared/studioStore.cjs');
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',

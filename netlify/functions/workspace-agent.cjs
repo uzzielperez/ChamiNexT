@@ -1,12 +1,12 @@
 const { checkRateLimit, rateLimitResponse } = require('./_shared/rateLimit');
-const { chatCompletion } = require('./_shared/llmRouter');
+const { chatCompletion } = require('./_shared/llmRouter.cjs');
 const {
   resolveModel,
   listAvailableModels,
   DEFAULT_MODEL_ID,
   hasGroq,
   hasOpenRouter,
-} = require('./_shared/studioModels');
+} = require('./_shared/studioModels.cjs');
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
