@@ -1,13 +1,299 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-24T10:44:07.924Z",
-  "totalJobs": 572,
+  "generatedAt": "2026-09-28T12:20:03.611Z",
+  "totalJobs": 550,
   "sources": [
     "greenhouse",
     "hn-whoishiring",
     "remoteok"
   ],
   "jobs": [
+    {
+      "id": "job-1qrgya2",
+      "title": "Applied AI Engineer, Enterprise",
+      "company": "Anthropic",
+      "location": "London, UK",
+      "remote": false,
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5354765008",
+      "source": "greenhouse",
+      "postedAt": "2026-09-28T06:56:13-04:00",
+      "description": "",
+      "track": "ai-for-science",
+      "mission": true
+    },
+    {
+      "id": "job-1h62jic",
+      "title": "Applied AI Engineer, DNB",
+      "company": "Anthropic",
+      "location": "London, UK",
+      "remote": false,
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5435282008",
+      "source": "greenhouse",
+      "postedAt": "2026-09-28T06:40:08-04:00",
+      "description": "",
+      "track": "ai-for-science",
+      "mission": true
+    },
+    {
+      "id": "job-1j3h209",
+      "title": "Product Engineer, Computer Use",
+      "company": "Anthropic",
+      "location": "San Francisco, CA | New York City, NY | Seattle, WA",
+      "remote": false,
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5238637008",
+      "source": "greenhouse",
+      "postedAt": "2026-09-28T06:30:49-04:00",
+      "description": "",
+      "track": "ai-for-science",
+      "mission": true
+    },
+    {
+      "id": "job-1q2dv7p",
+      "title": "[London] Applied AI Architect, Partnerships",
+      "company": "Anthropic",
+      "location": "London, UK",
+      "remote": false,
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5432583008",
+      "source": "greenhouse",
+      "postedAt": "2026-09-28T03:22:51-04:00",
+      "description": "",
+      "track": "ai-for-science",
+      "mission": true
+    },
+    {
+      "id": "job-1mdz14a",
+      "title": "Research Engineer, Post-Training Model Evaluations",
+      "company": "Anthropic",
+      "location": "San Francisco, CA | Seattle, WA",
+      "remote": false,
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5198255008",
+      "source": "greenhouse",
+      "postedAt": "2026-09-27T23:35:11-04:00",
+      "description": "",
+      "track": "ai-for-science",
+      "mission": true
+    },
+    {
+      "id": "job-1se03ep",
+      "title": "Sr. Deployment Strategist, FDE - Healthcare & Life Sciences",
+      "company": "Databricks",
+      "location": "United States",
+      "remote": false,
+      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8687873002",
+      "source": "greenhouse",
+      "postedAt": "2026-09-25T21:46:56-04:00",
+      "description": "",
+      "track": "software",
+      "mission": true
+    },
+    {
+      "id": "job-mt3fst",
+      "title": "Solutions Marketing Manager, Cybersecurity",
+      "company": "Anthropic",
+      "location": "San Francisco, CA; Washington, DC",
+      "remote": false,
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5420245008",
+      "source": "greenhouse",
+      "postedAt": "2026-09-25T17:58:49-04:00",
+      "description": "",
+      "track": "cybersecurity",
+      "mission": true
+    },
+    {
+      "id": "job-ztbcx7",
+      "title": "Technical Program Lead, Public Sector",
+      "company": "Scale AI",
+      "location": "Washington, DC",
+      "remote": false,
+      "url": "https://job-boards.greenhouse.io/scaleai/jobs/4735208005",
+      "source": "greenhouse",
+      "postedAt": "2026-09-25T15:30:08-04:00",
+      "description": "",
+      "track": "software",
+      "mission": true
+    },
+    {
+      "id": "job-mkgdtt",
+      "title": "Research Counsel",
+      "company": "Anthropic",
+      "location": "San Francisco, CA | New York City, NY",
+      "remote": false,
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5413418008",
+      "source": "greenhouse",
+      "postedAt": "2026-09-25T14:51:47-04:00",
+      "description": "",
+      "track": "ai-for-science",
+      "mission": true
+    },
+    {
+      "id": "job-yttdrl",
+      "title": "Compute & Infrastructure Counsel, Real Estate",
+      "company": "Anthropic",
+      "location": "San Francisco, CA | Seattle, WA",
+      "remote": false,
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5427969008",
+      "source": "greenhouse",
+      "postedAt": "2026-09-25T14:49:04-04:00",
+      "description": "",
+      "track": "ai-for-science",
+      "mission": true
+    },
+    {
+      "id": "job-16oi2y2",
+      "title": "Enterprise Pricing Manager",
+      "company": "Scale AI",
+      "location": "San Francisco, CA; New York, NY",
+      "remote": false,
+      "url": "https://job-boards.greenhouse.io/scaleai/jobs/4725451005",
+      "source": "greenhouse",
+      "postedAt": "2026-09-25T13:52:12-04:00",
+      "description": "",
+      "track": "software",
+      "mission": true
+    },
+    {
+      "id": "job-27z1tz",
+      "title": "Applied AI Architect, Public Sector",
+      "company": "Anthropic",
+      "location": "San Francisco, CA | New York City, NY | Washington, DC",
+      "remote": false,
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5382518008",
+      "source": "greenhouse",
+      "postedAt": "2026-09-25T11:28:55-04:00",
+      "description": "",
+      "track": "ai-for-science",
+      "mission": true
+    },
+    {
+      "id": "job-1ccwg7o",
+      "title": "Lead Engagement Manager, FDE - Healthcare & Life Sciences",
+      "company": "Databricks",
+      "location": "Central - United States; Northeast - United States; Southeast - United States",
+      "remote": false,
+      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8438803002",
+      "source": "greenhouse",
+      "postedAt": "2026-09-25T01:19:48-04:00",
+      "description": "",
+      "track": "software",
+      "mission": true
+    },
+    {
+      "id": "job-bhjd6i",
+      "title": "Staff Security Engineer, Risk Engineering",
+      "company": "Anthropic",
+      "location": "San Francisco, CA | New York City, NY | Seattle, WA",
+      "remote": false,
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5250052008",
+      "source": "greenhouse",
+      "postedAt": "2026-09-25T01:09:00-04:00",
+      "description": "",
+      "track": "cybersecurity",
+      "mission": true
+    },
+    {
+      "id": "job-1vywwlk",
+      "title": "Lead, Security Controls Assurance - SOX",
+      "company": "Anthropic",
+      "location": "San Francisco, CA | Seattle, WA | New York City, NY | Washington, DC",
+      "remote": false,
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5415864008",
+      "source": "greenhouse",
+      "postedAt": "2026-09-24T20:10:10-04:00",
+      "description": "",
+      "track": "ai-for-science",
+      "mission": true
+    },
+    {
+      "id": "job-10koiiy",
+      "title": "Staff Product Designer, Enterprise",
+      "company": "Scale AI",
+      "location": "London, UK",
+      "remote": false,
+      "url": "https://job-boards.greenhouse.io/scaleai/jobs/4735360005",
+      "source": "greenhouse",
+      "postedAt": "2026-09-24T15:27:21-04:00",
+      "description": "",
+      "track": "software",
+      "mission": true
+    },
+    {
+      "id": "job-plen7o",
+      "title": "Senior Product Design Manager, Enterprise",
+      "company": "Scale AI",
+      "location": "New York, NY",
+      "remote": false,
+      "url": "https://job-boards.greenhouse.io/scaleai/jobs/4721008005",
+      "source": "greenhouse",
+      "postedAt": "2026-09-24T15:20:56-04:00",
+      "description": "",
+      "track": "software",
+      "mission": true
+    },
+    {
+      "id": "job-1dbyyyo",
+      "title": "Staff+ Research Scientist, Multi-Agent",
+      "company": "Anthropic",
+      "location": "San Francisco, CA | New York City, NY | Seattle, WA",
+      "remote": false,
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/4017544008",
+      "source": "greenhouse",
+      "postedAt": "2026-09-24T14:12:56-04:00",
+      "description": "",
+      "track": "ai-for-science",
+      "mission": true
+    },
+    {
+      "id": "job-u8j5yc",
+      "title": "National Security Partnerships Lead, Intelligence and International Security",
+      "company": "Anthropic",
+      "location": "Washington, DC",
+      "remote": false,
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5427236008",
+      "source": "greenhouse",
+      "postedAt": "2026-09-24T13:36:29-04:00",
+      "description": "",
+      "track": "ai-for-science",
+      "mission": true
+    },
+    {
+      "id": "job-x466o5",
+      "title": "Software Engineer (ML Infrastructure), London",
+      "company": "Isomorphic Labs",
+      "location": "London",
+      "remote": false,
+      "url": "https://job-boards.greenhouse.io/isomorphiclabs/jobs/5818858004",
+      "source": "greenhouse",
+      "postedAt": "2026-09-24T11:44:44-04:00",
+      "description": "",
+      "track": "software",
+      "mission": true
+    },
+    {
+      "id": "job-1r8p2dh",
+      "title": "Strategic Enterprise Account Executive, Healthcare",
+      "company": "Databricks",
+      "location": "Remote - California",
+      "remote": true,
+      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8829996002",
+      "source": "greenhouse",
+      "postedAt": "2026-09-24T09:19:48-04:00",
+      "description": "",
+      "track": "software",
+      "mission": true
+    },
+    {
+      "id": "job-1mplexq",
+      "title": "Named Hunter Enterprise Account Executive, Healthcare",
+      "company": "Databricks",
+      "location": "Northeast - United States; Southeast - United States",
+      "remote": false,
+      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8829296002",
+      "source": "greenhouse",
+      "postedAt": "2026-09-24T08:45:45-04:00",
+      "description": "",
+      "track": "software",
+      "mission": true
+    },
     {
       "id": "job-e74y1u",
       "title": "Staff+ Software Engineer, Account Creation",
@@ -32,32 +318,6 @@
       "postedAt": "2026-09-24T01:54:13-04:00",
       "description": "",
       "track": "ai-for-science",
-      "mission": true
-    },
-    {
-      "id": "job-1dbyyyo",
-      "title": "Research Scientist, Multi-Agent",
-      "company": "Anthropic",
-      "location": "San Francisco, CA | New York City, NY | Seattle, WA",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/4017544008",
-      "source": "greenhouse",
-      "postedAt": "2026-09-24T01:04:08-04:00",
-      "description": "",
-      "track": "ai-for-science",
-      "mission": true
-    },
-    {
-      "id": "job-6ul5mu",
-      "title": "Senior Cloud Infrastructure Engineer",
-      "company": "Scale AI",
-      "location": "San Francisco, CA; New York, NY",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/scaleai/jobs/4737102005",
-      "source": "greenhouse",
-      "postedAt": "2026-09-24T00:39:25-04:00",
-      "description": "",
-      "track": "software",
       "mission": true
     },
     {
@@ -113,19 +373,6 @@
       "mission": true
     },
     {
-      "id": "job-27z1tz",
-      "title": "Applied AI Architect, Public Sector",
-      "company": "Anthropic",
-      "location": "San Francisco, CA | New York City, NY",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5382518008",
-      "source": "greenhouse",
-      "postedAt": "2026-09-23T13:17:43-04:00",
-      "description": "",
-      "track": "ai-for-science",
-      "mission": true
-    },
-    {
       "id": "job-18d4cab",
       "title": "Staff Product Designer, Enterprise",
       "company": "Scale AI",
@@ -134,19 +381,6 @@
       "url": "https://job-boards.greenhouse.io/scaleai/jobs/4718917005",
       "source": "greenhouse",
       "postedAt": "2026-09-23T12:58:11-04:00",
-      "description": "",
-      "track": "software",
-      "mission": true
-    },
-    {
-      "id": "job-plen7o",
-      "title": "Senior Product Design Manager",
-      "company": "Scale AI",
-      "location": "New York, NY; San Francisco, CA",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/scaleai/jobs/4721008005",
-      "source": "greenhouse",
-      "postedAt": "2026-09-23T12:57:24-04:00",
       "description": "",
       "track": "software",
       "mission": true
@@ -360,19 +594,6 @@
       "mission": true
     },
     {
-      "id": "job-1vywwlk",
-      "title": "Lead, Security Controls Assurance - SOX",
-      "company": "Anthropic",
-      "location": "San Francisco, CA | Seattle, WA | New York City, NY | Washington, DC",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5415864008",
-      "source": "greenhouse",
-      "postedAt": "2026-09-22T14:58:51-04:00",
-      "description": "",
-      "track": "ai-for-science",
-      "mission": true
-    },
-    {
       "id": "job-19q368b",
       "title": "Partnership Manager, AI for Science",
       "company": "Anthropic",
@@ -464,19 +685,6 @@
       "mission": true
     },
     {
-      "id": "job-1se03ep",
-      "title": "Sr. Deployment Strategist, FDE - Healthcare & Life Sciences",
-      "company": "Databricks",
-      "location": "United States",
-      "remote": false,
-      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8687873002",
-      "source": "greenhouse",
-      "postedAt": "2026-09-21T18:01:42-04:00",
-      "description": "",
-      "track": "software",
-      "mission": true
-    },
-    {
       "id": "job-hja0w7",
       "title": "Staff+ Site Reliability Engineer, Safeguards ML Infra",
       "company": "Anthropic",
@@ -542,19 +750,6 @@
       "mission": true
     },
     {
-      "id": "job-1ccwg7o",
-      "title": "Lead Engagement Manager, Forward Deployed Engineering - Healthcare & Life Sciences",
-      "company": "Databricks",
-      "location": "Central - United States; Northeast - United States; Southeast - United States",
-      "remote": false,
-      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8438803002",
-      "source": "greenhouse",
-      "postedAt": "2026-09-21T13:22:12-04:00",
-      "description": "",
-      "track": "software",
-      "mission": true
-    },
-    {
       "id": "job-1o6jsb8",
       "title": "Solutions Architect - Digital Native Business (Healthtech)",
       "company": "Databricks",
@@ -594,12 +789,25 @@
       "mission": true
     },
     {
-      "id": "job-81lxmj",
-      "title": "Sr. Field Technical Program Manager, Forward Deployed Engineering - Healthcare & Life Sciences",
+      "id": "job-1vnysuq",
+      "title": "Sr. Forward Deployed Engineer (FDE) - Healthcare & Life Sciences",
       "company": "Databricks",
-      "location": "Central - United States; Northeast - United States; Southeast - United States",
+      "location": "Boston, Massachusetts",
       "remote": false,
-      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8586437002",
+      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8494142002",
+      "source": "greenhouse",
+      "postedAt": "2026-09-21T13:22:12-04:00",
+      "description": "",
+      "track": "software",
+      "mission": true
+    },
+    {
+      "id": "job-1vo1vrq",
+      "title": "Sr. Forward Deployed Engineer (FDE) - Healthcare & Life Sciences",
+      "company": "Databricks",
+      "location": "Atlanta, Georgia",
+      "remote": false,
+      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8494146002",
       "source": "greenhouse",
       "postedAt": "2026-09-21T13:22:12-04:00",
       "description": "",
@@ -620,12 +828,12 @@
       "mission": true
     },
     {
-      "id": "job-1vo0cb8",
+      "id": "job-1vo3f88",
       "title": "Sr. Forward Deployed Engineer (FDE) - Healthcare & Life Sciences",
       "company": "Databricks",
-      "location": "Dallas, Texas",
+      "location": "Philadelphia, Pennsylvania",
       "remote": false,
-      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8494144002",
+      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8494148002",
       "source": "greenhouse",
       "postedAt": "2026-09-21T13:22:12-04:00",
       "description": "",
@@ -646,19 +854,6 @@
       "mission": true
     },
     {
-      "id": "job-1vnysuq",
-      "title": "Sr. Forward Deployed Engineer (FDE) - Healthcare & Life Sciences",
-      "company": "Databricks",
-      "location": "Boston, Massachusetts",
-      "remote": false,
-      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8494142002",
-      "source": "greenhouse",
-      "postedAt": "2026-09-21T13:22:12-04:00",
-      "description": "",
-      "track": "software",
-      "mission": true
-    },
-    {
       "id": "job-1ihpetn",
       "title": "Sr. Forward Deployed Engineer (FDE) - Healthcare & Life Sciences",
       "company": "Databricks",
@@ -672,25 +867,12 @@
       "mission": true
     },
     {
-      "id": "job-1vo3f88",
+      "id": "job-1vo0cb8",
       "title": "Sr. Forward Deployed Engineer (FDE) - Healthcare & Life Sciences",
       "company": "Databricks",
-      "location": "Philadelphia, Pennsylvania",
+      "location": "Dallas, Texas",
       "remote": false,
-      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8494148002",
-      "source": "greenhouse",
-      "postedAt": "2026-09-21T13:22:12-04:00",
-      "description": "",
-      "track": "software",
-      "mission": true
-    },
-    {
-      "id": "job-1vo1vrq",
-      "title": "Sr. Forward Deployed Engineer (FDE) - Healthcare & Life Sciences",
-      "company": "Databricks",
-      "location": "Atlanta, Georgia",
-      "remote": false,
-      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8494146002",
+      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8494144002",
       "source": "greenhouse",
       "postedAt": "2026-09-21T13:22:12-04:00",
       "description": "",
@@ -784,19 +966,6 @@
       "url": "https://job-boards.greenhouse.io/anthropic/jobs/5422950008",
       "source": "greenhouse",
       "postedAt": "2026-09-19T19:21:00-04:00",
-      "description": "",
-      "track": "ai-for-science",
-      "mission": true
-    },
-    {
-      "id": "job-yttdrl",
-      "title": "Compute & Infrastructure Counsel, Real Estate",
-      "company": "Anthropic",
-      "location": "San Francisco, CA | Seattle, WA",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5427969008",
-      "source": "greenhouse",
-      "postedAt": "2026-09-19T17:12:25-04:00",
       "description": "",
       "track": "ai-for-science",
       "mission": true
@@ -958,19 +1127,6 @@
       "mission": true
     },
     {
-      "id": "job-ztbcx7",
-      "title": "Technical Program Lead, Public Sector",
-      "company": "Scale AI",
-      "location": "Washington, DC",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/scaleai/jobs/4735208005",
-      "source": "greenhouse",
-      "postedAt": "2026-09-17T16:31:15-04:00",
-      "description": "",
-      "track": "software",
-      "mission": true
-    },
-    {
       "id": "job-zcbryp",
       "title": "Solutions Engineering Lead, Consumer",
       "company": "Scale AI",
@@ -1031,19 +1187,6 @@
       "url": "https://job-boards.greenhouse.io/scaleai/jobs/4733702005",
       "source": "greenhouse",
       "postedAt": "2026-09-17T09:22:17-04:00",
-      "description": "",
-      "track": "software",
-      "mission": true
-    },
-    {
-      "id": "job-hsz7ab",
-      "title": "Senior Software Engineer, Data Platform",
-      "company": "Scale AI",
-      "location": "London, UK",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/scaleai/jobs/4717101005",
-      "source": "greenhouse",
-      "postedAt": "2026-09-17T06:51:56-04:00",
       "description": "",
       "track": "software",
       "mission": true
@@ -1530,19 +1673,6 @@
       "mission": true
     },
     {
-      "id": "job-mt3fst",
-      "title": "Solutions Marketing Manager, Cybersecurity",
-      "company": "Anthropic",
-      "location": "San Francisco, CA; Washington, DC",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5420245008",
-      "source": "greenhouse",
-      "postedAt": "2026-09-11T00:03:37-04:00",
-      "description": "",
-      "track": "cybersecurity",
-      "mission": true
-    },
-    {
       "id": "job-1s2zq40",
       "title": "Machine Learning Engineer, Public Sector",
       "company": "Scale AI",
@@ -1591,6 +1721,19 @@
       "source": "greenhouse",
       "postedAt": "2026-09-10T18:54:32-04:00",
       "description": "",
+      "track": "ai-engineer",
+      "mission": true
+    },
+    {
+      "id": "job-oihqlc",
+      "title": "Agent Builder",
+      "company": "Catalyst·Wayfare AI",
+      "location": "Remote (US ET Overlap)",
+      "remote": true,
+      "url": "https://news.ycombinator.com/item?id=49650855",
+      "source": "hn-whoishiring",
+      "postedAt": "2026-09-10T22:15:25.000Z",
+      "description": "Catalyst·Wayfare AI | Agent Builder | Remote (US ET Overlap) | Full-time &#x2F; Part-time &#x2F; Contract | https:&#x2F;&#x2F;catalystwayfare.ai&#x2F;careers AI transformation firm shipping production AI systems for mid-market enterprises in regulated and technical domains — finance, energy, industrials, healthcare. We do not stop at PowerPoint AI strategy. ",
       "track": "ai-engineer",
       "mission": true
     },
@@ -1803,19 +1946,6 @@
       "mission": true
     },
     {
-      "id": "job-16szpgk",
-      "title": "Technical Program Manager (Cyber), Public Sector",
-      "company": "Scale AI",
-      "location": "Columbia, MD; Washington, DC",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/scaleai/jobs/4732222005",
-      "source": "greenhouse",
-      "postedAt": "2026-09-09T17:01:41-04:00",
-      "description": "",
-      "track": "software",
-      "mission": true
-    },
-    {
       "id": "job-bcf7jl",
       "title": "Staff+ Software Engineer, ML Inference Path",
       "company": "Anthropic",
@@ -1852,19 +1982,6 @@
       "postedAt": "2026-09-09T15:17:24-04:00",
       "description": "",
       "track": "ai-for-science",
-      "mission": true
-    },
-    {
-      "id": "job-1qlesen",
-      "title": "Associate General Counsel, Product & IP",
-      "company": "Scale AI",
-      "location": "New York, NY; San Francisco, CA; Washington, DC",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/scaleai/jobs/4702785005",
-      "source": "greenhouse",
-      "postedAt": "2026-09-09T14:55:39-04:00",
-      "description": "",
-      "track": "software",
       "mission": true
     },
     {
@@ -2089,19 +2206,6 @@
       "mission": true
     },
     {
-      "id": "job-qennxh",
-      "title": "Applied AI Architect",
-      "company": "Anthropic",
-      "location": "Singapore",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5390742008",
-      "source": "greenhouse",
-      "postedAt": "2026-09-08T11:10:54-04:00",
-      "description": "",
-      "track": "ai-for-science",
-      "mission": true
-    },
-    {
       "id": "job-of4owv",
       "title": "Forward Deployed Engineer, Site Reliability Engineer",
       "company": "Newton's Tree",
@@ -2190,19 +2294,6 @@
       "postedAt": "2026-09-04T21:21:44-04:00",
       "description": "",
       "track": "ai-engineer",
-      "mission": true
-    },
-    {
-      "id": "job-gnlyix",
-      "title": "Finance & Strategy, Datacenter Strategic Initiatives",
-      "company": "Anthropic",
-      "location": "San Francisco, CA | New York City, NY",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5107489008",
-      "source": "greenhouse",
-      "postedAt": "2026-09-04T19:08:23-04:00",
-      "description": "",
-      "track": "ai-for-science",
       "mission": true
     },
     {
@@ -2320,19 +2411,6 @@
       "postedAt": "2026-09-03T15:59:00-04:00",
       "description": "",
       "track": "software",
-      "mission": true
-    },
-    {
-      "id": "job-mkgdtt",
-      "title": "Research Counsel",
-      "company": "Anthropic",
-      "location": "San Francisco, CA | New York City, NY",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5413418008",
-      "source": "greenhouse",
-      "postedAt": "2026-09-03T15:08:01-04:00",
-      "description": "",
-      "track": "ai-for-science",
       "mission": true
     },
     {
@@ -3259,19 +3337,6 @@
       "mission": true
     },
     {
-      "id": "job-n4g7lk",
-      "title": "AI Infrastructure Engineer, Serving Platform",
-      "company": "Scale AI",
-      "location": "London, UK",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/scaleai/jobs/4717977005",
-      "source": "greenhouse",
-      "postedAt": "2026-09-01T14:31:40-04:00",
-      "description": "",
-      "track": "software",
-      "mission": true
-    },
-    {
       "id": "job-nt6i1n",
       "title": "Lead Engineer",
       "company": "Relevant Healthcare",
@@ -3688,19 +3753,6 @@
       "mission": true
     },
     {
-      "id": "job-czy11p",
-      "title": "Regulatory Counsel, AI Regulation, US",
-      "company": "Anthropic",
-      "location": "San Francisco, CA | New York City, NY",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5409299008",
-      "source": "greenhouse",
-      "postedAt": "2026-08-28T18:04:30-04:00",
-      "description": "",
-      "track": "ai-for-science",
-      "mission": true
-    },
-    {
       "id": "job-17pxj21",
       "title": "Research Engineer, Production Model Post-Training",
       "company": "Anthropic",
@@ -3865,19 +3917,6 @@
       "url": "https://job-boards.greenhouse.io/anthropic/jobs/5390770008",
       "source": "greenhouse",
       "postedAt": "2026-08-28T16:45:34-04:00",
-      "description": "",
-      "track": "ai-for-science",
-      "mission": true
-    },
-    {
-      "id": "job-13ahn8m",
-      "title": "Applied AI Architect",
-      "company": "Anthropic",
-      "location": "Madrid, Spain",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5227672008",
-      "source": "greenhouse",
-      "postedAt": "2026-08-28T16:45:08-04:00",
       "description": "",
       "track": "ai-for-science",
       "mission": true
@@ -4377,19 +4416,6 @@
       "mission": true
     },
     {
-      "id": "job-16oi2y2",
-      "title": "Enterprise Deal Desk Analyst",
-      "company": "Scale AI",
-      "location": "San Francisco, CA; New York, NY",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/scaleai/jobs/4725451005",
-      "source": "greenhouse",
-      "postedAt": "2026-08-27T16:06:17-04:00",
-      "description": "",
-      "track": "software",
-      "mission": true
-    },
-    {
       "id": "job-wnslir",
       "title": "Manufacturing Quality Engineer, Data Center Power & Cooling",
       "company": "Anthropic",
@@ -4663,19 +4689,6 @@
       "mission": true
     },
     {
-      "id": "job-ht2a7b",
-      "title": "AI Infrastructure Engineer, Sandbox Platform",
-      "company": "Scale AI",
-      "location": "London, UK",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/scaleai/jobs/4717105005",
-      "source": "greenhouse",
-      "postedAt": "2026-08-25T17:30:04-04:00",
-      "description": "",
-      "track": "software",
-      "mission": true
-    },
-    {
       "id": "job-1ylhqi3",
       "title": "Data Center Mechanical Engineer",
       "company": "Anthropic",
@@ -4790,19 +4803,6 @@
       "postedAt": "2026-08-25T13:53:07-04:00",
       "description": "",
       "track": "software",
-      "mission": true
-    },
-    {
-      "id": "job-13cqemm",
-      "title": "Manager, Applied AI Architect, Enterprise Tech",
-      "company": "Anthropic",
-      "location": "San Francisco, CA | New York City, NY",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5387754008",
-      "source": "greenhouse",
-      "postedAt": "2026-08-25T13:38:58-04:00",
-      "description": "",
-      "track": "ai-for-science",
       "mission": true
     },
     {
@@ -5326,19 +5326,6 @@
       "mission": true
     },
     {
-      "id": "job-1d2omsu",
-      "title": "Software Engineer, Desktop",
-      "company": "Anthropic",
-      "location": "San Francisco, CA | New York City, NY",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5367585008",
-      "source": "greenhouse",
-      "postedAt": "2026-08-21T12:50:42-04:00",
-      "description": "",
-      "track": "ai-for-science",
-      "mission": true
-    },
-    {
       "id": "job-1cbvi5l",
       "title": "Staff Software Engineer, Environments Infrastructure",
       "company": "Anthropic",
@@ -5508,19 +5495,6 @@
       "mission": true
     },
     {
-      "id": "job-85c0i1",
-      "title": "Software Security Engineering Manager, Secure Frameworks",
-      "company": "Anthropic",
-      "location": "San Francisco, CA | Seattle, WA",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5324758008",
-      "source": "greenhouse",
-      "postedAt": "2026-08-21T12:50:35-04:00",
-      "description": "",
-      "track": "cybersecurity",
-      "mission": true
-    },
-    {
       "id": "job-td1lzj",
       "title": "Director, Infrastructure Supply Chain Accounting",
       "company": "Anthropic",
@@ -5579,19 +5553,6 @@
       "location": "New York City, NY; San Francisco, CA; Seattle, WA",
       "remote": false,
       "url": "https://job-boards.greenhouse.io/anthropic/jobs/5302966008",
-      "source": "greenhouse",
-      "postedAt": "2026-08-21T12:50:32-04:00",
-      "description": "",
-      "track": "ai-for-science",
-      "mission": true
-    },
-    {
-      "id": "job-12f3c2i",
-      "title": "Staff Software Engineer, Web Platform",
-      "company": "Anthropic",
-      "location": "San Francisco, CA",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5305402008",
       "source": "greenhouse",
       "postedAt": "2026-08-21T12:50:32-04:00",
       "description": "",
@@ -5755,19 +5716,6 @@
       "mission": true
     },
     {
-      "id": "job-nw0bs1",
-      "title": "Research Engineer, Domain Scaling",
-      "company": "Anthropic",
-      "location": "San Francisco, CA | New York City, NY | Seattle, WA",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5271380008",
-      "source": "greenhouse",
-      "postedAt": "2026-08-21T12:50:27-04:00",
-      "description": "",
-      "track": "ai-for-science",
-      "mission": true
-    },
-    {
       "id": "job-17qf99j",
       "title": "Research Engineer, Life Sciences",
       "company": "Anthropic",
@@ -5817,19 +5765,6 @@
       "postedAt": "2026-08-21T12:50:24-04:00",
       "description": "",
       "track": "ai-for-science",
-      "mission": true
-    },
-    {
-      "id": "job-bhjd6i",
-      "title": "Staff+ Security Engineer, Risk Engineering",
-      "company": "Anthropic",
-      "location": "San Francisco, CA | New York City, NY | Seattle, WA",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5250052008",
-      "source": "greenhouse",
-      "postedAt": "2026-08-21T12:50:23-04:00",
-      "description": "",
-      "track": "cybersecurity",
       "mission": true
     },
     {
@@ -5908,19 +5843,6 @@
       "postedAt": "2026-08-21T12:50:20-04:00",
       "description": "",
       "track": "cybersecurity",
-      "mission": true
-    },
-    {
-      "id": "job-141oied",
-      "title": "Director, Compute Infrastructure Procurement Operations",
-      "company": "Anthropic",
-      "location": "San Francisco, CA | New York City, NY",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5234538008",
-      "source": "greenhouse",
-      "postedAt": "2026-08-21T12:50:19-04:00",
-      "description": "",
-      "track": "ai-for-science",
       "mission": true
     },
     {
@@ -6080,38 +6002,12 @@
       "mission": true
     },
     {
-      "id": "job-12wxmz1",
-      "title": "Data Scientist, Developer Productivity",
-      "company": "Anthropic",
-      "location": "San Francisco, CA | New York City, NY",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5197529008",
-      "source": "greenhouse",
-      "postedAt": "2026-08-21T12:50:09-04:00",
-      "description": "",
-      "track": "ai-for-science",
-      "mission": true
-    },
-    {
       "id": "job-1ln7fxj",
       "title": "Research Engineer, Machine Learning (RL Velocity)",
       "company": "Anthropic",
       "location": "Remote-Friendly (Travel-Required) | San Francisco, CA | New York City, NY",
       "remote": true,
       "url": "https://job-boards.greenhouse.io/anthropic/jobs/5198108008",
-      "source": "greenhouse",
-      "postedAt": "2026-08-21T12:50:09-04:00",
-      "description": "",
-      "track": "ai-for-science",
-      "mission": true
-    },
-    {
-      "id": "job-1mdz14a",
-      "title": "Research Engineer, Model Evaluations",
-      "company": "Anthropic",
-      "location": "Remote-Friendly (Travel-Required) | San Francisco, CA | New York City, NY",
-      "remote": true,
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5198255008",
       "source": "greenhouse",
       "postedAt": "2026-08-21T12:50:09-04:00",
       "description": "",
@@ -6400,19 +6296,6 @@
       "url": "https://job-boards.greenhouse.io/anthropic/jobs/5134895008",
       "source": "greenhouse",
       "postedAt": "2026-08-21T12:49:59-04:00",
-      "description": "",
-      "track": "ai-for-science",
-      "mission": true
-    },
-    {
-      "id": "job-1supi2o",
-      "title": "Infrastructure Tax Lead",
-      "company": "Anthropic",
-      "location": "Remote-Friendly (Travel-Required) | San Francisco, CA | New York City, NY",
-      "remote": true,
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5123851008",
-      "source": "greenhouse",
-      "postedAt": "2026-08-21T12:49:58-04:00",
       "description": "",
       "track": "ai-for-science",
       "mission": true
@@ -7273,175 +7156,6 @@
       "postedAt": "2026-08-14T12:57:57-04:00",
       "description": "",
       "track": "software",
-      "mission": true
-    },
-    {
-      "id": "job-1xs056x",
-      "title": "Operations Program Manager / Associate, Industrial Partnerships - Robotics",
-      "company": "Scale AI",
-      "location": "Mexico City, MX",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/scaleai/jobs/4723290005",
-      "source": "greenhouse",
-      "postedAt": "2026-08-13T17:34:56-04:00",
-      "description": "",
-      "track": "software",
-      "mission": true
-    },
-    {
-      "id": "job-16wdgij",
-      "title": "Staff Software Engineer, Enterprise GenAI",
-      "company": "Scale AI",
-      "location": "San Francisco, CA; New York, NY",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/scaleai/jobs/4569678005",
-      "source": "greenhouse",
-      "postedAt": "2026-08-13T13:21:07-04:00",
-      "description": "",
-      "track": "software",
-      "mission": true
-    },
-    {
-      "id": "job-1k2vuj2",
-      "title": "Senior/Staff Machine Learning Research Engineer, General Agents, Enterprise GenAI",
-      "company": "Scale AI",
-      "location": "San Francisco, CA; New York, NY",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/scaleai/jobs/4658162005",
-      "source": "greenhouse",
-      "postedAt": "2026-08-13T12:49:15-04:00",
-      "description": "",
-      "track": "ai-engineer",
-      "mission": true
-    },
-    {
-      "id": "job-1wb1ri6",
-      "title": "Product Marketing Manager, Global Public Sector",
-      "company": "Scale AI",
-      "location": "Doha, Qatar",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/scaleai/jobs/4723000005",
-      "source": "greenhouse",
-      "postedAt": "2026-08-13T10:14:14-04:00",
-      "description": "",
-      "track": "software",
-      "mission": true
-    },
-    {
-      "id": "job-1gtfdyo",
-      "title": "Strategic Projects Lead, Public Sector - Cyber",
-      "company": "Scale AI",
-      "location": "Washington, DC",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/scaleai/jobs/4722928005",
-      "source": "greenhouse",
-      "postedAt": "2026-08-12T14:31:03-04:00",
-      "description": "",
-      "track": "software",
-      "mission": true
-    },
-    {
-      "id": "job-1la1g9b",
-      "title": "Strategic Projects Lead, Robotics",
-      "company": "Scale AI",
-      "location": "San Francisco, CA",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/scaleai/jobs/4658316005",
-      "source": "greenhouse",
-      "postedAt": "2026-08-12T13:19:46-04:00",
-      "description": "",
-      "track": "software",
-      "mission": true
-    },
-    {
-      "id": "job-1gydbef",
-      "title": "Product Marketing Lead, Enterprise",
-      "company": "Scale AI",
-      "location": "San Francisco, CA; New York, NY",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/scaleai/jobs/4722998005",
-      "source": "greenhouse",
-      "postedAt": "2026-08-12T09:45:34-04:00",
-      "description": "",
-      "track": "software",
-      "mission": true
-    },
-    {
-      "id": "job-93rlt5",
-      "title": "Engineering Manager, Agent Oversight",
-      "company": "Scale AI",
-      "location": "San Francisco, CA; New York, NY",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/scaleai/jobs/4625271005",
-      "source": "greenhouse",
-      "postedAt": "2026-08-11T19:13:03-04:00",
-      "description": "",
-      "track": "software",
-      "mission": true
-    },
-    {
-      "id": "job-1guotzf",
-      "title": "Workplace Operations Manager",
-      "company": "Scale AI",
-      "location": "London, UK",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/scaleai/jobs/4722941005",
-      "source": "greenhouse",
-      "postedAt": "2026-08-11T18:44:46-04:00",
-      "description": "",
-      "track": "software",
-      "mission": true
-    },
-    {
-      "id": "job-jffhu5",
-      "title": "Research Leader / Senior Scientist (In vivo Pharmacology & Translational Sciences), Cambridge, MA",
-      "company": "Isomorphic Labs",
-      "location": "Cambridge, MA",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/isomorphiclabs/jobs/6132115004",
-      "source": "greenhouse",
-      "postedAt": "2026-08-11T11:58:15-04:00",
-      "description": "",
-      "track": "software",
-      "mission": true
-    },
-    {
-      "id": "job-3elfi5",
-      "title": "Research Leader / Senior Scientist (In vitro / Cellular Pharmacology), Cambridge, MA",
-      "company": "Isomorphic Labs",
-      "location": "Cambridge, MA",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/isomorphiclabs/jobs/6131996004",
-      "source": "greenhouse",
-      "postedAt": "2026-08-11T11:47:41-04:00",
-      "description": "",
-      "track": "software",
-      "mission": true
-    },
-    {
-      "id": "job-1au4fh5",
-      "title": "Research Leader / Senior Scientist (Medicinal Drug Design), Cambridge, MA",
-      "company": "Isomorphic Labs",
-      "location": "Cambridge, MA",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/isomorphiclabs/jobs/6140839004",
-      "source": "greenhouse",
-      "postedAt": "2026-08-11T11:26:57-04:00",
-      "description": "",
-      "track": "software",
-      "mission": true
-    },
-    {
-      "id": "job-4buxmo",
-      "title": "Staff Applied AI Engineer",
-      "company": "Scale AI",
-      "location": "London, UK",
-      "remote": false,
-      "url": "https://job-boards.greenhouse.io/scaleai/jobs/4720050005",
-      "source": "greenhouse",
-      "postedAt": "2026-08-10T10:11:30-04:00",
-      "description": "",
-      "track": "ai-engineer",
       "mission": true
     }
   ]
